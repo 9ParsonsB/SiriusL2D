@@ -1,0 +1,974 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"GetMOuse",
+				"GetMouseX"
+			],
+			[
+				"Debu",
+				"DebugInfo"
+			],
+			[
+				"key",
+				"love.keyboard.isDown"
+			],
+			[
+				"texture",
+				"textureWidth"
+			],
+			[
+				"get",
+				"getmetatable	(object)"
+			],
+			[
+				"ley",
+				"love.keyboard.isDown"
+			],
+			[
+				"PlayerUpd",
+				"PlayerUpdated"
+			],
+			[
+				"mouse",
+				"love.mouse.isDown"
+			],
+			[
+				"ent",
+				"entity"
+			],
+			[
+				"fun",
+				"function	function"
+			],
+			[
+				"Pla",
+				"PlayerUpdated"
+			],
+			[
+				"enti",
+				"entity"
+			],
+			[
+				"entity",
+				"entity2"
+			],
+			[
+				"Fps",
+				"FpsUpdate"
+			],
+			[
+				"Crea",
+				"CreateText"
+			],
+			[
+				"Load",
+				"LoadPhysicsMaterial"
+			],
+			[
+				"e",
+				"Entity"
+			],
+			[
+				"Cre",
+				"CreateSprite"
+			],
+			[
+				"Ba",
+				"BasicCollision"
+			],
+			[
+				"cla",
+				"Classes"
+			],
+			[
+				"ENt",
+				"EntityRecieved"
+			],
+			[
+				"di",
+				"distX"
+			],
+			[
+				"Movem",
+				"MovementUpdated"
+			],
+			[
+				"ran",
+				"randint"
+			],
+			[
+				"ra",
+				"random"
+			],
+			[
+				"del",
+				"DeltaTime"
+			],
+			[
+				"Mov",
+				"move"
+			],
+			[
+				"dis",
+				"distY"
+			],
+			[
+				"Di",
+				"display"
+			],
+			[
+				"No",
+				"now"
+			],
+			[
+				"va",
+				"valueB"
+			],
+			[
+				"en",
+				"entityB"
+			],
+			[
+				"E",
+				"Events"
+			],
+			[
+				"Pl",
+				"PlayerMoveUp"
+			],
+			[
+				"Ent",
+				"EntityMoved"
+			],
+			[
+				"mo",
+				"moveSpeed"
+			],
+			[
+				"Bo",
+				"BotCreated"
+			],
+			[
+				"S",
+				"Subscribe"
+			],
+			[
+				"Player",
+				"PlayerCreated"
+			],
+			[
+				"Up",
+				"UpdatePlayer"
+			],
+			[
+				"of",
+				"offsetX"
+			],
+			[
+				"pl",
+				"player2"
+			],
+			[
+				"Move",
+				"MoveY"
+			],
+			[
+				"ba",
+				"ballY"
+			],
+			[
+				"T",
+				"time"
+			],
+			[
+				"Pr",
+				"Projectile"
+			],
+			[
+				"Spri",
+				"SpriteComponent"
+			],
+			[
+				"Get",
+				"GetTransform"
+			],
+			[
+				"Bas",
+				"BasicCamera"
+			],
+			[
+				"Mo",
+				"MovementScript"
+			],
+			[
+				"Se",
+				"SelectCell"
+			],
+			[
+				"for",
+				"fori	for i,v in ipairs()"
+			],
+			[
+				"Ad",
+				"AddScript"
+			],
+			[
+				"Tes",
+				"TestScript"
+			],
+			[
+				"d",
+				"deltaTime"
+			],
+			[
+				"New",
+				"NewId"
+			],
+			[
+				"Ve",
+				"vel"
+			],
+			[
+				"f",
+				"function	function"
+			],
+			[
+				"Bu",
+				"Bullet"
+			],
+			[
+				"in",
+				"instance"
+			],
+			[
+				"En",
+				"Engine"
+			],
+			[
+				"Sp",
+				"Sprite"
+			],
+			[
+				"s",
+				"serverObj"
+			],
+			[
+				"cli",
+				"clientObj"
+			],
+			[
+				"B",
+				"BulletsCreated"
+			],
+			[
+				"Tim",
+				"TimeLimit"
+			],
+			[
+				"Inst",
+				"InstanceCount"
+			],
+			[
+				"Ti",
+				"TimeLimit"
+			],
+			[
+				"co",
+				"Count"
+			],
+			[
+				"Ins",
+				"Instances"
+			],
+			[
+				"In",
+				"InstanceCount"
+			],
+			[
+				"Upda",
+				"UpdateInstances"
+			],
+			[
+				"m",
+				"MoveUp"
+			],
+			[
+				"Han",
+				"HandleAction"
+			],
+			[
+				"Hand",
+				"HandleMsg"
+			],
+			[
+				"st",
+				"startGame"
+			],
+			[
+				"Entiy",
+				"EntityUpdated"
+			],
+			[
+				"Entity",
+				"EntityCreated"
+			],
+			[
+				"Co",
+				"ConnectToServer"
+			],
+			[
+				"bal",
+				"ballsPotted"
+			],
+			[
+				"Q",
+				"QuitGame"
+			],
+			[
+				"Ena",
+				"EnableMenu"
+			],
+			[
+				"bu",
+				"ButtonSelected"
+			],
+			[
+				"Cu",
+				"CueControl"
+			],
+			[
+				"spri",
+				"sprite"
+			],
+			[
+				"snap",
+				"snapPos"
+			],
+			[
+				"Bal",
+				"BallUpdateEv"
+			],
+			[
+				"On",
+				"OnBallUpdate"
+			],
+			[
+				"I",
+				"InstanceCount"
+			],
+			[
+				"Cla",
+				"Classes"
+			],
+			[
+				"Hell",
+				"HelloWorld"
+			],
+			[
+				"Cue",
+				"CueBall"
+			],
+			[
+				"cu",
+				"cueBall"
+			],
+			[
+				"He",
+				"HelloWorld"
+			],
+			[
+				"c",
+				"constructor"
+			],
+			[
+				"H",
+				"HandledCollision"
+			],
+			[
+				"col",
+				"coll1"
+			],
+			[
+				"coll",
+				"collider"
+			],
+			[
+				"Tra",
+				"TransformObj"
+			],
+			[
+				"ga",
+				"gameObject"
+			],
+			[
+				"Lo",
+				"LookAtThem"
+			],
+			[
+				"Ge",
+				"GetDeltaTime"
+			],
+			[
+				"G",
+				"GameObject"
+			],
+			[
+				"Shi",
+				"ShipBuilder"
+			],
+			[
+				"fi",
+				"function	function"
+			],
+			[
+				"new",
+				"newSelf"
+			],
+			[
+				"clas",
+				"classType"
+			],
+			[
+				"ele",
+				"elements"
+			],
+			[
+				"elem",
+				"elements"
+			],
+			[
+				"Room",
+				"RoomPart"
+			],
+			[
+				"Ro",
+				"Room"
+			],
+			[
+				"ship",
+				"shipBuilder"
+			],
+			[
+				"Icon",
+				"iconUi"
+			],
+			[
+				"ico",
+				"iconUi"
+			],
+			[
+				"Sh",
+				"shipBuilder"
+			],
+			[
+				"part",
+				"partSelector"
+			],
+			[
+				"Par",
+				"PartSelector"
+			],
+			[
+				"Ico",
+				"Icons"
+			],
+			[
+				"Ship",
+				"ShipCount"
+			],
+			[
+				"shi",
+				"shipBuilder"
+			],
+			[
+				"Upd",
+				"UpdateShip"
+			],
+			[
+				"Re",
+				"result"
+			],
+			[
+				"re",
+				"result"
+			],
+			[
+				"Add",
+				"AddPart"
+			],
+			[
+				"Cell",
+				"cellSize"
+			],
+			[
+				"Key",
+				"KeyPressed"
+			],
+			[
+				"Ke",
+				"KeyPressed"
+			],
+			[
+				"Draw",
+				"DrawShip"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "main.lua",
+			"settings":
+			{
+				"buffer_size": 844,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Game/player.lua",
+			"settings":
+			{
+				"buffer_size": 1278,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Engine/class.lua",
+			"settings":
+			{
+				"buffer_size": 1902,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"Package Control:",
+				"Package Control: Install Package"
+			],
+			[
+				"mono",
+				"Mono: Compile Dot Net"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Set Syntax: C#"
+			],
+			[
+				"package control",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 400.0
+	},
+	"console":
+	{
+		"height": 209.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/E/Computing/Programs/Lua/SpaceGame/Game/bullet.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/collider.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Game/debugInfo.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/class.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/gameState.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/main.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/entity.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/camera.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Game/player.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Game/wall.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Game/ship.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/conf.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/sprite.lua",
+		"/C/Users/Chris/Desktop/SpaceGame/SpaceGame/conf.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/transform.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/reference.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/engine.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/EntityGroup.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/cameraManager.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Game/GameScreen.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/world.lua",
+		"/C/Users/Chris/Desktop/nativelog.txt",
+		"/E/Computing/Programs/Lua/SpaceGame/Game/debugInfo",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/text.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/boxCollider.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Game/DebugInfo.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/player.lua",
+		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/main.lua",
+		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/Player.lua",
+		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/class.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/middleclass.lua",
+		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/events.lua",
+		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/Ship.lua",
+		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/FpsDisplay.lua",
+		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/BasicCollision.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/content.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/Content.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/Sprite.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Entities/player.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Entities/bullet.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Entities/entity.lua",
+		"/E/Computing/Programs/Lua/NetworkTest/main.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/class.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Input.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/bullet.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/entity.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/server.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/events.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/classes.lua",
+		"/E/Computing/Programs/Lua/Love2D/SpaceGame/main.lua",
+		"/C/Users/Chris/AppData/Roaming/Sublime Text 2/Packages/Lua Love/LuaLove.sublime-build",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Entity.lua",
+		"/E/Games/Minecraft/FTB/MinecraftLog.txt",
+		"/E/Games/Minecraft/FTB/FTBLauncherLog.txt",
+		"/E/Computing/Programs/C++/SFML/GenericEngine/scripts/class.lua",
+		"/E/Computing/Programs/C++/SFML/GenericEngine/scripts/BasicCollision.lua",
+		"/E/Computing/Programs/C++/SFML/GenericEngine/scripts/FpsDisplay.lua",
+		"/E/Computing/Programs/C++/SFML/GenericEngine/scripts/main.lua",
+		"/E/Computing/Programs/C++/SFML/GameEngine/README.md",
+		"/E/Computing/Programs/C++/SFML/GenericEngine/.gitignore",
+		"/E/Computing/Programs/C++/SFML/GenericEngine/scripts/Player.lua",
+		"/E/Computing/Programs/C++/SFML/GenericEngine/scripts/Ship.lua",
+		"/E/Computing/Programs/C++/SFML/GenericEngine/scripts/Test.lua",
+		"/E/Computing/Programs/C++/SFML/SFMLTemplate/scripts/main.lua",
+		"/E/Computing/Programs/C++/SFML/SFMLTemplate/scripts/class.lua",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Crag.lua",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Commander_Alerts.lua",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Commander_Ping.lua",
+		"/E/Games/Rodina/Scripts/Gameplay/EGMenu.lua",
+		"/E/Games/Rodina/Scripts/Gameplay/EGBehaviorPlayer.lua",
+		"/E/Computing/Programs/C++/SFML/SFMLTemplate/scripts/Classes.lua",
+		"/E/Games/Rodina/Scripts/EGCore.lua",
+		"/E/Games/Rodina/Scripts/Gameplay/EGCamera.lua",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Player.lua",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/ScriptActor.lua",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Commander.lua",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Alien.lua",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Alien_Order.lua",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Main.lua",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/AFKMixin.lua",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Update.lua",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/AlienTeam.lua",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/entry/readme.txt",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Alien_Client.lua",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Client.lua",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/lua_test/ViewModelTest.lua",
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/lua_test/ActorTest.lua",
+		"/E/Computing/Programs/C++/SFML/SFMLTemplate/scripts/test.lua",
+		"/E/Computing/Programs/Java/Java Code/Java Code/src/SampleCode.java",
+		"/E/Computing/Programs/Python/Entity system/engine.py",
+		"/E/Computing/Programs/Python/Entity system/main.py",
+		"/E/Computing/Programs/C++/SFML/SFMLTemplate/scripts/script.lua",
+		"/E/Computing/Programs/C++/SFML/SFMLTemplate/scripts/events.lua",
+		"/E/Computing/Programs/Python/Libs/pybox2d-master/pybox2d-master/examples/hello.py",
+		"/E/Computing/Programs/Python/Libs/pybox2d-master/pybox2d-master/setup.py",
+		"/E/Computing/Programs/Python/Libs/ez_setup.py",
+		"/E/Computing/Programs/Python/Learning/turtle.py",
+		"/E/Computing/Programs/Python/Learning/coinflip.py",
+		"/E/Games/Rodina/Scripts/DataGameplay/EGDataProgress.lua",
+		"/E/Games/Rodina/Scripts/DataGameplay/EGDataPlanets.lua",
+		"/E/Things/NUMBER!!",
+		"/C/Users/Chris/AppData/Local/Google/Chrome Cleanup Tool/chrome_cleanup_tool.log",
+		"/E/Computing/Programs/Python/Libs/pybox2d-master/pybox2d-master/examples/vertical_stack.py",
+		"/E/Computing/Programs/Python/PyOpenGL-3.1.1a1/PyOpenGL-3.1.1a1/PyOpenGL.egg-info/SOURCES.txt",
+		"/E/Computing/Programs/Python/Entity system/Test.py",
+		"/E/Games/Steam/steamapps/common/FTL Faster Than Light/settings.ini",
+		"/E/Computing/Programs/C++/SFML/SpaceGame/scripts/main.lua",
+		"/E/Computing/Programs/C++/SFML/SpaceGame/scripts/player.lua",
+		"/E/Computing/Programs/C++/SFML/SpaceGame/scripts/ExampleEntity.lua",
+		"/E/Computing/Programs/C++/Open Gl/Learning/Open Gl/App/Game/Scripts/Main.lua",
+		"/E/Computing/Programs/C++/Open Gl/Learning/Open Gl/App/Game/Scripts/TestScript.lua",
+		"/E/Computing/Programs/C++/Open Gl/Learning/Open Gl/App/Game/Scripts/MovementScript.lua",
+		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/Main.lua",
+		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/TestScript.lua",
+		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/MovementScript.lua",
+		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/BrickScript.lua",
+		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Debug/Bin/Scripts/MovementScript.lua",
+		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Debug/Bin/Scripts/BrickScript.lua",
+		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Debug/Bin/Scripts/Main.lua",
+		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/PlayerScript.lua",
+		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/GenericScript.lua",
+		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/AnotherGenericScript.lua",
+		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Debug/Bin/Lua/Main.lua",
+		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Lua/Main.lua",
+		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Lua/GenericScript.lua",
+		"/E/Computing/Programs/C++/Libs/Box2D-master/Box2D-master/README.md",
+		"/E/Computing/Unreal/Epic Games/Launcher/Engine/Binaries/Win64/debug.log",
+		"/E/Computing/Unreal/Epic Games/Launcher/Engine/Shaders/StandaloneRenderer/OpenGL/SlateElementPixelShader.glsl"
+	],
+	"find":
+	{
+		"height": 48.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"collectgarbage",
+			"200",
+			")\n",
+			"end",
+			"Transform",
+			"Entity",
+			"X",
+			"entity",
+			"end",
+			")\n",
+			"camera",
+			"local",
+			")\n",
+			"{}\n",
+			"end",
+			"50",
+			"	\n",
+			")\n",
+			"2",
+			"end",
+			")\n",
+			"ground",
+			"()",
+			"{}\n",
+			"FaceMouse",
+			"world",
+			"		",
+			"entityB",
+			"end",
+			"\", ",
+			"end",
+			"then",
+			"))",
+			"90",
+			"0",
+			"()\n",
+			"()",
+			"dt",
+			"end",
+			"MainMenu",
+			"SelectTexture",
+			"5",
+			"amount",
+			"\n--",
+			"then",
+			"end",
+			")\n",
+			"15",
+			"ball",
+			"\")",
+			"BallLogic",
+			"greenRect",
+			"part",
+			"])",
+			"end",
+			"Draw",
+			"x",
+			"end",
+			"y",
+			"."
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Entity",
+			"CueLogic"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "main.lua",
+					"settings":
+					{
+						"buffer_size": 844,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								717,
+								717
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Game/player.lua",
+					"settings":
+					{
+						"buffer_size": 1278,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								202,
+								202
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Engine/class.lua",
+					"settings":
+					{
+						"buffer_size": 1902,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								139,
+								139
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 39.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 210.0
+	},
+	"replace":
+	{
+		"height": 72.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/E/Computing/Programs/Python/Entity system/engine.py"
+			],
+			[
+				"c",
+				"TestGame1/TestGame1Content/TestGame1Content.contentproj"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 217.0,
+	"status_bar_visible": true
+}
