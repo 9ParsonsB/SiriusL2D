@@ -10,7 +10,14 @@ Entity.Angle = 0
 Entity.Attached = {}
 Entity.AttachedCount = 0
 
---Update and draw called in game loop
+function Entity:Create(x, y, angle, velX, velY)
+	self.X = x
+	self.Y = y
+	self.Angle = angle
+	self.VelX = velX
+	self.VelY = velY
+end
+
 function Entity:Update() end
 function Entity:Draw() end
 
@@ -40,34 +47,24 @@ end
 function Entity:SetPosition(x, y)
 	self.X = x or self.X
 	self.Y = y or self.Y
-
-	--Move attached relative to new position
 	for k, v in pairs(self.Attached) do v:Move(x - v.X, y - v.Y) end
 end
 
 function Entity:SetVelocity(x, y)
 	self.VelX = x
 	self.VelY = y
-
-	--Accelarate attatched relative to new velocity
 	for k, v in pairs(self.Attached) do v:Accelerate(x - v.VelX, y - v.VelY) end
 end
 
 function Entity:Accelerate(x, y)
 	self.VelX = self.VelX + x
 	self.VelY = self.VelY + y
-
-	if self.Collider then self.Collider:Accelerate(x, y) end
-
-	--Accelarate attatched
 	for k, v in pairs(self.Attached) do v:Accelerate(x, y) end
 end
 
 function Entity:Move(x, y)
 	self.X = self.X + x
 	self.Y = self.Y + y
-	
-	--Move attached
 	for k, v in pairs(self.Attached) do v:Move(x, y) end
 end
 
@@ -83,15 +80,11 @@ end
 
 function Entity:SetAngle(angle)
 	self.Angle = angle
-
-	--Set angle of attached relative to new angle
 	for k, v in pairs(self.Attached) do v:Rotate(angle - v.Angle) end
 end
 
 function Entity:Rotate(degrees)
 	self.Angle = self.Angle + degrees
-
-	--Rotate attached entity
 	for k, v in pairs(self.Attached) do v:Rotate(degrees) end
 end
 

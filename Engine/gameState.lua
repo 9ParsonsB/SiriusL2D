@@ -32,10 +32,7 @@ function Screen:Draw()
 	if self.Camera then self.Camera:Set() end
 
 	--Draw entities
-	for k, v in pairs(self.Entities) do
-		if v.Sprite then v.Sprite:Draw(v.X, v.Y, v.Angle) end
-    	v:Draw() 
-    end
+	for k, v in pairs(self.Entities) do v:Draw() end
 
     if self.Camera then self.Camera:Unset() end
 end

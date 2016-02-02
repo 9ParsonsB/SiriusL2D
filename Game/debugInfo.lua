@@ -1,5 +1,4 @@
 local Entity = require "Engine/entity"
-local Text = require "Engine/text"
 
 local DebugInfo = Class.New("DebugInfo", Entity)
 function DebugInfo:Create(x, y)

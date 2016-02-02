@@ -523,7 +523,7 @@
 			"file": "main.lua",
 			"settings":
 			{
-				"buffer_size": 844,
+				"buffer_size": 850,
 				"line_ending": "Windows"
 			}
 		},
@@ -531,15 +531,7 @@
 			"file": "Game/player.lua",
 			"settings":
 			{
-				"buffer_size": 1278,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Engine/class.lua",
-			"settings":
-			{
-				"buffer_size": 1902,
+				"buffer_size": 1269,
 				"line_ending": "Windows"
 			}
 		}
@@ -588,19 +580,32 @@
 	},
 	"file_history":
 	[
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/camera.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/entity.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/renderer.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/gameState.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/bullet.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/debugInfo.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/text.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/sprite.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/player.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/wall.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Game/ship.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Game/wall.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/sprite.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Game/bullet.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/Engine/collider.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/Game/debugInfo.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/Engine/class.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/gameState.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/main.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/renderer.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/class.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/text.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/entity.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Game/debugInfo.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/class.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/Engine/collider.lua",
+		"/E/Computing/Programs/Lua/SpaceGame/main.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/camera.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Game/player.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/Game/wall.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/Game/ship.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/conf.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/Engine/sprite.lua",
 		"/C/Users/Chris/Desktop/SpaceGame/SpaceGame/conf.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/transform.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/reference.lua",
@@ -611,7 +616,6 @@
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/world.lua",
 		"/C/Users/Chris/Desktop/nativelog.txt",
 		"/E/Computing/Programs/Lua/SpaceGame/Game/debugInfo",
-		"/E/Computing/Programs/Lua/SpaceGame/Engine/text.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/boxCollider.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Game/DebugInfo.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/player.lua",
@@ -703,19 +707,7 @@
 		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/Main.lua",
 		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/TestScript.lua",
 		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/MovementScript.lua",
-		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/BrickScript.lua",
-		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Debug/Bin/Scripts/MovementScript.lua",
-		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Debug/Bin/Scripts/BrickScript.lua",
-		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Debug/Bin/Scripts/Main.lua",
-		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/PlayerScript.lua",
-		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/GenericScript.lua",
-		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/AnotherGenericScript.lua",
-		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Debug/Bin/Lua/Main.lua",
-		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Lua/Main.lua",
-		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Lua/GenericScript.lua",
-		"/E/Computing/Programs/C++/Libs/Box2D-master/Box2D-master/README.md",
-		"/E/Computing/Unreal/Epic Games/Launcher/Engine/Binaries/Win64/debug.log",
-		"/E/Computing/Unreal/Epic Games/Launcher/Engine/Shaders/StandaloneRenderer/OpenGL/SlateElementPixelShader.glsl"
+		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/BrickScript.lua"
 	],
 	"find":
 	{
@@ -812,7 +804,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -820,15 +812,15 @@
 					"file": "main.lua",
 					"settings":
 					{
-						"buffer_size": 844,
+						"buffer_size": 850,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								717,
-								717
+								252,
+								252
 							]
 						],
 						"settings":
@@ -848,49 +840,21 @@
 					"file": "Game/player.lua",
 					"settings":
 					{
-						"buffer_size": 1278,
+						"buffer_size": 1269,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								202,
-								202
+								205,
+								205
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Lua/Lua.tmLanguage",
 							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "Engine/class.lua",
-					"settings":
-					{
-						"buffer_size": 1902,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								139,
-								139
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Lua/Lua.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -969,6 +933,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 217.0,
+	"side_bar_width": 207.0,
 	"status_bar_visible": true
 }

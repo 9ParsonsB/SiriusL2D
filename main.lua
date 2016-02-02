@@ -19,9 +19,9 @@ function love.load()
 
     --Game objects
     DebugInfo(0, 0)
-    local ship1 = Ship(300, 300, 0)
-    local player1 = Player((width / 2) - 8, (height / 2) - 8, 300)
-    local wall1 = Wall(300, 200)
+    --local ship1 = Ship(300, 300, 0)
+    local player1 = Player((width / 2) - 25, (height / 2) - 25, 300)
+    --local wall1 = Wall(300, 200)
 end
 
 function love.update(dt)
