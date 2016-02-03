@@ -27,4 +27,8 @@ function Renderer.DrawSprite(filePath, x, y, angle, width, height)
 		scaleX, scaleY,
 		textureWidth / 2, textureHeight / 2)
 end
+
+function Renderer.DrawText(value, x, y, angle)
+	love.graphics.print(value, x or 0, y or 0, (math.pi / 180) * (angle or 0))
+end
 return Renderer

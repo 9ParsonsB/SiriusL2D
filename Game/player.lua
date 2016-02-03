@@ -5,13 +5,11 @@ local Bullet = require "Game/bullet"
 
 local Player = Class.New("Player", Entity)
 function Player:Create(x, y, speed)
-	self.X = x or 0
-	self.Y = y or 0
-
+	Entity.Create(self, x, y)
 	self.Speed = speed or 0
 	self.FireTimer = 0
 	self.FireSpeed = 0.001
-
+	
 	self.Collider = Collider(x, y, 50, 50, "dynamic")
 	--local camera = self:GetCamera("Game")
 	--if camera then self:Attach(camera) end
@@ -19,6 +17,8 @@ function Player:Create(x, y, speed)
 	self:SetScreen("Game") 
 end
 function Player:Update(dt)
+	self:SetVelocity(self.Collider:GetVelocity())
+
 	--Rotate to face mouse
 	self:Face(love.mouse.getX(), love.mouse.getY())
 
@@ -37,5 +37,9 @@ function Player:Update(dt)
 end
 function Player:Draw()
 	Renderer.DrawSprite("greenRect.png", self.X, self.Y, self.Angle)
+end
+function Player:Accelerate(x, y)
+	Entity.Accelerate(self, x, y)
+	self.Collider:Accelerate(x, y)
 end
 return Player

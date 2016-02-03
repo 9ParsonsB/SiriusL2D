@@ -523,15 +523,15 @@
 			"file": "main.lua",
 			"settings":
 			{
-				"buffer_size": 850,
+				"buffer_size": 609,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "Game/player.lua",
+			"file": "Game/test.lua",
 			"settings":
 			{
-				"buffer_size": 1269,
+				"buffer_size": 442,
 				"line_ending": "Windows"
 			}
 		}
@@ -580,15 +580,16 @@
 	},
 	"file_history":
 	[
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/camera.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/entity.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/renderer.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/gameState.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/player.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/entity.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/class.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/bullet.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/camera.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/gameState.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/debugInfo.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/text.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/sprite.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/player.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/wall.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Game/ship.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Game/wall.lua",
@@ -600,7 +601,6 @@
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/text.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/entity.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Game/debugInfo.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/class.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/collider.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/main.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/camera.lua",
@@ -804,7 +804,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -812,15 +812,15 @@
 					"file": "main.lua",
 					"settings":
 					{
-						"buffer_size": 850,
+						"buffer_size": 609,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								252,
-								252
+								297,
+								297
 							]
 						],
 						"settings":
@@ -837,22 +837,23 @@
 				},
 				{
 					"buffer": 1,
-					"file": "Game/player.lua",
+					"file": "Game/test.lua",
 					"settings":
 					{
-						"buffer_size": 1269,
+						"buffer_size": 442,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								205,
-								205
+								442,
+								442
 							]
 						],
 						"settings":
 						{
+							"auto_name": "",
 							"syntax": "Packages/Lua/Lua.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},

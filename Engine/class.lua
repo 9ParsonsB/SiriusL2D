@@ -31,7 +31,7 @@ Class.__call = function (class, ...)
     --Store object
     local name = class.GetType()
     Objects[name][ObjectCounts[name]] = object
-    ObjectCounts[name] = ObjectCounts[name] + 1
+    ObjectCounts[name] = ObjectCounts[name] + 1--]]
 
     --Store object as base
     local baseName = class.GetBaseType()

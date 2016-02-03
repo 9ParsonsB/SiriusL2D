@@ -3,12 +3,7 @@ local Renderer = require "Engine/renderer"
 
 local Bullet = Class.New("Bullet", Entity)
 function Bullet:Create(x, y, angle, velX, velY)
-	self.X = x or 0
-	self.Y = y or 0
-	self.Angle = angle or 0
-	self.VelX = velX
-	self.VelY = velY
-
+	Entity.Create(x, y, angle, velX, velY)
 	self.Timer = 0
 	self:SetScreen("Game")
 end

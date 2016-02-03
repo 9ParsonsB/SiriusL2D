@@ -11,11 +11,11 @@ Entity.Attached = {}
 Entity.AttachedCount = 0
 
 function Entity:Create(x, y, angle, velX, velY)
-	self.X = x
-	self.Y = y
-	self.Angle = angle
-	self.VelX = velX
-	self.VelY = velY
+	self.X = x or 0
+	self.Y = y or 0
+	self.Angle = angle or 0
+	self.VelX = velX or 0
+	self.VelY = velY or 0
 end
 
 function Entity:Update() end
