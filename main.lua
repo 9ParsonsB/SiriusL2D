@@ -1,14 +1,15 @@
+Events = require "Engine/events"
 Renderer = require "Engine/renderer"
 GameState = require "Engine/gameState"
 
-local function CreateEntity(scriptfile, ...)
+local function Entity(filePath, ...)
     local env = setmetatable({}, {__index=_G})
-    assert(loadfile(scriptfile, 't', env))()
+    assert(loadfile(filePath, 't', env))()
     env.Create(...)
     return env
 end
 
-local test = CreateEntity("Game/test.lua")
+local test = Entity("Game/test.lua", 100, 100)
 
 function love.load()
     love.graphics.setBackgroundColor(104, 136, 248)
