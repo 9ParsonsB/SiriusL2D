@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"newsha",
+				"love.physics.newRectangleShape"
+			],
+			[
+				"Obje",
+				"ObjectCounts"
+			],
+			[
 				"GetMOuse",
 				"GetMouseX"
 			],
@@ -506,14 +514,6 @@
 			[
 				"Key",
 				"KeyPressed"
-			],
-			[
-				"Ke",
-				"KeyPressed"
-			],
-			[
-				"Draw",
-				"DrawShip"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "main.lua",
 			"settings":
 			{
-				"buffer_size": 609,
+				"buffer_size": 1727,
 				"line_ending": "Windows"
 			}
 		},
@@ -531,7 +531,7 @@
 			"file": "Game/test.lua",
 			"settings":
 			{
-				"buffer_size": 442,
+				"buffer_size": 953,
 				"line_ending": "Windows"
 			}
 		}
@@ -580,17 +580,30 @@
 	},
 	"file_history":
 	[
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/object.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/wall.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/renderer.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/main.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/conf.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/collider.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/oldPlayer.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/testScript.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/player.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/entity.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/test.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/class.lua",
+		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/main.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/testBullet.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/object.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/entity.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/debugInfo.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/bullet.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/events.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/bulletTest.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/events.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/camera.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/gameState.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/debugInfo.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/text.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/sprite.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/wall.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Game/ship.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Game/wall.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/sprite.lua",
@@ -619,7 +632,6 @@
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/boxCollider.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Game/DebugInfo.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/player.lua",
-		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/main.lua",
 		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/Player.lua",
 		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/class.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/middleclass.lua",
@@ -695,19 +707,7 @@
 		"/E/Things/NUMBER!!",
 		"/C/Users/Chris/AppData/Local/Google/Chrome Cleanup Tool/chrome_cleanup_tool.log",
 		"/E/Computing/Programs/Python/Libs/pybox2d-master/pybox2d-master/examples/vertical_stack.py",
-		"/E/Computing/Programs/Python/PyOpenGL-3.1.1a1/PyOpenGL-3.1.1a1/PyOpenGL.egg-info/SOURCES.txt",
-		"/E/Computing/Programs/Python/Entity system/Test.py",
-		"/E/Games/Steam/steamapps/common/FTL Faster Than Light/settings.ini",
-		"/E/Computing/Programs/C++/SFML/SpaceGame/scripts/main.lua",
-		"/E/Computing/Programs/C++/SFML/SpaceGame/scripts/player.lua",
-		"/E/Computing/Programs/C++/SFML/SpaceGame/scripts/ExampleEntity.lua",
-		"/E/Computing/Programs/C++/Open Gl/Learning/Open Gl/App/Game/Scripts/Main.lua",
-		"/E/Computing/Programs/C++/Open Gl/Learning/Open Gl/App/Game/Scripts/TestScript.lua",
-		"/E/Computing/Programs/C++/Open Gl/Learning/Open Gl/App/Game/Scripts/MovementScript.lua",
-		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/Main.lua",
-		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/TestScript.lua",
-		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/MovementScript.lua",
-		"/E/Computing/Programs/C++/Open Gl/Learning/App/Game/Scripts/BrickScript.lua"
+		"/E/Computing/Programs/Python/PyOpenGL-3.1.1a1/PyOpenGL-3.1.1a1/PyOpenGL.egg-info/SOURCES.txt"
 	],
 	"find":
 	{
@@ -725,6 +725,10 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"Types",
+			"\")\n",
+			"]})\n",
+			"Fire",
 			"collectgarbage",
 			"200",
 			")\n",
@@ -804,7 +808,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -812,15 +816,15 @@
 					"file": "main.lua",
 					"settings":
 					{
-						"buffer_size": 609,
+						"buffer_size": 1727,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								297,
-								297
+								809,
+								809
 							]
 						],
 						"settings":
@@ -830,7 +834,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 198.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -840,20 +844,19 @@
 					"file": "Game/test.lua",
 					"settings":
 					{
-						"buffer_size": 442,
+						"buffer_size": 953,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								442,
-								442
+								672,
+								672
 							]
 						],
 						"settings":
 						{
-							"auto_name": "",
 							"syntax": "Packages/Lua/Lua.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},

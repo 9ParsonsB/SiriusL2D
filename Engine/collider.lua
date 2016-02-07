@@ -15,7 +15,7 @@ function Collider:SetVelocity(x, y)
 	self.Body:setLinearVelocity(x, y)
 end
 function Collider:Accelerate(x, y)
-	local velX, velY = self.Body:getLinearVelocity()
+	local velX, velY = self:GetVelocity()
 	self.Body:setLinearVelocity(velX + x, velY + y)
 end
 return Collider

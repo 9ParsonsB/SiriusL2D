@@ -2,9 +2,11 @@ local Entity = require "Engine/entity"
 local Renderer = require "Engine/renderer"
 
 local Bullet = Class.New("Bullet", Entity)
+
+Bullet.Timer = 0
+
 function Bullet:Create(x, y, angle, velX, velY)
-	Entity.Create(x, y, angle, velX, velY)
-	self.Timer = 0
+	Entity.Create(self, x, y, angle, velX, velY)
 	self:SetScreen("Game")
 end
 function Bullet:Update(dt)

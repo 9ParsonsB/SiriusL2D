@@ -6,15 +6,15 @@ local ObjectCounts = {}
 Class = {}
 
 --Copies table
-local function deepcopy(orig)
+function Class.deepcopy(orig)
     local orig_type = type(orig)
     local copy
     if orig_type == 'table' then
         copy = {}
         for orig_key, orig_value in next, orig, nil do
-            copy[deepcopy(orig_key)] = deepcopy(orig_value)
+            copy[Class.deepcopy(orig_key)] = Class.deepcopy(orig_value)
         end
-        setmetatable(copy, deepcopy(getmetatable(orig)))
+        setmetatable(copy, Class.deepcopy(getmetatable(orig)))
     else -- number, string, boolean, etc
         copy = orig
     end
@@ -23,7 +23,7 @@ end
 
 --Creates new object from class
 Class.__call = function (class, ...)
-    local object = deepcopy(class)
+    local object = Class.deepcopy(class)
 
     --Call constructor with parameters
     if type(class.Create) == "function" then class.Create(object, ...) end  
@@ -65,14 +65,15 @@ function Class.New(name, base)
     return c
 end
 
-function Class.GetNumObjects(name)
+function Class.GetObjectCount(name)
     local count = 0
-    for k,v in pairs(Objects[name]) do
-        count = count + 1
+    if Objects[name] then
+        for k,v in pairs(Objects[name]) do count = count + 1 end
     end
-    return count --ObjectCounts[name]
+    return count
 end
 
 function Class.GetObjects(name)
-    return Objects[name]
+    if Objects[name] then return Objects[name] end
+    return nil
 end

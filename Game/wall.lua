@@ -1,11 +1,12 @@
-local Entity = require "Engine/entity"
-local Collider = require "Engine/collider"
-
-local Wall = Class.New("Wall", Entity)
-function Wall:Create(x, y)
-	self.X = x or 0
-	self.Y = y or 0
-	--self.Collider = Collider(x, y, self.Sprite.Width, self.Sprite.Height, "kinematic")   
-	self:SetScreen("Game")
+function Create(self, x, y)
+	self.X = x
+	self.Y = y
+	self.Body = love.physics.newBody(World, x + 8, y + 8)
+	self.Shape = love.physics.newRectangleShape(16, 16)
+	self.Fixture = love.physics.newFixture(self.Body, self.Shape)
+	self.Fixture:setUserData(self)
 end
-return Wall
+function Draw(self)
+	--Renderer.DrawSprite(self, "greenRect.png")
+	love.graphics.polygon("fill", self.Body:getWorldPoints(self.Shape:getPoints()))
+end

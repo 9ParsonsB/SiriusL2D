@@ -2,8 +2,7 @@ local Entity = require "Engine/entity"
 
 local DebugInfo = Class.New("DebugInfo", Entity)
 function DebugInfo:Create(x, y)
-	self.X = x
-	self.Y = y
+	Entity.Create(self, x, y)
     self:SetScreen("Debug")
 end
 function DebugInfo:Draw()
@@ -19,6 +18,6 @@ function DebugInfo:Draw()
     love.graphics.print('Memory used(KB): ' .. collectgarbage('count'), self.X, self.Y + 45)
 
     --Bullet count
-    love.graphics.print("Bullet count: " .. (Class.GetNumObjects("Bullet") or 0), self.X, self.Y + 60)
+    love.graphics.print("Bullet count: " .. (Class.GetObjectCount("Bullet") or 0), self.X, self.Y + 60)
 end
 return DebugInfo

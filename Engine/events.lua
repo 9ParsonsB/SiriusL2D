@@ -1,4 +1,5 @@
 local Events = {}
+
 Events.Handlers = {}
 Events.HandlerCounts = {}
 

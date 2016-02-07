@@ -1,33 +1,33 @@
-FireRate = 0.1
-Timer = 0
 Speed = 300
 
-function Create(x, y)
-    X = x or 0
-    Y = y or 0
-    Angle = 0
-
-    Events.Register("Fire", Fire)
+function Create(self, x, y)
+	self.X = x
+	self.Y = y
+	self.Body = love.physics.newBody(World, x + 8, y + 8, "dynamic")
+	--self.Body:setFixedRotation(true)
+	self.Shape = love.physics.newRectangleShape(16, 16)
+	self.Fixture = love.physics.newFixture(self.Body, self.Shape)
+	self.Fixture:setUserData(self)
 end
+function Update(self, dt)
+	local x, y = self:GetLinearVelocity()
 
-function Update(dt)
-    if love.keyboard.isDown("space") then Events.Fire("Fire", dt) end
-    if love.keyboard.isDown("w") then Y = Y - Speed * dt end
-    if love.keyboard.isDown("s") then Y = Y + Speed * dt end
-    if love.keyboard.isDown("a") then X = X - Speed * dt end
-    if love.keyboard.isDown("d") then X = X + Speed * dt end
-end
+	--WASD movement
+	if love.keyboard.isDown("w") then y = y - Speed * dt end
+	if love.keyboard.isDown("s") then y = y + Speed * dt end
+	if love.keyboard.isDown("a") then x = x - Speed * dt end	
+	if love.keyboard.isDown("d") then x = x + Speed * dt end
 
-function Draw()
-    Renderer.DrawSprite("greenRect.png", X, Y, Angle)
-    Renderer.DrawText("FPS: " .. love.timer.getFPS())
+	--Update velocity
+	self:SetLinearVelocity(x, y)
 end
-
-function Fire(dt)
-    Timer = Timer + dt
-    if Timer > FireRate then
-        print("Firing")
-        Timer = 0
-    end
+function Draw(self)
+	--Renderer.DrawSprite(self, "greenRect.png")
+  	love.graphics.polygon("fill", self.Body:getWorldPoints(self.Shape:getPoints()))
 end
-// Test
+function CollisionEnter(self, other, coll)
+	--print("Collision enter")
+end
+function CollisionExit(self, other, coll)
+	--print("Collision exit")
+end

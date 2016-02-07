@@ -7,7 +7,11 @@ function Renderer.LoadTexture(filePath)
 	Renderer.Textures[filePath] = love.graphics.newImage(Renderer.ContentDir .. filePath)
 end
 
-function Renderer.DrawSprite(filePath, x, y, angle, width, height)
+function Renderer.DrawSprite(self, filePath, x, y, angle, width, height)
+	x = self.X + (x or 0)
+	y = self.Y + (y or 0)
+	angle = self.Angle + (angle or 0)
+
 	--Load texture if it does not exist
 	if not Renderer.Textures[filePath] then Renderer.LoadTexture(filePath) end
 	local texture = Renderer.Textures[filePath]
@@ -22,8 +26,8 @@ function Renderer.DrawSprite(filePath, x, y, angle, width, height)
 	--Draw sprite
 	love.graphics.draw(
 		texture, 
-		x or 0, y or 0,
-		(math.pi / 180) * (angle or 0),
+		x, y,
+		(math.pi / 180) * angle,
 		scaleX, scaleY,
 		textureWidth / 2, textureHeight / 2)
 end

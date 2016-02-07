@@ -53,12 +53,18 @@ end
 function Entity:SetVelocity(x, y)
 	self.VelX = x
 	self.VelY = y
+
+	if self.Collider then self.Collider:SetVelocity(x, y) end
+
 	for k, v in pairs(self.Attached) do v:Accelerate(x - v.VelX, y - v.VelY) end
 end
 
 function Entity:Accelerate(x, y)
 	self.VelX = self.VelX + x
 	self.VelY = self.VelY + y
+
+	if self.Collider then self.Collider:Accelerate(x, y) end
+
 	for k, v in pairs(self.Attached) do v:Accelerate(x, y) end
 end
 
