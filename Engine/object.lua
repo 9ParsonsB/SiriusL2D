@@ -39,7 +39,8 @@ function Object.Load(name, filePath)
     end
 
     --Load file
-    assert(loadfile(filePath .. ".lua", 't', env))()
+    local path = love.filesystem.getRealDirectory("") .. "/" .. filePath .. ".lua"
+    assert(loadfile(path, 't', env))()
 
     Object.Types[name] = env
 end
