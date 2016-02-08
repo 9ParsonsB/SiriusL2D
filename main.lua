@@ -3,14 +3,22 @@ local Object = require "Engine/object"
 function love.load()
     love.graphics.setBackgroundColor(104, 136, 248)
     love.physics.setMeter(64)
-    World = love.physics.newWorld(0, 0, true)
+    World = love.physics.newWorld(0, 5*64, true)
     World:setCallbacks(beginContact, endContact)
 
-    Object.Load("test", "Game/test")
+    Object.Load("debug", "Game/debug")
+    Object.Load("player", "Game/player")
     Object.Load("wall", "Game/wall")
 
-    Object.Create("test", 100, 100)
-    Object.Create("wall", 300, 100)
+    Object.Create("debug", 0, 0)
+    Object.Create("player", 100, 100)
+
+    --Random amount of boxes
+    math.randomseed(os.time())
+    local count = math.random(100)
+    for i = 0, count do
+        Object.Create("wall", math.random(100, 1000), math.random(100, 700))
+    end
 end
 
 function love.update(dt)

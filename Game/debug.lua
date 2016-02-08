@@ -1,11 +1,8 @@
-local Entity = require "Engine/entity"
-
-local DebugInfo = Class.New("DebugInfo", Entity)
-function DebugInfo:Create(x, y)
-	Entity.Create(self, x, y)
-    self:SetScreen("Debug")
+function Create(self, x, y)
+	self.X = x
+    self.Y = y
 end
-function DebugInfo:Draw()
+function Draw(self)
     --Frame rate
     love.graphics.print("Frame rate: " .. love.timer.getFPS(), self.X, self.Y)
 
@@ -16,8 +13,4 @@ function DebugInfo:Draw()
 
     --Memory usage
     love.graphics.print('Memory used(KB): ' .. collectgarbage('count'), self.X, self.Y + 45)
-
-    --Bullet count
-    love.graphics.print("Bullet count: " .. (Class.GetObjectCount("Bullet") or 0), self.X, self.Y + 60)
 end
-return DebugInfo

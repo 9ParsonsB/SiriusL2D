@@ -14,8 +14,9 @@ function Object.Load(name, filePath)
     env.Object = Object
     env.Renderer = Renderer
     env.love = love
-    env.print = print
     env.World = World
+    env.print = print
+    env.collectgarbage = collectgarbage
 
     function env:GetLinearVelocity()
         if self.Body then return self.Body:getLinearVelocity(x, y) end

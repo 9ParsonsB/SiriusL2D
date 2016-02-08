@@ -8,12 +8,21 @@ function Create(self, x, y)
 	self.Shape = love.physics.newRectangleShape(16, 16)
 	self.Fixture = love.physics.newFixture(self.Body, self.Shape)
 	self.Fixture:setUserData(self)
+
+	self.Bounces = 0
 end
 function Update(self, dt)
+	if self.Bounces > 5 then
+		--[[self.Body:setPosition(400, 0)
+		self.X = 400
+		self.Y = 0--]]
+		self.Bounces = 0
+	end
+
 	local x, y = self:GetLinearVelocity()
 
 	--WASD movement
-	if love.keyboard.isDown("w") then y = y - Speed * dt end
+	if love.keyboard.isDown("w") then y = y - Speed * 10 * dt end
 	if love.keyboard.isDown("s") then y = y + Speed * dt end
 	if love.keyboard.isDown("a") then x = x - Speed * dt end	
 	if love.keyboard.isDown("d") then x = x + Speed * dt end
@@ -26,7 +35,7 @@ function Draw(self)
   	love.graphics.polygon("fill", self.Body:getWorldPoints(self.Shape:getPoints()))
 end
 function CollisionEnter(self, other, coll)
-	--print("Collision enter")
+	self.Bounces = self.Bounces + 1
 end
 function CollisionExit(self, other, coll)
 	--print("Collision exit")

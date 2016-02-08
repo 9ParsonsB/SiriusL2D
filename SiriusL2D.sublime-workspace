@@ -4,14 +4,6 @@
 		"selected_items":
 		[
 			[
-				"newsha",
-				"love.physics.newRectangleShape"
-			],
-			[
-				"Obje",
-				"ObjectCounts"
-			],
-			[
 				"GetMOuse",
 				"GetMouseX"
 			],
@@ -514,6 +506,14 @@
 			[
 				"Key",
 				"KeyPressed"
+			],
+			[
+				"Ke",
+				"KeyPressed"
+			],
+			[
+				"Draw",
+				"DrawShip"
 			]
 		]
 	},
@@ -523,15 +523,23 @@
 			"file": "main.lua",
 			"settings":
 			{
-				"buffer_size": 1727,
+				"buffer_size": 1988,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "Game/test.lua",
+			"file": "Game/player.lua",
 			"settings":
 			{
-				"buffer_size": 953,
+				"buffer_size": 1137,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Game/wall.lua",
+			"settings":
+			{
+				"buffer_size": 419,
 				"line_ending": "Windows"
 			}
 		}
@@ -580,26 +588,30 @@
 	},
 	"file_history":
 	[
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/object.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/wall.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/renderer.lua",
+		"/E/GameDevelopment/Lua/SiriusL2D/Game/debug.lua",
+		"/E/GameDevelopment/Lua/SiriusL2D/Engine/object.lua",
+		"/E/GameDevelopment/Lua/SiriusL2D/Game/player.lua",
+		"/E/GameDevelopment/Sublime Text 2.0.2/Data/Packages/Lua Love/LuaLove.sublime-build",
+		"/F/GameDevelopment/Sublime Text 2.0.2/Data/Packages/Lua Love/LuaLove.sublime-build",
+		"/F/GameDevelopment/Lua/SiriusL2D/Game/object.lua",
+		"/F/GameDevelopment/Lua/SiriusL2D/main.lua",
+		"/W/GameDevelopment/Lua/SiriusL2D/Game/testBullet.lua",
+		"/W/GameDevelopment/Lua/SiriusL2D/Game/debugInfo.lua",
+		"/W/GameDevelopment/Lua/SiriusL2D/Game/object.lua",
+		"/W/GameDevelopment/Sublime Text 2.0.2/Data/Packages/Lua Love/LuaLove.sublime-build",
 		"/E/Computing/Programs/Lua/SiriusL2D/main.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/conf.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/collider.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/oldPlayer.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/testScript.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/wall.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/player.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/test.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/class.lua",
-		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/main.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/testBullet.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/object.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/entity.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/collider.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/class.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/debugInfo.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/bullet.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/events.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/test.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/bulletTest.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/events.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/renderer.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/camera.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/gameState.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/text.lua",
@@ -632,6 +644,7 @@
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/boxCollider.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Game/DebugInfo.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/player.lua",
+		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/main.lua",
 		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/Player.lua",
 		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/class.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/middleclass.lua",
@@ -702,12 +715,7 @@
 		"/E/Computing/Programs/Python/Libs/ez_setup.py",
 		"/E/Computing/Programs/Python/Learning/turtle.py",
 		"/E/Computing/Programs/Python/Learning/coinflip.py",
-		"/E/Games/Rodina/Scripts/DataGameplay/EGDataProgress.lua",
-		"/E/Games/Rodina/Scripts/DataGameplay/EGDataPlanets.lua",
-		"/E/Things/NUMBER!!",
-		"/C/Users/Chris/AppData/Local/Google/Chrome Cleanup Tool/chrome_cleanup_tool.log",
-		"/E/Computing/Programs/Python/Libs/pybox2d-master/pybox2d-master/examples/vertical_stack.py",
-		"/E/Computing/Programs/Python/PyOpenGL-3.1.1a1/PyOpenGL-3.1.1a1/PyOpenGL.egg-info/SOURCES.txt"
+		"/E/Games/Rodina/Scripts/DataGameplay/EGDataProgress.lua"
 	],
 	"find":
 	{
@@ -725,9 +733,6 @@
 		"case_sensitive": true,
 		"find_history":
 		[
-			"Types",
-			"\")\n",
-			"]})\n",
 			"Fire",
 			"collectgarbage",
 			"200",
@@ -808,7 +813,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -816,15 +821,15 @@
 					"file": "main.lua",
 					"settings":
 					{
-						"buffer_size": 1727,
+						"buffer_size": 1988,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								809,
-								809
+								491,
+								491
 							]
 						],
 						"settings":
@@ -834,31 +839,57 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 198.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "Game/test.lua",
+					"file": "Game/player.lua",
 					"settings":
 					{
-						"buffer_size": 953,
+						"buffer_size": 1137,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								672,
-								672
+								457,
+								457
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Lua/Lua.tmLanguage",
 							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Game/wall.lua",
+					"settings":
+					{
+						"buffer_size": 419,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								114,
+								114
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -902,7 +933,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 210.0
+		"height": 216.0
 	},
 	"replace":
 	{
