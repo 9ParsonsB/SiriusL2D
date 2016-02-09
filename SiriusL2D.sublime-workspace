@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"newsha",
+				"love.physics.newRectangleShape"
+			],
+			[
+				"Obje",
+				"ObjectCounts"
+			],
+			[
 				"GetMOuse",
 				"GetMouseX"
 			],
@@ -506,14 +514,6 @@
 			[
 				"Key",
 				"KeyPressed"
-			],
-			[
-				"Ke",
-				"KeyPressed"
-			],
-			[
-				"Draw",
-				"DrawShip"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "main.lua",
 			"settings":
 			{
-				"buffer_size": 1988,
+				"buffer_size": 1964,
 				"line_ending": "Windows"
 			}
 		},
@@ -531,15 +531,7 @@
 			"file": "Game/player.lua",
 			"settings":
 			{
-				"buffer_size": 1137,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Game/wall.lua",
-			"settings":
-			{
-				"buffer_size": 419,
+				"buffer_size": 1027,
 				"line_ending": "Windows"
 			}
 		}
@@ -588,31 +580,31 @@
 	},
 	"file_history":
 	[
-		"/E/GameDevelopment/Lua/SiriusL2D/Game/debug.lua",
-		"/E/GameDevelopment/Lua/SiriusL2D/Engine/object.lua",
-		"/E/GameDevelopment/Lua/SiriusL2D/Game/player.lua",
-		"/E/GameDevelopment/Sublime Text 2.0.2/Data/Packages/Lua Love/LuaLove.sublime-build",
-		"/F/GameDevelopment/Sublime Text 2.0.2/Data/Packages/Lua Love/LuaLove.sublime-build",
-		"/F/GameDevelopment/Lua/SiriusL2D/Game/object.lua",
-		"/F/GameDevelopment/Lua/SiriusL2D/main.lua",
-		"/W/GameDevelopment/Lua/SiriusL2D/Game/testBullet.lua",
-		"/W/GameDevelopment/Lua/SiriusL2D/Game/debugInfo.lua",
-		"/W/GameDevelopment/Lua/SiriusL2D/Game/object.lua",
-		"/W/GameDevelopment/Sublime Text 2.0.2/Data/Packages/Lua Love/LuaLove.sublime-build",
-		"/E/Computing/Programs/Lua/SiriusL2D/main.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/wall.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/player.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/entity.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/collider.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/class.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/debugInfo.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/camera.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/bullet.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/events.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/ship.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/object.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/debug.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/testing.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/player.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/wall.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/conf.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/debugInfo.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/README.md",
+		"/E/Computing/Programs/Lua/SiriusL2D/main.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/renderer.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/collider.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/oldPlayer.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/testScript.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/test.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/class.lua",
+		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/main.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/testBullet.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/object.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/entity.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/events.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/bulletTest.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/events.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/renderer.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/camera.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/gameState.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/text.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/sprite.lua",
@@ -644,7 +636,6 @@
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/boxCollider.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Game/DebugInfo.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/player.lua",
-		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/main.lua",
 		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/Player.lua",
 		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/class.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/middleclass.lua",
@@ -715,7 +706,8 @@
 		"/E/Computing/Programs/Python/Libs/ez_setup.py",
 		"/E/Computing/Programs/Python/Learning/turtle.py",
 		"/E/Computing/Programs/Python/Learning/coinflip.py",
-		"/E/Games/Rodina/Scripts/DataGameplay/EGDataProgress.lua"
+		"/E/Games/Rodina/Scripts/DataGameplay/EGDataProgress.lua",
+		"/E/Games/Rodina/Scripts/DataGameplay/EGDataPlanets.lua"
 	],
 	"find":
 	{
@@ -733,6 +725,9 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"Types",
+			"\")\n",
+			"]})\n",
 			"Fire",
 			"collectgarbage",
 			"200",
@@ -813,7 +808,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -821,21 +816,21 @@
 					"file": "main.lua",
 					"settings":
 					{
-						"buffer_size": 1988,
+						"buffer_size": 1964,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								491,
-								491
+								583,
+								583
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Lua/Lua.tmLanguage",
-							"tab_size": 4,
+							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -849,47 +844,22 @@
 					"file": "Game/player.lua",
 					"settings":
 					{
-						"buffer_size": 1137,
+						"buffer_size": 1027,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								457,
-								457
+								11,
+								11
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Lua/Lua.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "Game/wall.lua",
-					"settings":
-					{
-						"buffer_size": 419,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								114,
-								114
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Lua/Lua.tmLanguage"
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -933,7 +903,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 216.0
+		"height": 210.0
 	},
 	"replace":
 	{

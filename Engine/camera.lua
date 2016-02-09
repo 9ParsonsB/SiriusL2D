@@ -1,6 +1,4 @@
-local Entity = require "Engine/entity"
-
-local Camera = Class.New("Camera", Entity)
+local Camera = Class.New("Camera")
 function Camera:Create(x, y)
 	self.X = x
 	self.Y = y

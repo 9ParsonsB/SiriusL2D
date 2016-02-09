@@ -1,7 +1,5 @@
-local Entity = require "Engine/entity"
-
-local Ship = Class.New("Ship", Entity)
-function Ship:Create(x, y, angle)
+local Ship = class("Ship")
+function Ship:init(x, y, angle)
 	self.X = x
 	self.Y = y
 	self.Angle = angle
