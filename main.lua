@@ -1,49 +1,44 @@
-local Script = require "Engine/script"
+local Object = require "Engine/object"
+local Physics = require "Engine/physics"
 
 function love.load()
   love.graphics.setBackgroundColor(104, 136, 248)
   love.physics.setMeter(64)
-  World = love.physics.newWorld(0, 5*64, true)
-  World:setCallbacks(beginContact, endContact)
-  
-  local Player = Script.Load("Game/player")
-  test = Player(200, 200)
+
+  Physics.Debug = true
+
+  --Load objects
+  Object.Load("debug")
+  Object.Load("player", "character")
+  Object.Load("wall")
+
+  --Create objects
+  Object("debug")
+  Object("player", 100, 100)
+  Object("wall")
 end
 
 function love.update(dt)
-  test:Update(dt)
-  World:update(dt)
+  for k,v in pairs(Object.Instances) do
+    if type(k.Update) == "function" then k.Update(dt) end
+  end
+  Physics.Update(dt)
 end
 
 function love.draw()
-  test:Draw()
+  for k,v in pairs(Object.Instances) do
+    if type(k.Draw) == "function" then k.Draw() end
+  end
+  Physics.Draw()
 end
 
---Physics callbacks
-function beginContact(a, b, coll)
-  local self = a:getUserData()
-  local other = b:getUserData()
-   if self and other then
-      if type(self.CollisionEnter) == "function" then self:CollisionEnter(other, coll) end
-      if type(other.CollisionEnter) == "function" then other:CollisionEnter(self, coll) end
+function love.keypressed(key)
+  for k,v in pairs(Object.Instances) do
+    if type(k.KeyPressed) == "function" then k.KeyPressed(key) end
   end
 end
 
-function endContact(a, b, coll)
-  local self = a:getUserData()
-  local other = b:getUserData()
-
-  local bodyA = a:getBody()
-  local bodyB = b:getBody()
-
-  if self and other then
-      self.X = bodyA:getX()
-      self.Y = bodyA:getY()
-      --self.Angle = (180 / math.pi) * bodyA:getAngle()
-      self:SetLinearVelocity(bodyA:getLinearVelocity())
-      --self:SetAngularVelocity(bodyA:getAngularVelocity())
-        
-      if type(self.CollisionExit) == "function" then self:CollisionExit(other, coll) end
-      if type(other.CollisionExit) == "function" then other:CollisionExit(self, coll) end
-  end
-end
+--Feature list
+--Screen manager(Show/hide menus etc)
+--Methods to get all objects of type
+--Object destruction

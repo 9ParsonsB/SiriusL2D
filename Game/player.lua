@@ -1,43 +1,44 @@
-local Wall = Script.Load("Game/wall")
-local Player = Wall:extend(Wall)
+Speed = 300
 
-Player.Speed = 300
-Player.Screen = "Game"
-
-function Player:init(x, y)
-  self.X = x or 0
-  self.Y = y or 0
-  self.Body = love.physics.newBody(World, x, y, "dynamic")
-  self.Body:setFixedRotation(true)
-  self.Shape = love.physics.newRectangleShape(16, 16)
-  self.Fixture = love.physics.newFixture(self.Body, self.Shape)
-  self.Fixture:setUserData(self)
+function Create(x, y)
+  Body = love.physics.newBody(Physics.World, x or 0, y or 0, "dynamic")
+  --Body:setFixedRotation(true)
+  Shape = love.physics.newRectangleShape(16, 16)
+  Fixture = love.physics.newFixture(Body, Shape)
+  Fixture:setUserData(self)
 end
-function Player:Update(dt)
-  local x, y = self.Body:getLinearVelocity()
+
+function Update(dt)
+  if not Physics.Active then return end
+
+  local x, y = Body:getLinearVelocity()
 
   --WASD movement
-  if love.keyboard.isDown("w") then y = y - self.Speed * 3 * dt end
-  if love.keyboard.isDown("s") then y = y + self.Speed * dt end
-  if love.keyboard.isDown("a") then x = x - self.Speed * dt end	
-  if love.keyboard.isDown("d") then x = x + self.Speed * dt end
+  if love.keyboard.isDown("w") then y = y - Speed * dt end
+  if love.keyboard.isDown("s") then y = y + Speed * dt end
+  if love.keyboard.isDown("a") then x = x - Speed * dt end
+  if love.keyboard.isDown("d") then x = x + Speed * dt end
 
-  --Update velocity
-  self.Body:setLinearVelocity(x, y)
+  Body:setLinearVelocity(x, y)
+end
 
-  --Network.SendMsg("Shoot")
+function KeyPressed(key)
+  if key == "1" then Physics.Active = not Physics.Active end
+  if key == "2" then Physics.Debug = not Physics.Debug end
 end
-function Player:Draw()
-  Renderer.DrawSprite("greenRect.png", self.Body:getX(), self.Body:getY())
-  love.graphics.polygon("line", self.Body:getWorldPoints(self.Shape:getPoints()))
-end
-function Player:CollisionEnter(other, coll)
 
+function Draw()
+  Renderer.DrawSprite("greenRect.png", Body:getX(), Body:getY(), (180 / math.pi) * Body:getAngle())
 end
-function Player:CollisionExit(other, coll)
 
+function CollisionEnter(a, b, coll)
+  print("Collision enter")
 end
-function Player:Sync(self, remote)
 
+function CollisionExit(a, b, coll)
+  print("Collision exit")	
 end
-return Player
+
+function Sync(object)
+  
+end

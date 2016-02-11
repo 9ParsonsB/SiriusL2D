@@ -1,14 +1,11 @@
-local Wall = Class("Wall")
-function Wall:init(self, x, y, width, height)
-  self.X = x
-  self.Y = y
-  self.Body = love.physics.newBody(World, x, y, "static")
-  self.Shape = love.physics.newRectangleShape(width, height)
-  self.Fixture = love.physics.newFixture(self.Body, self.Shape)
-  self.Fixture:setUserData(self)
+function Create(angle)
+  Body = love.physics.newBody(Physics.World, 400, 300, "static")
+  Body:setAngle((math.pi / 180) * (angle or 0))
+  Shape = love.physics.newRectangleShape(500, 10)
+  Fixture = love.physics.newFixture(self.Body, self.Shape)
+  Fixture:setUserData(self)
 end
-function Wall:draw()
-  --Renderer.DrawSprite(self, "greenRect.png")
-  love.graphics.polygon("fill", self.Body:getWorldPoints(self.Shape:getPoints()))
+
+function Draw()
+  Renderer.DrawSprite("greenRect.png", Body:getX(), Body:getY(), (180 / math.pi) * Body:getAngle(), 500, 10)
 end
-return Wall
