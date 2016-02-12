@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"getposit",
+				"love.mouse.getPosition"
+			],
+			[
 				"Instance",
 				"InstancesCounts"
 			],
@@ -510,10 +514,6 @@
 			[
 				"re",
 				"result"
-			],
-			[
-				"Add",
-				"AddPart"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "main.lua",
 			"settings":
 			{
-				"buffer_size": 947,
+				"buffer_size": 877,
 				"line_ending": "Windows"
 			}
 		}
@@ -572,12 +572,19 @@
 	},
 	"file_history":
 	[
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/object.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/player.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/object.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/camera.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/physics.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/wall.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/objects.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/group.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/mainMenu.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/debug.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/main.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/screen.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/conf.lua",
+		"/E/Downloads/love2d-game-maker-master/love2d-game-maker-master/LGM/src/fileoperations/newProject.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/objects.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/class.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/Objects.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/Physics.lua",
@@ -599,16 +606,13 @@
 		"/E/Computing/Programs/Lua/SiriusL2D/30log/30log-singleton.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/30log/30log-global.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/ship.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/camera.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/gameState.lua",
 		"/E/Games/Rodina/Scripts/EGCore.lua",
 		"/E/Games/Rodina/Scripts/Gameplay/EGWorldObject.lua",
 		"/E/Games/Rodina/Scripts/Gameplay/EGPlayer.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/testing.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/conf.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/debugInfo.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/README.md",
-		"/E/Computing/Programs/Lua/SiriusL2D/main.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/collider.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/testScript.lua",
 		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/main.lua",
@@ -695,11 +699,7 @@
 		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/ScriptActor.lua",
 		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Commander.lua",
 		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Alien.lua",
-		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Alien_Order.lua",
-		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Main.lua",
-		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/AFKMixin.lua",
-		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Update.lua",
-		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/AlienTeam.lua"
+		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Alien_Order.lua"
 	],
 	"find":
 	{
@@ -717,6 +717,8 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			")\n",
+			"!\n",
 			"Objects",
 			"Class",
 			")--]]\n",
@@ -813,15 +815,15 @@
 					"file": "main.lua",
 					"settings":
 					{
-						"buffer_size": 947,
+						"buffer_size": 877,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								274,
+								274
 							]
 						],
 						"settings":

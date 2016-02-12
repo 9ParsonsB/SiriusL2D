@@ -1,3 +1,4 @@
+local Group = require "Engine/group"
 local Object = require "Engine/object"
 local Physics = require "Engine/physics"
 
@@ -5,40 +6,40 @@ function love.load()
   love.graphics.setBackgroundColor(104, 136, 248)
   love.physics.setMeter(64)
 
-  Physics.Debug = true
+  --Set camera for game
+  Group.SetCamera("Game", 0, 0)
 
   --Load objects
+  Object.Load("mainMenu")
   Object.Load("debug")
   Object.Load("player", "character")
   Object.Load("wall")
 
   --Create objects
+  Object("mainMenu")
   Object("debug")
   Object("player", 100, 100)
   Object("wall")
 end
 
 function love.update(dt)
-  for k,v in pairs(Object.Instances) do
-    if type(k.Update) == "function" then k.Update(dt) end
-  end
+  Group.Get("Game"):Update(dt)
   Physics.Update(dt)
 end
 
 function love.draw()
-  for k,v in pairs(Object.Instances) do
-    if type(k.Draw) == "function" then k.Draw() end
-  end
-  Physics.Draw()
+  Group.Get("Debug"):Draw(dt)
+  Group.Get("Game"):Draw(dt)
 end
 
 function love.keypressed(key)
-  for k,v in pairs(Object.Instances) do
-    if type(k.KeyPressed) == "function" then k.KeyPressed(key) end
-  end
+  Group.Get("Game"):KeyPressed(key)
+end
+
+function love.keyreleased(key)
+ Group.Get("Game"):KeyReleased(key)
 end
 
 --Feature list
---Screen manager(Show/hide menus etc)
---Methods to get all objects of type
+--Cameras for screens
 --Object destruction

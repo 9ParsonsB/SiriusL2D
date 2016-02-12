@@ -1,3 +1,4 @@
+local Group = require "Engine/group"
 local Physics = require "Engine/physics"
 local Renderer = require "Engine/renderer"
 local Events = require "Engine/events"
@@ -7,7 +8,7 @@ local Object = {}
 Object.Classes = {}
 Object.Scripts = {}
 Object.Dir = "Game/"
-Object.Instances = {}
+Object.Instances = setmetatable({}, {__mode="k"})
 
 --Loads a class
 function Object.Load(name, base)
@@ -23,6 +24,7 @@ function Object.Load(name, base)
 
   --Store class for object creation
   Object.Classes[class.Name] = class
+  Object.Instances[class.Name] = {}
 end
 
 --Runs class constructor
@@ -40,6 +42,7 @@ function Object.New(class, ...)
 
   --Engine
   env.Object = Object
+  env.Group = Group
   env.Physics = Physics
   env.Renderer = Renderer
 
@@ -58,23 +61,23 @@ function Object.New(class, ...)
     env.Create(...)
   end
 
-  --Store object
-  Object.Instances[env] = class.Name
+  --Store instance
+  Object.Instances[class.Name][env] = class.Name
 
   return env
 end
 
+function Object.Destroy(env)
+  --Run destructor if one exists
+  if type(env.Destroy) == "function" then
+    env.Destroy()
+  end
+  Screen.Remove(env)
+end
+
 --Gets all objects of type
 function Object.GetAll(name)
-  local objects = {}
-  local count = 0
-  for k,v in pairs(Object.Instances) do
-    if k.name == name then
-      objects[count] = k
-      count = count + 1
-    end
-  end
-  return objects
+  return Object.Instances[name]
 end
 return setmetatable(Object, {__call=Object.Create})
 

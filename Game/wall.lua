@@ -4,8 +4,11 @@ function Create(angle)
   Shape = love.physics.newRectangleShape(500, 10)
   Fixture = love.physics.newFixture(self.Body, self.Shape)
   Fixture:setUserData(self)
+
+  Group.Get("Game"):Add(self)
 end
 
 function Draw()
   Renderer.DrawSprite("greenRect.png", Body:getX(), Body:getY(), (180 / math.pi) * Body:getAngle(), 500, 10)
+  love.graphics.polygon("line", Body:getWorldPoints(Shape:getPoints()))
 end
