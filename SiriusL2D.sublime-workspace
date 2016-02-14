@@ -580,6 +580,7 @@
 	},
 	"file_history":
 	[
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/debug.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/player.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/box.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/object.lua",
@@ -595,7 +596,6 @@
 		"/G/College/Year2/Jason/Unit27 Server side scripting/Assignment 2/StoneEcclesiastical/website_files/login.php",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/camera.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/mainMenu.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/debug.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/main.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/screen.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/conf.lua",

@@ -1,22 +1,27 @@
+local State = require "Engine/state"
 local Physics = require "Engine/physics"
 local Collider = require "Engine/collider"
 local Renderer = require "Engine/renderer"
 
 local Object = {Classes={}}
 
-function Object.define(object, name)
-  local self = {Name = name, includes = {}, count = 0}
+local env = setmetatable({}, {__index=_G})
+env.State = State
+
+function Object.load(name, filePath)
+  local self = {Name = name}
+  self.Chunk = love.filesystem.load(filePath)
   Object.Classes[name] = self
-  return setmetatable(self, {__index = Object, __call = Object.new})
 end
 
-function Object.new(class, x, y)
+function Object.new(object, x, y)
   local self = {
     X = x or 0, 
     Y = y or 0, 
     Angle = 0, 
   }
-  setmetatable(self, {__index=_G})
+  self.self = self
+  setmetatable(self, {__index=env})
 
   --Default object functions
   function self.SetCollider(cInfo)
@@ -27,7 +32,6 @@ function Object.new(class, x, y)
     if self.Collider then return self.Collider:GetLinearVelocity() end
     return 0, 0
   end
-
   function self.SetLinearVelocity(x, y)
     if self.Collider then self.Collider:SetLinearVelocity(x, y) end
   end
@@ -44,22 +48,16 @@ function Object.new(class, x, y)
     Renderer.DrawSprite(texture, x, y, angle, width, height)
   end
 
-  --Custom object functions
-  for k, v in pairs(class.includes) do
-    setfenv(v, self)
-    v()
-  end
+  --Custom object definition
+  setfenv(object.Chunk, self)
+  object.Chunk()
+
+  --Create callback
   if type(self.Create) == "function" then self.Create() end
   return self
 end
 
-function Object.create(name, x, y)
+function Object.create(self, name, x, y)
   return Object.new(Object.Classes[name], x, y)
 end
-
-function Object:include(filePath)
-  local chunk = love.filesystem.load(filePath)
-  self.includes[self.count] = chunk
-  self.count = self.count + 1
-end
-return setmetatable(Object, {__call=Object.define})
+return setmetatable(Object, {__call=Object.create})
