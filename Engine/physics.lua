@@ -1,27 +1,13 @@
-local Physics = {}
+local Collider = require "Engine/Collider"
 
-Physics.Active = true
-Physics.Debug = false
-Physics.World = love.physics.newWorld(0, 0, true)
+local Physics = {
+  Active = true,
+  Debug = true,
+  World = love.physics.newWorld(0, 0, true)
+}
 
 function Physics.Update(dt)
 	if Physics.Active then Physics.World:update(dt) end
-end
-
-function Physics.Draw(dt)
-  if not Physics.Debug then return end
-
-  --Draw all shapes
-  for k,v in pairs(Physics.World:getBodyList()) do
-    Physics.DrawBody(v)
-  end
-end
-
-function Physics.DrawBody(body)
-  for k,v in pairs(body:getFixtureList()) do
-    local shape = v:getShape()
-    love.graphics.polygon("line", body:getWorldPoints(shape:getPoints()))
-  end
 end
 
 function Physics.beginContact(a, b, coll)
@@ -31,6 +17,8 @@ function Physics.beginContact(a, b, coll)
       if type(self.CollisionEnter) == "function" then self:CollisionEnter(other, coll) end
       if type(other.CollisionEnter) == "function" then other:CollisionEnter(self, coll) end
   end
+  --self.X, self.Y = self.Collider:GetPosition()
+  --self.Angle = self.Collider:GetAngle()
 end
 
 function Physics.endContact(a, b, coll)

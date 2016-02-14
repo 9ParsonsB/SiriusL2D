@@ -1,86 +1,65 @@
-local Group = require "Engine/group"
 local Physics = require "Engine/physics"
+local Collider = require "Engine/collider"
 local Renderer = require "Engine/renderer"
-local Events = require "Engine/events"
 
-local Object = {}
+local Object = {Classes={}}
 
-Object.Classes = {}
-Object.Scripts = {}
-Object.Dir = "Game/"
-Object.Instances = setmetatable({}, {__mode="k"})
-
---Loads a class
-function Object.Load(name, base)
-  --Create class
-  local class = setmetatable({},  {__call=Object.New})
-
-  --Get filename from relative path
-  class.Name = name:match("([^/]+)$")
-  
-  --Load script for class definition
-  class.Script = Object.Scripts[name] or love.filesystem.load(Object.Dir .. name .. ".lua")
-  Object.Scripts[name] = class.Script
-
-  --Store class for object creation
-  Object.Classes[class.Name] = class
-  Object.Instances[class.Name] = {}
+function Object.define(object, name)
+  local self = {Name = name, includes = {}, count = 0}
+  Object.Classes[name] = self
+  return setmetatable(self, {__index = Object, __call = Object.new})
 end
 
---Runs class constructor
-function Object.Create(self, name, ...)
-  if Object.Classes[name] then
-    return Object.Classes[name](...)
-  end
-end
+function Object.new(class, x, y)
+  local self = {
+    X = x or 0, 
+    Y = y or 0, 
+    Angle = 0, 
+  }
+  setmetatable(self, {__index=_G})
 
---Create object from class
-function Object.New(class, ...)
-  local env = {}
-  env.self = env
-  env.name = class.Name
-
-  --Engine
-  env.Object = Object
-  env.Group = Group
-  env.Physics = Physics
-  env.Renderer = Renderer
-
-  --Core
-  env.love = love
-  env.print = print
-  env.collectgarbage = collectgarbage
-  env.math = math
-
-  --Load script into objects enviroment
-  setfenv(class.Script, env)
-  class.Script()
-    
-  --Run constructor if one exists
-  if type(env.Create) == "function" then
-    env.Create(...)
+  --Default object functions
+  function self.SetCollider(cInfo)
+    self.Collider = Collider.New(self, Physics.World, cInfo)
   end
 
-  --Store instance
-  Object.Instances[class.Name][env] = class.Name
-
-  return env
-end
-
-function Object.Destroy(env)
-  --Run destructor if one exists
-  if type(env.Destroy) == "function" then
-    env.Destroy()
+  function self.GetLinearVelocity(x, y)
+    if self.Collider then return self.Collider:GetLinearVelocity() end
+    return 0, 0
   end
-  Screen.Remove(env)
+
+  function self.SetLinearVelocity(x, y)
+    if self.Collider then self.Collider:SetLinearVelocity(x, y) end
+  end
+
+  function self.DrawCollider()
+    if self.Collider then self.Collider:Draw() end
+  end
+
+  function self.Face(x, y) 
+    self.Angle = (180 / math.pi) * math.atan2(y - self.Y, x - self.X) 
+  end
+
+  function self.DrawSprite(texture, x, y, angle, width, height)
+    Renderer.DrawSprite(texture, x, y, angle, width, height)
+  end
+
+  --Custom object functions
+  for k, v in pairs(class.includes) do
+    setfenv(v, self)
+    v()
+  end
+  if type(self.Create) == "function" then self.Create() end
+  return self
 end
 
---Gets all objects of type
-function Object.GetAll(name)
-  return Object.Instances[name]
+function Object.create(name, x, y)
+  return Object.new(Object.Classes[name], x, y)
 end
-return setmetatable(Object, {__call=Object.Create})
 
---Set enviroment using loadfile. love2d used lua 5.1 so setfenv and getfenv can be used.
---local path = love.filesystem.getRealDirectory("") .. "/" .. Script.Dir .. class .. ".lua"
---assert(loadfile(path, 't', env))()
+function Object:include(filePath)
+  local chunk = love.filesystem.load(filePath)
+  self.includes[self.count] = chunk
+  self.count = self.count + 1
+end
+return setmetatable(Object, {__call=Object.define})
