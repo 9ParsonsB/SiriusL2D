@@ -10,7 +10,7 @@ function Update(dt)
   camera.X = X - (love.graphics.getWidth() / 2) + 8
   camera.Y = Y - (love.graphics.getHeight() / 2) + 8
 
-  Face(love.mouse.getPosition())
+  Face(camera:GetMousePosition())
 
   --WASD movement
   local x, y = GetLinearVelocity()

@@ -42,6 +42,7 @@ function Object.new(object, x, y)
 
   function self.Face(x, y) 
     self.Angle = (180 / math.pi) * math.atan2(y - self.Y, x - self.X) 
+    if self.Collider then self.Collider:SetAngle(self.Angle) end
   end
 
   function self.DrawSprite(texture, x, y, angle, width, height)

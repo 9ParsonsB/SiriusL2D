@@ -17,8 +17,6 @@ function Physics.beginContact(a, b, coll)
       if type(self.CollisionEnter) == "function" then self:CollisionEnter(other, coll) end
       if type(other.CollisionEnter) == "function" then other:CollisionEnter(self, coll) end
   end
-  --self.X, self.Y = self.Collider:GetPosition()
-  --self.Angle = self.Collider:GetAngle()
 end
 
 function Physics.endContact(a, b, coll)
@@ -30,7 +28,22 @@ function Physics.endContact(a, b, coll)
   end
 end
 
+function Physics.preSolve(a, b, coll)
+ 
+end
+
+function Physics.postSolve(a, b, coll, normalimpulse1, tangentimpulse1, normalimpulse2, tangentimpulse2)
+  local self = a:getUserData()
+  local other = b:getUserData()
+
+  self.X, self.Y = self.Collider:GetPosition()
+  self.Angle = self.Collider:GetAngle()
+
+  other.X, other.Y = other.Collider:GetPosition()
+  other.Angle = other.Collider:GetAngle()
+end
+
 --Register world callbacks
-Physics.World:setCallbacks(Physics.beginContact, Physics.endContact)
+Physics.World:setCallbacks(Physics.beginContact, Physics.endContact, Physics.preSolve, Physics.postSolve)
 
 return Physics
