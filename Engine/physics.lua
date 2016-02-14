@@ -1,4 +1,4 @@
-local Collider = require "Engine/Collider"
+local Collider = require "Engine/collider"
 
 local Physics = {
   Active = true,
