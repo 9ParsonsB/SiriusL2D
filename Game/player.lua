@@ -1,7 +1,10 @@
-Speed = 300
+Include("Character")
+
+Speed = 1000
 
 function Create()
-  SetCollider({Type="dynamic", Shape="box", Width=16, Height=16})
+  SetCollider("dynamic", "box", 16, 16)
+  Collider:SetLinearDamping(5)
   State.Add(self, "Game")
 end
 
@@ -11,6 +14,9 @@ function Update(dt)
   camera.Y = Y - (love.graphics.getHeight() / 2) + 8
 
   Face(camera:GetMousePosition())
+
+  --Disable movement when physics inactive
+  if not Physics.Active then return end
 
   --WASD movement
   local x, y = GetLinearVelocity()
@@ -23,5 +29,5 @@ end
 
 function Draw()
   DrawSprite("greenRect.png", X, Y, Angle)
-  DrawCollider()
+  if Physics.Debug then DrawCollider() end
 end

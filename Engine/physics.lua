@@ -1,5 +1,3 @@
-local Collider = require "Engine/collider"
-
 local Physics = {
   Active = true,
   Debug = true,

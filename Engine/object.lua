@@ -3,14 +3,15 @@ local Physics = require "Engine/physics"
 local Collider = require "Engine/collider"
 local Renderer = require "Engine/renderer"
 
-local Object = {Classes={}}
+local Object = {Classes={}, Directory=""}
 
 local env = setmetatable({}, {__index=_G})
 env.State = State
+env.Physics = Physics
 
 function Object.load(name, filePath)
   local self = {Name = name}
-  self.Chunk = love.filesystem.load(filePath)
+  self.Chunk = love.filesystem.load(Object.Directory .. filePath)
   Object.Classes[name] = self
 end
 
@@ -23,9 +24,18 @@ function Object.new(object, x, y)
   self.self = self
   setmetatable(self, {__index=env})
 
+  function self.Include(name)
+    local class = Object.Classes[name]
+    if class then 
+      setfenv(class.Chunk, self)
+      class.Chunk()
+      if type(self.Create) == "function" then self.Create() end
+    end
+  end
+
   --Default object functions
-  function self.SetCollider(cInfo)
-    self.Collider = Collider.New(self, Physics.World, cInfo)
+  function self.SetCollider(type, shape, arg1, arg2)
+    self.Collider = Collider.New(self, type, shape, arg1, arg2)
   end
 
   function self.GetLinearVelocity(x, y)

@@ -14,9 +14,9 @@ function Draw()
   love.graphics.print('Memory used(KB): ' .. collectgarbage('count'), X, Y + 45)
 
   --Physics info
-  --[[if Physics.Active then love.graphics.print("Physics: playing", X, Y + 60)
+  if Physics.Active then love.graphics.print("Physics: playing", X, Y + 60)
   else love.graphics.print("Physics: paused", X, Y + 60) end
 
   if Physics.Debug then love.graphics.print("Physics drawing: enabled", X, Y + 75)
-  else love.graphics.print("Physics drawing: disabled", X, Y + 75) end--]]
+  else love.graphics.print("Physics drawing: disabled", X, Y + 75) end
 end

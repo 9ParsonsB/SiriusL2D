@@ -523,7 +523,7 @@
 			"file": "main.lua",
 			"settings":
 			{
-				"buffer_size": 543,
+				"buffer_size": 988,
 				"line_ending": "Windows"
 			}
 		},
@@ -531,7 +531,7 @@
 			"file": "Game/player.lua",
 			"settings":
 			{
-				"buffer_size": 554,
+				"buffer_size": 795,
 				"line_ending": "Windows"
 			}
 		}
@@ -580,12 +580,19 @@
 	},
 	"file_history":
 	[
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/debug.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/player.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/box.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/object.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/box.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/collider.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/character.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/main.lua",
+		"/E/Computing/Programs/Lua/ClassSystem/main.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/player.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/class.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/debug.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/test.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/physics.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/camera.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/state.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/script.lua",
 		"/E/Computing/Programs/Lua/ObjectSystem/main.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/group.lua",
@@ -594,20 +601,15 @@
 		"/E/Computing/Programs/Lua/SiriusL2D/baseObject.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/wall.lua",
 		"/G/College/Year2/Jason/Unit27 Server side scripting/Assignment 2/StoneEcclesiastical/website_files/login.php",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/camera.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/mainMenu.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/main.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/screen.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/conf.lua",
 		"/E/Downloads/love2d-game-maker-master/love2d-game-maker-master/LGM/src/fileoperations/newProject.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/objects.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/class.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/Objects.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/Physics.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/genericMod.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/character.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/entity.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/test.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/oldPlayer.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/bullet.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/renderer.lua",
@@ -705,9 +707,7 @@
 		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Crag.lua",
 		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Commander_Alerts.lua",
 		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Commander_Ping.lua",
-		"/E/Games/Rodina/Scripts/Gameplay/EGMenu.lua",
-		"/E/Games/Rodina/Scripts/Gameplay/EGBehaviorPlayer.lua",
-		"/E/Computing/Programs/C++/SFML/SFMLTemplate/scripts/Classes.lua"
+		"/E/Games/Rodina/Scripts/Gameplay/EGMenu.lua"
 	],
 	"find":
 	{
@@ -725,6 +725,9 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"end",
+			"subClass",
+			"self",
 			"postSolve",
 			")\n",
 			"()\n",
@@ -826,15 +829,15 @@
 					"file": "main.lua",
 					"settings":
 					{
-						"buffer_size": 543,
+						"buffer_size": 988,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								543,
-								543
+								18,
+								18
 							]
 						],
 						"settings":
@@ -854,15 +857,15 @@
 					"file": "Game/player.lua",
 					"settings":
 					{
-						"buffer_size": 554,
+						"buffer_size": 795,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								554,
-								554
+								369,
+								369
 							]
 						],
 						"settings":

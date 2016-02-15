@@ -1,8 +1,9 @@
 function Create()
-  SetCollider({Shape="box", Width = 50, Height = 50})
+  SetCollider("static", "box", 500, 50)
   State.Add(self, "Game")
 end
+
 function Draw()
-  DrawSprite("greenRect.png", X, Y, Angle, 50, 50)
-  DrawCollider()
+  DrawSprite("greenRect.png", X, Y, Angle, 500, 50)
+  if Physics.Debug then DrawCollider() end
 end

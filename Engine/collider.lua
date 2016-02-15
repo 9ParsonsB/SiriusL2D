@@ -1,27 +1,21 @@
-local Collider = {}
+local Physics = require "Engine/physics"
 
-function Collider.New(object, world, t)
+local Collider = {}
+function Collider.New(object, type, shape, arg1, arg2)
   local self = setmetatable({Object=object}, {__index=Collider})
 
-  --Location
-  local x = object.X + (t.X or 0)
-  local y = object.Y + (t.y or 0)
+  --Body
+  self.Body = love.physics.newBody(Physics.World, object.X, object.Y, type)
 
-  --Store offsets for syncing with object
-  self.OffsetX = t.X or 0
-  self.OffsetY = t.Y or 0
-  self.OffsetAngle = t.Angle or 0
-
-  --Body and shape
-  self.Body = love.physics.newBody(world, x, y, t.Type)
-  if t.Shape == "box" then 
-  	self.Shape = love.physics.newRectangleShape(t.Width or 1, t.Height or 1) 
+  --Shape
+  if shape == "box" then 
+  	self.Shape = love.physics.newRectangleShape(arg1 or 1, arg2 or 1) 
   end
 
   --Attach body to shape and store object for collision callbacks
-  self.Fixture = love.physics.newFixture(self.Body, self.Shape, t.Density or 1)
+  self.Fixture = love.physics.newFixture(self.Body, self.Shape, 1)
   self.Fixture:setUserData(object)
-
+  
   return self
 end
 
@@ -30,10 +24,17 @@ function Collider:Draw()
 end
 
 function Collider:Sync(dt)
+  --Sync if physics system active
+  if not Physics.Active then return end
+
   local obj = self.Object
+
+  --Add linear velocity to object
   local velX, velY = self:GetLinearVelocity()
   obj.X = obj.X + velX * dt
   obj.Y = obj.Y + velY * dt
+
+  --Add angular velocity to object
   obj.Angle = obj.Angle + self:GetAngularVelocity()
 end
 
@@ -63,5 +64,19 @@ function Collider:GetAngularVelocity()
 end
 function Collider:SetAngularVelocity(angle)
  self.Body:setAngularVelocity(angle)
+end
+
+function Collider:GetFriction()
+  return self.Body:getFriction()
+end
+function Collider:SetFriction(friction)
+  self.Body:setFriction(friction)
+end
+
+function Collider:GetLinearDamping()
+  return self.Body:getLinearDamping()
+end
+function Collider:SetLinearDamping(damping)
+  self.Body:setLinearDamping(damping)
 end
 return Collider
