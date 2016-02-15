@@ -33,6 +33,9 @@ function love.keypressed(key)
   State.KeyPressed("Debug")
   State.KeyPressed("Game")
 
+  --Exit game with esc
+  if key == "escape" then love.event.quit() end
+
   --Toggle keys
   if key == "1" then Physics.Debug = not Physics.Debug end
   if key == "2" then Physics.Active = not Physics.Active end

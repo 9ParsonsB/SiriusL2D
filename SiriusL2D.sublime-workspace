@@ -531,7 +531,7 @@
 			"file": "Game/player.lua",
 			"settings":
 			{
-				"buffer_size": 795,
+				"buffer_size": 867,
 				"line_ending": "Windows"
 			}
 		}
@@ -580,9 +580,10 @@
 	},
 	"file_history":
 	[
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/object.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/box.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/collider.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/physics.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/object.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/character.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/main.lua",
 		"/E/Computing/Programs/Lua/ClassSystem/main.lua",
@@ -590,7 +591,6 @@
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/class.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/debug.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/test.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/physics.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/camera.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/state.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/script.lua",
@@ -725,6 +725,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"setLinearDamping",
 			"end",
 			"subClass",
 			"self",
@@ -836,8 +837,8 @@
 						"selection":
 						[
 							[
-								18,
-								18
+								414,
+								414
 							]
 						],
 						"settings":
@@ -857,15 +858,15 @@
 					"file": "Game/player.lua",
 					"settings":
 					{
-						"buffer_size": 795,
+						"buffer_size": 867,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								369,
-								369
+								150,
+								150
 							]
 						],
 						"settings":
