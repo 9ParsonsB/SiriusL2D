@@ -1,0 +1,11 @@
+Make lua script (compiled) that downloads love for a 
+platform (all/one (choose)) and then compiles the game 
+into a .love and then a .exe / .app (mac) / .love for 
+linux method (read below)
+
+Note about linux
+the best way to distribute LOVE games on *nix is to 
+just distribute LOVE with the game and then just run 
+"love $GAME.love" (like normal, just automated and on 
+the .love [zip] rather than the folder)
+
