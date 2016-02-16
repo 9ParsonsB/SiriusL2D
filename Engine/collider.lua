@@ -1,41 +1,30 @@
-local Physics = require "Engine/physics"
+Class("Collider")
 
-local Collider = {}
-function Collider.New(object, type, shape, arg1, arg2)
-  local self = setmetatable({Object=object}, {__index=Collider})
-
-  --Body
+function Collider:Create(object, type, shape, arg1, arg2)
   self.Body = love.physics.newBody(Physics.World, object.X, object.Y, type)
 
-  --Shape
-  if shape == "box" then 
+  --arg1-Width arg2-Height
+  if shape == "box" then
   	self.Shape = love.physics.newRectangleShape(arg1 or 1, arg2 or 1) 
   end
 
   --Attach body to shape and store object for collision callbacks
   self.Fixture = love.physics.newFixture(self.Body, self.Shape, 1)
   self.Fixture:setUserData(object)
-  
-  return self
 end
 
 function Collider:Draw()
   love.graphics.polygon("line", self.Body:getWorldPoints(self.Shape:getPoints()))
 end
 
-function Collider:Sync(dt)
-  --Sync if physics system active
-  if not Physics.Active then return end
+--Getters/setters
 
-  local obj = self.Object
+function Collider:GetX()
+  return self.Body:getX()
+end
 
-  --Add linear velocity to object
-  local velX, velY = self:GetLinearVelocity()
-  obj.X = obj.X + velX * dt
-  obj.Y = obj.Y + velY * dt
-
-  --Add angular velocity to object
-  obj.Angle = obj.Angle + self:GetAngularVelocity()
+function Collider:GetY()
+  return self.Body:getY()
 end
 
 function Collider:GetPosition()
@@ -79,4 +68,3 @@ end
 function Collider:SetLinearDamping(damping)
   self.Body:setLinearDamping(damping)
 end
-return Collider

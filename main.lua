@@ -1,22 +1,16 @@
-local Object = require "Engine/object"
-local State = require "Engine/state"
-local Physics = require "Engine/physics"
+require "Engine/core"
+
+CompileFile("debug.lua")
+CompileFile("player.lua")
+CompileFile("box.lua")
 
 function love.load()
   love.graphics.setBackgroundColor(104, 136, 248)
   love.physics.setMeter(64)
 
-  --Load objects
-  Object.Directory = "Game/"
-  Object.load("Character", "character.lua")
-  Object.load("Player", "player.lua")
-  Object.load("Box", "box.lua")
-  Object.load("Debug", "debug.lua")
-
-  --Create initial objects(Menus etc)
-  Object("Debug")
-  Object("Player", 200, 200)
-  Object("Box", 350, 300)
+  NewObject("Debug")
+  NewObject("Player")
+  NewObject("Box", 300, 250, 700, 50)
 end
 
 function love.update(dt)
@@ -25,14 +19,11 @@ function love.update(dt)
 end
 
 function love.draw()
-  State.Draw("Debug")
   State.Draw("Game")
+  State.Draw("Debug")
 end
 
 function love.keypressed(key)
-  State.KeyPressed("Debug")
-  State.KeyPressed("Game")
-
   --Exit game with esc
   if key == "escape" then love.event.quit() end
 

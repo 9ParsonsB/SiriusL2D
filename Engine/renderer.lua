@@ -1,7 +1,4 @@
-local Renderer = {}
-
-Renderer.ContentDir = "Content/"
-Renderer.Textures = {}
+Renderer = {ContentDir = "Content/", Textures = {}}
 
 function Renderer.LoadTexture(filePath)
 	Renderer.Textures[filePath] = love.graphics.newImage(Renderer.ContentDir .. filePath)
@@ -35,4 +32,3 @@ end
 function Renderer.DrawText(value, x, y, angle)
 	love.graphics.print(value, x or 0, y or 0, (math.pi / 180) * (angle or 0))
 end
-return Renderer

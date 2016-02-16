@@ -1,8 +1,4 @@
-local Physics = {
-  Active = true,
-  Debug = true,
-  World = love.physics.newWorld(0, 0, true)
-}
+Physics = {Active = true, Debug = true, World = love.physics.newWorld(0, 0, true)}
 
 function Physics.Update(dt)
 	if Physics.Active then Physics.World:update(dt) end
@@ -43,5 +39,3 @@ end
 
 --Register world callbacks
 Physics.World:setCallbacks(Physics.beginContact, Physics.endContact, Physics.preSolve, Physics.postSolve)
-
-return Physics

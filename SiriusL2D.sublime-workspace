@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"q",
+				"love.event.quit"
+			],
+			[
 				"pol",
 				"love.graphics.polygon"
 			],
@@ -510,10 +514,6 @@
 			[
 				"shi",
 				"shipBuilder"
-			],
-			[
-				"Upd",
-				"UpdateShip"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "main.lua",
 			"settings":
 			{
-				"buffer_size": 988,
+				"buffer_size": 1060,
 				"line_ending": "Windows"
 			}
 		},
@@ -830,15 +830,15 @@
 					"file": "main.lua",
 					"settings":
 					{
-						"buffer_size": 988,
+						"buffer_size": 1060,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								414,
-								414
+								413,
+								413
 							]
 						],
 						"settings":
@@ -865,8 +865,8 @@
 						"selection":
 						[
 							[
-								150,
-								150
+								155,
+								155
 							]
 						],
 						"settings":
