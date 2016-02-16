@@ -1,10 +1,11 @@
-Speed = 300
+Speed = 500
 
 Class("Player", "Entity")
 
 function Player:Create()
   self.X, self.Y = 200, 200
   self:SetCollider("dynamic", "box", 16, 16)
+  self.Collider:SetLinearDamping(4)
   State.Add(self, "Game")
 end
 
