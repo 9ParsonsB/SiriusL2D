@@ -64,6 +64,8 @@ function Engine.Draw()
 
   --Debug drawing(Variables etc)
   Engine.Fire("Debug")
+ 
+  GUI.LeftPressed = false
 end
 
 function Engine.KeyPressed(key)
@@ -75,6 +77,8 @@ end
 
 function Engine.MousePressed(x, y, button, istouch)
   Engine.Fire("MousePressed",  x, y, button, isTouch)
+
+  if button == 1 then GUI.LeftPressed = true end
 end
 function Engine.MouseReleased(x, y, button)
   Engine.Fire("MouseReleased", x, y, button)

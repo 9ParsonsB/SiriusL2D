@@ -60,7 +60,7 @@ end
 --Load base files
 require "Engine/physics"
 require "Engine/renderer"
-require "Engine/gui"
+require "Engine/button"
 require "Engine/engine"
 
 --Compile default classes

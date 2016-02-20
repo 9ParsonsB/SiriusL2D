@@ -13,6 +13,7 @@ CompileFile("Game/box.lua")
 --Create objects
 Engine.SetState("MainMenu")
 NewObject("MainMenu")
+NewObject("SettingsMenu")
 
 function love.load()
   love.graphics.setBackgroundColor(104, 136, 248)

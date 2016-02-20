@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"isdow",
+				"love.mouse.isDown"
+			],
+			[
 				"Settings",
 				"SettingsButton"
 			],
@@ -510,10 +514,6 @@
 			[
 				"Ico",
 				"Icons"
-			],
-			[
-				"Ship",
-				"ShipCount"
 			]
 		]
 	},
@@ -523,7 +523,7 @@
 			"file": "Game/mainMenu.lua",
 			"settings":
 			{
-				"buffer_size": 199,
+				"buffer_size": 670,
 				"line_ending": "Windows"
 			}
 		}
@@ -637,14 +637,17 @@
 	],
 	"file_history":
 	[
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/gui.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/settingsMenu.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/main.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/button.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/engine.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/renderer.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/core.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/gui.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/entity.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/player.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/pilotSeat.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/debug.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/engine.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/entity.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/ship.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/collider.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Menu/Buttons/startButton.lua",
@@ -653,7 +656,6 @@
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/exitButton.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/startButton.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/button.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/renderer.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/box.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/States/GameState.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/state.lua",
@@ -762,13 +764,11 @@
 		"/E/Computing/Programs/Lua/SpaceGame/entity.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/server.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/events.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/classes.lua",
-		"/E/Computing/Programs/Lua/Love2D/SpaceGame/main.lua",
-		"/C/Users/Chris/AppData/Roaming/Sublime Text 2/Packages/Lua Love/LuaLove.sublime-build"
+		"/E/Computing/Programs/Lua/SpaceGame/classes.lua"
 	],
 	"find":
 	{
-		"height": 30.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -782,6 +782,9 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"MainMenu",
+			"pressed",
+			"()\n",
 			"end",
 			"\")\n",
 			"Enginr",
@@ -869,6 +872,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"SettingsMenu",
 			"Object",
 			"Objects",
 			"Entity",
@@ -892,15 +896,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 199,
+						"buffer_size": 670,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								199,
-								199
+								160,
+								160
 							]
 						],
 						"settings":
@@ -960,7 +964,7 @@
 	"project": "SiriusL2D.sublime-project",
 	"replace":
 	{
-		"height": 56.0
+		"height": 70.0
 	},
 	"save_all_on_build": true,
 	"select_file":
