@@ -1,34 +1,48 @@
 require "Engine/core"
 
-CompileFile("debug.lua")
-CompileFile("player.lua")
-CompileFile("box.lua")
+--Menus
+CompileFile("Game/mainMenu.lua")
+CompileFile("Game/debug.lua")
+
+--Game
+CompileFile("Game/player.lua")
+CompileFile("Game/ship.lua")
+CompileFile("Game/pilotSeat.lua")
+CompileFile("Game/box.lua")
+
+--Create objects
+Engine.SetState("MainMenu")
+NewObject("MainMenu")
 
 function love.load()
   love.graphics.setBackgroundColor(104, 136, 248)
   love.physics.setMeter(64)
-
-  NewObject("Debug")
-  NewObject("Player")
-  NewObject("Box", 300, 250, 700, 50)
 end
 
 function love.update(dt)
-  State.Update("Game", dt)
-  Physics.Update(dt)
+  Engine.Update(dt)
 end
 
 function love.draw()
-  State.Draw("Game")
-  State.Draw("Debug")
+  Engine.Draw()
 end
 
 function love.keypressed(key)
-  --Exit game with esc
-  if key == "escape" then love.event.quit() end
+  Engine.KeyPressed(key)
 
-  --Toggle keys
+  if key == "escape" then 
+    if Engine.State == "MainMenu" then love.event.quit() end
+    if Engine.State == "Game" then Engine.SetState("MainMenu") end
+  end
+
   if key == "1" then Physics.Debug = not Physics.Debug end
   if key == "2" then Physics.Active = not Physics.Active end
-  if key == "3" then State.Get("Debug").Visible = not State.Get("Debug").Visible end
+end
+
+function love.mousepressed(x, y, button, istouch)
+   Engine.MousePressed(x, y, button, isTouch)
+end
+
+function love.mousereleased(x, y, button)
+   Engine.MouseReleased(x, y, button)
 end

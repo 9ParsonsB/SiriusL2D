@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"Settings",
+				"SettingsButton"
+			],
+			[
 				"q",
 				"love.event.quit"
 			],
@@ -510,38 +514,83 @@
 			[
 				"Ship",
 				"ShipCount"
-			],
-			[
-				"shi",
-				"shipBuilder"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "main.lua",
+			"file": "Game/mainMenu.lua",
 			"settings":
 			{
-				"buffer_size": 1060,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Game/player.lua",
-			"settings":
-			{
-				"buffer_size": 867,
+				"buffer_size": 199,
 				"line_ending": "Windows"
 			}
 		}
 	],
-	"build_system": "",
+	"build_system": "Packages/Lua Love/LuaLove.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Lua/Lua.sublime-build",
+					""
+				],
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					""
+				],
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					"Love2D"
+				],
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					"ldoc: File"
+				],
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					"ldoc: Project"
+				]
+			],
+			[
+				"Packages/Lua Love/LuaLove.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
 	"command_palette":
 	{
 		"height": 392.0,
+		"last_filter": "prv",
 		"selected_items":
 		[
+			[
+				"prv",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control:instal",
+				"Package Control: Install Package"
+			],
 			[
 				"Package Control:",
 				"Package Control: Install Package"
@@ -567,7 +616,11 @@
 	},
 	"console":
 	{
-		"height": 209.0
+		"height": 209.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
 	},
 	"distraction_free":
 	{
@@ -578,21 +631,46 @@
 		"side_bar_visible": false,
 		"status_bar_visible": false
 	},
+	"expanded_folders":
+	[
+		"/E/Computing/Programs/Lua/SiriusL2D"
+	],
 	"file_history":
 	[
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/box.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/gui.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/main.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/core.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/player.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/pilotSeat.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/debug.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/engine.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/entity.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/ship.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/collider.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Menu/Buttons/startButton.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Menu/mainMenu.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/settingsButton.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/exitButton.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/startButton.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/button.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/renderer.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/box.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/States/GameState.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/state.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/States/gameState.lua",
+		"/C/Users/Chris/AppData/Roaming/Sublime Text 3/Packages/Lua Love/LuaLove.sublime-build",
+		"/C/Users/Chris/AppData/Roaming/Sublime Text 3/Packages/User/LuaLove.sublime-settings",
+		"/C/Users/Chris/AppData/Roaming/Sublime Text 3/Packages/Lua Love/LuaLove.sublime-settings",
+		"/E/Computing/Programs/Lua/SiriusL2D/button.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/player.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/SiriusLinux.sh",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/physics.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/object.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/character.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/main.lua",
 		"/E/Computing/Programs/Lua/ClassSystem/main.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/player.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/class.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/debug.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/test.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/camera.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/state.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/script.lua",
 		"/E/Computing/Programs/Lua/ObjectSystem/main.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/group.lua",
@@ -609,10 +687,8 @@
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/Objects.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/Physics.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/genericMod.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/entity.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/oldPlayer.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/bullet.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/renderer.lua",
 		"/E/Games/Rodina/Scripts/Render/Mars.lua",
 		"/E/Games/Rodina/Scripts/Render/RenderMain.lua",
 		"/E/Computing/Programs/Lua/class.lua",
@@ -622,7 +698,6 @@
 		"/E/Computing/Programs/Lua/SiriusL2D/30log/30log.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/30log/30log-singleton.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/30log/30log-global.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/ship.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/gameState.lua",
 		"/E/Games/Rodina/Scripts/EGCore.lua",
 		"/E/Games/Rodina/Scripts/Gameplay/EGWorldObject.lua",
@@ -689,29 +764,11 @@
 		"/E/Computing/Programs/Lua/SpaceGame/events.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/classes.lua",
 		"/E/Computing/Programs/Lua/Love2D/SpaceGame/main.lua",
-		"/C/Users/Chris/AppData/Roaming/Sublime Text 2/Packages/Lua Love/LuaLove.sublime-build",
-		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Entity.lua",
-		"/E/Games/Minecraft/FTB/MinecraftLog.txt",
-		"/E/Games/Minecraft/FTB/FTBLauncherLog.txt",
-		"/E/Computing/Programs/C++/SFML/GenericEngine/scripts/class.lua",
-		"/E/Computing/Programs/C++/SFML/GenericEngine/scripts/BasicCollision.lua",
-		"/E/Computing/Programs/C++/SFML/GenericEngine/scripts/FpsDisplay.lua",
-		"/E/Computing/Programs/C++/SFML/GenericEngine/scripts/main.lua",
-		"/E/Computing/Programs/C++/SFML/GameEngine/README.md",
-		"/E/Computing/Programs/C++/SFML/GenericEngine/.gitignore",
-		"/E/Computing/Programs/C++/SFML/GenericEngine/scripts/Player.lua",
-		"/E/Computing/Programs/C++/SFML/GenericEngine/scripts/Ship.lua",
-		"/E/Computing/Programs/C++/SFML/GenericEngine/scripts/Test.lua",
-		"/E/Computing/Programs/C++/SFML/SFMLTemplate/scripts/main.lua",
-		"/E/Computing/Programs/C++/SFML/SFMLTemplate/scripts/class.lua",
-		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Crag.lua",
-		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Commander_Alerts.lua",
-		"/E/Games/Steam/SteamApps/common/Natural Selection 2/ns2/lua/Commander_Ping.lua",
-		"/E/Games/Rodina/Scripts/Gameplay/EGMenu.lua"
+		"/C/Users/Chris/AppData/Roaming/Sublime Text 2/Packages/Lua Love/LuaLove.sublime-build"
 	],
 	"find":
 	{
-		"height": 48.0
+		"height": 30.0
 	},
 	"find_in_files":
 	{
@@ -725,6 +782,10 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"end",
+			"\")\n",
+			"Enginr",
+			"\n",
 			"setLinearDamping",
 			"end",
 			"subClass",
@@ -822,63 +883,35 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "main.lua",
+					"file": "Game/mainMenu.lua",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1060,
+						"buffer_size": 199,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								413,
-								413
+								199,
+								199
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Lua/Lua.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/SublimeLove/Love.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "Game/player.lua",
-					"settings":
-					{
-						"buffer_size": 867,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								155,
-								155
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Lua/Lua.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -886,7 +919,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 30.0
 	},
 	"input":
 	{
@@ -919,14 +952,21 @@
 	{
 		"height": 210.0
 	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Lua Love/LuaLove.sublime-build",
+	"project": "SiriusL2D.sublime-project",
 	"replace":
 	{
-		"height": 72.0
+		"height": 56.0
 	},
 	"save_all_on_build": true,
 	"select_file":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -943,15 +983,32 @@
 	"select_project":
 	{
 		"height": 500.0,
+		"last_filter": "",
 		"selected_items":
 		[
 		],
 		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
 	},
 	"show_minimap": true,
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
 	"side_bar_width": 207.0,
-	"status_bar_visible": true
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
 }

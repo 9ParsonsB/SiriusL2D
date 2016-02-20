@@ -2,12 +2,15 @@ Class("Debug")
 
 Debug.X = 0
 Debug.Y = 0
+Debug.Enabled = true
 
 function Debug:Create()
-  State.Add(self, "Debug")
+  Engine.Add(self, "Game")
 end
 
-function Debug:Draw()
+function Debug:Debug()
+  if not self.Enabled then return end
+
   --Frame rate
   love.graphics.print("Frame rate: " .. love.timer.getFPS(), self.X, self.Y)
 
@@ -25,4 +28,8 @@ function Debug:Draw()
 
   if Physics.Debug then love.graphics.print("Physics drawing: enabled", self.X, self.Y + 75)
   else love.graphics.print("Physics drawing: disabled", self.X, self.Y + 75) end
+end
+
+function Debug:KeyPressed(key)
+  if key == "3" then self.Enabled = not self.Enabled end
 end

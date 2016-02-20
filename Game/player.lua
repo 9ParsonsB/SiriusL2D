@@ -1,4 +1,4 @@
-Speed = 500
+Speed = 3000
 
 Class("Player", "Entity")
 
@@ -6,19 +6,18 @@ function Player:Create()
   self.X, self.Y = 200, 200
   self:SetCollider("dynamic", "box", 16, 16)
   self.Collider:SetLinearDamping(4)
-  State.Add(self, "Game")
+  Engine.Add(self, "Game")
 end
 
 function Player:Update(dt)
-  --Camera follows player
-  local camera = State.GetCamera("Game")
-  camera.X = self.X - (love.graphics.getWidth() / 2) + 8
-  camera.Y = self.Y - (love.graphics.getHeight() / 2) + 8
-
-  --Prevent movement if physics inactive
   if not Physics.Active then return end
 
-  self:Face(camera:GetMousePosition())
+  --Camera follows player
+  Engine.Camera.X = self.X - (love.graphics.getWidth() / 2) + 8
+  Engine.Camera.Y = self.Y - (love.graphics.getHeight() / 2) + 8
+
+  local angle = self:GetAngleTo(Engine.Camera:GetMousePosition())
+  self:SetAngularVelocity((angle - self.Angle))
 
   --WASD movement controls
   local x, y = self:GetLinearVelocity()

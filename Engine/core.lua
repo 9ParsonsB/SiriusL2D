@@ -44,13 +44,24 @@ function NewObject(name, ...)
   if type(object.Create) == "function" then 
   	object:Create(...)
   end
+
+  --Base constructor
+  if object.super then 
+    if type(object.super.Create) == "function" then
+      object.super.Create(object, ...)
+    end
+  end
   return object
 end
+function GetClass(name)
+  return Classes[name]
+end
 
---Load physics and renderer
+--Load base files
 require "Engine/physics"
 require "Engine/renderer"
-require "Engine/state"
+require "Engine/gui"
+require "Engine/engine"
 
 --Compile default classes
 CompileFile("Engine/collider.lua")
