@@ -28,6 +28,14 @@ function Game:Debug()
 
   if Physics.Debug then love.graphics.print("Physics drawing: enabled", self.X, self.Y + 75)
   else love.graphics.print("Physics drawing: disabled", self.X, self.Y + 75) end
+
+  --Local position of mouse
+  local x, y = love.mouse.getPosition()
+  love.graphics.print("Screen pos: X:" .. x .. " Y:" .. y, self.X, self.Y + 90)
+
+  --World position mouse
+  local x, y = Engine.Camera:GetMousePosition()
+  love.graphics.print("World pos: X:" .. x .. " Y:" .. y, self.X, self.Y + 105)
 end
 
 function Game:KeyPressed(key)

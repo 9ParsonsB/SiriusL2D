@@ -61,5 +61,6 @@ require "Engine/renderer"
 
 --Compile default classes
 CompileFile("Engine/button.lua")
+CompileFile("Engine/slider.lua")
 CompileFile("Engine/collider.lua")
 CompileFile("Engine/entity.lua")

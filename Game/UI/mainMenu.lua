@@ -2,13 +2,16 @@ Class("MainMenu")
 
 function MainMenu:Create()
   --Create buttons
-  self.Start = NewObject("Button", 200, 400, 100, 20, "Start game")
+  self.Start = NewObject("Button", 200, 400, 100, 20, "Single player")
   self.Start:SetTexture("greyRect.png", "greenRect.png")
 
-  self.Settings = NewObject("Button", 200, 430, 100, 20, "Settings")
+  self.StartServer = NewObject("Button", 200, 430, 100, 20, "Multiplayer")
+  self.StartServer:SetTexture("greyRect.png", "greenRect.png")
+
+  self.Settings = NewObject("Button", 200, 460, 100, 20, "Settings")
   self.Settings:SetTexture("greyRect.png", "greenRect.png")
 
-  self.Quit = NewObject("Button", 200, 460, 100, 20, "Quit")
+  self.Quit = NewObject("Button", 200, 490, 100, 20, "Quit")
   self.Quit:SetTexture("greyRect.png", "greenRect.png")
 
   self.InGame = false

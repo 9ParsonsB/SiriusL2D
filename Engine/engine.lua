@@ -83,7 +83,7 @@ function love.mousepressed(x, y, button, istouch)
 
   if button == 1 then Engine.LeftPressed = true end
 end
-function love.mousemeleased(x, y, button)
+function love.mousereleased(x, y, button)
   Engine.Fire("MouseReleased", x, y, button)
 end
 function love.mousemoved(x, y, dx, dy)

@@ -520,10 +520,18 @@
 	"buffers":
 	[
 		{
-			"file": "main.lua",
+			"file": "Game/UI/settingsMenu.lua",
 			"settings":
 			{
-				"buffer_size": 705,
+				"buffer_size": 322,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Game/ship.lua",
+			"settings":
+			{
+				"buffer_size": 689,
 				"line_ending": "Windows"
 			}
 		}
@@ -637,22 +645,42 @@
 	],
 	"file_history":
 	[
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/mainMenu.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/game.lua",
+		"/E/Computing/Programs/Lua/Test/main.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/main.lua",
+		"/E/Computing/Programs/Lua/Test/player.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/engine.lua",
+		"/E/Games/Rodina/Scripts/Render/MenuGen.Button.lua",
+		"/E/Games/Rodina/Scripts/DataGameplay/EGOptions.lua",
+		"/E/Games/Rodina/Scripts/EGGrid.lua",
+		"/E/Games/Rodina/Scripts/Render/RenderPass.lua",
+		"/E/Games/Rodina/Scripts/Render/RenderMain.lua",
+		"/E/Games/Rodina/Scripts/Render/MenuGen.lua",
+		"/E/Games/Rodina/Scripts/Render/MenuGen.BGButton.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Ui/button.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/core.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/button.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/UI/button.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/UI/ui.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/UI/ui.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/UI/dropDown.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/UI/checkbox.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/UI/slider.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/UI/button.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/slider.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/UI/settingsMenu.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/ship.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/UI/mainMenu.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/mainMenu.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/box.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/game.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/gui.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/settingsMenu.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/engine.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/GUI.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/main.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/button.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/renderer.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/entity.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/player.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/pilotSeat.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/debug.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/ship.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/collider.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Menu/Buttons/startButton.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Menu/mainMenu.lua",
@@ -660,7 +688,6 @@
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/exitButton.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/startButton.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/button.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/box.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/States/GameState.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/state.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/States/gameState.lua",
@@ -695,7 +722,6 @@
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/oldPlayer.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/bullet.lua",
 		"/E/Games/Rodina/Scripts/Render/Mars.lua",
-		"/E/Games/Rodina/Scripts/Render/RenderMain.lua",
 		"/E/Computing/Programs/Lua/class.lua",
 		"/E/Computing/Programs/Lua/30log-master/30log-master/30log-clean.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/30log.lua",
@@ -746,25 +772,7 @@
 		"/E/Computing/Programs/Lua/SpaceGame/Game/debugInfo",
 		"/E/Computing/Programs/Lua/SpaceGame/Engine/boxCollider.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Game/DebugInfo.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/player.lua",
-		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/Player.lua",
-		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/class.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/Engine/middleclass.lua",
-		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/events.lua",
-		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/Ship.lua",
-		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/FpsDisplay.lua",
-		"/E/Computing/Programs/C++/SFML/GameEngine/scripts/BasicCollision.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/Engine/content.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/Engine/Content.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/Engine/Sprite.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/Entities/player.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/Entities/bullet.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/Entities/entity.lua",
-		"/E/Computing/Programs/Lua/NetworkTest/main.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/class.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/Input.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/bullet.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/entity.lua"
+		"/E/Computing/Programs/Lua/SpaceGame/player.lua"
 	],
 	"find":
 	{
@@ -782,6 +790,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"then",
 			"MainMenu",
 			"pressed",
 			"()\n",
@@ -887,24 +896,52 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "main.lua",
+					"file": "Game/UI/settingsMenu.lua",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 705,
+						"buffer_size": 322,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								230,
-								230
+								322,
+								322
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/SublimeLove/Love.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Game/ship.lua",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 689,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								685,
+								685
 							]
 						],
 						"settings":
@@ -913,8 +950,8 @@
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": -0.0,
-						"translation.y": 66.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

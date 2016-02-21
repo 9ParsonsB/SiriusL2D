@@ -8,10 +8,6 @@ function Box:Create(x, y, width, height)
 end
 
 function Box:Draw()
-  Engine.Camera:Set()
-
   Renderer.DrawSprite("greenRect.png", self.X, self.Y, self.Angle, self.Width, self.Height)
   if Physics.Debug then self.Collider:Draw() end
-
-  Engine.Camera:Unset()
 end
