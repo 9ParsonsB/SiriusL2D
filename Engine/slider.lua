@@ -40,14 +40,14 @@ function Slider:MouseMoved(x, y, dx, dy)
   if self.Selected then
   	--Horizontal
   	if self.Direction == 0 then 
-  	  self.BarX = self.BarX + dx 
+  	  self.BarX = x - self.BarWidth / 2
   	  self.BarX = math.max(self.X, self.BarX)
   	  self.BarX = math.min(self.X + self.Width - self.BarWidth, self.BarX)
   	end
   
     --Vertical
   	if self.Direction == 1 then 
-  	  self.BarY = self.BarY + dy 
+  	  self.BarY = y
   	  self.BarY = math.max(self.Y, self.BarY)
   	  self.BarY = math.min(self.Y + self.Height - self.BarHeight, self.BarY)
   	end
