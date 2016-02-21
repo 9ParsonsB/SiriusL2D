@@ -4,12 +4,12 @@
 		"selected_items":
 		[
 			[
-				"isdow",
-				"love.mouse.isDown"
+				"Settings",
+				"SettingsMenu"
 			],
 			[
-				"Settings",
-				"SettingsButton"
+				"isdow",
+				"love.mouse.isDown"
 			],
 			[
 				"q",
@@ -520,10 +520,10 @@
 	"buffers":
 	[
 		{
-			"file": "Game/mainMenu.lua",
+			"file": "main.lua",
 			"settings":
 			{
-				"buffer_size": 670,
+				"buffer_size": 705,
 				"line_ending": "Windows"
 			}
 		}
@@ -637,13 +637,17 @@
 	],
 	"file_history":
 	[
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/mainMenu.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Game/game.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/core.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/slider.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/gui.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/settingsMenu.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/engine.lua",
+		"/E/Computing/Programs/Lua/SiriusL2D/Engine/GUI.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/main.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/button.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/engine.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/renderer.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/core.lua",
-		"/E/Computing/Programs/Lua/SiriusL2D/Engine/gui.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/entity.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/player.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/pilotSeat.lua",
@@ -681,7 +685,6 @@
 		"/E/Computing/Programs/Lua/SiriusL2D/baseObject.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Game/wall.lua",
 		"/G/College/Year2/Jason/Unit27 Server side scripting/Assignment 2/StoneEcclesiastical/website_files/login.php",
-		"/E/Computing/Programs/Lua/SiriusL2D/Game/mainMenu.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/Engine/screen.lua",
 		"/E/Computing/Programs/Lua/SiriusL2D/conf.lua",
 		"/E/Downloads/love2d-game-maker-master/love2d-game-maker-master/LGM/src/fileoperations/newProject.lua",
@@ -761,10 +764,7 @@
 		"/E/Computing/Programs/Lua/SpaceGame/class.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/Input.lua",
 		"/E/Computing/Programs/Lua/SpaceGame/bullet.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/entity.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/server.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/events.lua",
-		"/E/Computing/Programs/Lua/SpaceGame/classes.lua"
+		"/E/Computing/Programs/Lua/SpaceGame/entity.lua"
 	],
 	"find":
 	{
@@ -892,27 +892,29 @@
 			[
 				{
 					"buffer": 0,
-					"file": "Game/mainMenu.lua",
+					"file": "main.lua",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 670,
+						"buffer_size": 705,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								160,
-								160
+								230,
+								230
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/SublimeLove/Love.tmLanguage"
+							"syntax": "Packages/SublimeLove/Love.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.x": -0.0,
+						"translation.y": 66.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,

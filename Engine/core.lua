@@ -53,16 +53,13 @@ function NewObject(name, ...)
   end
   return object
 end
-function GetClass(name)
-  return Classes[name]
-end
 
 --Load base files
+require "Engine/engine"
 require "Engine/physics"
 require "Engine/renderer"
-require "Engine/button"
-require "Engine/engine"
 
 --Compile default classes
+CompileFile("Engine/button.lua")
 CompileFile("Engine/collider.lua")
 CompileFile("Engine/entity.lua")

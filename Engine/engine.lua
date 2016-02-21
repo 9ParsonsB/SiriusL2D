@@ -7,16 +7,19 @@ Engine.Camera = Camera.New()
 Engine.Objects = {}
 
 function Engine.NewState(name)
-  local self = {Objects = {}, Count = 0, Active = true, Visible = true}
+  local self = {Objects = {}, Active = true, Visible = true}
   self.Camera = Camera.New()
   Engine.States[name] = self
   return self
 end
 
 function Engine.Add(object, name)
-  local state = Engine.GetState(name)
-  state.Objects[state.Count] = object
-  state.Count = state.Count + 1
+  if name then
+    local state = Engine.GetState(name)
+    table.insert(state.Objects, object)
+  else
+    table.insert(Engine.Objects, object)
+  end
 end
 
 --Get state
@@ -47,13 +50,13 @@ function Engine.Fire(trigger, ...)
   end
 end
 
-function Engine.Update(dt)
+function love.update(dt)
   Engine.Fire("Update", dt)
   Engine.Fire("Sync")
   Physics.Update(dt)
 end
 
-function Engine.Draw()
+function love.draw()
   --Regular drawing
   Engine.Camera:Set()
   Engine.Fire("Draw")
@@ -65,21 +68,24 @@ function Engine.Draw()
   --Debug drawing(Variables etc)
   Engine.Fire("Debug")
  
-  GUI.LeftPressed = false
+  Engine.LeftPressed = false
 end
 
-function Engine.KeyPressed(key)
+function love.keypressed(key)
   Engine.Fire("KeyPressed", key)
 end
-function Engine.KeyReleased(key)
+function love.keyreleased(key)
   Engine.Fire("KeyReleased", key)
 end
 
-function Engine.MousePressed(x, y, button, istouch)
+function love.mousepressed(x, y, button, istouch)
   Engine.Fire("MousePressed",  x, y, button, isTouch)
 
-  if button == 1 then GUI.LeftPressed = true end
+  if button == 1 then Engine.LeftPressed = true end
 end
-function Engine.MouseReleased(x, y, button)
+function love.mousemeleased(x, y, button)
   Engine.Fire("MouseReleased", x, y, button)
+end
+function love.mousemoved(x, y, dx, dy)
+  Engine.Fire("MouseMoved", x, y, dx, dy)
 end
