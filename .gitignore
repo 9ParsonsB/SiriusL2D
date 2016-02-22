@@ -42,3 +42,8 @@ luac.out
 
 # ignore .Love files so we dont accidentally push it
 *.[Ll]ove
+
+*.[Ss]ublime-[Pp]roject
+*.[Ss]ublime-[Ww]orkspace
+
+
