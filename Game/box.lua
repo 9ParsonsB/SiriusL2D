@@ -9,5 +9,5 @@ end
 
 function Box:Draw()
   Renderer.DrawSprite("greenRect.png", self.X, self.Y, self.Angle, self.Width, self.Height)
-  if Physics.Debug then self.Collider:Draw() end
+  self.Collider:Draw()
 end

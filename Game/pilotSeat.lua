@@ -11,7 +11,7 @@ end
 
 function PilotSeat:Draw()
   Renderer.DrawSprite("greenRect.png", self.X, self.Y, 0, 50, 50)
-  if Physics.Debug then self.Collider:Draw() end
+  self.Collider:Draw()
 end
 
 function PilotSeat:KeyPressed(key)

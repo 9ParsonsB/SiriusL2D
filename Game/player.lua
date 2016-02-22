@@ -30,5 +30,5 @@ end
 
 function Player:Draw()
   Renderer.DrawSprite("greenRect.png", self.X, self.Y, self.Angle)
-  if Physics.Debug then self.Collider:Draw() end
+  self.Collider:Draw()
 end

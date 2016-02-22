@@ -64,3 +64,5 @@ function Slider:GUI()
   Renderer.DrawSprite(self.Texture, self.X, self.Y, angle, self.Width, self.Height, 0, 0)
   Renderer.DrawSprite(self.BarTexture, self.BarX, self.BarY, angle, self.BarWidth, self.BarHeight, 0, 0)
 end
+
+return Slider

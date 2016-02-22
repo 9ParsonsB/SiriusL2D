@@ -1,4 +1,4 @@
-local Enviroments = {}
+--[[local Enviroments = {}
 local CurrentFile = "None"
 local Classes = {}
 function CompileFile(filePath)
@@ -52,15 +52,4 @@ function NewObject(name, ...)
     end
   end
   return object
-end
-
---Load base files
-require "Engine/engine"
-require "Engine/physics"
-require "Engine/renderer"
-
---Compile default classes
-CompileFile("Engine/button.lua")
-CompileFile("Engine/slider.lua")
-CompileFile("Engine/collider.lua")
-CompileFile("Engine/entity.lua")
+end--]]

@@ -1,14 +1,19 @@
-local Camera = require "Engine/camera"
+--Load base files
+Class = require "Engine/30log-clean"
+
+require "Engine/Physics/physics"
+require "Engine/Renderer/renderer"
+require "Engine/ui/ui"
 
 Engine = {}
 Engine.States = {}
 Engine.State = ""
-Engine.Camera = Camera.New()
+Engine.Camera = Renderer.Camera()
 Engine.Objects = {}
 
 function Engine.NewState(name)
   local self = {Objects = {}, Active = true, Visible = true}
-  self.Camera = Camera.New()
+  self.Camera = Renderer.Camera()
   Engine.States[name] = self
   return self
 end
@@ -67,25 +72,28 @@ function love.draw()
 
   --Debug drawing(Variables etc)
   Engine.Fire("Debug")
- 
-  Engine.LeftPressed = false
 end
 
+--Love callbacks
+function love.load()
+  love.graphics.setBackgroundColor(104, 136, 248)
+  love.physics.setMeter(64)
+end
 function love.keypressed(key)
   Engine.Fire("KeyPressed", key)
 end
 function love.keyreleased(key)
   Engine.Fire("KeyReleased", key)
 end
-
 function love.mousepressed(x, y, button, istouch)
   Engine.Fire("MousePressed",  x, y, button, isTouch)
-
-  if button == 1 then Engine.LeftPressed = true end
 end
 function love.mousereleased(x, y, button)
   Engine.Fire("MouseReleased", x, y, button)
 end
 function love.mousemoved(x, y, dx, dy)
   Engine.Fire("MouseMoved", x, y, dx, dy)
+end
+function love.textinput(t)
+  Engine.Fire("TextInput", t)
 end

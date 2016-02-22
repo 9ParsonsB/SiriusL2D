@@ -1,10 +1,6 @@
-Class("Entity")
+local Entity = Class("Entity" {X = 0, Y = 0, Angle = 0})
 
-Entity.X = 0
-Entity.Y = 0
-Entity.Angle = 0
-
-function Entity:Create()
+function Entity:init()
   self.Attached = {}
   self.Count = 0
 end
