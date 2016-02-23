@@ -40,8 +40,10 @@ function Peer:HandleData(data,from,port)
   if port then
       print(from..": "..data)
       udp:sendto("Please Override") --  just so they know we got the message
-    else -- if there was no port due to a network message being sent.
-      print("error: " .. from) -- print the message
+    elseif from then -- if there was no port due to a network message being sent.
+      print("error: " ..from ) -- print the message
+    else
+      print("error: " ..data)
     end
 end
 return Peer
