@@ -4,7 +4,7 @@ local address, port = "siriusgame.ddns.net", 7253
 local updaterate = 0.1
 local t
 
-function Client:Create() --TODO: move to engine
+function Client:init() --TODO: move to engine
   udp = socket.udp()
   udp:settimeout(0)
 end
