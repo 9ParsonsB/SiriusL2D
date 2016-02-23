@@ -1,4 +1,4 @@
 Network = {
-  Client = require "Game/Network/client",
+  Client = require "Engine/Network/client",
   Server = require "Engine/Network/server"
 }
