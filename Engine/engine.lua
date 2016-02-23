@@ -75,11 +75,13 @@ function love.draw()
   Engine.Fire("Draw")
   Engine.Camera:Unset()
 
-  --GUI drawing(Buttons etc)
+  --Draw ui
   Engine.Fire("GUI")
 
-  --Debug drawing(Variables etc)
+  --Debugging
   Engine.Fire("Debug")
+  Engine.Client:Debug()
+  if Engine.Server.Intergrated then Engine.Server:Debug() end
 end
 
 --Love callbacks

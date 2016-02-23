@@ -1,5 +1,7 @@
 local Button = Class("Button")
 
+Button.Enabled = true
+
 function Button:Create(x, y, width, height, text)
   self.X, self.Y = x or 0, y or 0
   self.Width, self.Height = width or 0, height or 0
@@ -7,7 +9,18 @@ function Button:Create(x, y, width, height, text)
 
   self.Pressed = false
   self.MouseOver = false
+
   Engine.Add(self)
+end
+
+function Button:Enable()
+  self.Enable = true
+  self.Texture = self.EnableTexture or self.Texture
+end
+
+function Button:Disable()
+  self.Enabled = false
+  self.Texture = self.DisableTexture or self.Texture
 end
 
 function Button:MouseMoved(x, y, dx, dy)

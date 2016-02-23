@@ -1,6 +1,7 @@
-Speed = 300
+local Speed = 300
 
-Class("Ship", "Entity")
+local Entity = require "Engine/entity"
+local Ship = Class("Ship", Entity)
 
 function Ship:Create(x, y)
   self.X, self.Y = x or 0, y or 0
@@ -13,7 +14,7 @@ function Ship:Update(dt)
   	self.Pilot:SetPosition(self.X, self.Y) 
   	self.Pilot:SetLinearVelocity(0, 0)
 
-  	--WASD movement controls
+  --WASD movement controls
 	--[[if love.keyboard.isDown("w") then self.Y = self.Y - Speed * dt end
 	if love.keyboard.isDown("a") then self.X = self.X - Speed * dt end
 	if love.keyboard.isDown("s") then self.Y = self.Y + Speed * dt end
@@ -24,3 +25,4 @@ end
 function Ship:SetPilot(player)
   self.Pilot = player
 end
+return Ship

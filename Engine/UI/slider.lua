@@ -1,5 +1,11 @@
 local Slider = Class("Slider")
 
+Slider.Direction = 0
+Slider.Min = 0
+Slider.Max = 0
+Slider.Value = 0
+Slider.Selected = false
+
 function Slider:Create(x, y, width, height)
   self.X, self.Y = x or 0, y or 0
   self.Width, self.Height = width or 0, height or 0
@@ -11,14 +17,7 @@ function Slider:Create(x, y, width, height)
   self.Texture = "greyRect.png"
   self.BarTexture = "greenRect.png"
 
-  --0 - Horizontal, 1 - Vertical
-  self.Direction = 0
-  
-  --Slider values
-  self.Min, self.Max = 0,  1
-  self.Value = self.Min
-
-  self.Selected = false
+  Engine.Add(self)
 end
 
 function Slider:SetRange(min, max)

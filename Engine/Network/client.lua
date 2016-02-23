@@ -13,4 +13,6 @@ function Client:Start() end
 
 function Client:HandleData() end
 
+function Client:Debug() end
+
 return Client

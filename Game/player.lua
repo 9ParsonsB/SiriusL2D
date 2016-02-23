@@ -1,6 +1,7 @@
 local Speed = 3000
 
-Class("Player", "Entity")
+local Entity = require "Engine/entity"
+local Player = Class("Player", Entity)
 
 function Player:init()
   self.X, self.Y = 200, 200
@@ -32,3 +33,4 @@ function Player:Draw()
   Renderer.DrawSprite("greenRect.png", self.X, self.Y, self.Angle)
   self.Collider:Draw()
 end
+return Player

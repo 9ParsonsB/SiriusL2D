@@ -55,3 +55,4 @@ end
 function Entity:SetAngularVelocity(velocity)
   self.Collider:SetAngularVelocity(velocity)
 end
+return Entity
