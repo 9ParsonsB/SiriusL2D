@@ -28,12 +28,16 @@ function Peer:Discover()
 end
 
 function Peer:Update()
-  repeat -- do this once
-    data,from,port = self.udp:receivefrom() -- from can also be an error message if port is nil
-    if data then
-      self.HandleData(data,from,port)
-    end
-  until not data -- and continue until there is no more data TODO: change this so that it will not take up more than X or just override
+  if self.Connected then
+    repeat -- do this once
+      data,from,port = self.udp:receivefrom() -- from can also be an error message if port is nil
+      if data then
+        self.HandleData(data,from,port)
+      end
+    until not data -- and continue until there is no more data TODO: change this so that it will not take up more than X or just override
+  else
+    return false
+  end
 end
 
 function Peer:HandleData(data,from,port)
