@@ -6,10 +6,11 @@ local t
 
 local Client = Class("Client")
 
+local running = false
+
 function Client:init() --TODO: move to engine
   udp = socket.udp()
   udp:settimeout(0)
-  running = false
 end
 
 function Client:Start()
