@@ -1,4 +1,4 @@
 Ui = {
   Button = require "Engine/UI/button",
-  TextBox = require "Engine/UI/textBox"
+  TextBox = require "Engine/UI/textbox"
 }
