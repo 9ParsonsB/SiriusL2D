@@ -14,7 +14,7 @@ local running = false
 
 function Server:Create()
   udp:settimeout(0)
-  udp:setsocketname('*','7253')
+  udp:setsockname('*','7253')
   print 'listening on port 7253'
   running = true
   print "Starting Server. Intergrated."
