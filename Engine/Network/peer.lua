@@ -23,9 +23,10 @@ function Peer:Connect(ip,port)
       self.Pinging = {ip = ip, port = port, time = love.timer.getTime()}
     else
       if self.udp:setpeername(ip,port) then
-      self.udp:send("ping")
-      print("waiting for pong for 5 seconds")
-      self.Pinging = {ip = ip, port = port, time = love.timer.getTime()}
+        self.udp:send("ping")
+        print("waiting for pong for 5 seconds")
+        self.Pinging = {ip = ip, port = port, time = love.timer.getTime()}
+      end
     end
   else
     error("Already Connected!")
