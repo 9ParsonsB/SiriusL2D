@@ -1,4 +1,5 @@
 require "Engine/engine"
+require "Game/Network/client"
 
 Engine.SetState("MainMenu")
 
@@ -12,7 +13,7 @@ Ui.Button.Hover = "greenRect.png"
 
 local singlePlayer = Ui.Button(250, 300, 100, 20, "Single Player")
 function singlePlayer:Click()
-  Engine.Client:Connect("siriusgame.ddns.net", 7253)
+  Engine.Client:Start()
 end
 
 local multiplayer = Ui.Button(250, 340, 100, 20, "Multiplayer")

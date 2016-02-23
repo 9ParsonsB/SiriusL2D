@@ -7,6 +7,8 @@ local t
 local Peer = require "Engine/Network/peer"
 local Client = Class("Client", Peer)
 
+function Client:Start() end
+
 function Client:Update()
   repeat
     data, msg = udp:receive()
