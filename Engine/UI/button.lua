@@ -13,7 +13,7 @@ end
 function Button:MouseMoved(x, y, dx, dy)
   --Mouse entered button
   if self:Contains(x, y) and not self.MouseOver then
-    self.OnMouseEnter()
+    self:MouseEnter()
     self.MouseOver = true
 
     --Texture change
@@ -24,7 +24,7 @@ function Button:MouseMoved(x, y, dx, dy)
 
   --Mouse left button
   if not self:Contains(x, y) and self.MouseOver then
-    self.OnMouseExit()
+    self:MouseExit()
     self.MouseOver = false
 
     --Texture change
@@ -43,7 +43,7 @@ end
 
 function Button:MousePressed(x, y, button, istouch)
   self.Pressed = self.MouseOver and button == 1
-  self.OnClick()
+  if self.Pressed then self:Click() end
 end
 
 function Button:MouseReleased(x, y, button)
@@ -56,8 +56,8 @@ function Button:Contains(x, y)
 end
 
 --Callbacks
-function Button:OnClick() end
-function Button:OnMouseEnter() end
-function Button:OnMouseExit() end
+function Button:Click() end
+function Button:MouseEnter() end
+function Button:MouseExit() end
 
 return Button

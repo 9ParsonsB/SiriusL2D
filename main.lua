@@ -1,10 +1,22 @@
 require "Engine/engine"
 
+--local Player = Object.Load("player.lua")
+--Player()
+
 Engine.SetState("MainMenu")
 
-local button = Ui.Button(0, 0, 100, 20)
-button.Texture = "greyRect.png"
-button.Hover = "greenRect.png"
-button.OnClick = function () 
-  print("Pressed") 
+--Ui style
+Ui.Button.Texture = "greyRect.png"
+Ui.Button.Hover = "greenRect.png"
+
+local singlePlayer = Ui.Button(250, 300, 100, 20, "Single Player")
+function singlePlayer:Click()
+  print("Single player...") 
+  --Engine.SetState("Game")
+end
+
+local multiplayer = Ui.Button(250, 340, 100, 20, "Multiplayer")
+function multiplayer:Click()
+  print("Multiplayer...") 
+  --Engine.SetState("Game")
 end
