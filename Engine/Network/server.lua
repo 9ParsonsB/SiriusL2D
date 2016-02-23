@@ -4,7 +4,7 @@ local socket = require("socket")
 -- Use P2P
 local hybrid = false
 
-local udp
+local udp = socket.udp()
 local world = {}
 local data, msg_or_ip, port_or_nil
 local pdata
@@ -13,6 +13,9 @@ local pdata
 local running = false
 
 function Server:Create()
+  udp:settimeout(0)
+  udp:setsocketname('*','7253')
+  print 'listening on port 7253'
   running = true
   print "Starting Server. Intergrated."
 end
