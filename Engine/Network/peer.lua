@@ -45,7 +45,7 @@ function Peer:Discover()
 end
 
 function Peer:Update()
-  if self.Connected then
+  if self.Connected and self.udp:getsockname() then
     repeat -- do this once
       data,from,port = self.udp:receivefrom() -- from can also be an error message if port is nil
       if data then
