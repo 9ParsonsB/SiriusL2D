@@ -3,9 +3,10 @@ local client = require "Engine/Network/client"
 function client:Start()
   -- TODO add engine/client/connect (add connecting / d/c)
   
-  self.udp:setpeername(address,port)
-  self.udp:send("Are you still there?")
-  self.Running = true
-  print("Connecting to server")
+  if self:Connect('siriusgame.ddns.net',7253) then
+    self.Running = true
+    print("Connecting to server")
+    self.udp:send("Are you still there?")
+  end
 end
 
