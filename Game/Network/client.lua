@@ -16,7 +16,7 @@ function Client:Start()
   udp:setpeername(address,port)
   udp:send("Are you still there?")
   self.Running = true
-  print("Oh hello again... I have been really busy making portal references.")
+  print("Connecting to server")
 end
 
 function Client:Update()
