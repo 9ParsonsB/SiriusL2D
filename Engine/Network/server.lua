@@ -17,8 +17,7 @@ end
   
   
 function Server:HandleData(data,from,port)
-  print("got data")
-  print(data)
+  Peer:HandleData(self)
   if data == "Are you still there?" then
     udp:sendto("servername||people connected||motd||something else||relevant xkcd",msg_or_ip,port_or_nil)
     --else
