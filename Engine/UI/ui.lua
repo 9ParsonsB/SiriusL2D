@@ -1,5 +1,5 @@
 Ui = {
-  Button = require "Engine/ui/button",
+  Button = require "Engine/UI/button",
   Texture = "greyRect.png",
   HoverTexture = "greenRect.png"
 }
