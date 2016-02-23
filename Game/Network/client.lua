@@ -1,8 +1,8 @@
-local client = require "Engine/Network/client"
+local Client = require "Engine/Network/client"
+local client = Class("client", Client)
 
 function client:Start()
-  -- TODO add engine/client/connect (add connecting / d/c)
-  
+ 
   if self:Connect('siriusgame.ddns.net',7253) then
     self.Running = true
     print("Connecting to server")
