@@ -23,8 +23,8 @@ function Peer:Connect(ip,port)
       print("waiting for pong for 5 seconds")
       self.Pinging = {ip = ip, port = port, time = love.timer.getTime()}
     else
-      if self.udp:setpeername(ip,port) then
-        self.udp:send("ping")
+      if not self.Connected  and not self.pinging then
+        self.udp:sendto("ping",ip,port)
         print("waiting for pong for 5 seconds")
         self.Pinging = {ip = ip, port = port, time = love.timer.getTime()}
       end
@@ -88,6 +88,9 @@ end
 function Peer:HandleData(data,from,port)
   if self.Pinging then
     if data == "pong"  and from == self.Pinging.ip and port == self.pining.port then 
+      if self.P2P then
+        if not self.udp:setpeername(from,port) then error("Failed to set peer name") end
+      end
       self.server.ip = from
       self.server.port = port
       self.Connected = true
