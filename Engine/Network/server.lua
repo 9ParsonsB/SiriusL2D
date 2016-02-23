@@ -9,7 +9,7 @@ local hybrid = false
 
 
 function Server:Start()
-  udp:setsockname('*','7253')
+  self.udp:setsockname('*','7253')
   print 'listening on port 7253'
   self.Running = true
 end
