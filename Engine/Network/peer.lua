@@ -1,7 +1,6 @@
 local socket = require("socket")
 local Peer = Class('Peer')
 
-
 function Peer:Create(name)
   self.udp = socket.udp()
   self.udp:settimeout(0)
@@ -45,3 +44,4 @@ function Peer:HandleData(data,from,port)
       print("error: " .. from) -- print the message
     end
 end
+return Peer

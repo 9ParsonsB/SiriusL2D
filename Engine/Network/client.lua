@@ -3,13 +3,9 @@ local address, port = "siriusgame.ddns.net", 7253 --TODO: make configurable
 
 local updaterate = 0.1
 local t
-local Client = Class("Client","Peer")
 
-function Client:Create()
-  self.udp = socket.udp()
-  self.udp:settimeout(0)
-end
-
+local Peer = require "Engine/Network/peer"
+local Client = Class("Client", Peer)
 
 function Client:Update()
   repeat

@@ -37,10 +37,8 @@ function Class(name, super)
 
   --Inherit from super
   if super then 
-    if Classes[super] then
-      class = Copy(Classes[super]) 
-      class.Super = Classes[super]
-    end
+    class = Copy(super) 
+    class.Super = super
   end
 
   --Store class

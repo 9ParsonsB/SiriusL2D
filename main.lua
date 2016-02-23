@@ -12,7 +12,7 @@ Ui.Button.Hover = "greenRect.png"
 
 local singlePlayer = Ui.Button(250, 300, 100, 20, "Single Player")
 function singlePlayer:Click()
-  Engine.Client:Start()
+  Engine.Client:Connect("siriusgame.ddns.net", 7253)
 end
 
 local multiplayer = Ui.Button(250, 340, 100, 20, "Multiplayer")

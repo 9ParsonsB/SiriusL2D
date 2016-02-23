@@ -1,4 +1,5 @@
-local Server = Class("Server","Peer")
+local Peer = require "Engine/Network/peer"
+local Server = Class("Server", Peer)
 local socket = require("socket")
 
 -- Use P2P
