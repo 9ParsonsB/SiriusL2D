@@ -1,7 +1,7 @@
 local socket = require("socket")
 local Peer = Class('Peer')
 
-function Peer:Create(name)
+function Peer:Create(name,mode)
   self.port = 7253
   self.udp = socket.udp()
   self.udp:settimeout(self.timeout)
@@ -9,6 +9,7 @@ function Peer:Create(name)
   self.P2P = false
   self.server = {}
   self.timeout = 0
+  self.mode = mode
 end
 
 function Peer:Connect(ip,port)
@@ -58,12 +59,17 @@ function Peer:Discover()
 end
 
 function Peer:Update()
-  if (self.Connected and self.udp:getsockname()) or self.Name == "Server" then
+  if (self.Connected and self.udp:getsockname()) or self.mode == "server" then
     repeat -- do this once
       print(self.udp:getsockname())
       data,from,port = self.udp:receive() -- from can also be an error message if port is nil
-      data = self.udp:receive()
       if data then
+        if self.mode == "client" then
+          if not from then
+            from = self.server.ip
+            port = self.server.port
+          end
+        end
         self.HandleData(data,from,port)
       else
         print("nothing to receive")
@@ -80,19 +86,22 @@ function Peer:Update()
 end
 
 function Peer:HandleData(data,from,port)
-  print(from..": "..data)
-  if port then 
-    
-
-    if data == "ping" then
-      self.udp:sendto("pong",from,port)
-    elseif data == "pong"  and self.Pinging and from == self.Pinging.ip and port == self.pining.port then 
-      self.server.ip = ip
+  if self.Pinging then
+    if data == "pong"  and from == self.Pinging.ip and port == self.pining.port then 
+      self.server.ip = from
       self.server.port = port
       self.Connected = true
     end
-
-  
+  end
+    
+  if port and from and data then 
+    
+    if data == "ping" then
+      self.udp:sendto("pong",from,port)
+      print("Received ping from " .. from)
+    else
+      print(from.. ": "..data)
+    end
     
     self.udp:sendto("Please Override") --  just so they know we got the message
   elseif from then -- if there was no port due to a network message being sent.
