@@ -3,7 +3,7 @@ Class = require "Engine/30log-clean"
 
 require "Engine/Physics/physics"
 require "Engine/Renderer/renderer"
-require "Engine/ui/ui"
+require "Engine/Ui/ui"
 require "Engine/Network/network"
 require "Engine/object"
 
