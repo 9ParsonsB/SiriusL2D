@@ -84,6 +84,7 @@ end
 
 --Love callbacks
 function love.load()
+  if arg[#arg] == "-debug" then require("mobdebug").start() end 
   love.graphics.setBackgroundColor(104, 136, 248)
   love.physics.setMeter(64)
 end

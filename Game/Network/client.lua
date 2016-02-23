@@ -1,9 +1,7 @@
 function Engine.Client:Start()
-  if self:Connect('siriusgame.ddns.net',7253) then
-    self.Running = true
-    print("Connecting to server")
-    self.udp:send("Are you still there?")
-  end
+  print("starting client... Connecting...")
+  self:Connect('siriusgame.ddns.net',7253)
+  self.Running = true
 end
 
 function Engine.Client:HandleData(data,from,port) 

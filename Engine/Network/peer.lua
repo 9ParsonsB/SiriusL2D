@@ -4,19 +4,22 @@ local Peer = Class('Peer')
 function Peer:Create(name)
   self.port = 7253
   self.udp = socket.udp()
-  self.udp:settimeout(0)
+  self.udp:settimeout(self.timeout)
   self.peername = name -- TODO change to steamID
   self.P2P = false
   self.server = {}
+  self.timeout = 0
 end
 
 function Peer:Connect(ip,port)
-  self.udp:setpeername(ip,port)
-  if self.udp:getsockname() then
-    self.server.ip = ip
-    self.server.port = port
-    self.Connected = true
-    return  true
+  if self.pinging then
+    error("Connecting too quickly!")
+  end
+  
+  if self.udp:setpeername(ip,port) then
+    self.udp:send("ping")
+    print("waiting for pong for 5 seconds")
+    self.pinging = {ip = ip, port = port, time = love.timer.getTime()}
   end
 end
 
@@ -47,24 +50,43 @@ end
 function Peer:Update()
   if self.Connected and self.udp:getsockname() then
     repeat -- do this once
-      data,from,port = self.udp:receivefrom() -- from can also be an error message if port is nil
+      print(self.udp:getsockname())
+      data,from,port = self.udp:receive() -- from can also be an error message if port is nil
       if data then
         self.HandleData(data,from,port)
+      else
+        print("nothing to receive")
       end
     until not data -- and continue until there is no more data TODO: change this so that it will not take up more than X or just override
-  else
-    return false
   end
+  if self.pinging then
+      if love.timer.getTime() > self.pinging.time + 5 then
+        self.pinging = nil
+        print("no response from server")
+      end
+    end  
+  
 end
 
 function Peer:HandleData(data,from,port)
-  if port then
-      print(from..": "..data)
-      udp:sendto("Please Override") --  just so they know we got the message
-    elseif from then -- if there was no port due to a network message being sent.
-      print("error: " ..from ) -- print the message
-    else
-      print("error: " ..data)
+  if port then 
+    
+    if self.pinging then
+      if data == "ping" then
+        self.udp:sendto("pong",from,port)
+      elseif data == "pong"  and from == self.pinging.ip and port == self.pining.port then 
+        self.server.ip = ip
+        self.server.port = port
+        self.Connected = true
+      end
     end
+  
+    print(from..": "..data)
+    self.udp:sendto("Please Override") --  just so they know we got the message
+  elseif from then -- if there was no port due to a network message being sent.
+    print("error: " ..from ) -- print the message
+  elseif data then
+    print("error: " ..data)
+  end
 end
 return Peer
