@@ -20,3 +20,8 @@ local multiplayer = Ui.Button(250, 340, 100, 20, "Multiplayer")
 function multiplayer:Click() 
   Engine.Server:Start()
 end
+
+local test = Ui.TextBox(250, 360, 100, 20)
+function test:TextEntered(t)
+
+end
