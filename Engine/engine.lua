@@ -4,13 +4,17 @@ Class = require "Engine/30log-clean"
 require "Engine/Physics/physics"
 require "Engine/Renderer/renderer"
 require "Engine/ui/ui"
+require "Engine/Network/network"
 require "Engine/object"
 
 Engine = {}
+
 Engine.States = {}
 Engine.State = ""
 Engine.Camera = Renderer.Camera()
 Engine.Objects = {}
+
+Engine.Server = Network.Server()
 
 function Engine.NewState(name)
   local self = {Objects = {}, Active = true, Visible = true}
@@ -60,6 +64,11 @@ function love.update(dt)
   Engine.Fire("Update", dt)
   Engine.Fire("Sync")
   Physics.Update(dt)
+
+  --Update server if its created
+  if Engine.Server.running then
+    Engine.Server:Update()
+  end
 end
 
 function love.draw()

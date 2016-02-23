@@ -16,7 +16,6 @@ function singlePlayer:Click()
 end
 
 local multiplayer = Ui.Button(250, 340, 100, 20, "Multiplayer")
-function multiplayer:Click()
-  print("Multiplayer...") 
-  --Engine.SetState("Game")
+function multiplayer:Click() 
+  Engine.Server:Create()
 end

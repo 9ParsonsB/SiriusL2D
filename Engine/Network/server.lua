@@ -1,4 +1,4 @@
-local Server = new Class("Server")
+local Server = Class("Server")
 local socket = require("socket")
 
 -- Use P2P
@@ -23,12 +23,11 @@ function Server:Update()
   data, msg_or_ip, port_or_nil = udp:receivefrom()
   
   if data then
-    print "got data"
-    print data
+    print("got data")
+    print(data)
   else
-    print "no data"
+    print ("no data")
   end
   socket.sleep(0.01)
 end
-
 return Server
