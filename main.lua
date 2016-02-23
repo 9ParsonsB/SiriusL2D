@@ -3,10 +3,6 @@ require "Game/Network/client"
 
 Engine.SetState("MainMenu")
 
---Player
-local Player = include("test")
-local a = Player()
-
 --Ui style
 Ui.Button.Texture = "greyRect.png"
 Ui.Button.Hover = "greenRect.png"
