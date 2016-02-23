@@ -14,6 +14,7 @@ Engine.State = ""
 Engine.Camera = Renderer.Camera()
 Engine.Objects = {}
 
+Engine.Client = Network.Client()
 Engine.Server = Network.Server()
 
 function Engine.NewState(name)

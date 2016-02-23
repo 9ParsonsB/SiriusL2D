@@ -11,8 +11,7 @@ Ui.Button.Hover = "greenRect.png"
 
 local singlePlayer = Ui.Button(250, 300, 100, 20, "Single Player")
 function singlePlayer:Click()
-  print("Single player...") 
-  --Engine.SetState("Game")
+  Engine.Client:Create()
 end
 
 local multiplayer = Ui.Button(250, 340, 100, 20, "Multiplayer")
