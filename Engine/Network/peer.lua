@@ -17,7 +17,7 @@ function Peer:Connect(ip,port)
   end
   
   if self.udp:setpeername(ip,port) then
-    self.udp:send("ping")
+    self.udp:sendto("ping",ip,port)
     print("waiting for pong for 5 seconds")
     self.pinging = {ip = ip, port = port, time = love.timer.getTime()}
   end
@@ -69,19 +69,20 @@ function Peer:Update()
 end
 
 function Peer:HandleData(data,from,port)
+  print(from..": "..data)
   if port then 
     
-    if self.pinging then
-      if data == "ping" then
-        self.udp:sendto("pong",from,port)
-      elseif data == "pong"  and from == self.pinging.ip and port == self.pining.port then 
-        self.server.ip = ip
-        self.server.port = port
-        self.Connected = true
-      end
+
+    if data == "ping" then
+      self.udp:sendto("pong",from,port)
+    elseif data == "pong"  and self.pinging and from == self.pinging.ip and port == self.pining.port then 
+      self.server.ip = ip
+      self.server.port = port
+      self.Connected = true
     end
+
   
-    print(from..": "..data)
+    
     self.udp:sendto("Please Override") --  just so they know we got the message
   elseif from then -- if there was no port due to a network message being sent.
     print("error: " ..from ) -- print the message
