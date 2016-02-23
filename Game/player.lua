@@ -1,8 +1,8 @@
-Speed = 3000
+local Speed = 3000
 
-Class("Player", "Entity")
+local Player = Class("Player", "Entity")
 
-function Player:Create()
+function Player:init()
   self.X, self.Y = 200, 200
   self:SetCollider("dynamic", "box", 16, 16)
   self.Collider:SetLinearDamping(4)

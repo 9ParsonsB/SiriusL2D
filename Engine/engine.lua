@@ -4,6 +4,7 @@ Class = require "Engine/30log-clean"
 require "Engine/Physics/physics"
 require "Engine/Renderer/renderer"
 require "Engine/ui/ui"
+require "Engine/object"
 
 Engine = {}
 Engine.States = {}
