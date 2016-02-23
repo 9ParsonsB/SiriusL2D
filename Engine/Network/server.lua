@@ -1,12 +1,8 @@
 local Peer = require "Engine/Network/peer"
 local Server = Class("Server", Peer)
 
--- Use P2P
-local hybrid = false
-
 -- Running at creation?
 --local running = false
-
 
 function Server:Start()
   self.udp:setsockname('*','7253')
