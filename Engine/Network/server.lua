@@ -1,9 +1,17 @@
-require "grease"
 local Server = new Class("Server")
 local socket = require("socket")
+
+-- Use P2P
+local hybrid = false
+
+local udp
 local world = {}
 local data, msg_or_ip, port_or_nil
+local pdata
+
+-- Running at creation?
 local running = false
+
 function Server:Create()
   running = true
   print "Starting Server. Intergrated."
@@ -22,3 +30,5 @@ function Server:Update()
   end
   socket.sleep(0.01)
 end
+
+return Server
