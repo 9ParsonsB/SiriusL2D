@@ -6,8 +6,6 @@ local t
 
 local Client = Class("Client")
 
-local running = false
-
 function Client:init() --TODO: move to engine
   udp = socket.udp()
   udp:settimeout(0)
@@ -17,7 +15,7 @@ function Client:Start()
   -- TODO add engine/client/connect (add connecting / d/c)
   udp:setpeername(address,port)
   udp:send("Are you still there?")
-  running = true
+  self.Running = true
   print("Oh hello again... I have been really busy making portal references.")
 end
 

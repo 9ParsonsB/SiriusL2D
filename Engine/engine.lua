@@ -67,8 +67,8 @@ function love.update(dt)
   Physics.Update(dt)
 
   --Update server if its created
-  if Engine.Server.running then Engine.Server:Update() end
-  if Engine.Client.running then Engine.Client:Update() end
+  if Engine.Server.Running then Engine.Server:Update() end
+  if Engine.Client.Running then Engine.Client:Update() end
 end
 
 function love.draw()
