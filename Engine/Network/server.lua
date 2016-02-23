@@ -12,7 +12,7 @@ local pdata
 -- Running at creation?
 --local running = false
 
-function Server:Create()
+function Server:Start()
   udp:settimeout(0)
   udp:setsockname('*','7253')
   print 'listening on port 7253'

@@ -1,6 +1,6 @@
 local Slider = Class("Slider")
 
-function Slider:init(x, y, width, height)
+function Slider:Create(x, y, width, height)
   self.X, self.Y = x or 0, y or 0
   self.Width, self.Height = width or 0, height or 0
 

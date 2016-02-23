@@ -1,6 +1,6 @@
 local Button = Class("Button")
 
-function Button:init(x, y, width, height, text)
+function Button:Create(x, y, width, height, text)
   self.X, self.Y = x or 0, y or 0
   self.Width, self.Height = width or 0, height or 0
   self.Text = text or "A button"

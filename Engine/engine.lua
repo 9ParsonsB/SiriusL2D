@@ -1,11 +1,9 @@
 --Load base files
-Class = require "Engine/30log-clean"
-
+require "Engine/class"
 require "Engine/Physics/physics"
 require "Engine/Renderer/renderer"
 require "Engine/UI/ui"
 require "Engine/Network/network"
-require "Engine/object"
 
 Engine = {}
 

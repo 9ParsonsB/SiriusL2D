@@ -1,4 +1,4 @@
-Class("Player", "Entity")
+Class("Player")
 
 function Player:Create()
 

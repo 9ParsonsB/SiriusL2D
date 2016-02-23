@@ -1,5 +1,5 @@
 local Camera = Class("Camera")
-function Camera:init(x, y)
+function Camera:Create(x, y)
   self.X, self.Y = x or 0, y or 0
 end
 function Camera:Set()

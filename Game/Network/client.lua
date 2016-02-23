@@ -6,7 +6,7 @@ local t
 
 local Client = Class("Client")
 
-function Client:init() --TODO: move to engine
+function Client:Create() --TODO: move to engine
   udp = socket.udp()
   udp:settimeout(0)
 end
