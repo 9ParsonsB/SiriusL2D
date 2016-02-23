@@ -1,6 +1,6 @@
 local Speed = 3000
 
-local Player = Class("Player", "Entity")
+Class("Player", "Entity")
 
 function Player:init()
   self.X, self.Y = 200, 200

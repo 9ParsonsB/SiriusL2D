@@ -1,4 +1,4 @@
-local Entity = Class("Entity" {X = 0, Y = 0, Angle = 0})
+local Entity = Class("Entity", {X = 0, Y = 0, Angle = 0})
 
 function Entity:init()
   self.Attached = {}

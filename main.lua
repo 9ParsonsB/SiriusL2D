@@ -1,9 +1,12 @@
-require "Engine/engine"
+--require "Engine/engine"
 
---local Player = Object.Load("player.lua")
---Player()
 
-Engine.SetState("MainMenu")
+require "Engine/class"
+
+local Player = include("test")
+local a = Player()
+
+--[[Engine.SetState("MainMenu")
 
 --Ui style
 Ui.Button.Texture = "greyRect.png"
@@ -17,4 +20,4 @@ end
 local multiplayer = Ui.Button(250, 340, 100, 20, "Multiplayer")
 function multiplayer:Click() 
   Engine.Server:Create()
-end
+end--]]
