@@ -12,14 +12,23 @@ function Peer:Create(name)
 end
 
 function Peer:Connect(ip,port)
-  if self.pinging then
+  if self.Pinging then
     error("Connecting too quickly!")
   end
   
-  if self.udp:setpeername(ip,port) then
-    self.udp:sendto("ping",ip,port)
-    print("waiting for pong for 5 seconds")
-    self.pinging = {ip = ip, port = port, time = love.timer.getTime()}
+  if not self.Connected then
+    if self.P2P then
+      self.udp:sendto("ping",ip,port)
+      print("waiting for pong for 5 seconds")
+      self.Pinging = {ip = ip, port = port, time = love.timer.getTime()}
+    else
+      if self.udp:setpeername(ip,port) then
+      self.udp:send("ping")
+      print("waiting for pong for 5 seconds")
+      self.Pinging = {ip = ip, port = port, time = love.timer.getTime()}
+    end
+  else
+    error("Already Connected!")
   end
 end
 
@@ -59,9 +68,9 @@ function Peer:Update()
       end
     until not data -- and continue until there is no more data TODO: change this so that it will not take up more than X or just override
   end
-  if self.pinging then
-      if love.timer.getTime() > self.pinging.time + 5 then
-        self.pinging = nil
+  if self.Pinging then
+      if love.timer.getTime() > self.Pinging.time + 5 then
+        self.Pinging = nil
         print("no response from server")
       end
     end  
@@ -75,7 +84,7 @@ function Peer:HandleData(data,from,port)
 
     if data == "ping" then
       self.udp:sendto("pong",from,port)
-    elseif data == "pong"  and self.pinging and from == self.pinging.ip and port == self.pining.port then 
+    elseif data == "pong"  and self.Pinging and from == self.Pinging.ip and port == self.pining.port then 
       self.server.ip = ip
       self.server.port = port
       self.Connected = true
