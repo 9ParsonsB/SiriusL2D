@@ -49,13 +49,16 @@ function Peer:Discover()
 end
 
 function Peer:Update()
+  local data
+  local port
+  local from
   repeat -- do this once
     print("using socket:".. self.udp:getsockname())
     local ip_or_data, msg_or_ip, port_or_nil = self.udp:receivefrom()-- from can also be an error message if port is nil
     if port_or_nil then
-      local data = ip_or_data
-      local from = msg_or_ip
-      local port = port_or_nil
+      data = ip_or_data
+      from = msg_or_ip
+      port = port_or_nil
     else
       print("msg received, port is nil.")
       print("data/ip: ".. ip_or_data)
