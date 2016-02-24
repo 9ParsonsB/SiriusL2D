@@ -74,14 +74,14 @@ function Peer:Update()
 end
 
 function Peer:HandleData(data,from,port)  
-  if not from then print("from is nil") from = "" end
+  if not from then print("from is nil") end
   if not port then print("port is nil") port = 7253 end
-  if not data then print("data in nil") data = "" end
+  if not data then print("data in nil") end
   print("port: " .. port .. ". from: " .. from .. ". data: " ..data)
   if port and from and data then 
     
     if self.Pinging then
-      if self:handlePong() then 
+      if self:handlePong(data,from,port) then 
         return
       end
     end -- if we are waiting for a response, then try and handle it, if we do handle it then return as we have nothing else to do with this packet type.
