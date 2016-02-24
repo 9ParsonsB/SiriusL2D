@@ -15,7 +15,7 @@ function Client:Create()
 end
 
 function Client:handlePong(data,from,port)
-  Peer.handlePong(data,from,port)
+  Peer.handlePong(self,data,from,port)
   if self.Pinging then
     if string.match(data,"pong") and from == self.Pinging.ip and port == self.pining.port then 
       ping,ptype,pname = split(data,"$")

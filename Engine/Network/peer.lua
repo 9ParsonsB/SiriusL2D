@@ -64,7 +64,7 @@ end
 function Peer:Update()
   repeat -- do this once
     print(self.udp:getsockname())
-    data,from,port = self.udp:receive() -- from can also be an error message if port is nil
+    data,from,port = self.udp:receivefrom() -- from can also be an error message if port is nil
     if data then
       self.HandleData(data,from,port)
     else
@@ -76,7 +76,11 @@ function Peer:Update()
   end
 end
 
-function Peer:HandleData(data,from,port)    
+function Peer:HandleData(data,from,port)  
+  if not from then print("from is nil") from = "" end
+  if not port then print("port is nil") port = 7253 end
+  if not data then print("data in nil") data = "" end
+  print("port: " .. port .. ". from: " .. from .. ". data: " ..data)
   if port and from and data then 
     
     if self.Pinging then
