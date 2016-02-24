@@ -15,19 +15,26 @@ function Client:Create()
 end
 
 function Client:handlePong(data,from,port)
-  Peer.handlePong(self,data,from,port)
+  
   if self.Pinging then
-    if string.match(data,"pong") and from == self.Pinging.ip and port == self.pining.port then 
-      ping,ptype,pname = split(data,"$")
-      if string.match(ptype.lower(),"server") then
+    if data:match("pong") and from == self.Pinging.ip and port == self.Pinging.port then 
+      local split = data:split("@")
+      ptype = split[2]
+      pname = split[3]
+      print("inserting :" ..pname.. ". into peer table.")
+      table.insert(self.netPeers,Network.NetPeer(ip,port,ptype,name,false))
+      if ptype:lower():match("server") then
         self.server.name = pname
         self.server.type = ptype
         self.server.ip = from
         self.server.port = port
         self.server.connected = true
+        self.Pining = nil
+        
       end
     end  
   end
+  Peer.handlePong(self,data,from,port)
 end
 
 

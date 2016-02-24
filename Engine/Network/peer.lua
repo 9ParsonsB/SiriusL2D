@@ -14,9 +14,9 @@ end
 
 function Peer:getSelfID()
   if self.peername then
-    return ("$" .. self.Name .. "$" .. self.peername .. "$")
+    return ("@".. self.Name .. "@" .. self.peername .."@")
   else
-    return ("$Client$FAILED$")
+    return ("Client@FAILED@")
     --    error("self.peername is not set. Please set self.peername")
   end
 end
@@ -86,7 +86,7 @@ function Peer:HandleData(data,from,port)
       end
     end -- if we are waiting for a response, then try and handle it, if we do handle it then return as we have nothing else to do with this packet type.
     
-    if string.match(data,"ping") then
+    if data:match("ping") then
       self:handlePing(from,port)
     end
     print(from.. ": "..data)
@@ -99,11 +99,13 @@ end
 
 function Peer:handlePong(data,from,port)
   if self.Pinging then
-    if string.match(data,"pong") and from == self.Pinging.ip and port == self.Pinging.port then 
-      print(string.split(data,"$"))
-      ping,ptype,pname = string.split(data,"$")
-      table.insert(self.netpeers,Network.NetPeer(ip,port,ptype,name,false))
-      
+    if data:match("pong") and from == self.Pinging.ip and port == self.Pinging.port then 
+      local split = data:split("@")
+      ptype = split[2]
+      pname = split[3]
+      print("inserting :" ..pname.. ". into peer table.")
+      table.insert(self.netPeers,Network.NetPeer(ip,port,ptype,name,false))
+      self.Pinging = nil
     end
   end
 end
