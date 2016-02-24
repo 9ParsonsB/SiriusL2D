@@ -46,6 +46,7 @@ function Client:Connect(addr,port)
       self.Pinging = {ip = ip, port = port, time = love.timer.getTime()}
     else
       if not self.server.connected  and not self.Pinging then
+        print("pinging: " .. ip .. ":"..port)
         self.udp:sendto("ping" .. self.getSelfID(self),ip,port)
         print("waiting for pong for 5 seconds")
         self.Pinging = {ip = ip, port = port, time = love.timer.getTime()}
