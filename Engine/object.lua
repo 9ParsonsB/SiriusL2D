@@ -1,5 +1,7 @@
 Object = Class("Object")
 
+Object.Directory = ""
+
 function Object:Create(name, x, y)
   self.Scripts = {}
   self.Name = name
@@ -13,7 +15,7 @@ function Object:AddScript(filePath)
   env.self = self
 
   --Load script
-  local chunk = love.filesystem.load(filePath)
+  local chunk = love.filesystem.load(Object.Directory .. filePath)
   setfenv(chunk, env)
   chunk()
 
