@@ -95,6 +95,7 @@ end
 
 function Peer:handlePong(data,from,port)
   if self.Pinging then
+    if data == nil then return end
     if string.match(data,"pong") and from == self.Pinging.ip and port == self.pining.port then 
       print(split(data,"$"))
       ping,ptype,pname = split(data,"$")
