@@ -1,7 +1,7 @@
 local Peer = Class('Peer')
+Peer.socket = require("socket")
 
 function Peer:Create(name)
-  self.socket = require("socket")
   self.netPeers = {}
   self.port = 7253
   self.dns = self.socket.dns
