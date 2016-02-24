@@ -82,8 +82,8 @@ end
 
 
 
-function Client:HandleData() --TODO MOVE STUFF FROM PEER TO CLEITN / SERVERERE
-  Peer.HandleData(self)
+function Client:HandleData(data,from,port) --TODO MOVE STUFF FROM PEER TO CLEITN / SERVERERE
+  Peer.HandleData(self,data,from,port)
 end
 
 function Client:Debug() end
