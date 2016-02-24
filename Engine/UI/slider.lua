@@ -27,7 +27,7 @@ function Slider:SetRange(min, max)
 end
 
 function Slider:MousePressed(x, y, button, isTouch)
-  if button == 1 and self:Contains(x, y) then
+  if button == 1 and self:BarContains(x, y) then
   	self.Selected = true
   end
 end
@@ -47,12 +47,10 @@ function Slider:MouseMoved(x, y, dx, dy)
   
     --Vertical
   	if self.Direction == 1 then 
-  	  self.BarY = y
+  	  self.BarY = y - self.BarHeight / 2
   	  self.BarY = math.max(self.Y, self.BarY)
   	  self.BarY = math.min(self.Y + self.Height - self.BarHeight, self.BarY)
   	end
-
-    self:UpdateValue(dx, dy)
   end
 end
 
@@ -70,6 +68,11 @@ function Slider:UpdateValue(dx, dy)
 end
 
 function Slider:Contains(x, y)
+  return x > self.X and x < self.X + self.Width
+  and y > self.Y and y < self.Y + self.Height
+end
+
+function Slider:BarContains(x, y)
   return x > self.BarX and x < self.BarX + self.BarWidth
   and y > self.BarY and y < self.BarY + self.BarHeight
 end
