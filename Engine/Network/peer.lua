@@ -50,9 +50,17 @@ end
 
 function Peer:Update()
   repeat -- do this once
-    print(self.udp:getsockname())
-    rdata = self.udp:receivefrom()-- from can also be an error message if port is nil
-    print("rdata: "..rdata)
+    print("using socket:".. self.udp:getsockname())
+    ip_or_data, msg_or_ip, port_or_nil = self.udp:receivefrom()-- from can also be an error message if port is nil
+    if port_or_nil then
+      data = ip_or_data
+      from = msg_or_ip
+      port = port_or_nil
+    else
+      print("msg received, port is nil.")
+      print(ip_or_data)
+      print(msg_or_ip)
+    end
     if data then
       self.HandleData(data,from,port)
     else

@@ -11,7 +11,7 @@ local Client = Class("Client", Peer)
 
 function Client:Create()
   Peer.Create(self,"CLEINT")
-    self.server = {}
+  self.server = {}
 end
 
 function Client:handlePong(data,from,port)
