@@ -61,12 +61,14 @@ function Peer:Update()
         from = msg_or_ip
         port = port_or_nil
       end
-    self:HandleData(data,from,port)
-    else -- if port is nil
+    else -- if port is nil -- TODO: show network messages
       print("port is nil")
       print("data/ip: ".. ip_or_data)
       print("msg/ip: " ..msg_or_ip)
       from = ip_or_data
+    end
+    if data then
+      self:HandleData(data,from,port)
     end
   until not ip_or_data -- and continue until there is no more data TODO: change this so that it will not take up more than X or just override
 end
