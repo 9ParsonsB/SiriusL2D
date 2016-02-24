@@ -1,11 +1,13 @@
 local Peer = Class('Peer')
+require('Engine/Network/shared')
 Peer.socket = require("socket")
-Peer.udp = nil
+Peer.udp = Peer.socket.udp()
 
 function Peer:Create(name)
   self.netPeers = {}
+  self.Running = true
   self.port = 7253
-  Peer.udp = Peer.socket.udp()
+  self.udp = Peer.udp
   self.dns = self.socket.dns  
   self.udp:settimeout(self.timeout)
   self.peername = name -- TODO change to steamID
@@ -46,7 +48,7 @@ function Peer:Connect(addr,port)
     print("connecting to: " .. ip .. ":"..port)
     self.udp:sendto("conn" .. self.getSelfID(self),ip,port)
     print("waiting for ack for 5 seconds")
-    self.Connecting = {ip = ip, port = port, time = love.timer.getTime()}
+    self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
   else
     if p.connected then
       error("DONT TRY AND CONNECT TO AN ALREADY ACTIVE CONNECTION, DAMMIT!")
@@ -71,38 +73,42 @@ function Peer:Update()
   local data
   local port
   local from
-  repeat -- do this once
-    print("using socket:".. self.udp:getsockname())
-    local ip_or_data, msg_or_ip, port_or_nil = self.udp:receivefrom()-- from can also be an error message if port is nil
-    if port_or_nil ~= nil then -- if the port is not nil then
-      if ip_or_data then -- if ip_or_data then and port is not nill then ip_or_data is data
-        Packet = ip_or_data
-        if Packet.isvalid then
-          packet.receivedtime = self.socket.gettime() -- get the time at which we recieved the packet (used later, very useful)
-          data = Packet.data
-          if Packet.sender == msg_or_ip then
-            if Packet.port == port_or_nil then
-              from = msg_or_ip
-              port = port_or_nil
+  self.udp:settimeout(0)
+  if self.Running then
+    repeat -- do this once
+      local ip_or_data, msg_or_ip, port_or_nil = self.udp:receivefrom()-- from can also be an error message if port is nil
+      if port_or_nil ~= nil then -- if the port is not nil then
+        if ip_or_data then -- if ip_or_data then and port is not nill then ip_or_data is data
+          Packet = ip_or_data
+          if Packet.isvalid then
+            
+            packet.receivedtime = self.socket.gettime() -- get the time at which we recieved the packet (used later, very useful)
+            data = Packet.data
+            
+            if Packet.sender == msg_or_ip then
+              if Packet.port ~= port_or_nil then
+                print("Packet port and received port not the same!!")
+              end
             else
-              print("Packet port and received port not the same!!")
+              print("Packet sender and connection sender not the same!!")
             end
-          else
-            print("Packet sender and connection sender not the same!!")
+            
           end
+          
+        end
+      else -- if port is nil -- TODO: show network messages
+        if ip_or_data and msg_or_ip then
+          print("port is nil")
+          print("data/ip: ".. ip_or_data)
+          print("msg/ip: " ..msg_or_ip)
+          from = ip_or_data
         end
       end
-    else -- if port is nil -- TODO: show network messages
-      print("port is nil")
-      print("data/ip: ".. ip_or_data)
-      print("msg/ip: " ..msg_or_ip)
-      from = ip_or_data
-    end
-    if data then
-      self:HandleData(packet)
-    end
-  until not ip_or_data  or not msg_or_ip-- and continue until there is no more data or messages TODO: change this so that it will not take up more than X or just override
-  
+      if data then
+        self:HandleData(packet)
+      end
+    until not ip_or_data-- and continue until there is no more data or messages TODO: change this so that it will not take up more than X or just override
+  end
   -- check if peers need to have their ping updated
   if #self.netPeers > 0 then -- if we have more than 0 peers then
     for i,v in ipairs(self.netPeers) do -- for each peer
@@ -119,7 +125,8 @@ function Peer:Update()
         
   
   if self.Connecting then
-    if self.Connecting.time > love.timer.getTime() + 5 then
+    print( "start: " .. self.Connecting.time .. ". timeout at: " .. (self.Connecting.time + self.timeouttime) .. ". current: " .. self.socket.gettime())
+    if self.Connecting.time + self.timeouttime < self.socket.gettime() then -- if it has been timeouttime then presume there is no server (stop looking for ack)
       self.Connecting = nil
       print("no response.")
     end
@@ -229,9 +236,9 @@ function Peer:Packet(data)
   if data then Packet.isvalid = true end
   
   function Packet:Send(recipient)
-    Packet.recipient = recipient
+    Packet.recipient = Peer.socket.dns.toip(recipient) or recipient
     Packet.senttime = Peer.socket.gettime()
-    Peer.udp:sendto(Packet,Packet.recipient,Packet.port)
+    Peer.udp:sendto(table.tostring(Packet),Packet.recipient,Packet.port)
   end
   
   function Packet:getPeer()

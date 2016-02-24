@@ -4,8 +4,14 @@ function Engine.Client:Start()
   self.Running = true
 end
 
-function Engine.Client:HandleData(data,from,port) 
-  self.Super.HandleData(self,data,from,port)
+function Engine.Client:Update()
+  self.Super.Update(self)
+end
+  
+
+
+function Engine.Client:HandleData(packet) 
+  self.Super.HandleData(self,packet)
   if self.server.connected then
     if from == self.server.ip then -- recieved data from authority!
       print("OUR ALMIGHTY LORD TOLD US SOMETHING")

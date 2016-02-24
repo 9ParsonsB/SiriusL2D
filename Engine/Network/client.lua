@@ -72,29 +72,13 @@ end
 function Client:Start() end
 
 function Client:Update() 
-  
-  if self.server.connected then
-    udp.sendto("ping".. self:getSelfID())
-  end
-  
-  if self.Connected or self.Connecting then
-    
-    if self.Connecting then
-      if love.timer.getTime() > self.Connecting.time + 5 then
-        self.Connecting = nil
-        print("no response from server")
-      end
-    end
-    
-    Peer.Update(self)
-    
-  end  
+  Peer.Update(self)
 end
 
 
 
-function Client:HandleData(data,from,port) --TODO MOVE STUFF FROM PEER TO CLEITN / SERVERERE
-  Peer.HandleData(self,data,from,port)
+function Client:HandleData(packet) --TODO MOVE STUFF FROM PEER TO CLEITN / SERVERERE
+  Peer.HandleData(self,packet)
 end
 
 function Client:Debug() end
