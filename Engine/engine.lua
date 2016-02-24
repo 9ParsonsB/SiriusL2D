@@ -1,5 +1,6 @@
 --Load base files
 require "Engine/class"
+require "Engine/object"
 require "Engine/Physics/physics"
 require "Engine/Renderer/renderer"
 require "Engine/UI/ui"

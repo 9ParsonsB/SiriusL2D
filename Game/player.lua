@@ -1,16 +1,11 @@
-local Speed = 3000
+Speed = 3000
 
-local Entity = require "Engine/entity"
-local Player = Class("Player", Entity)
-
-function Player:init()
-  self.X, self.Y = 200, 200
+function Create()
   self:SetCollider("dynamic", "box", 16, 16)
   self.Collider:SetLinearDamping(4)
-  Engine.Add(self, "Game")
 end
 
-function Player:Update(dt)
+function Update(dt)
   if not Physics.Active then return end
 
   --Camera follows player
@@ -27,10 +22,5 @@ function Player:Update(dt)
   if love.keyboard.isDown("s") then y = y + Speed * dt end
   if love.keyboard.isDown("d") then x = x + Speed * dt end
   self:SetLinearVelocity(x, y)
-end
-
-function Player:Draw()
-  Renderer.DrawSprite("greenRect.png", self.X, self.Y, self.Angle)
-  self.Collider:Draw()
 end
 return Player

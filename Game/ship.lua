@@ -1,7 +1,6 @@
 local Speed = 300
 
-local Entity = require "Engine/entity"
-local Ship = Class("Ship", Entity)
+local Ship = Class("Ship")
 
 function Ship:Create(x, y)
   self.X, self.Y = x or 0, y or 0

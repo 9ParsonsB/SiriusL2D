@@ -70,3 +70,4 @@ end
 function Collider:SetLinearDamping(damping)
   self.Body:setLinearDamping(damping)
 end
+return Collider

@@ -1,18 +1,3 @@
-local currentEnv
-function include(filePath)
-  local env = setmetatable({}, {__index=_G})
-  currentEnv = env
-  
-  --Load file in environment
-  local chunk = love.filesystem.load(filePath .. ".lua")
-  setfenv(chunk, env)
-  local result = chunk()
-
-  currentEnv = nil
-
-  return result
-end
-
 --Copy table
 local function Copy(orig)
   local t = {}
@@ -44,11 +29,6 @@ function Class(name, super)
   --Store class
   class.Name = name
   Classes[name] = class
-
-  --Add class to file thats being loaded
-  if currentEnv then 
-    currentEnv[name] = class 
-  end
   
   return class
 end

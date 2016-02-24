@@ -24,6 +24,8 @@ function Button:Disable()
 end
 
 function Button:MouseMoved(x, y, dx, dy)
+  if not self.Enabled then return end
+
   --Mouse entered button
   if self:Contains(x, y) and not self.MouseOver then
     self:MouseEnter()
@@ -55,7 +57,7 @@ function Button:GUI()
 end
 
 function Button:MousePressed(x, y, button, istouch)
-  self.Pressed = self.MouseOver and button == 1
+  self.Pressed = self.Enabled and self.MouseOver and button == 1
   if self.Pressed then self:Click() end
 end
 

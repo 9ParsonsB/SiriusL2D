@@ -1,10 +1,6 @@
 require "Engine/engine"
 require "Game/Network/client"
+require "Game/UI/initMenus"
 
---Menus
-local MainMenu = require "Game/UI/mainMenu"
-local SettingsMenu = require "Game/UI/settingsMenu"
-
-Engine.SetState("MainMenu")
-MainMenu()
-SettingsMenu()
+--local player = Object("Player")
+--player:AddScript("Game/player.lua")
