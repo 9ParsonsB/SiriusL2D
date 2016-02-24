@@ -4,6 +4,7 @@ Slider.Direction = 0
 Slider.Min = 0
 Slider.Max = 0
 Slider.Value = 0
+Slider.rValue = 0.0
 Slider.Selected = false
 
 function Slider:Create(x, y, width, height)
@@ -62,10 +63,10 @@ function Slider:UpdateValue(dx, dy)
   if self.Direction == 1 then percent = dy / self.Height end
 
   --Calculate new value
-  self.Value = self.Value + (percent * self.Max)
-  self.Value = math.min(self.Value, self.Max)
-  self.Value = math.max(self.Value, self.Min)
-  self.Value = math.ceil(self.Value)
+  self.rValue = self.rValue + (percent * self.Max)
+  self.rValue = math.min(self.rValue, self.Max)
+  self.rValue = math.max(self.rValue, self.Min)
+  self.Value = math.ceil(self.rValue)
 end
 
 function Slider:Contains(x, y)
