@@ -16,7 +16,7 @@ function Peer:getSelfID()
   if self.peername then
     return ("$" .. self.Name .. "$" .. self.peername .. "$")
   else
-    return ("$CLEINTFAIL$" .. self.peername .. "$")
+    return ("$Client$FAILED$")
     --    error("self.peername is not set. Please set self.peername")
   end
 end
@@ -55,11 +55,11 @@ function Peer:Update()
   repeat -- do this once
     print("using socket:".. self.udp:getsockname())
     local ip_or_data, msg_or_ip, port_or_nil = self.udp:receivefrom()-- from can also be an error message if port is nil
-    if port_or_nil then
+    if port_or_nil ~= nil then
       data = ip_or_data
       from = msg_or_ip
       port = port_or_nil
-      self.HandleData(data,from,port)
+      self:HandleData(data,from,port)
     else
       print("msg received, port is nil.")
       print("data/ip: ".. ip_or_data)
