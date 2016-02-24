@@ -139,15 +139,18 @@ function Peer:HandleData(packet)
     
     if data:match("ping") then
       self:handlePing(packet)
+      return
     end
     
     if data:match("pong") then
       self:handlePong(packet)
+      return
     end
     
     if self.isDiscoverable then
       if data:match("disc") then
         self.HandleDiscovery(data,packet.sender,packet.port)
+        return
       end
     end
     
