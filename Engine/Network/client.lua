@@ -83,10 +83,6 @@ end
 
 
 function Client:HandleData() --TODO MOVE STUFF FROM PEER TO CLEITN / SERVERERE
-  if not from then
-    from = self.server.ip
-    port = self.server.port
-  end
   Peer.HandleData(self)
 end
 
