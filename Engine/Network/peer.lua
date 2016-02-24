@@ -36,19 +36,6 @@ function Peer:Connect(addr,port)
   end
 end
 
-function Peer:sendToServer(data)
-  if self.P2P then
-    if self.server.connected then
-      self.udp:sendto(data, self.server.ip, self.server.port)
-    end
-  else
-    if self.udp:send(data) then
-      return true
-    end
-    return
-  end
-end
-
 function Peer:Discover()
   if self.udp:setoption('broadcast',true) then
     self.multicast = true
@@ -64,16 +51,14 @@ end
 function Peer:Update()
   repeat -- do this once
     print(self.udp:getsockname())
-    data,from,port = self.udp:receivefrom() -- from can also be an error message if port is nil
+    rdata = self.udp:receivefrom()-- from can also be an error message if port is nil
+    print("rdata: "..rdata)
     if data then
       self.HandleData(data,from,port)
     else
       print("nothing to receive")
     end
   until not data -- and continue until there is no more data TODO: change this so that it will not take up more than X or just override
-  if self.server.connected then
-    udp.sendto("ping".. self:getSelfID())
-  end
 end
 
 function Peer:HandleData(data,from,port)  

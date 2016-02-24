@@ -20,4 +20,17 @@ function Server:HandleData(data,from,port)
   end
 end
 
+function Server:sendToServer(data)
+  if self.P2P then
+    if self.server.connected then
+      self.udp:sendto(data, self.server.ip, self.server.port)
+    end
+  else
+    if self.udp:send(data) then
+      return true
+    end
+    return
+  end
+end
+
 return Server

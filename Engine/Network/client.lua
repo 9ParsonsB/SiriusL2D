@@ -40,6 +40,7 @@ function Client:Connect(addr,port)
   
   if not self.server.connected then
     if self.P2P then
+      print("pinging: " .. ip .. ":"..port)
       self.udp:sendto("ping" .. self.getSelfID(self),ip,port)
       print("waiting for pong for 5 seconds")
       self.Pinging = {ip = ip, port = port, time = love.timer.getTime()}
@@ -59,16 +60,26 @@ end
 function Client:Start() end
 
 function Client:Update() 
+  
+  if self.server.connected then
+    udp.sendto("ping".. self:getSelfID())
+  end
+  
   if self.Connected or self.Pinging then
-    Peer.Update(self)
+    
     if self.Pinging then
       if love.timer.getTime() > self.Pinging.time + 5 then
         self.Pinging = nil
         print("no response from server")
       end
     end
+    
+    Peer.Update(self)
+    
   end  
 end
+
+
 
 function Client:HandleData() --TODO MOVE STUFF FROM PEER TO CLEITN / SERVERERE
   if not from then
