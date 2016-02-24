@@ -59,7 +59,13 @@ function Peer:Update()
       data = ip_or_data
       from = msg_or_ip
       port = port_or_nil
-      self:HandleData(data,from,port)
+      if not data == nil then 
+        self:HandleData(data,from,port)
+      else
+        print("no data")
+        print("data/ip: ".. ip_or_data)
+        print("msg/ip: " ..msg_or_ip)
+      end
     else
       print("msg received, port is nil.")
       print("data/ip: ".. ip_or_data)
@@ -95,7 +101,6 @@ end
 
 function Peer:handlePong(data,from,port)
   if self.Pinging then
-    if data == nil then return end
     if string.match(data,"pong") and from == self.Pinging.ip and port == self.pining.port then 
       print(split(data,"$"))
       ping,ptype,pname = split(data,"$")
