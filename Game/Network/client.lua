@@ -1,6 +1,6 @@
 function Engine.Client:Start()
   print("starting client... Connecting...")
-  self:Connect('siriusgame.ddns.net',7253)
+  self:Connect('151.229.227.194',7253)
   self.Running = true
 end
 
