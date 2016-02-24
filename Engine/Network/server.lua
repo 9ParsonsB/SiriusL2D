@@ -4,10 +4,13 @@ local Server = Class("Server", Peer)
 -- Running at creation?
 --local running = false
 
-function Server:Start()
+function Server:Start(name)
   self.udp:setsockname('*','7253')
   print 'listening on port 7253'
   self.Running = true
+  if name then
+    self.peername = name
+  end
 end
 
 function Server:Update()

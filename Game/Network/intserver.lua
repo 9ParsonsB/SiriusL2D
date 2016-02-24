@@ -6,5 +6,4 @@ function intserver:Create()
   -- Start the intergrated server
     print "Starting Server. Intergrated."
   server:Start()
-  server:Update()
 end

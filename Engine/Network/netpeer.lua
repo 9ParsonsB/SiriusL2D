@@ -6,6 +6,7 @@ function NetPeer:Create(ip,port,ptype,name,connected)
   self.peertype = ptype
   self.name = name
   self.connected = connected
+  self.lastpingtime = 0
 end
 
 return NetPeer

@@ -14,9 +14,9 @@ function Client:Create()
   self.server = {}
 end
 
-function Client:handlePong(data,from,port)
-  if self.Pinging then
-    if data:match("pong") and from == self.Pinging.ip and port == self.Pinging.port then 
+function Client:handleConnectionResponse(packet)
+  if self.Connecting then
+    if data:match("ack") and from == self.Connecting.ip and port == self.Connecting.port then 
       local split = data:split("@")
       ptype = split[1]
       pname = split[2]
@@ -27,10 +27,9 @@ function Client:handlePong(data,from,port)
         self.server.type = ptype
         self.server.ip = from
         self.server.port = port
-        self.server.connected = true
-        self.Pining = nil
-        
+        self.server.connected = true        
       end
+      self.Pining = nil
     end  
   end
   Peer.handlePong(self,data,from,port)
@@ -49,13 +48,19 @@ function Client:Connect(addr,port)
       print("pinging: " .. ip .. ":"..port)
       self.udp:sendto("ping" .. self.getSelfID(self),ip,port)
       print("waiting for pong for 5 seconds")
-      self.Pinging = {ip = ip, port = port, time = love.timer.getTime()}
+      self.Connecting = {ip = ip, port = port, time = love.timer.getTime()}
     else
-      if not self.server.connected  and not self.Pinging then
-        print("pinging: " .. ip .. ":"..port)
-        self.udp:sendto("ping" .. self.getSelfID(self),ip,port)
-        print("waiting for pong for 5 seconds")
-        self.Pinging = {ip = ip, port = port, time = love.timer.getTime()}
+      p,i = self:getNetPeerByIP(ip)
+      p = p or {connected = false}
+      if not self.server.connected  and not self.Connecting and not p.connected then
+        print("connecting to: " .. ip .. ":"..port)
+        self.udp:sendto("conn" .. self.getSelfID(self),ip,port)
+        print("waiting for ack for 5 seconds")
+        self.Connecting = {ip = ip, port = port, time = love.timer.getTime()}
+      else
+        if p.connected then
+          error("Already connected to that host.")
+        end
       end
     end
   else
@@ -72,11 +77,11 @@ function Client:Update()
     udp.sendto("ping".. self:getSelfID())
   end
   
-  if self.Connected or self.Pinging then
+  if self.Connected or self.Connecting then
     
-    if self.Pinging then
-      if love.timer.getTime() > self.Pinging.time + 5 then
-        self.Pinging = nil
+    if self.Connecting then
+      if love.timer.getTime() > self.Connecting.time + 5 then
+        self.Connecting = nil
         print("no response from server")
       end
     end
