@@ -9,8 +9,11 @@ function SettingsMenu:Create()
   self.TextBox = Ui.TextBox(200, 250)
 
   Engine.Add(self, "SettingsMenu")
-
   Engine.SetState(state)
+end
+
+function SettingsMenu:Debug()
+  love.graphics.print(self.Slider.Value, 430, 200)
 end
 
 function SettingsMenu:KeyPressed(key)

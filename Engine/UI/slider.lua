@@ -50,7 +50,22 @@ function Slider:MouseMoved(x, y, dx, dy)
   	  self.BarY = math.max(self.Y, self.BarY)
   	  self.BarY = math.min(self.Y + self.Height - self.BarHeight, self.BarY)
   	end
+
+    self:UpdateValue(dx, dy)
   end
+end
+
+function Slider:UpdateValue(dx, dy)
+  --Get distance as percentage
+  local percent = 0
+  if self.Direction == 0 then percent = dx / self.Width end
+  if self.Direction == 1 then percent = dy / self.Height end
+
+  --Calculate new value
+  self.Value = self.Value + (percent * self.Max)
+  self.Value = math.min(self.Value, self.Max)
+  self.Value = math.max(self.Value, self.Min)
+  self.Value = math.ceil(self.Value)
 end
 
 function Slider:Contains(x, y)
