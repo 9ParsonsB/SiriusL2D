@@ -1,11 +1,12 @@
 local Peer = Class('Peer')
 Peer.socket = require("socket")
+Peer.udp = nil
 
 function Peer:Create(name)
   self.netPeers = {}
   self.port = 7253
-  self.dns = self.socket.dns
-  self.udp = self.socket.udp()
+  Peer.udp = Peer.socket.udp()
+  self.dns = self.socket.dns  
   self.udp:settimeout(self.timeout)
   self.peername = name -- TODO change to steamID
   self.P2P = false
