@@ -30,7 +30,7 @@ function Peer:Connect(addr,port)
     error("Connecting too quickly!")
   end
   if self.P2P then
-    self.udp:sendto("ping" .. self:getSelfID(),ip,port)
+    self.udp:sendto("conn" .. self:getSelfID(),ip,port)
     print("waiting for pong for 5 seconds")
     self.Pinging = {ip = ip, port = port, time = love.timer.getTime()}
   end
@@ -39,7 +39,7 @@ end
 function Peer:Discover()
   if self.udp:setoption('broadcast',true) then
     self.multicast = true
-    local success, msg = self.udp:sendto("ping","255.255.255.255",self.port)
+    local success, msg = self.udp:sendto("disc","255.255.255.255",self.port)
     if not success then
       --failed
       print("failed to broadcast: "..msg)
@@ -73,12 +73,21 @@ function Peer:Update()
   until not ip_or_data -- and continue until there is no more data TODO: change this so that it will not take up more than X or just override
 end
 
+function Peer:HandleDiscovery(data,from,port)
+end
+
 function Peer:HandleData(data,from,port)  
   if not from then print("from is nil") end
   if not port then print("port is nil") port = 7253 end
   if not data then print("data in nil") end
   print("port: " .. port .. ". from: " .. from .. ". data: " ..data)
   if port and from and data then 
+    
+    if self.isDiscoverable then
+      if data:match("disc") then
+        self.HandleDiscovery(data,from,port)
+      end
+    end
     
     if self.Pinging then
       if self:handlePong(data,from,port) then 

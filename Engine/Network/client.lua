@@ -15,12 +15,11 @@ function Client:Create()
 end
 
 function Client:handlePong(data,from,port)
-  
   if self.Pinging then
     if data:match("pong") and from == self.Pinging.ip and port == self.Pinging.port then 
       local split = data:split("@")
-      ptype = split[2]
-      pname = split[3]
+      ptype = split[1]
+      pname = split[2]
       print("inserting :" ..pname.. ". into peer table.")
       table.insert(self.netPeers,Network.NetPeer(ip,port,ptype,name,false))
       if ptype:lower():match("server") then

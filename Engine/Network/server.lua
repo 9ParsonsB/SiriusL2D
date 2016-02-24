@@ -9,6 +9,11 @@ function Server:Start()
   print 'listening on port 7253'
   self.Running = true
 end
+
+function Server:Update()
+  Peer.Update(self)
+end
+
   
   
 function Server:HandleData(data,from,port)
