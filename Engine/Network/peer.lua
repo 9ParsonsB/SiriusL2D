@@ -59,17 +59,14 @@ function Peer:Update()
       data = ip_or_data
       from = msg_or_ip
       port = port_or_nil
+      self.HandleData(data,from,port)
     else
       print("msg received, port is nil.")
       print("data/ip: ".. ip_or_data)
       print("msg/ip: " ..msg_or_ip)
+      from = ip_or_data
     end
-    if data then
-      self.HandleData(data,from,port)
-    else
-      print("nothing to receive")
-    end
-  until not data -- and continue until there is no more data TODO: change this so that it will not take up more than X or just override
+  until not ip_or_data -- and continue until there is no more data TODO: change this so that it will not take up more than X or just override
 end
 
 function Peer:HandleData(data,from,port)  
