@@ -40,7 +40,7 @@ function Peer:Connect(addr,port)
   if self.P2P then
     self.udp:sendto("conn" .. self:getSelfID(),ip,port)
     print("waiting for ack for 5 seconds")
-    self.Connecting = {ip = ip, port = port, time = love.timer.getTime()}
+    self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
   end
   
   p,i = self:getNetPeerByIP(ip)

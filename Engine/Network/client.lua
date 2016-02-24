@@ -48,7 +48,7 @@ function Client:Connect(addr,port)
       print("pinging: " .. ip .. ":"..port)
       self.udp:sendto("ping" .. self.getSelfID(self),ip,port)
       print("waiting for pong for 5 seconds")
-      self.Connecting = {ip = ip, port = port, time = love.timer.getTime()}
+      self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
     else
       p,i = self:getNetPeerByIP(ip)
       p = p or {connected = false}
@@ -56,7 +56,7 @@ function Client:Connect(addr,port)
         print("connecting to: " .. ip .. ":"..port)
         self.udp:sendto("conn" .. self.getSelfID(self),ip,port)
         print("waiting for ack for 5 seconds")
-        self.Connecting = {ip = ip, port = port, time = love.timer.getTime()}
+        self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
       else
         if p.connected then
           error("Already connected to that host.")
