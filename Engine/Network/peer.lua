@@ -67,7 +67,7 @@ function Peer:Update()
       print("msg/ip: " ..msg_or_ip)
       from = ip_or_data
     end
-    if data then
+    if data ~= nil then
       self:HandleData(data,from,port)
     end
   until not ip_or_data -- and continue until there is no more data TODO: change this so that it will not take up more than X or just override
