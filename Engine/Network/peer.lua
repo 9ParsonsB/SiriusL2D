@@ -99,7 +99,7 @@ end
 
 function Peer:handlePong(data,from,port)
   if self.Pinging then
-    if string.match(data,"pong") and from == self.Pinging.ip and port == self.Pining.port then 
+    if string.match(data,"pong") and from == self.Pinging.ip and port == self.Pinging.port then 
       print(split(data,"$"))
       ping,ptype,pname = split(data,"$")
       table.insert(self.netpeers,Network.NetPeer(ip,port,ptype,name,false))
