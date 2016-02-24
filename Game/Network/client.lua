@@ -5,7 +5,7 @@ function Engine.Client:Start()
 end
 
 function Engine.Client:HandleData(data,from,port) 
-  self.Super.HandleData(self)
+  self.Super.HandleData(self,data,from,port)
   if self.P2P then
     if from == self.udp:getsockname() then -- recieved data from authority!
       print("OUR ALMIGHTY LORD TOLD US SOMETHING")
