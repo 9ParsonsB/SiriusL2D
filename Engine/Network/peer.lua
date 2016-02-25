@@ -127,11 +127,13 @@ function Peer:Update()
   if #self.netPeers > 0 then -- if we have more than 0 peers then
     for i,v in ipairs(self.netPeers) do -- for each peer
       if v.connected then -- if they are connected
-        if v.lastpingtime + self.pingpollrate < self.socket.gettime()  then -- if the last time we pinged them plus the poll rate is smaller than the current time
-          self:Ping(v.ip,v.port)
-        elseif v.lastattemptedpingtime + self.timeouttime < self.socket.gettime()  then -- if the last atempted ping time plus the timeout duration is smaller than the current time (meaning we have waited the timeout time)
-          print("peer:".. v.name ..". was last pinged: ".. (self.socket.gettime() - v.lastattemptedpingtime):tostring() .. " secs ago, disconnecting. timed out.")
-          v.connected = false -- disconnect them
+        if self.socket.gettime() > v.lastattemptedpingtime + 2 then
+          if v.lastpingtime + self.pingpollrate < self.socket.gettime()  then -- if the last time we pinged them plus the poll rate is smaller than the current time
+            self:Ping(v.ip,v.port)
+          elseif v.lastpingtime + self.timeouttime < self.socket.gettime()  then -- if the last atempted ping time plus the timeout duration is smaller than the current time (meaning we have waited the timeout time)
+            print("peer:".. v.name ..". was last pinged: ".. (self.socket.gettime() - v.lastattemptedpingtime):tostring() .. " secs ago, disconnecting. timed out.")
+            v.connected = false -- disconnect them
+          end
         end
       end
     end
@@ -192,8 +194,7 @@ end
 function Peer:handlePong(packet)
   client = self:updateNetClientPing(packet)
   if client and client.ping then
-    print("recieved pong with ping of: " ..client.ping)
-  return true
+    return true
   end
 end
 
@@ -207,6 +208,7 @@ function Peer:updateNetClientPing(packet)
   netpeer, index = self:getNetPeerByIP(form)
   if netpeer then
     self.netPeers[index].ping = packet.receivedtime - packet.senttime
+    self.netPeers[index].lastpingtime = selp.socket.gettime() 
     return netpeer
   end
 end
@@ -214,9 +216,9 @@ end
 function Peer:handleConnectionResponse(packet)
   local data = packet.data
   local tempdata = data
-  if data:match("ack") and packet.sender == self.Connecting.ip and packet.port == self.Connecting.port then 
+  if data == "ack" and packet.sender == self.Connecting.ip and packet.port == self.Connecting.port then 
     data = tempdata
-    print("recieved pong from ")
+    print("recieved ack from: " .. packet.sender)
     print("inserting :" ..pname.. ". into peer table.")
     table.insert(self.netPeers,Network.NetPeer(packet.sender,packet.port,packet.peertype,packet.peername,true))
     self.Connecting = nil
@@ -227,6 +229,7 @@ function Peer:sendConnectionConfirmation(ipacket)
   local packet = self:Packet("ack")
   packet.debug = "sent from sendconnectionconfirmation"
   self:SendPacket(packet,ipacket.sender)
+  print()
   table.insert(self.netPeers,Network.NetPeer(ipacket.sender,ipacket.port,ipacket.sendertype,ipacket.peername,true))
   print("Accepted conneciton from: " .. packet.sender)
 end

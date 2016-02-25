@@ -41,6 +41,10 @@ function Client:Connect(addr,port)
     print("IP returned nil, attempting direct addr connect.")
   end
   
+  if self.Connecting then
+    
+  end
+  
   if not self.server.connected then
     if self.P2P then
       print("pinging: " .. ip .. ":"..port)
