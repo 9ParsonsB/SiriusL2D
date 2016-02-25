@@ -46,7 +46,8 @@ function Client:Connect(addr,port)
   if not self.server.connected then
     if self.P2P then
       print("pinging: " .. ip .. ":"..port)
-      self.udp:sendto("ping" .. self.getSelfID(self),ip,port)
+      packet = Peer:Packet("conn")
+      packet:Send(ip)
       print("waiting for pong for 5 seconds")
       self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
     else
@@ -54,7 +55,8 @@ function Client:Connect(addr,port)
       p = p or {connected = false}
       if not self.server.connected  and not self.Connecting and not p.connected then
         print("connecting to: " .. ip .. ":"..port)
-        self.udp:sendto("conn" .. self.getSelfID(self),ip,port)
+        packet = Peer:Packet("conn")
+        packet:Send(ip)
         print("waiting for ack for 5 seconds")
         self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
       else

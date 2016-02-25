@@ -20,7 +20,7 @@ function MainMenu:MousePressed(x, y, button, isTouch)
   if self.Connect.Pressed then 
     Engine.Client:Start()
     local packet = Engine.Client:Packet("Hello world!")
-    packet:Send("siriusgame.ddns.net")
+    packet:Send("127.0.0.1")
     self.Connect:Disable() 
   end
 

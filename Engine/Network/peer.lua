@@ -38,7 +38,8 @@ function Peer:Connect(addr,port)
   end
   
   if self.P2P then
-    self.udp:sendto("conn" .. self:getSelfID(),ip,port)
+    packet = Peer:Packet("conn")
+    packet:send(ip)
     print("waiting for ack for 5 seconds")
     self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
   end
@@ -46,7 +47,8 @@ function Peer:Connect(addr,port)
   p,i = self:getNetPeerByIP(ip)
   if not p.connected and not self.Connecting then
     print("connecting to: " .. ip .. ":"..port)
-    self.udp:sendto("conn" .. self.getSelfID(self),ip,port)
+    packet = Peer:Packet("conn")
+    packet:send(ip)
     print("waiting for ack for 5 seconds")
     self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
   else
@@ -79,22 +81,27 @@ function Peer:Update()
       local ip_or_data, msg_or_ip, port_or_nil = self.udp:receivefrom()-- from can also be an error message if port is nil
       if port_or_nil ~= nil then -- if the port is not nil then
         if ip_or_data then -- if ip_or_data then and port is not nill then ip_or_data is data
-          Packet = ip_or_data
-          if Packet.isvalid then
-            
-            packet.receivedtime = self.socket.gettime() -- get the time at which we recieved the packet (used later, very useful)
-            data = Packet.data
-            
-            if Packet.sender == msg_or_ip then
-              if Packet.port ~= port_or_nil then
-                print("Packet port and received port not the same!!")
-              end
-            else
-              print("Packet sender and connection sender not the same!!")
-            end
-            
-          end
           
+          print("ip_or_data: " ..ip_or_data)
+          Packet = table.load(ip_or_data)
+
+          if Packet then
+            if Packet.isvalid then -- if this is a valid packet (has the isvalid atribute). only works if the deserlization worked
+              
+              packet.receivedtime = self.socket.gettime() -- get the time at which we recieved the packet (used later, very useful)
+              data = Packet.data
+              
+              if Packet.sender == msg_or_ip then
+                if Packet.port ~= port_or_nil then
+                  print("Packet port and received port not the same!!")
+                end
+              else
+                print("Packet sender and connection sender not the same!!")
+              end
+            end
+          else
+            error("packet resolved nil")
+          end
         end
       else -- if port is nil -- TODO: show network messages
         if ip_or_data and msg_or_ip then
@@ -125,7 +132,8 @@ function Peer:Update()
         
   
   if self.Connecting then
-    print( "start: " .. self.Connecting.time .. ". timeout at: " .. (self.Connecting.time + self.timeouttime) .. ". current: " .. self.socket.gettime())
+    -- debug -- 
+    --print( "start: " .. self.Connecting.time .. ". timeout at: " .. (self.Connecting.time + self.timeouttime) .. ". current: " .. self.socket.gettime())
     if self.Connecting.time + self.timeouttime < self.socket.gettime() then -- if it has been timeouttime then presume there is no server (stop looking for ack)
       self.Connecting = nil
       print("no response.")
@@ -231,18 +239,17 @@ function Peer:Packet(data)
   local Packet = Class("Packet")
   Packet.sender = self.peername
   Packet.sendertype = self.Name
-  Packet.port = self.port
+  Packet.port = Peer.port or 7253
   Packet.data = data
+  
   if data then Packet.isvalid = true end
   
   function Packet:Send(recipient)
-    Packet.recipient = Peer.socket.dns.toip(recipient) or recipient
+    sdata = table.serialize(Packet)
+    print("sdata: " ..sdata)
+    Packet.recipient = Peer.socket.dns.toip(recipient) or recipient -- try and convert the addr to an ip, or just use the addr
     Packet.senttime = Peer.socket.gettime()
-    Peer.udp:sendto(table.tostring(Packet),Packet.recipient,Packet.port)
-  end
-  
-  function Packet:getPeer()
-    Peer:getNetPeerByIP(self.ip)
+    Peer.udp:sendto(sdata,Packet.recipient, Packet.port or 7253)
   end
   
   return Packet
