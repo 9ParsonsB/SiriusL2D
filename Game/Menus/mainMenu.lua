@@ -16,7 +16,7 @@ function MainMenu:Update(dt)
 
     --Create server
     Engine.Peer = Network.Server('TEMPCLIENT1')
-    Engine.Server:Start() 
+    Engine.Peer:Start() 
   end
 
   if self:Button("Settings", 200,310, 100, 20).Pressed then
