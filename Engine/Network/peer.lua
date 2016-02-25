@@ -86,7 +86,7 @@ function Peer:Update()
           
           --print("ip_or_data: " ..ip_or_data)
           packet = self.ConvertPacketData(ip_or_data)
-          if not packet.sender then packet.sender = msg_or_ip end
+          packet.sender = msg_or_ip
           if packet then
             --if packet.isvalid then -- if this is a valid packet (has the isvalid atribute). only works if the deserlization worked
             
@@ -240,9 +240,11 @@ function Peer:Packet(data)
 end
 
 function Peer:SendPacket(packet,recipient)
+  if recipient == self.peername then return end
     sdata = DataDumper(packet)
     packet.recipient = self.socket.dns.toip(recipient) or recipient -- try and convert the addr to an ip, or just use the addr
-    
+    print("sending data to :" .. packet.recipient)
+    print("I am: " .. self.Name)
     packet.senttime = self.socket.gettime()
     self.udp:sendto(sdata,packet.recipient, packet.port or 7253)
   end

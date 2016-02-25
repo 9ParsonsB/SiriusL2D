@@ -7,8 +7,8 @@ function MainMenu:Update(dt)
 
     Engine.Client:Start()
     local packet = Engine.Client:Packet("Hello world!")
-    packet:Send("siriusgame.ddns.net")
-    self.Connect:Disable() 
+    Engine.Client:SendPacket(packet, "siriusgame.ddns.net")
+    --self.Connect:Disable() 
   end
 
   if self:Button("Start server", 200,280, 100, 20).Pressed then

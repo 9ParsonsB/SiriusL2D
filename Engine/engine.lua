@@ -7,7 +7,7 @@ require "Engine/object"
 require "Engine/Physics/physics"
 require "Engine/Renderer/renderer"
 require "Engine/Network/network"
-require "Engine/UI/core"
+require "Engine/Ui/core"
 
 Engine = {}
 
