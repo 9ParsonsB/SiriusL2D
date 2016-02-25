@@ -1,10 +1,13 @@
+--Add engine to package path
+--package.path = package.path .. "./Engine/?.lua;"
+
 --Load base files
 require "Engine/class"
 require "Engine/object"
 require "Engine/Physics/physics"
 require "Engine/Renderer/renderer"
-require "Engine/UI/ui"
 require "Engine/Network/network"
+require "Engine/UI/core"
 
 Engine = {}
 
@@ -61,9 +64,15 @@ function Engine.Fire(trigger, ...)
 end
 
 function love.update(dt)
+  --Update objects
   Engine.Fire("Update", dt)
   Engine.Fire("Sync")
+
+  --Update physics simulation
   Physics.Update(dt)
+
+  --Update ui
+  Ui.Update(dt)
 
   --Update server if its created
   if Engine.Server.Running then Engine.Server:Update() end
@@ -77,7 +86,7 @@ function love.draw()
   Engine.Camera:Unset()
 
   --Draw ui
-  Engine.Fire("GUI")
+  Ui.Draw()
 
   --Debugging
   Engine.Fire("Debug")
@@ -105,21 +114,29 @@ function love.load()
   love.graphics.setBackgroundColor(104, 136, 248)
   love.physics.setMeter(64)
 end
+
 function love.keypressed(key)
   Engine.Fire("KeyPressed", key)
+  Ui.KeyPressed(key)
 end
+
 function love.keyreleased(key)
   Engine.Fire("KeyReleased", key)
 end
+
 function love.mousepressed(x, y, button, istouch)
   Engine.Fire("MousePressed",  x, y, button, isTouch)
+  Ui.MousePressed(x, y, button, isTouch)
 end
+
 function love.mousereleased(x, y, button)
   Engine.Fire("MouseReleased", x, y, button)
 end
+
 function love.mousemoved(x, y, dx, dy)
   Engine.Fire("MouseMoved", x, y, dx, dy)
 end
+
 function love.textinput(t)
   Engine.Fire("TextInput", t)
 end

@@ -1,6 +1,7 @@
 require "Engine/engine"
 require "Game/Network/client"
-require "Game/UI/initMenus"
+require "Game/Menus/mainMenu"
+require "Game/Menus/settingsMenu"
 
 Object.Directory = "Game/Scripts/"
 
