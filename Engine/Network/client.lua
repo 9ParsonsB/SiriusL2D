@@ -16,7 +16,7 @@ end
 
 function Client:handleConnectionResponse(packet)
   if self.Connecting then
-    if packet.data == "ack" and packet.sender == self.Connecting.ip and packet.port == self.Connecting.port then 
+    if packet.data == "ack" and  packet.port == self.Connecting.port then -- packet.sender == self.Connecting.ip and
       if ptype:lower():match("server") then
         self.server.name = packet.peername
         self.server.type = packet.peertype
@@ -46,13 +46,13 @@ function Client:Connect(addr,port)
   
   if not self.server.connected then
     if self.P2P then
-      print("pinging: " .. ip .. ":"..port)
+      --[[print("pinging: " .. ip .. ":"..port)
       packet = Peer:Packet("conn")
       self:SendPacket(packet,ip)
       print("waiting for pong for 5 seconds")
-      self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
+      self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}]]--
     else
-      p,i = self:getNetPeerByIP(ip)
+      local p,i = self:getNetPeerByIP(ip)
       p = p or {connected = false}
       if not self.server.connected  and not self.Connecting and not p.connected then
         print("connecting to: " .. ip .. ":"..port)
