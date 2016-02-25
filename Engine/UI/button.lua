@@ -1,4 +1,4 @@
-local Widget = require "Ui/widget"
+local Widget = require "Engine/Ui/widget"
 local Button = Class("Button", Widget)
 
 Button.Pressed = false

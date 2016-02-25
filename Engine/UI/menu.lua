@@ -1,7 +1,7 @@
-local Button = require "Ui/button"
-local Label = require "Ui/label"
-local Slider = require "Ui/slider"
-local Theme = require "Ui/theme"
+local Button = require "Engine/Ui/button"
+local Label = require "Engine/Ui/label"
+local Slider = require "Engine/Ui/slider"
+local Theme = require "Engine/Ui/theme"
 
 local Menus = setmetatable({}, {__mode="v"})
 local Menu = Class("Menu")

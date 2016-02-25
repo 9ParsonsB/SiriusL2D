@@ -1,4 +1,4 @@
-local Widget = require "Ui/widget"
+local Widget = require "Engine/Ui/widget"
 local Slider = Class("Slider")
 
 function Slider:Create(info, x, y, w, h)

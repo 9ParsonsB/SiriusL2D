@@ -1,4 +1,4 @@
-local Widget = require "Ui/widget"
+local Widget = require "Engine/Ui/widget"
 local Label = Class("Label", Widget)
 
 function Label:Create(text, x, y, w, h)
