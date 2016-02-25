@@ -34,6 +34,7 @@ end
 
 
 function Client:Connect(addr,port)
+  port = port or self.port or 7253
   name, alias, ip = self.socket.dns.toip(addr)
   if not ip then
     ip = addr
