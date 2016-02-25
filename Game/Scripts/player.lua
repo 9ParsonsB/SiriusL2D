@@ -14,13 +14,4 @@ function Update(dt)
 
   local angle = self:GetAngleTo(Engine.Camera:GetMousePosition())
   self:SetAngularVelocity((angle - self.Angle))
-
-  --WASD movement controls
-  local x, y = self:GetLinearVelocity()
-  if love.keyboard.isDown("w") then y = y - Speed * dt end
-  if love.keyboard.isDown("a") then x = x - Speed * dt end
-  if love.keyboard.isDown("s") then y = y + Speed * dt end
-  if love.keyboard.isDown("d") then x = x + Speed * dt end
-  self:SetLinearVelocity(x, y)
 end
-return Player

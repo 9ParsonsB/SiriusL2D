@@ -7,3 +7,4 @@ Object.Directory = "Game/Scripts/"
 
 local player = Object("Player")
 player:AddScript("player.lua")
+player:AddScript("movement.lua")

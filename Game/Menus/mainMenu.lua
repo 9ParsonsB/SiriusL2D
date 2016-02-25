@@ -5,14 +5,17 @@ function MainMenu:Update(dt)
   if self:Button("Connect", 200,250, 100, 20).Pressed then
     print("Connecting...")
 
-    Engine.Client:Start()
-    local packet = Engine.Client:Packet("Hello world!")
-    Engine.Client:SendPacket(packet, "siriusgame.ddns.net")
-    --self.Connect:Disable() 
+    --Create client
+    Engine.Peer = Network.Client('TEMPCLIENT1')
+    Engine.Peer:Start()
+    Engine.Peer:Connect("siriusgame.ddns.net")
   end
 
   if self:Button("Start server", 200,280, 100, 20).Pressed then
     print("Starting server...")
+
+    --Create server
+    Engine.Peer = Network.Server('TEMPCLIENT1')
     Engine.Server:Start() 
   end
 

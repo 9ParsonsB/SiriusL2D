@@ -16,8 +16,8 @@ Engine.State = ""
 Engine.Camera = Renderer.Camera()
 Engine.Objects = {}
 
-Engine.Client = Network.Client('TEMPCLIENT1')
-Engine.Server = Network.Server('TEMPSERVER1')
+--Engine.Client = Network.Client('TEMPCLIENT1')
+--Engine.Server = Network.Server('TEMPSERVER1')
 
 function Engine.NewState(name)
   local self = {Objects = {}, Active = true, Visible = true}
@@ -75,8 +75,8 @@ function love.update(dt)
   Ui.Update(dt)
 
   --Update server if its created
-  if Engine.Server.Running then Engine.Server:Update() end
-  if Engine.Client.Running then Engine.Client:Update() end
+  if Engine.Peer then Engine.Peer:Update() end
+  --if Engine.Client.Running then Engine.Client:Update() end
 end
 
 function love.draw()
@@ -90,8 +90,6 @@ function love.draw()
 
   --Debugging
   Engine.Fire("Debug")
-  Engine.Client:Debug()
-  if Engine.Server.Intergrated then Engine.Server:Debug() end
 end
 
 --split string.
