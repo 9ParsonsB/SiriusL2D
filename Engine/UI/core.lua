@@ -2,7 +2,7 @@ Ui = {}
 
 Ui.Menus = {}
 Ui.LMouse = false
-Ui.Menu = require "Ui/menu"
+Ui.Menu = require "Engine/Ui/menu"
 
 function Ui.Update(dt)
   for k,v in pairs(Ui.Menus) do 
