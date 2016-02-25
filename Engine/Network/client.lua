@@ -9,30 +9,27 @@ local t
 local Peer = require "Engine/Network/peer"
 local Client = Class("Client", Peer)
 
-function Client:Create()
-  Peer.Create(self,"CLEINT")
+function Client:Create(peername)
+  Peer.Create(self,peername)
   self.server = {}
 end
 
 function Client:handleConnectionResponse(packet)
   if self.Connecting then
-    if data:match("ack") and from == self.Connecting.ip and port == self.Connecting.port then 
-      local split = data:split("@")
-      ptype = split[1]
-      pname = split[2]
-      print("inserting :" ..pname.. ". into peer table.")
-      table.insert(self.netPeers,Network.NetPeer(ip,port,ptype,name,false))
+    if packet.data == "ack" and packet.sender == self.Connecting.ip and packet.port == self.Connecting.port then 
+      print("inserting :" ..packet.sender.. ". into peer table.")
+      table.insert(self.netPeers,Network.NetPeer(packet.sender,packet.port,packet.peertype,packet.peername,false))
       if ptype:lower():match("server") then
-        self.server.name = pname
-        self.server.type = ptype
-        self.server.ip = from
-        self.server.port = port
+        self.server.name = packet.peername
+        self.server.type = packet.peertype
+        self.server.ip = packet.sender
+        self.server.port = packet.port
         self.server.connected = true        
       end
       self.Pining = nil
     end  
   end
-  Peer.handlePong(self,data,from,port)
+  Peer.handlePong(self,packet)
 end
 
 
@@ -47,7 +44,7 @@ function Client:Connect(addr,port)
     if self.P2P then
       print("pinging: " .. ip .. ":"..port)
       packet = Peer:Packet("conn")
-      packet:Send(ip)
+      self:SendPacket(packet,ip)
       print("waiting for pong for 5 seconds")
       self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
     else
@@ -56,7 +53,7 @@ function Client:Connect(addr,port)
       if not self.server.connected  and not self.Connecting and not p.connected then
         print("connecting to: " .. ip .. ":"..port)
         packet = Peer:Packet("conn")
-        packet:Send(ip)
+        self:SendPacket(packet,ip)
         print("waiting for ack for 5 seconds")
         self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
       else
@@ -79,8 +76,8 @@ end
 
 
 
-function Client:HandleData(packet) --TODO MOVE STUFF FROM PEER TO CLEITN / SERVERERE
-  Peer.HandleData(self,packet)
+function Client:HandleData(packet) --TODO MOVE STUFF FROM PEER TO CLIENT / SERVER
+  self.Super.HandleData(self,packet)
 end
 
 function Client:Debug() end

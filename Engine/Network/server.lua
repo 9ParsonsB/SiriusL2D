@@ -19,10 +19,10 @@ end
 
   
   
-function Server:HandleData(data,from,port)
-  Peer.HandleData(self,data,from,port)
-  if data == "Are you still there?" then
-    udp:sendto("servername||people connected||motd||something else||relevant xkcd",msg_or_ip,port_or_nil)
+function Server:HandleData(packet)
+  Peer.HandleData(self,packet)
+  if packet.data == "Are you still there?" then
+    udp:sendto("servername||people connected||motd||something else||relevant xkcd",packet.sender,packet.port)
     --else
     --print ("no data")
   end

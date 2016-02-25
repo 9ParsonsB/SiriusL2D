@@ -1,6 +1,6 @@
 local Peer = Class('Peer')
-require('Engine/Network/shared')
 Peer.socket = require("socket")
+require('Engine/Network/dump')
 Peer.udp = Peer.socket.udp()
 
 function Peer:Create(name)
@@ -27,7 +27,7 @@ function Peer:getSelfID()
 end
 
 function Peer:Connect(addr,port)
-  name, alias, ip = self.dns.toip(addr)
+  local name, alias, ip = self.dns.toip(addr)
   if not ip then
     ip = addr
     print("IP returned nil, attempting direct addr connect.")
@@ -38,17 +38,17 @@ function Peer:Connect(addr,port)
   end
   
   if self.P2P then
-    packet = Peer:Packet("conn")
-    packet:send(ip)
+    local packet = Peer:Packet("conn")
+    self:SendPacket(packet,ip)
     print("waiting for ack for 5 seconds")
     self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
   end
   
-  p,i = self:getNetPeerByIP(ip)
+  local p,i = self:getNetPeerByIP(ip)
   if not p.connected and not self.Connecting then
     print("connecting to: " .. ip .. ":"..port)
-    packet = Peer:Packet("conn")
-    packet:send(ip)
+    local packet = Peer:Packet("conn")
+    self:SendPacket(packet,ip)
     print("waiting for ack for 5 seconds")
     self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
   else
@@ -75,34 +75,41 @@ function Peer:Update()
   local data
   local port
   local from
+  local packet = nil
   self.udp:settimeout(0)
   if self.Running then
     repeat -- do this once
       local ip_or_data, msg_or_ip, port_or_nil = self.udp:receivefrom()-- from can also be an error message if port is nil
       if port_or_nil ~= nil then -- if the port is not nil then
+        local temptime = self.socket.gettime()
         if ip_or_data then -- if ip_or_data then and port is not nill then ip_or_data is data
           
-          print("ip_or_data: " ..ip_or_data)
-          Packet = table.load(ip_or_data)
-
-          if Packet then
-            if Packet.isvalid then -- if this is a valid packet (has the isvalid atribute). only works if the deserlization worked
+          --print("ip_or_data: " ..ip_or_data)
+          packet = self.ConvertPacketData(ip_or_data)
+          if not packet.sender then packet.sender = msg_or_ip end
+          if packet then
+            --if packet.isvalid then -- if this is a valid packet (has the isvalid atribute). only works if the deserlization worked
+            
+              packet.receivedtime = temptime-- get the time at which we recieved the packet (used later, very useful)
               
-              packet.receivedtime = self.socket.gettime() -- get the time at which we recieved the packet (used later, very useful)
-              data = Packet.data
+              if packet.data then
+                self:HandleData(packet)
+              end
               
-              if Packet.sender == msg_or_ip then
-                if Packet.port ~= port_or_nil then
+              if packet.sender == msg_or_ip then
+                if packet.port ~= port_or_nil then
                   print("Packet port and received port not the same!!")
                 end
               else
                 print("Packet sender and connection sender not the same!!")
               end
-            end
+            --end
           else
             error("packet resolved nil")
           end
         end
+        
+        
       else -- if port is nil -- TODO: show network messages
         if ip_or_data and msg_or_ip then
           print("port is nil")
@@ -111,9 +118,7 @@ function Peer:Update()
           from = ip_or_data
         end
       end
-      if data then
-        self:HandleData(packet)
-      end
+
     until not ip_or_data-- and continue until there is no more data or messages TODO: change this so that it will not take up more than X or just override
   end
   -- check if peers need to have their ping updated
@@ -146,50 +151,45 @@ function Peer:HandleDiscovery(data,from,port) -- this method is designed to be o
 end
 
 function Peer:HandleData(packet)  
-  local data = packet.data
-  if not data then print("data in nil") end
-  
+  local sdata = packet.data
+  if not sdata then print("data in nil") end
   if packet.port and packet.sender and packet.data then 
     
     self:updateNetClientPing(packet) -- calculate the ping from the packet sent / received times and update the netclient with the same address
     
-    if data:match("ping") then
+    if sdata == "ping" then
       self:handlePing(packet)
-      return
     end
     
-    if data:match("pong") then
+    if sdata == "pong" then
       self:handlePong(packet)
-      return
     end
     
     if self.isDiscoverable then
-      if data:match("disc") then
+      if sdata == "disc" then
         self.HandleDiscovery(data,packet.sender,packet.port)
-        return
       end
     end
     
     if self.Connecting then
       if self:handleConnectionResponse(packet) then 
-        return
       end
     end -- if we are waiting for a response, then try and handle it, if we do handle it then return as we have nothing else to do with this Packet type.
     
-    if data:match("conn") then
-      self:sendConnectionConfirmation(data,from,port)
+    if sdata == "conn" then
+      self:sendConnectionConfirmation(packet)
     end
-    print(from.. ": "..data)
+    print(packet.sender .. ": "..sdata)
     elseif from then -- if there was no port due to a network message being sent.
-    print("error: " ..from ) -- print the message
+    print("error: " .. packet.sender ) -- print the message
   elseif data then
-    print("error: " ..data)
+    print("error: " ..sdata)
   end
 end
 
 function Peer:handlePing(packet)
   packet = self:Packet("pong")
-  packet:Send(packet.sender)
+  self:SendPacket(packet,packet.sender)
 end
 
 function Peer:updateNetClientPing(packet)
@@ -206,33 +206,27 @@ function Peer:handleConnectionResponse(packet)
   if data:match("ack") and packet.sender == self.Connecting.ip and packet.port == self.Connecting.port then 
     data = tempdata
     print("recieved pong from ")
-    local split = data:split("@")
-    ptype = split[2]
-    pname = split[3]
     print("inserting :" ..pname.. ". into peer table.")
-    self.udp:sendto("ack")
-    table.insert(self.netPeers,Network.NetPeer(ip,port,ptype,name,true))
+    table.insert(self.netPeers,Network.NetPeer(packet.sender,packet.port,packet.peertype,packet.peername,true))
     self.Connecting = nil
   end
 end
 
-function Peer:sendConnectionConfirmation(data,from,port)
-  self.udp:sendto("ack" .. self:getSelfID(),from,port)
-  local split = data:split("@")
-    ptype = split[2]
-    pname = split[3]
-  table.insert(self.netPeers,Network.NetPeer(from,port,ptype,name,true))
-  print("Accepted conneciton from: " .. from)
+function Peer:sendConnectionConfirmation(ipacket)
+  local packet = self:Packet("ack")
+  self:SendPacket(packet,ipacket.sender)
+  table.insert(self.netPeers,Network.NetPeer(ipacket.sender,ipacket.port,ipacket.sendertype,ipacket.peername,true))
+  print("Accepted conneciton from: " .. packet.sender)
 end
 
 function Peer:Ping(ip,port)
   peer, i = self:getNetPeerByIP(ip)
   if peer then
-    self.netPeer[i].lastattemptedpingtime = self.socket.gettime()
+    self.netPeers[i].lastattemptedpingtime = self.socket.gettime()
   end
 
   local packet = self:Packet("ping")
-  packet:Send(ip)
+  self:SendPacket(packet, ip)
 end
 
 function Peer:Packet(data)
@@ -241,19 +235,25 @@ function Peer:Packet(data)
   Packet.sendertype = self.Name
   Packet.port = Peer.port or 7253
   Packet.data = data
-  
   if data then Packet.isvalid = true end
-  
-  function Packet:Send(recipient)
-    sdata = table.serialize(Packet)
-    print("sdata: " ..sdata)
-    Packet.recipient = Peer.socket.dns.toip(recipient) or recipient -- try and convert the addr to an ip, or just use the addr
-    Packet.senttime = Peer.socket.gettime()
-    Peer.udp:sendto(sdata,Packet.recipient, Packet.port or 7253)
-  end
-  
   return Packet
-  
+end
+
+function Peer:SendPacket(packet,recipient)
+    sdata = DataDumper(packet)
+    packet.recipient = self.socket.dns.toip(recipient) or recipient -- try and convert the addr to an ip, or just use the addr
+    
+    packet.senttime = self.socket.gettime()
+    self.udp:sendto(sdata,packet.recipient, packet.port or 7253)
+  end
+
+function Peer.ConvertPacketData(spacket)
+  --print('packet: ' ..spacket)
+  local result = loadstring(spacket) () 
+  local isvalid
+  if result.isvalid then isvalid = "true" else isvalid = "false" end
+  print("packed isvalid?: " .. isvalid )
+  return result
 end
 
 function Peer:getNetPeerByIP(ip)

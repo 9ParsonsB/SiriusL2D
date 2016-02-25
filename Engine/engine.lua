@@ -13,8 +13,8 @@ Engine.State = ""
 Engine.Camera = Renderer.Camera()
 Engine.Objects = {}
 
-Engine.Client = Network.Client()
-Engine.Server = Network.Server()
+Engine.Client = Network.Client('TEMPCLIENT1')
+Engine.Server = Network.Server('TEMPSERVER1')
 
 function Engine.NewState(name)
   local self = {Objects = {}, Active = true, Visible = true}
