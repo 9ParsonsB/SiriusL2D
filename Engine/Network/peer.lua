@@ -39,6 +39,7 @@ function Peer:Connect(addr,port)
   
   if self.P2P then
     local packet = Peer:Packet("conn")
+    packet.debug = "sent from connect"
     self:SendPacket(packet,ip)
     print("waiting for ack for 5 seconds")
     self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
@@ -48,6 +49,7 @@ function Peer:Connect(addr,port)
   if not p.connected and not self.Connecting then
     print("connecting to: " .. ip .. ":"..port)
     local packet = Peer:Packet("conn")
+    packet.debug = "sent from connect 2"
     self:SendPacket(packet,ip)
     print("waiting for ack for 5 seconds")
     self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
@@ -147,7 +149,7 @@ function Peer:Update()
 end
 
 function Peer:HandleDiscovery(data,from,port) -- this method is designed to be overriden
-  udp:sendto("resp" + self:getSelfID(),from,port)
+  --udp:sendto("resp" + self:getSelfID(),from,port)
 end
 
 function Peer:HandleData(packet)  
@@ -187,16 +189,25 @@ function Peer:HandleData(packet)
   end
 end
 
-function Peer:handlePing(packet)
+function Peer:handlePong(packet)
+  client = self:updateNetClientPing(packet)
+  if client and client.ping then
+    print("recieved pong with ping of: " ..client.ping)
+  return true
+  end
+end
+
+function Peer:handlePing(ipacket)
   packet = self:Packet("pong")
-  self:SendPacket(packet,packet.sender)
+  packet.debug = "sent from handlePing"
+  self:SendPacket(packet,ipacket.sender)
 end
 
 function Peer:updateNetClientPing(packet)
   netpeer, index = self:getNetPeerByIP(form)
   if netpeer then
     self.netPeers[index].ping = packet.receivedtime - packet.senttime
-    print("ping updated for " .. netpeer.name)
+    return netpeer
   end
 end
 
@@ -214,6 +225,7 @@ end
 
 function Peer:sendConnectionConfirmation(ipacket)
   local packet = self:Packet("ack")
+  packet.debug = "sent from sendconnectionconfirmation"
   self:SendPacket(packet,ipacket.sender)
   table.insert(self.netPeers,Network.NetPeer(ipacket.sender,ipacket.port,ipacket.sendertype,ipacket.peername,true))
   print("Accepted conneciton from: " .. packet.sender)
@@ -226,6 +238,7 @@ function Peer:Ping(ip,port)
   end
 
   local packet = self:Packet("ping")
+  packet.debug = "sent from ping"
   self:SendPacket(packet, ip)
 end
 
@@ -245,6 +258,7 @@ function Peer:SendPacket(packet,recipient)
     packet.recipient = self.socket.dns.toip(recipient) or recipient -- try and convert the addr to an ip, or just use the addr
     print("sending data to :" .. packet.recipient)
     print("I am: " .. self.Name)
+    if packet.debug then print(packet.debug) end
     packet.senttime = self.socket.gettime()
     self.udp:sendto(sdata,packet.recipient, packet.port or 7253)
   end
