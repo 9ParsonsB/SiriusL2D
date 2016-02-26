@@ -74,9 +74,6 @@ function Peer:Discover()
 end
 
 function Peer:Update()
-  local data
-  local port
-  local from
   local packet = nil
   self.udp:settimeout(0)
   if self.Running then
@@ -150,11 +147,11 @@ function Peer:Update()
   end
 end
 
-function Peer:HandleDiscovery(data,from,port) -- this method is designed to be overriden
+function Peer:HandleDiscovery(packet) -- this method is designed to be overriden
   --udp:sendto("resp" + self:getSelfID(),from,port)
 end
 
-function Peer:HandleData(packet)  
+function Peer:HandleData(packet)  -- TODO: BUG: THE SERVER ACCEPTS THE CLIENT CONNECTION BUT THE CLIENT DOES NOT RECIEVE SYN TODO:SEND SYN
   local sdata = packet.data
   if not sdata then print("data in nil") end
   if packet.port and packet.sender and packet.data then 
@@ -176,9 +173,10 @@ function Peer:HandleData(packet)
     end
     
     if self.Connecting then
-      if self:handleConnectionResponse(packet) then 
+      if sdata == "ack" then
+        self:handleConnectionResponse(packet) 
       end
-    end -- if we are waiting for a response, then try and handle it, if we do handle it then return as we have nothing else to do with this Packet type.
+    end
     
     if sdata == "conn" then
       self:sendConnectionConfirmation(packet)
@@ -214,11 +212,8 @@ function Peer:updateNetClientPing(packet)
 end
 
 function Peer:handleConnectionResponse(packet)
-  local data = packet.data
-  local tempdata = data
-  if data == "ack" and packet.sender == self.Connecting.ip and packet.port == self.Connecting.port then 
-    data = tempdata
-    print("recieved ack from: " .. packet.sender)
+  print("recieved ack from: " .. packet.sender)
+  if packet.data == "ack" then --and packet.sender == self.Connecting.ip and packet.port == self.Connecting.port
     print("inserting :" ..pname.. ". into peer table.")
     table.insert(self.netPeers,Network.NetPeer(packet.sender,packet.port,packet.peertype,packet.peername,true))
     self.Connecting = nil
@@ -228,6 +223,7 @@ end
 function Peer:sendConnectionConfirmation(ipacket)
   local packet = self:Packet("ack")
   packet.debug = "sent from sendconnectionconfirmation"
+  print("sending ack to: " .. ipacket.sender)
   self:SendPacket(packet,ipacket.sender)
   print()
   table.insert(self.netPeers,Network.NetPeer(ipacket.sender,ipacket.port,ipacket.sendertype,ipacket.peername,true))
