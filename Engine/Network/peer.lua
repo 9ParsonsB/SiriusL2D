@@ -275,7 +275,7 @@ function Peer:getNetPeerByIP(ip)
   end
 end
 
-function Peet:getNetPeerFromPacket(packet)
+function Peer:getNetPeerFromPacket(packet)
   return getNetPeerByIP(packet.sender)
 end
 
