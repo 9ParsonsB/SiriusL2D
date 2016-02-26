@@ -34,7 +34,7 @@ function Client:Connect(addr,port)
       print("waiting for pong for 5 seconds")
       self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}]]--
     else
-      local p,i = self:getNetPeerByIP(ip)
+      local p,i = self:getNetPeerFromIP(ip)
       p = p or {connected = false}
       if not self.server.connected  and not self.Connecting and not p.connected then
         print("connecting to: " .. ip .. ":"..port)
