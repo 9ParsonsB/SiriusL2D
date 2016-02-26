@@ -14,24 +14,6 @@ function Client:Create(peername)
   self.server = {}
 end
 
-function Client:handleConnectionResponse(packet)
-  if self.Connecting then
-    if packet.data == "ack" and  packet.port == self.Connecting.port then -- packet.sender == self.Connecting.ip and
-      if ptype:lower():match("server") then
-        self.server.name = packet.peername
-        self.server.type = packet.peertype
-        self.server.ip = packet.sender
-        self.server.port = packet.port
-        self.server.connected = true      
-        print("Connected to server.")
-      end
-      self.Connecting = nil
-    end  
-  end
-  Peer.handlePong(self,packet)
-end
-
-
 function Client:Connect(addr,port)
   port = port or self.port or 7253
   name, alias, ip = self.socket.dns.toip(addr)

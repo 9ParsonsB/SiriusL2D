@@ -20,7 +20,7 @@ end
   
   
 function Server:HandleData(packet)
-  Peer.HandleData(self,packet)
+  self.Super.HandleData(self,packet)
 end
 
 function Server:sendToServer(data)

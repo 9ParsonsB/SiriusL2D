@@ -17,6 +17,21 @@ function Peer:Create(name)
   self.pingpollrate = 5
 end
 
+function Peer:getNetPeerFromIP(ip)
+  for i,v in ipairs(self.netPeers) do
+    if v.ip == ip then
+      return v, i
+    end
+  end
+end
+
+function Peer:getNetPeerFromPacket(packet)
+  for i,v in ipairs(self.netPeers) do
+    if v.ip == packet.sender then
+      return v, i
+    end
+  end
+end
 
 function Peer:Connect(addr,port)
   local name, alias, ip = self.dns.toip(addr)
@@ -37,7 +52,7 @@ function Peer:Connect(addr,port)
     self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
   end
   
-  local p,i = self:getNetPeerByIP(ip)
+  local p,i = self:getNetPeerFromIP(ip)
   if not p.connected and not self.Connecting then
     print("connecting to: " .. ip .. ":"..port)
     local packet = Peer:Packet("conn")
@@ -223,11 +238,11 @@ function Peer:handleConnectionRequest(packet)
   local opacket = self:Packet("ack")
   self:SendPacket(opacket,packet.sender)
   table.insert(self.netPeers, Network.NetPeer(packet,false)) -- set the connection status to false until we receive connsyn
-  self.updateNetClientPing(packet) -- update the clients ping with the same packet
+  self:updateNetClientPing(packet) -- update the clients ping with the same packet
 end
 
 function Peer:Ping(ip,port)
-  peer, i = self:getNetPeerByIP(ip)
+  peer, i = self:getNetPeerFromIP(ip)
   if peer then
     self.netPeers[i].lastattemptedpingtime = self.socket.gettime()
   end
@@ -267,17 +282,7 @@ function Peer.ConvertPacketData(spacket)
   return result
 end
 
-function Peer:getNetPeerByIP(ip)
-  for i,v in ipairs(self.netPeers) do
-    if v.ip == ip then
-      return v, i
-    end
-  end
-end
 
-function Peer:getNetPeerFromPacket(packet)
-  return getNetPeerByIP(packet.sender)
-end
 
 function Peer:pingNetPeer(peer)
   self:Ping(peer.ip,peer.port)
