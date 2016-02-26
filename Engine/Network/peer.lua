@@ -191,7 +191,7 @@ function Peer:handlePing(ipacket)
 end
 
 function Peer:updateNetClientPing(packet)
-  netpeer, index = self:getNetPeerByIP(form)
+  netpeer, index = self:getNetPeerFromPacket(packet)
   if netpeer then
     self.netPeers[index].ping = packet.receivedtime - packet.senttime
     self.netPeers[index].lastpingtime = selp.socket.gettime() 
