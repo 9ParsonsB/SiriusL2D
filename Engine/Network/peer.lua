@@ -17,14 +17,6 @@ function Peer:Create(name)
   self.pingpollrate = 5
 end
 
-function Peer:getSelfID()
-  if self.peername then
-    return ("@".. self.Name .. "@" .. self.peername .."@" .. self.socket.gettime())
-  else
-    return ("Client@FAILED@")
-    --    error("self.peername is not set. Please set self.peername")
-  end
-end
 
 function Peer:Connect(addr,port)
   local name, alias, ip = self.dns.toip(addr)
@@ -148,13 +140,13 @@ function Peer:Update()
 end
 
 function Peer:HandleDiscovery(packet) -- this method is designed to be overriden
-  --udp:sendto("resp" + self:getSelfID(),from,port)
 end
 
 function Peer:HandleData(packet)  -- TODO: BUG: THE SERVER ACCEPTS THE CLIENT CONNECTION BUT THE CLIENT DOES NOT RECIEVE SYN TODO:SEND SYN
   local sdata = packet.data
+  print("peer:handledata")
   if not sdata then print("data in nil") end
-  if packet.port and packet.sender and packet.data then 
+  
     
     self:updateNetClientPing(packet) -- calculate the ping from the packet sent / received times and update the netclient with the same address
     
@@ -172,21 +164,17 @@ function Peer:HandleData(packet)  -- TODO: BUG: THE SERVER ACCEPTS THE CLIENT CO
       end
     end
     
-    if self.Connecting then
+    if self.Connecting then -- a
+      print("maybe this packet")
       if sdata == "ack" then
         self:handleConnectionResponse(packet) 
       end
     end
     
     if sdata == "conn" then
-      self:sendConnectionConfirmation(packet)
+      self:handleConnectionRequest(packet)
     end
     print(packet.sender .. ": "..sdata)
-    elseif from then -- if there was no port due to a network message being sent.
-    print("error: " .. packet.sender ) -- print the message
-  elseif data then
-    print("error: " ..sdata)
-  end
 end
 
 function Peer:handlePong(packet)
@@ -211,23 +199,31 @@ function Peer:updateNetClientPing(packet)
   end
 end
 
+function Peer:handleConnectionActive(packet)
+  print ("recieved connack from :" .. packet.sender)
+  local v, i = self:getNetPeerFromPacket(packet)
+  self.netPeer[i].connected = true
+end
+
 function Peer:handleConnectionResponse(packet)
-  print("recieved ack from: " .. packet.sender)
-  if packet.data == "ack" then --and packet.sender == self.Connecting.ip and packet.port == self.Connecting.port
-    print("inserting :" ..pname.. ". into peer table.")
-    table.insert(self.netPeers,Network.NetPeer(packet.sender,packet.port,packet.peertype,packet.peername,true))
-    self.Connecting = nil
+  print("received ack from: " .. packet.sender)
+  if self.Connnecting then
+    if self.Connecting.ip == packet.sender then
+      if self.Connecting.port == packet.port then
+        print("inserting: " .. packet.sender .. " into peer table with active connection")
+        table.insert(self.netPeer, Network.NetPeer(packet,true))
+        self:SendPacket(self:Packet("connack"),packet.sender)
+      else print("packet.port and self.Connecting.port are not the same!") end
+    else print("packet.sender and self.Connecting.ip are not the same!") end
   end
 end
 
-function Peer:sendConnectionConfirmation(ipacket)
-  local packet = self:Packet("ack")
-  packet.debug = "sent from sendconnectionconfirmation"
-  print("sending ack to: " .. ipacket.sender)
-  self:SendPacket(packet,ipacket.sender)
-  print()
-  table.insert(self.netPeers,Network.NetPeer(ipacket.sender,ipacket.port,ipacket.sendertype,ipacket.peername,true))
-  print("Accepted conneciton from: " .. packet.sender)
+function Peer:handleConnectionRequest(packet)
+  print("recieved conn from: " .. packet.sender)
+  local opacket = self:Packet("ack")
+  self:SendPacket(opacket,packet.sender)
+  table.insert(self.netPeers, Network.NetPeer(packet,false)) -- set the connection status to false until we receive connsyn
+  self.updateNetClientPing(packet) -- update the clients ping with the same packet
 end
 
 function Peer:Ping(ip,port)
@@ -277,6 +273,10 @@ function Peer:getNetPeerByIP(ip)
       return v, i
     end
   end
+end
+
+function Peet:getNetPeerFromPacket(packet)
+  return getNetPeerByIP(packet.sender)
 end
 
 function Peer:pingNetPeer(peer)
