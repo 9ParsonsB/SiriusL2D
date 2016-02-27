@@ -34,7 +34,7 @@ function Peer:getNetPeerFromPacket(packet)
 end
 
 function Peer:Connect(addr,port)
-  local name, alias, ip = self.dns.toip(addr)
+  local ip = self.dns.toip(addr)
   if not ip then
     ip = addr
     print("IP returned nil, attempting direct addr connect.")
@@ -44,22 +44,14 @@ function Peer:Connect(addr,port)
     error("Connecting too quickly!")
   end
   
-  if self.P2P then
-    local packet = Peer:Packet("conn")
-    packet.debug = "sent from connect"
-    self:SendPacket(packet,ip)
-    print("waiting for ack for 5 seconds")
-    self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
-  end
-  
   local p,i = self:getNetPeerFromIP(ip)
   if not p.connected and not self.Connecting then
     print("connecting to: " .. ip .. ":"..port)
     local packet = Peer:Packet("conn")
     packet.debug = "sent from connect 2"
     self:SendPacket(packet,ip)
-    print("waiting for ack for 5 seconds")
     self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
+    print("waiting for ack for 5 seconds")
   else
     if p.connected then
       error("DONT TRY AND CONNECT TO AN ALREADY ACTIVE CONNECTION, DAMMIT!")
@@ -81,7 +73,7 @@ function Peer:Discover()
 end
 
 function Peer:Update()
-  local packet = nil
+  local packet
   self.udp:settimeout(0)
 
     repeat -- do this once
@@ -93,6 +85,11 @@ function Peer:Update()
           --print("ip_or_data: " ..ip_or_data)
           packet = self.ConvertPacketData(ip_or_data)
           packet.sender = msg_or_ip
+          
+          if port_or_nil then
+            packet.port = port_or_nil
+          end
+          
           if packet then
             --if packet.isvalid then -- if this is a valid packet (has the isvalid atribute). only works if the deserlization worked
             
@@ -189,7 +186,10 @@ function Peer:HandleData(packet)  -- TODO: BUG: THE SERVER ACCEPTS THE CLIENT CO
     if sdata == "conn" then
       self:handleConnectionRequest(packet)
     end
-    print(packet.sender .. ": "..sdata)
+    
+    if packet.sender then
+      print(packet.sender .. ": "..sdata)
+    end
 end
 
 function Peer:handlePong(packet)
@@ -203,15 +203,6 @@ function Peer:handlePing(ipacket)
   packet = self:Packet("pong")
   packet.debug = "sent from handlePing"
   self:SendPacket(packet,ipacket.sender)
-end
-
-function Peer:updateNetClientPing(packet)
-  netpeer, index = self:getNetPeerFromPacket(packet)
-  if netpeer then
-    self.netPeers[index].ping = packet.receivedtime - packet.senttime
-    self.netPeers[index].lastpingtime = selp.socket.gettime() 
-    return netpeer
-  end
 end
 
 function Peer:handleConnectionActive(packet)
@@ -267,16 +258,20 @@ function Peer:Packet(data)
   return Packet
 end
 
-function Peer:SendPacket(packet,recipient)
-  if recipient == self.peername then return end
-    sdata = DataDumper(packet)
-    packet.recipient = self.socket.dns.toip(recipient) or recipient -- try and convert the addr to an ip, or just use the addr
-    print("sending data to :" .. packet.recipient)
-    print("I am: " .. self.Name)
-    if packet.debug then print(packet.debug) end
-    packet.senttime = self.socket.gettime()
-    self.udp:sendto(sdata,packet.recipient, packet.port or 7253)
-  end
+function Peer:SendPacket(packet,recipient)  
+  packet.recipient = packet.recipient or self.socket.dns.toip(packet.recipient) or self.socket.dns.toip(ip) or ip  -- try and convert the addr to an ip, or just use the addr
+  packet.port = packet.port or port
+  
+  print("sending data to :" .. packet.recipient)
+  print("I am: " .. self.Name)
+  
+  if packet.debug then print(packet.debug) end
+  
+  packet.senttime = self.socket.gettime()
+  sdata = DataDumper(packet)
+  self.udp:sendto(sdata,packet.recipient, packet.port or 7253)
+  return 1
+end
 
 function Peer.ConvertPacketData(spacket)
   --print('packet: ' ..spacket)
@@ -287,7 +282,14 @@ function Peer.ConvertPacketData(spacket)
   return result
 end
 
-
+function Peer:updateNetClientPing(packet)
+  netpeer, index = self:getNetPeerFromPacket(packet)
+  if netpeer then
+    self.netPeers[index].ping = packet.receivedtime - packet.senttime
+    self.netPeers[index].lastpingtime = selp.socket.gettime() 
+    return netpeer
+  end
+end
 
 function Peer:pingNetPeer(peer)
   self:Ping(peer.ip,peer.port)

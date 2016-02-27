@@ -5,7 +5,7 @@ function NetPeer:Create(packet,connected)
   
   self.ip = packet.sender
   self.port = packet.port
-  self.peertype = packet.peertype
+  self.peertype = packet.sendertype
   self.name = packet.peername
   self.connected = connected
   self.lastpingtime = packet.receivedtime or 0
