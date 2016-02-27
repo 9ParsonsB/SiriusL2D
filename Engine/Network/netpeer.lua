@@ -3,7 +3,7 @@ local NetPeer = Class("NetPeer")
 function NetPeer:Create(packet,connected)
   if not packet.isvaild then return false end
   
-  self.ip = packet
+  self.ip = packet.sender
   self.port = packet.port
   self.peertype = packet.peertype
   self.name = packet.peername

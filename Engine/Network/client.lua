@@ -16,7 +16,7 @@ end
 
 function Client:Connect(addr,port)
   port = port or self.port or 7253
-  name, alias, ip = self.socket.dns.toip(addr)
+  ip = self.socket.dns.toip(addr)
   if not ip then
     ip = addr
     print("IP returned nil, attempting direct addr connect.")
@@ -57,7 +57,7 @@ end
 function Client:Start() end
 
 function Client:Update() 
-  Peer.Update(self)
+  self.Super.Update(self)
 end
 
 

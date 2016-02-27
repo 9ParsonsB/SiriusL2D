@@ -13,7 +13,7 @@ function Peer:Create(name)
   self.peername = name -- TODO change to steamID
   self.P2P = false
   self.timeout = 0
-  self.timeouttime = 20
+  self.timeouttime = 99999999
   self.pingpollrate = 5
 end
 
@@ -83,7 +83,7 @@ end
 function Peer:Update()
   local packet = nil
   self.udp:settimeout(0)
-  if self.Running then
+
     repeat -- do this once
       local ip_or_data, msg_or_ip, port_or_nil = self.udp:receivefrom()-- from can also be an error message if port is nil
       if port_or_nil ~= nil then -- if the port is not nil then
@@ -126,7 +126,7 @@ function Peer:Update()
       end
 
     until not ip_or_data-- and continue until there is no more data or messages TODO: change this so that it will not take up more than X or just override
-  end
+
   -- check if peers need to have their ping updated
   if #self.netPeers > 0 then -- if we have more than 0 peers then
     for i,v in ipairs(self.netPeers) do -- for each peer
@@ -175,7 +175,7 @@ function Peer:HandleData(packet)  -- TODO: BUG: THE SERVER ACCEPTS THE CLIENT CO
     
     if self.isDiscoverable then
       if sdata == "disc" then
-        self.HandleDiscovery(data,packet.sender,packet.port)
+        self:HandleDiscovery(packet)
       end
     end
     
@@ -217,20 +217,25 @@ end
 function Peer:handleConnectionActive(packet)
   print ("recieved connack from :" .. packet.sender)
   local v, i = self:getNetPeerFromPacket(packet)
-  self.netPeer[i].connected = true
+  if v then
+    self.netPeer[i].connected = true
+    print(v.ip .. " connection status set to true")
+  else
+    print("client that sent connack is not in netPeer table, ignoring.")
+  end
 end
 
 function Peer:handleConnectionResponse(packet)
   print("received ack from: " .. packet.sender)
-  if self.Connnecting then
+  --if self.Connnecting then
     if self.Connecting.ip == packet.sender then
-      if self.Connecting.port == packet.port then
+      --if self.Connecting.port == packet.port then
         print("inserting: " .. packet.sender .. " into peer table with active connection")
-        table.insert(self.netPeer, Network.NetPeer(packet,true))
+        table.insert(self.netPeers, Network.NetPeer(packet,true))
         self:SendPacket(self:Packet("connack"),packet.sender)
-      else print("packet.port and self.Connecting.port are not the same!") end
+      --else print("packet.port and self.Connecting.port are not the same!") end
     else print("packet.sender and self.Connecting.ip are not the same!") end
-  end
+  --else print("handleConnectionResponse called but self.Connecting = nil")
 end
 
 function Peer:handleConnectionRequest(packet)
