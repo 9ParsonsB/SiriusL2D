@@ -200,7 +200,7 @@ function Peer:handlePong(packet)
 end
 
 function Peer:handlePing(ipacket)
-  packet = self:Packet("pong")
+  local packet = self:Packet("pong")
   packet.debug = "sent from handlePing"
   self:SendPacket(packet,ipacket.sender)
 end
@@ -250,7 +250,7 @@ end
 
 function Peer:Packet(data)
   local Packet = Class("Packet")
-  Packet.sender = self.peername
+  Packet.sendername = self.peername
   Packet.sendertype = self.Name
   Packet.port = Peer.port or 7253
   Packet.data = data
@@ -259,6 +259,7 @@ function Peer:Packet(data)
 end
 
 function Peer:SendPacket(packet,recipient, port)  
+  local packet
   if recipient then recipient = self.socket.dns.toip(recipient) or recipient end
   if packet.recipient then packet.recipient = self.socket.dns.toip(packet.recipient) or packet.recipient end
   packet.recipient = packet.recipient or recipient  -- try and convert the addr to an ip, or just use the addr
