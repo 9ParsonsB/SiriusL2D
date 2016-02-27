@@ -258,9 +258,11 @@ function Peer:Packet(data)
   return Packet
 end
 
-function Peer:SendPacket(packet,recipient)  
-  packet.recipient = packet.recipient or self.socket.dns.toip(packet.recipient) or self.socket.dns.toip(ip) or ip  -- try and convert the addr to an ip, or just use the addr
-  packet.port = packet.port or port
+function Peer:SendPacket(packet,recipient, port)  
+  if recipient then recipient = self.socket.dns.toip(recipient) or recipient end
+  if packet.recipient then packet.recipient = self.socket.dns.toip(packet.recipient) or packet.recipient end
+  packet.recipient = packet.recipient or recipient  -- try and convert the addr to an ip, or just use the addr
+  packet.port = packet.port or port or self.port
   
   print("sending data to :" .. packet.recipient)
   print("I am: " .. self.Name)
@@ -269,7 +271,7 @@ function Peer:SendPacket(packet,recipient)
   
   packet.senttime = self.socket.gettime()
   sdata = DataDumper(packet)
-  self.udp:sendto(sdata,packet.recipient, packet.port or 7253)
+  self.udp:sendto(sdata,packet.recipient, packet.port)
   return 1
 end
 

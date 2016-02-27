@@ -14,6 +14,7 @@ end
 function Client:Connect(addr,port)
   local ip
   ip = self.dns.toip(addr)
+  port = port or self.port
   if not ip then
     ip = addr
     print("IP returned nil, attempting direct addr connect.")
@@ -24,31 +25,34 @@ function Client:Connect(addr,port)
   end
   
   local p,i = self:getNetPeerFromIP(ip)
-  if not p.connected and not self.Connecting then
+  if not self.server and not self.Connecting then -- if we are not connecting to anything and we do not have a server then
     print("connecting to: " .. ip .. ":"..port)
     self.udp:setpeername(ip,port)
     self.server = Network.NetPeer({},false)
     self.server.ip = ip
     self.server.port = port
-    local packet = Peer:Packet("conn")
+    local packet = self:Packet("conn")
     packet.debug = "sent from connect 2"
-    self:SendPacket(packet,ip)
+    self:SendPacket(packet)
     self.Connecting = {ip = ip, port = port, time = self.socket.gettime()}
     print("waiting for ack for 5 seconds")
   else
     if p.connected then
       error("DONT TRY AND CONNECT TO AN ALREADY ACTIVE CONNECTION, DAMMIT!")
     end
-  end
+  end 
 end
 
-function Peer:SendPacket(packet,ip,port)
-  packet.recipient = packet.recipient or self.socket.dns.toip(packet.recipient) or self.socket.dns.toip(ip) or ip  -- try and convert the addr to an ip, or just use the addr
-  packet.port = packet.port or port
+function Client:SendPacket(packet,ip,port)
+  
+  if ip then ip= self.socket.dns.toip(ip) or ip end
+  if packet.recipient then packet.recipient = self.socket.dns.toip(packet.recipient) or packet.recipient end
+  packet.recipient = packet.recipient or ip  -- try and convert the addr to an ip, or just use the addr
+  packet.port = packet.port or port or self.port
   
   if not ip then 
     print("Client: sending data to server")
-  else
+  elseif packet.recipient then
     print("Client: sending data to :" .. packet.recipient)
   end
 
@@ -66,11 +70,11 @@ function Peer:SendPacket(packet,ip,port)
   return 1
 end
 
-function Peer:handlePing(ipacket)
+function Client:handlePing(ipacket)
   packet = self:Packet("pong")
   packet.debug = "sent from handlePing"
   packet.port = ipacket.port
-  self:SendPacket(packet,ipacket.sender)
+  self:SendPacket(packet)
 end
 
 function Peer:Ping(ip,port)
@@ -129,8 +133,6 @@ function Client:Update()
             error("packet resolved nil")
           end
         end
-        
-        
       else -- if port is nil -- TODO: show network messages
         if nil_or_data and msg_or_nil then
           print("port is nil")
@@ -139,7 +141,7 @@ function Client:Update()
           from = nil_or_data
         end
       end
-
+    end
     until not nil_or_data-- and continue until there is no more data or messages TODO: change this so that it will not take up more than X or just override
   end
   -- check if peers need to have their ping updated
@@ -180,13 +182,13 @@ function Client:handlePong(packet)
   end
 end
 
-function Peer:handlePing(ipacket)
+function Client:handlePing(ipacket)
   packet = self:Packet("pong")
   packet.debug = "sent from handlePing"
   self:SendPacket(packet,ipacket.sender)
 end
 
-function Peer:handleConnectionResponse(packet)
+function Client:handleConnectionResponse(packet)
   print("received ack from udp socket / server")
     if self.server then
         print("inserting: " .. packet.sender .. " into peer table with active connection")
@@ -195,11 +197,10 @@ function Peer:handleConnectionResponse(packet)
     else print("self.server is not set, yet received ack?") end
 end
 
-function Peer:updateNetClientPing(packet)
-  netpeer, index = self:getNetPeerFromPacket(packet)
-  if netpeer then
-    self.netPeers[index].ping = packet.receivedtime - packet.senttime
-    self.netPeers[index].lastpingtime = selp.socket.gettime() 
+function Client:updateNetClientPing(packet)
+  if self.server then
+    self.server.ping = packet.receivedtime - packet.senttime
+    self.server.lastpingtime = selp.socket.gettime() 
     return netpeer
   end
 end
@@ -207,6 +208,7 @@ end
 function Client:pingServer()
   if self.server then
     self:SendPacket(self:Packet("ping"))
+    return 1
   end
 end
 
