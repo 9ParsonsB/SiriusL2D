@@ -254,7 +254,8 @@ local udpClient = Class("udpClient")
 udpClient._implemented = true
 
 function udpClient:createSocket()
-	self.socket = socket.udp()
+	 self._socket = require("socket")
+	self.socket = self._socket.socket.udp()
 	self.socket:settimeout(0)
 end
 
@@ -289,7 +290,8 @@ end
 local udpServer = Class("udpServer")
 
 function udpServer:createSocket()
-	self.socket = socket.udp()
+  self._socket = require("socket")
+	self.socket = self._socket.socket.udp()
 	self.socket:settimeout(0)
 end
 
