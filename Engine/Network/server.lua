@@ -3,7 +3,7 @@ local Server = Class("Server", Peer)
 
 --Start hosting the server
 function Server:Start(ip)
-  self.Host = enet.host_create(ip or "localhost:7253")
+  self.Host = enet.host_create("localhost:7253")
   self.Running = true
 end
 

@@ -4,7 +4,7 @@ local Client = Class("Client", Peer)
 --Connect to server
 function Client:Start(ip)
   self.Host = enet.host_create()
-  self.Server = self.Host:connect(ip or "localhost:7253")
+  self.Server = self.Host:connect("localhost:7253")
   self.Running = true
 end
 

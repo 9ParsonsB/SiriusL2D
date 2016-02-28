@@ -1,5 +1,5 @@
 function Create()
-  print("Added movement script to " .. self.Name)
+  --print("Added movement script to " .. self.Name)
   self.Speed = self.Speed or 0
 end
 
