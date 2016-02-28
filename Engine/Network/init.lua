@@ -82,8 +82,8 @@ end
 
 function Network.Update(dt)
   if Network.lube then
-    if Network.Client:update then Network.Client:update(dt) end
-    if Network.Server:update then Network.Server:update(dt)
+    if Network.Client.update then Network.Client:update(dt) end
+    if Network.Server.update then Network.Server:update(dt) end
   end
 end
 

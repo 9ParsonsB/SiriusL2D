@@ -1,10 +1,10 @@
+local State = require "Engine/Scene/state"
+
 Scene = {
   Entity = require "Engine/Scene/entity",
-  State = require "Engine/Scene/state",
-  Camera = require "Engine/Renderer/camera",
-  Name = "",
+
+  --Table of states
   States = {},
-  Objects = {}
 }
 
 function Scene.GetState(name)
@@ -13,22 +13,32 @@ function Scene.GetState(name)
   if state then return state end
 
   --Create new state 
-  Scene.States[name] = Scene.State()
+  Scene.States[name] = State()
   return Scene.States[name]
 end
 
 function Scene.SetState(name)
   local state = Scene.GetState(name)
+  Scene.State = state or Scene.State
   Scene.Name = name
-  Scene.States = state.Objects
+  Scene.Objects = state.Objects
+  Scene.Camera = state.Camera
 end
 
 function Scene.Add(object, name)
   if name then
     local state = Scene.GetState(name)
-    table.insert(state.Objects, object)
+    state:Add(object)
   else
-    table.insert(Scene.Objects, object)
+    Scene.State:Add(object)
+  end
+end
+
+function Scene.Remove(object, name)
+  if name then
+    Scene.GetState(name):Remove(object)
+  else
+    Scene.State:Remove(object)
   end
 end
 

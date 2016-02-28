@@ -30,7 +30,7 @@ function Class(name, subclass)
 
     --Add subclass to file
     if Script.Env then
-      Script.Env[subclass] = Classes[subclass]
+      Script.Env[subclass.Name] = subclass
     end
   end
 
