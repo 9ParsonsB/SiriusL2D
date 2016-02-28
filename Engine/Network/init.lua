@@ -8,7 +8,7 @@ Network.Server = Class("GenericServer", Network.lube.Server)
 -- Lube Client Overrides
  
 function Network.Client:Create()
-  self.Client:init()
+  self:init()
 end
 
 function Network.Client:_send(data)
@@ -29,7 +29,7 @@ end
 -- Lube Server Overrides
 
 function Network.Server:Create()
-  self.Server:init()
+  self:init()
 end
 
 function Network.Server:send(data, clientid)

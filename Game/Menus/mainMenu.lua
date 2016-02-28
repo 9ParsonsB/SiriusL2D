@@ -6,17 +6,19 @@ function MainMenu:Update(dt)
     print("Connecting...")
 
     --Create client
-    Network.Peer = Network.Client('TEMPCLIENT1')
-    Network.Peer:Start()
-    Network.Peer:Connect("siriusgame.ddns.net")
+    Network.Client:_connect("siriusgame.ddns.net")
+    --Network.Peer = Network.Client('TEMPCLIENT1')
+    --Network.Peer:Start()
+    --Network.Peer:Connect("siriusgame.ddns.net")
   end
 
   if self:Button("Start server", 200,280, 100, 20).Pressed then
     print("Starting server...")
 
     --Create server
-    Network.Peer = Network.Server('TEMPCLIENT1')
-    Network.Peer:Start() 
+    Network.Server:_listen("siriusgame.ddns.net")
+    --Network.Peer = Network.Server('TEMPCLIENT1')
+    --Network.Peer:Start() 
   end
 
   if self:Button("Settings", 200,310, 100, 20).Pressed then
