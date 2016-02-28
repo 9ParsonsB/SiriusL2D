@@ -78,35 +78,31 @@ function Peer:Update()
 
     repeat -- do this once
       local ip_or_data, msg_or_ip, port_or_nil = self.udp:receivefrom()-- from can also be an error message if port is nil
-      if port_or_nil ~= nil then -- if the port is not nil then
+      if port_or_nil then -- if the port is not nil then
         local temptime = self.socket.gettime()
         if ip_or_data then -- if ip_or_data then and port is not nill then ip_or_data is data
           
           --print("ip_or_data: " ..ip_or_data)
           packet = self.ConvertPacketData(ip_or_data)
-          packet.sender = msg_or_ip
-          
-          if port_or_nil then
-            packet.port = port_or_nil
-          end
           
           if packet then
             --if packet.isvalid then -- if this is a valid packet (has the isvalid atribute). only works if the deserlization worked
+              
+            packet.sender = msg_or_ip
+            packet.port = port_or_nil
+            packet.receivedtime = temptime-- get the time at which we recieved the packet (used later, very useful)
             
-              packet.receivedtime = temptime-- get the time at which we recieved the packet (used later, very useful)
-              
-              if packet.data then
-                self:HandleData(packet)
+            if packet.data then
+              self:HandleData(packet)
+            end
+            
+            if packet.sender == msg_or_ip then
+              if packet.port ~= port_or_nil then
+                print("Packet port and received port not the same!!")
               end
-              
-              if packet.sender == msg_or_ip then
-                if packet.port ~= port_or_nil then
-                  print("Packet port and received port not the same!!")
-                end
-              else
-                print("Packet sender and connection sender not the same!!")
-              end
-            --end
+            else
+              print("Packet sender and connection sender not the same!!")
+            end
           else
             error("packet resolved nil")
           end
@@ -125,16 +121,14 @@ function Peer:Update()
     until not ip_or_data-- and continue until there is no more data or messages TODO: change this so that it will not take up more than X or just override
 
   -- check if peers need to have their ping updated
-  if #self.netPeers > 0 then -- if we have more than 0 peers then
-    for i,v in ipairs(self.netPeers) do -- for each peer
-      if v.connected then -- if they are connected
-        if self.socket.gettime() > v.lastattemptedpingtime + 2 then
-          if v.lastpingtime + self.pingpollrate < self.socket.gettime()  then -- if the last time we pinged them plus the poll rate is smaller than the current time
-            self:Ping(v.ip,v.port)
-          elseif v.lastpingtime + self.timeouttime < self.socket.gettime()  then -- if the last atempted ping time plus the timeout duration is smaller than the current time (meaning we have waited the timeout time)
-            print("peer:".. v.name ..". was last pinged: ".. (self.socket.gettime() - v.lastattemptedpingtime):tostring() .. " secs ago, disconnecting. timed out.")
-            v.connected = false -- disconnect them
-          end
+  for i,v in ipairs(self.netPeers) do -- for each peer
+    if v.connected then -- if they are connected
+      if self.socket.gettime() > v.lastattemptedpingtime + 2 then
+        if v.lastpingtime + self.pingpollrate < self.socket.gettime()  then -- if the last time we pinged them plus the poll rate is smaller than the current time
+          self:Ping(v.ip,v.port)
+        elseif v.lastpingtime + self.timeouttime < self.socket.gettime()  then -- if the last atempted ping time plus the timeout duration is smaller than the current time (meaning we have waited the timeout time)
+          print("peer:".. v.name ..". was last pinged: ".. (self.socket.gettime() - v.lastattemptedpingtime):tostring() .. " secs ago, disconnecting. timed out.")
+          v.connected = false -- disconnect them
         end
       end
     end
