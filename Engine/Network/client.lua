@@ -1,10 +1,13 @@
 local Peer = require "Engine/Network/peer"
 local Client = Class("Client", Peer)
 
+local socket = require "socket"
+
 --Connect to server
-function Client:Start(ip)
+function Client:Start(address, port)
+  ip = socket.dns.toip(address) or address
   self.Host = enet.host_create()
-  self.Server = self.Host:connect("localhost:7253")
+  self.Server = self.Host:connect(ip .. ":" .. port)
   self.Running = true
 end
 
