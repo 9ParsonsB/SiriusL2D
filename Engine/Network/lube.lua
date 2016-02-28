@@ -250,7 +250,7 @@ end
 -- And now, implementations!
 
 -- First, UDP.
-local udpClient = {}
+local udpClient = Class("udpClient")
 udpClient._implemented = true
 
 function udpClient:createSocket()
@@ -286,8 +286,7 @@ function udpClient:setOption(option, value)
 	end
 end
 
-local udpServer = {}
-udpServer._implemented = true
+local udpServer = Class("udpServer")
 
 function udpServer:createSocket()
 	self.socket = socket.udp()
@@ -324,7 +323,7 @@ function udpServer:accept()
 end
 
 -- But also, TCP.
-local tcpClient = {}
+local tcpClient = Class("tcpClient")
 tcpClient._implemented = true
 
 function tcpClient:createSocket()
@@ -369,8 +368,7 @@ function tcpClient:setoption(option, value)
 	end
 end
 
-local tcpServer = {}
-tcpServer._implemented = true
+local tcpServer = Class("tcpServer")
 
 function tcpServer:createSocket()
 	self._socks = {}
@@ -434,12 +432,12 @@ end
 
 
 -- Create our classes:
-lube = {}
+local lube = {}
 
-lube.Client = Class("lube.Client", client)
-lube.udpClient = Class("lube.udpClient", udpClient, lube.Client)
-lube.tcpClient = Class("lube.tcpClient", tcpClient, lube.Client)
+lube.udpClient = udpClient
+lube.udpServer = udpServer
+lube.Client = Class("lubeClient", udpClient) -- TODO: move this to where the table is created. (see 452,451)
 
-lube.Server = Class("lube.Server", server)
-lube.udpServer = Class("lube.udpServer", udpServer, lube.Server)
-lube.tcpServer = Class("lube.tcpServer", tcpServer, lube.Server)
+lube.Server = Class("lubeServer", udpServer)
+
+return lube

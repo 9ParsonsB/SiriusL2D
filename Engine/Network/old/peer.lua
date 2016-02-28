@@ -254,8 +254,7 @@ function Peer:Packet(data)
   return Packet
 end
 
-function Peer:SendPacket(packet,recipient, port)  
-  local packet
+function Peer:SendPacket(packet,recipient, port)
   if recipient then recipient = self.socket.dns.toip(recipient) or recipient end
   if packet.recipient then packet.recipient = self.socket.dns.toip(packet.recipient) or packet.recipient end
   packet.recipient = packet.recipient or recipient  -- try and convert the addr to an ip, or just use the addr
@@ -274,7 +273,10 @@ end
 
 function Peer.ConvertPacketData(spacket)
   --print('packet: ' ..spacket)
-  local result = loadstring(spacket) () 
+
+  local result = loadstring(spacket) 
+  setfenv(result, {})
+  result = result()
   local isvalid
   if result.isvalid then isvalid = "true" else isvalid = "false" end
   print("packed isvalid?: " .. isvalid )
