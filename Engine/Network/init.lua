@@ -1,6 +1,6 @@
 Network = {}
 
-Network.lube
+Network.lube = require("Engine/Network/lube")
 
 Network.Client = Class("GenericClient", Network.lube.Client)
 Network.Server = Class("GenericServer", Network.lube.Server)
