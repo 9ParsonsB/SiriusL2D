@@ -22,7 +22,6 @@ end
 function love.draw()
   Scene.Draw()
   Ui.Draw()
-  Network.Draw()
 end
 
 --split string.
