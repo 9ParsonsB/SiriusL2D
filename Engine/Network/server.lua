@@ -4,9 +4,8 @@ local Server = Class("Server", Peer)
 local socket = require "socket"
 
 --Start hosting the server
-function Server:Start(address, port)
-  ip = socket.dns.toip(address) or address
-  self.Host = enet.host_create(ip .. ":" .. port)
+function Server:Start(port)
+  self.Host = enet.host_create("localhost:" .. port)
   self.Running = true
 end
 
