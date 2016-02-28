@@ -190,6 +190,7 @@ end
 
 function server:listen(port)
 	-- Create a socket, set the port and listen.
+  self.Running = true
 	self:createSocket()
 	self.port = port
 	self:_listen()
