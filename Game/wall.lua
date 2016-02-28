@@ -1,4 +1,4 @@
-Class("Wall", "Entity")
+Class("Wall", Scene.Entity)
 
 function Wall:Create(x, y, width, height)
   Entity.Create(self, x, y)

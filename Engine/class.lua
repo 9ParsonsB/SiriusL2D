@@ -22,12 +22,11 @@ local Classes = {}
 function Class(name, subclass)
   local class = setmetatable({}, {__call=Instance})
 
-  if subclass and Classes[subclass] then 
-
+  if subclass then 
     --Inherit from subclass
-    local super = Copy(Classes[subclass])
+    local super = Copy(subclass)
     class = super
-    class.SubClass = subclass
+    class.super = subclass
 
     --Add subclass to file
     if Script.Env then

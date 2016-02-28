@@ -1,4 +1,4 @@
-Class("Player", "Entity")
+Class("Player", Scene.Entity)
 
 Player.Speed = 300
 
