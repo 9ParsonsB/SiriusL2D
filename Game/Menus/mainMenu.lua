@@ -4,12 +4,12 @@ function MainMenu:Update(dt)
 
   if self:Button("Connect", 200,250, 100, 20).Pressed then
     print("Connecting...")
-    Network.Client:Start()--"siriusgame.ddns.net")
+    Network.Client:Start("siriusgame.ddns.net")
   end
 
   if self:Button("Start server", 200,280, 100, 20).Pressed then
     print("Starting server...")
-    Network.Server:Start()--"siriusgame.ddns.net")
+    Network.Server:Start("siriusgame.ddns.net")
   end
 
   if self:Button("Settings", 200,310, 100, 20).Pressed then
