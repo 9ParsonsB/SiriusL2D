@@ -1,10 +1,9 @@
-require "Engine/engine"
-require "Game/Network/client"
+require "Engine"
 require "Game/Menus/mainMenu"
 require "Game/Menus/settingsMenu"
 
-Object.Directory = "Game/Scripts/"
+--local Player = Script.Load("Game/player")
+--Player(100, 100)
 
-local player = Object("Player")
-player:AddScript("player.lua")
-player:AddScript("movement.lua")
+--local Wall = Script.Load("Game/wall")
+--Wall(200,100, 50, 50)

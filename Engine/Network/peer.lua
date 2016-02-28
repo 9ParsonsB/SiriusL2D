@@ -151,6 +151,8 @@ function Peer:Update()
   end
 end
 
+function Peer:Draw() end
+
 function Peer:HandleDiscovery(packet) -- this method is designed to be overriden
 end
 

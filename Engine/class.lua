@@ -1,3 +1,5 @@
+require "Engine/script"
+
 --Copy table
 local function Copy(orig)
   local t = {}
@@ -17,18 +19,35 @@ end
 
 --Defines a class
 local Classes = {}
-function Class(name, super)
+function Class(name, subclass)
   local class = setmetatable({}, {__call=Instance})
 
-  --Inherit from super
-  if super then 
-    class = Copy(super) 
-    class.Super = super
+  if subclass and Classes[subclass] then 
+
+    --Inherit from subclass
+    local super = Copy(Classes[subclass])
+    class = super
+    class.SubClass = subclass
+
+    --Add subclass to file
+    if Script.Env then
+      Script.Env[subclass] = Classes[subclass]
+    end
   end
 
   --Store class
   class.Name = name
   Classes[name] = class
   
+  --Add class to file
+  if Script.Env then
+    Script.Env[name] = class
+  end
+
   return class
 end
+
+--[[function AddScript(object, script)
+  object.Scripts = object.Scripts or {}
+  table.insert(object.Scripts, script)
+end--]]

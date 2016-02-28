@@ -5,7 +5,8 @@ function Collider:Create(object, type, shape, arg1, arg2)
 
   --arg1-Width arg2-Height
   if shape == "box" then
-  	self.Shape = love.physics.newRectangleShape(arg1 or 1, arg2 or 1) 
+    local width, height = arg1 or 1, arg2 or 1
+  	self.Shape = love.physics.newRectangleShape(width / 2, height / 2) 
   end
 
   --Attach body to shape and store object for collision callbacks

@@ -22,6 +22,7 @@ function Theme:Text(widget, text, x, y, w, h)
   w, h = w or 0, h or 0
 
   --Store settings
+  local r,g,b,a = love.graphics.getColor()
   local font = love.graphics.getFont()
 
   --Draw text
@@ -29,6 +30,7 @@ function Theme:Text(widget, text, x, y, w, h)
   love.graphics.printf(text, widget.X + x, widget.Y + y + 2, widget.Width + (w - 4), widget.Allign)
 
   --Restore settings
-  love.graphics.getFont(font)
+  love.graphics.setFont(font)
+  love.graphics.setColor(r,g,b,a)
 end
 return Theme
