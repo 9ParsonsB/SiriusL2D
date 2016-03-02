@@ -6,7 +6,13 @@ function Collider:Create(object, type, shape, arg1, arg2)
   --arg1-Width arg2-Height
   if shape == "box" then
     local width, height = arg1 or 1, arg2 or 1
-  	self.Shape = love.physics.newRectangleShape(width / 2, height / 2) 
+    self.Shape = love.physics.newRectangleShape(width / 2, height / 2) 
+  end
+
+  --arg1-Radius
+  if shape == "circle" then
+    local radius = arg1 or 1
+    self.Shape = love.physics.newCircleShape(radius)
   end
 
   --Attach body to shape and store object for collision callbacks
@@ -15,9 +21,13 @@ function Collider:Create(object, type, shape, arg1, arg2)
 end
 
 function Collider:Draw()
-  if Physics.Debug then
-    love.graphics.polygon("line", self.Body:getWorldPoints(self.Shape:getPoints()))
-  end
+  if not Physics.Debug then return end
+  love.graphics.polygon("line", self.Body:getWorldPoints(self.Shape:getPoints()))
+end
+
+function Collider:Move(amountX, amountY)
+  local x, y = self:GetPosition()
+  self:SetPosition(x + amountX, y + amountY)
 end
 
 --Getters/setters
@@ -31,7 +41,8 @@ function Collider:GetY()
 end
 
 function Collider:GetPosition()
-  return self.Body:getPosition()
+  local x, y = self.Body:getPosition()
+  return x, y
 end
 function Collider:SetPosition(x, y)
   self.Body:setPosition(x, y)

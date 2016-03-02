@@ -1,16 +1,21 @@
 require "Engine"
-require "Game/Menus/mainMenu"
-require "Game/Menus/settingsMenu"
 
-local Player = Script.Load("Game/player")
-local a = Player(100, 100)
+Physics.Debug = false
 
-local Wall = Script.Load("Game/wall")
-Wall(200,100, 50, 50)
+--Load files
+local Ball = LoadEntity("Objects/ball")
+local Player = LoadEntity("Objects/player")
 
---Scene.Remove(a)
+local Movement = LoadScript("Scripts/movement")
+local Track = LoadScript("Scripts/track")
 
---[[local env = {}
-local chunk = loadstring("print('UNSAFE')")
-setfenv(chunk, {})
-chunk()--]]
+--Create objects
+local width, height = love.graphics.getDimensions()
+
+local ball = Create(Ball, width / 2, height / 2)
+
+--local p1 = Create(Player, 20, 100)
+--p1:AddScript(Movement, 300)
+
+--local p2 = Create(Player, 988, 100)
+--p2:AddScript(Track, ball)

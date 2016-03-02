@@ -27,21 +27,11 @@ function Class(name, subclass)
     local super = Copy(subclass)
     class = super
     class.super = subclass
-
-    --Add subclass to file
-    if Script.Env then
-      Script.Env[subclass.Name] = subclass
-    end
   end
 
   --Store class
   class.Name = name
   Classes[name] = class
-  
-  --Add class to file
-  if Script.Env then
-    Script.Env[name] = class
-  end
 
   return class
 end

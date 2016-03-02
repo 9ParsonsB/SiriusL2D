@@ -1,22 +1,34 @@
 local Entity = Class("Entity")
 
-function Entity:Create(x, y)
+Entity.X = 0
+Entity.Y = 0
+Entity.Angle = 0
+
+function Entity:Create()
   self.Scripts = {}
-  self.X, self.Y = x or 0, y or 0
-  self.Angle = 0
+  self.Ids = {}
 end
 
-function Entity:AddScript(filePath, ...)
-  --Enviroment
-  local env = setmetatable({}, {__index=_G})
-  env.self = self
-
+--Add script to entity
+function Entity:AddScript(chunk, ...)
   --Load script
-  Script.Load(filePath, env)
-  table.insert(self.Scripts, env)
+  local script = setmetatable({}, {__index=_G})
+  setfenv(chunk, script)
+  chunk()
 
-  --Create callback
-  if type(env.Create) == "function" then env.Create(...) end
+  --Create script
+  script.self = self
+  if type(script.Create) == "function" then script.Create(...) end
+
+  --Store script
+  table.insert(self.Scripts, script)
+  self.Ids[chunk] = #self.Scripts
+end
+
+--Get script from entity
+function Entity:GetScript(script)
+  local index = self.Ids[script]
+  if index then return self.Scripts[index] end
 end
 
 function Entity:Fire(func, ...)
@@ -38,9 +50,9 @@ function Entity:Draw()
 end
 
 function Entity:SetPosition(x, y)
-  if self.Sprite then self.Sprite:Move(x - self.X, y - self.Y) end
-  if self.Collider then self.Colldier:Move(x - self.X, y - self.Y) end
-  self.X, self.Y = x or 0, y or 0
+  x, y = x or 0, y or 0
+  if self.Collider then self.Collider:SetPosition(x, y) end--self.Collider:Move(x - self.X, y - self.Y) end
+  self.X, self.Y = x, y
 end
 
 function Entity:SetCollider(type, shape, width, height)

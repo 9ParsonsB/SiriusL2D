@@ -13,6 +13,8 @@ function Sprite:Create(texture, x, y, angle)
   self.X = x or 0
   self.Y = y or 0
   self.Angle = angle or 0
+
+  self:Center()
 end
 function Sprite:Center()
   --Get texture size

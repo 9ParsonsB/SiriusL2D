@@ -1,8 +1,7 @@
 local State = require "Engine/Scene/state"
+require "Engine/Scene/entityLoader"
 
 Scene = {
-  Entity = require "Engine/Scene/entity",
-
   --Table of states
   States = {},
 }

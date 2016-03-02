@@ -10,3 +10,8 @@ function Network.Update(dt)
   Network.Client:Update(dt)
   Network.Server:Update(dt)
 end
+
+--[[local env = {}
+local chunk = loadstring("print('UNSAFE')")
+setfenv(chunk, {})
+chunk()--]]
