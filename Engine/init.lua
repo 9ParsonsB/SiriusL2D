@@ -2,55 +2,32 @@
 --package.path = package.path .. "./Engine/?.lua;"
 
 --Load base files
-require "Engine/class"
+require "Engine/core"
+require "Engine/entity"
 require "Engine/Network"
 require "Engine/Physics"
 require "Engine/Renderer"
 require "Engine/Scene"
 require "Engine/Ui"
 
---MAGIC copy function
-function table.copy(obj, seen)
-  if type(obj) ~= 'table' then return obj end
-  if seen and seen[obj] then return seen[obj] end
-  local s = seen or {}
-  local res = setmetatable({}, getmetatable(obj))
-  s[obj] = res
-  for k, v in pairs(obj) do res[table.copy(k, s)] = table.copy(v, s) end
-  return res
-end
-
-function love.update(dt)
-  Scene.Update(dt)
-  Ui.Update(dt)
-  Physics.Update(dt)
-  Network.Update(dt)
-end
-
-function love.draw()
-  Scene.Draw()
-  Ui.Draw()
-end
-
---split string.
-string.split = function (self,delimiter)
-  local result = { }
-  local from  = 1
-  local delim_from, delim_to = string.find( self, delimiter, from  )
-  while delim_from do
-    table.insert( result, string.sub( self, from , delim_from-1 ) )
-    from  = delim_to + 1
-    delim_from, delim_to = string.find( self, delimiter, from  )
-  end
-  table.insert( result, string.sub( self, from  ) )
-  return result
-end
-
 --Love callbacks
 function love.load()
   if arg[#arg] == "-debug" then require("mobdebug").start() end 
   love.graphics.setBackgroundColor(104, 136, 248)
   love.physics.setMeter(64)
+end
+
+function love.update(dt)
+  Network.Update(dt)
+  Physics.Update(dt)
+  Scene.Update(dt)
+  Ui.Update(dt)
+  Script.Update(dt)
+end
+
+function love.draw()
+  Scene.Draw()
+  Ui.Draw()
 end
 
 function love.keypressed(key)
@@ -77,6 +54,20 @@ end
 
 function love.textinput(t)
   Scene.TextInput(t)
+end
+
+--split string.
+string.split = function (self,delimiter)
+  local result = { }
+  local from  = 1
+  local delim_from, delim_to = string.find( self, delimiter, from  )
+  while delim_from do
+    table.insert( result, string.sub( self, from , delim_from-1 ) )
+    from  = delim_to + 1
+    delim_from, delim_to = string.find( self, delimiter, from  )
+  end
+  table.insert( result, string.sub( self, from  ) )
+  return result
 end
 
 --[[function Game:Debug()

@@ -1,9 +1,7 @@
 local State = require "Engine/Scene/state"
-require "Engine/Scene/entityLoader"
 
 Scene = {
-  --Table of states
-  States = {},
+  States = {}
 }
 
 function Scene.GetState(name)
@@ -50,26 +48,26 @@ function Scene.Draw()
 end
 
 function Scene.KeyPressed(key)
-  for k,v in pairs(Scene.Objects) do v:Fire("KeyPressed", key) end
+  for k,v in pairs(Scene.Objects) do v:KeyPressed(key) end
 end
 
 function Scene.KeyReleased(key)
-  for k,v in pairs(Scene.Objects) do v:Fire("KeyReleased", key) end
+  for k,v in pairs(Scene.Objects) do v:KeyReleased(key) end
 end
 
 function Scene.MousePressed(x, y, button, isTouch)
-  for k,v in pairs(Scene.Objects) do v:Fire("MousePressed", x, y, button, isTouch) end
+  for k,v in pairs(Scene.Objects) do v:MousePressed(x, y, button, isTouch) end
 end
 
 function Scene.MouseReleased(x, y, button)
-  for k,v in pairs(Scene.Objects) do v:Fire("MouseReleased", x, y, button) end
+  --for k,v in pairs(Scene.Objects) do v:FireEvent("MouseReleased", x, y, button) end
 end
 
 function Scene.MouseMoved(x, y, dx, dy)
-  for k,v in pairs(Scene.Objects) do v:Fire("MouseMoved", x, y, dx, dy) end
+  --for k,v in pairs(Scene.Objects) do v:FireEvent("MouseMoved", x, y, dx, dy) end
 end
 
 function Scene.TextInput(t)
-  for k,v in pairs(Scene.Objects) do v:Fire("TextInput", t) end
+  --for k,v in pairs(Scene.Objects) do v:FireEvent("TextInput", t) end
 end
 Scene.SetState("default")

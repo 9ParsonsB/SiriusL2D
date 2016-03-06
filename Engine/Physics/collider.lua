@@ -1,7 +1,7 @@
 local Collider = Class("Collider")
 
 function Collider:Create(object, type, shape, arg1, arg2)
-  self.Body = love.physics.newBody(Physics.World, object.X, object.Y, type)
+  self.Body = love.physics.newBody(Physics.World, object.X / 2, object.Y / 2, type)
 
   --arg1-Width arg2-Height
   if shape == "box" then
@@ -67,6 +67,13 @@ function Collider:GetAngularVelocity()
 end
 function Collider:SetAngularVelocity(angle)
  self.Body:setAngularVelocity(angle)
+end
+
+function Collider:GetRestitution()
+  return self.Fixture:getRestitution()
+end
+function Collider:SetRestitution(restitution)
+  self.Fixture:setRestitution(restitution)
 end
 
 function Collider:GetFriction()
