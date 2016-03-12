@@ -1,4 +1,5 @@
 local State = Class("State")
+
 function State:Create(name)
   self.Name = name
   self.Camera = Renderer.Camera()
@@ -7,10 +8,12 @@ function State:Create(name)
   self.Objects = {}
   self.Ids = setmetatable({}, {__mode="k"})
 end
+
 function State:Add(object)
   table.insert(self.Objects, object)
   self.Ids[object] = #self.Objects
 end
+
 function State:Remove(object)
   local index = self.Ids[object]
   if index then 

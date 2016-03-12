@@ -40,34 +40,54 @@ function Scene.Remove(object, name)
 end
 
 function Scene.Update(dt)
-  for k,v in pairs(Scene.Objects) do v:Update(dt) end
+  for k,v in pairs(Scene.Objects) do 
+    if type(v.Update) == "function" then v:Update(dt) end
+  end
 end
 
 function Scene.Draw()
-  for k,v in pairs(Scene.Objects) do v:Draw() end
+  Scene.Camera:Set()
+
+  for k,v in pairs(Scene.Objects) do 
+    if type(v.Draw) == "function" then v:Draw() end
+  end
+
+  Scene.Camera:Unset()
 end
 
 function Scene.KeyPressed(key)
-  for k,v in pairs(Scene.Objects) do v:KeyPressed(key) end
+  for k,v in pairs(Scene.Objects) do 
+    if type(v.KeyPressed) == "function" then v:KeyPressed(key) end
+  end
 end
 
 function Scene.KeyReleased(key)
-  for k,v in pairs(Scene.Objects) do v:KeyReleased(key) end
+  for k,v in pairs(Scene.Objects) do 
+    if type(v.KeyReleased) == "function" then v:KeyReleased(key) end
+  end
 end
 
 function Scene.MousePressed(x, y, button, isTouch)
-  for k,v in pairs(Scene.Objects) do v:MousePressed(x, y, button, isTouch) end
+  for k,v in pairs(Scene.Objects) do 
+    if type(v.MousePressed) == "function" then v:MousePressed(x, y, button, isTouch) end
+  end
 end
 
 function Scene.MouseReleased(x, y, button)
-  --for k,v in pairs(Scene.Objects) do v:FireEvent("MouseReleased", x, y, button) end
+  for k,v in pairs(Scene.Objects) do 
+    if type(v.MouseReleased) == "function" then v:MouseReleased(x, y, button) end
+  end
 end
 
 function Scene.MouseMoved(x, y, dx, dy)
-  --for k,v in pairs(Scene.Objects) do v:FireEvent("MouseMoved", x, y, dx, dy) end
+  for k,v in pairs(Scene.Objects) do 
+    if type(v.MouseMoved) == "function" then v:MouseMoved(x, y, dx, dy) end
+  end
 end
 
 function Scene.TextInput(t)
-  --for k,v in pairs(Scene.Objects) do v:FireEvent("TextInput", t) end
+  for k,v in pairs(Scene.Objects) do 
+    if type(v.TextInput) == "function" then v:TextInput(t) end
+  end
 end
 Scene.SetState("default")

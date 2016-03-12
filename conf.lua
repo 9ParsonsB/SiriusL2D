@@ -1,6 +1,6 @@
-io.stdout:setvbuf("no")
-
 function love.conf(t)
+  io.stdout:setvbuf("no")
+
   t.window.title = "Space game"
   t.window.width = 1024
   t.window.height = 768

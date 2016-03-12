@@ -3,7 +3,6 @@
 
 --Load base files
 require "Engine/core"
-require "Engine/entity"
 require "Engine/Network"
 require "Engine/Physics"
 require "Engine/Renderer"

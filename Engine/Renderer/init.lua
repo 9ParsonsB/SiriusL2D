@@ -15,3 +15,21 @@ function Renderer.GetTexture(filePath)
 
   return texture
 end
+
+function Renderer.Sprite(filePath, x, y, angle, scaleX, scaleY, offsetX, offsetY)
+  local texture = Renderer.GetTexture(filePath)
+
+  --Default values
+  x, y = x or 0, y or 0
+  angle = angle or 0
+  scaleX = scaleX or 1
+  scaleY = scaleY or 1
+
+  --Draw sprite
+  love.graphics.draw(
+  texture, 
+  x, y, 
+  (math.pi / 180) * angle, 
+  scaleX, scaleY, 
+  texture:getWidth() / 2, texture:getHeight() / 2)
+end
