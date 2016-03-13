@@ -16,9 +16,15 @@ end
 
 function State:Remove(object)
   local index = self.Ids[object]
-  if index then 
-  	table.remove(self.Objects, index) 
-  	self.Ids[object] = nil
-  end
+  if not index then return end
+
+  --Move last element to objects location
+  local last = self.Objects[#self.Objects]
+  self.Objects[index] = last
+  self.Ids[last] = index
+
+  --Remove last element
+  table.remove(self.Objects) 
+  self.Ids[object] = nil
 end
 return State

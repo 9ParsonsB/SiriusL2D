@@ -21,12 +21,10 @@ function love.update(dt)
   Scene.Update(dt)
   Physics.Update(dt)
   Script.Update(dt)
-  Ui.Update(dt)
 end
 
 function love.draw()
   Scene.Draw()
-  Ui.Draw()
 end
 
 function love.keypressed(key)

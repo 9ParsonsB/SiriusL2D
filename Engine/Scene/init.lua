@@ -44,11 +44,6 @@ function Scene.Update(dt)
   for k,v in pairs(Scene.Objects) do 
     if type(v.Update) == "function" then v:Update(dt) end
   end
-
-  --Ui update
-  for k,v in pairs(Scene.Objects) do 
-    if type(v.Ui) == "function" then v:Ui(dt) end
-  end
 end
 
 function Scene.Draw()
@@ -59,6 +54,13 @@ function Scene.Draw()
   end
 
   Scene.Camera:Unset()
+
+  --Draw ui
+  for k,v in pairs(Scene.Objects) do 
+    if type(v.Ui) == "function" then v:Ui(dt) end
+  end
+  Ui.Update()
+  Ui.Draw()
 end
 
 function Scene.KeyPressed(key)

@@ -31,5 +31,5 @@ function Renderer.Sprite(filePath, x, y, angle, scaleX, scaleY, offsetX, offsetY
   x, y, 
   (math.pi / 180) * angle, 
   scaleX, scaleY, 
-  texture:getWidth() / 2, texture:getHeight() / 2)
+  offsetX or texture:getWidth() / 2, offsetY or texture:getHeight() / 2)
 end

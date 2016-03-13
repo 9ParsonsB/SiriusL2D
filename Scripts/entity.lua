@@ -7,6 +7,10 @@ Entity.ScaleX = 1
 Entity.ScaleY = 1
 Entity.Texture = nil
 
+function Entity:Move(x, y)
+  self:SetPosition(self.X + x, self.Y + y)
+end
+
 function Entity:SetPosition(x, y)
   x, y = x or 0, y or 0
   if self.Collider then self.Collider:SetPosition(x, y) end--self.Collider:Move(x - self.X, y - self.Y) end
@@ -15,6 +19,6 @@ end
 
 function Entity:Draw()
   if self.Texture then 
-  	Renderer.Sprite(self.Texture, self.X, self.Y, self.Angle, self.ScaleX, self.ScaleY) 
+  	Renderer.Sprite(self.Texture, self.X, self.Y, self.Angle, self.ScaleX, self.ScaleY, 0, 0) 
   end
 end
