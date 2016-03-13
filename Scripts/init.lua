@@ -1,2 +1,3 @@
 Player()
 GenericEnemy()
+GiantSpider()

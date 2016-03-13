@@ -17,7 +17,7 @@ function Button:Draw(theme)
   if self.Hover then colour = theme.Hover end
   
   --Draw button
-  theme:Box(self.X, self.Y, self.Width, self.Height, colour)
-  theme:Text(self, self.Text)
+  --theme:Box(self.X, self.Y, self.Width, self.Height)
+  theme:Text(self.Text, self.X, self.Y, self.Width, self.Height, colour)
 end
 return Button

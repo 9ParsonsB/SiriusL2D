@@ -40,8 +40,14 @@ function Scene.Remove(object, name)
 end
 
 function Scene.Update(dt)
+  --Update
   for k,v in pairs(Scene.Objects) do 
     if type(v.Update) == "function" then v:Update(dt) end
+  end
+
+  --Ui update
+  for k,v in pairs(Scene.Objects) do 
+    if type(v.Ui) == "function" then v:Ui(dt) end
   end
 end
 

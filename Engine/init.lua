@@ -18,10 +18,10 @@ end
 
 function love.update(dt)
   Network.Update(dt)
-  Physics.Update(dt)
   Scene.Update(dt)
-  Ui.Update(dt)
+  Physics.Update(dt)
   Script.Update(dt)
+  Ui.Update(dt)
 end
 
 function love.draw()
@@ -31,7 +31,6 @@ end
 
 function love.keypressed(key)
   Scene.KeyPressed(key)
-  Ui.KeyPressed(key)
 end
 
 function love.keyreleased(key)

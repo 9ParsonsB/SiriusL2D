@@ -7,6 +7,6 @@ function Label:Create(text, x, y, w, h)
 end
 
 function Label:Draw(theme)
-  theme:Text(self, self.Text)
+  theme:Text(self.Text, self.X, self.Y, self.Width, self.Height, theme.Default)
 end
 return Label
