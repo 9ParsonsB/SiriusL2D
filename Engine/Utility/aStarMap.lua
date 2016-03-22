@@ -14,7 +14,7 @@ function Cell:CalculateCost(target, finish)
   if self.Row ~= target.Row and self.Column ~= target.Column then self.G = 14 end
 
   --H cost(Heuristic/guess, the distance to the finish cell)
-  self.H = ((finish.Row - self.Row) + (finish.Column - self.Column)) * self.G
+  self.H = (math.abs((finish.Row - self.Row)) + math.abs((finish.Column - self.Column))) * 10
 
   --F cost which is used to determine if cell should be pathed to. Result of both G and H.
   self.F = self.G + self.H
@@ -37,12 +37,12 @@ end
 
 function Grid:Draw()
   --Draw columns
-  for i = 0, self.ColumnCount do
+  for i = 0, self.RowCount do
     love.graphics.line(self.X + self.CellWidth * i, self.Y, self.X + self.CellWidth * i, self.Y + self.Height)
   end
 
   --Draw rows
-  for i = 0, self.RowCount do
+  for i = 0, self.ColumnCount do
     love.graphics.line(self.X , self.Y + self.CellHeight * i, self.X + self.Width, self.Y + self.CellHeight * i)
   end
 
@@ -59,8 +59,21 @@ end
 --Setup cells table with default cells
 function Grid:Clear()
   self.Cells = {}
-  for i = 0, self.ColumnCount - 1 do self.Cells[i] = {} 
-    for j = 0, self.RowCount - 1 do self.Cells[i][j] = Cell(i, j) end
+  for i=0, self.RowCount - 1 do self.Cells[i] = {} 
+    for j=0, self.ColumnCount - 1 do self.Cells[i][j] = Cell(i, j) end
+  end
+end
+
+--Marks a area of the grid unwalkable
+function Grid:Insert(x, y, width, height)
+  local row, column = self:GetCellLocation(x, y)
+  local rowCount, columnCount = width / self.CellWidth, height / self.CellHeight
+
+  --Make cells in area unwalkable
+  for i = row, row + rowCount do
+    for j = column, column + columnCount do
+      self:GetCell(i, j).Walkable = false
+    end
   end
 end
 
@@ -112,8 +125,10 @@ function Grid:GetLowestFCell(set)
   local lowest = nil
   for k,v in pairs(set) do
     if not lowest then lowest = k end
+    --print(k.F)
     if k.F < lowest.F then lowest = k end
   end
+  --print("FOUND LOWEST")
   return lowest
 end
 
@@ -124,17 +139,22 @@ function Grid:PathFind(x1, y1, x2, y2)
   local finish = self:GetCell(self:GetCellLocation(x2, y2))
 
   --Cannot path if start or finish does not exist
-  if not start or not finish then return end
+  if not start or not finish then return {} end
 
   --Add start cell to the open list
   local open, closed = {}, {}
   open[start] = true
 
   --Start searching for the path
-  repeat   
+  while not closed[finish] do   
     --Look for the lowest F cost square on the open list
     --and switch it to the closed list
     local current = self:GetLowestFCell(open)
+   
+    --If no open cells exist then path cannot be found
+    if not current then return {} end
+
+    --Move to closed list
     open[current] = nil
     closed[current] = true
 
@@ -160,13 +180,11 @@ function Grid:PathFind(x1, y1, x2, y2)
         end
       end
     end
-  --Keep pathing until the finish cell is found
-  until closed[finish]
+  end
 
   --Get the path from the start to finish
   local path = self:GetPath(finish)
-  path[1].X, path[1].Y = x1, y1
-  path[#path].X, path[#path].Y = x2, y2 
+  --path[1].X, path[1].Y = x1, y1
 
   return path
 end

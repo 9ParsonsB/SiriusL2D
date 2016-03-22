@@ -1,10 +1,10 @@
-Map = Grid(100, 100, 3, 3)
+Map = Grid(100, 100, 30, 10)
 Path = {}
 
 --Calculate path
 function MousePressed(self, x, y, button, isTouch)
-  if button ~= 1 then return end
-  Path = Map:PathFind(100, 115, 190, 115) 
+  if button == 1 then Path = Map:PathFind(100, 150, x, y) end
+  if button == 2 then Map:Insert(x, y, 1, 1) end
 end
 
 --Draw map and path
