@@ -1,9 +1,7 @@
 --Single cell on a grid
 local Cell = Class("Cell")
 
-Cell.G = 0
-Cell.H = 0
-Cell.F = 0
+Cell.G, Cell.H, Cell.F = 0, 0, 0
 
 function Cell:Create(row, column, walkable)
   self.Row, self.Column = row or 0, column or 0
@@ -61,18 +59,28 @@ end
 --Setup cells table with default cells
 function Grid:Clear()
   self.Cells = {}
-  for i = 0, self.ColumnCount - 1 do
-    self.Cells[i] = {} 
-    for j = 0, self.RowCount - 1 do
-      self.Cells[i][j] = Cell(i, j)
-    end
+  for i = 0, self.ColumnCount - 1 do self.Cells[i] = {} 
+    for j = 0, self.RowCount - 1 do self.Cells[i][j] = Cell(i, j) end
   end
 end
 
---Convert x, y coordinate to grid location
+--Convert x, y to row, column
 function Grid:GetCellLocation(x, y)
   local distX, distY = x - self.X, y - self.Y
   return math.floor(distX / self.CellWidth), math.floor(distY / self.CellHeight)
+end
+
+--Convert row, column to x, y
+function Grid:GetCellPosition(cell)
+  return self.X + (self.CellWidth * cell.Row), self.Y + (self.CellHeight * cell.Column)
+end
+
+--Get center of the cell
+function Grid:GetCellCenter(cell)
+  local x, y = self:GetCellPosition(cell)
+  x = x + self.CellWidth / 2
+  y = y + self.CellHeight / 2
+  return x, y
 end
 
 --Get cell at row and column
@@ -80,7 +88,6 @@ function Grid:GetCell(row, column)
   --Clamp row and column to grid
   row = math.min(math.max(0, row), self.RowCount - 1)
   column = math.min(math.max(0, column), self.ColumnCount - 1)
-
   return self.Cells[row][column]
 end
 
@@ -156,18 +163,34 @@ function Grid:PathFind(x1, y1, x2, y2)
   --Keep pathing until the finish cell is found
   until closed[finish]
 
-  --Work back from the finish cells parent to get the path
-  local path = {}
-  self:GeneratePath(path, finish)
+  --Get the path from the start to finish
+  local path = self:GetPath(finish)
+  path[1].X, path[1].Y = x1, y1
+  path[#path].X, path[#path].Y = x2, y2 
 
-  --One of the cells is nil?
-  for k,v in pairs(path) do
-    print(v.Row)
-  end
+  return path
 end
 
 --Generates a path using the parent of the cell
-function Grid:GeneratePath(path, cell)
-  table.insert(path, cell)
-  if cell.Parent then self:GeneratePath(path, cell.Parent) end
+function Grid:GetPath(finish)
+  local t, cell = {}, finish
+
+  --Get path from finish to start
+  repeat
+    table.insert(t, cell)
+    cell = cell.Parent
+  until not cell
+
+  --Convert path to start to finish
+  local t1 = {}
+  for i = #t, 1, -1 do table.insert(t1, t[i]) end
+
+  --Generate x,y coords for the path
+  local path = {}
+  for k,v in pairs(t1) do
+    local x, y = self:GetCellCenter(v)
+    table.insert(path, {X = x, Y = y})
+  end
+
+  return path
 end

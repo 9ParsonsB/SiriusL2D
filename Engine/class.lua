@@ -14,7 +14,7 @@ function Class(name, parent)
   end
 
   --Create class
-  local class = setmetatable({Name=name, Parent=parent or {}}, {__call=Instance, __index=parent})
+  local class = setmetatable({Name=name}, {__call=Instance, __index=parent})
   Classes[name] = class 
 
   --Add class to script enviroment

@@ -31,3 +31,29 @@ function Renderer.Sprite(filePath, x, y, angle, scaleX, scaleY, offsetX, offsetY
   scaleX, scaleY, 
   offsetX or texture:getWidth() / 2, offsetY or texture:getHeight() / 2)
 end
+
+function Renderer.Line(x1, y1, x2, y2, colour)
+  --Set colour
+  local r, g, b, a = love.graphics.getColor()
+  love.graphics.setColor(colour)
+
+  --Draw line
+  love.graphics.line(x1, y1, x2, y2)
+
+  --Restore colour
+  love.graphics.setColor(r,g,b,a)
+end
+
+function Renderer.Lines(lines, colour)
+  --Set colour
+  local r, g, b, a = love.graphics.getColor()
+  love.graphics.setColor(colour)
+
+  --Draw lines
+  for i=1, #lines-1 do
+    love.graphics.line(lines[i].X, lines[i].Y, lines[i+1].X, lines[i+1].Y)
+  end
+
+  --Restore colour
+  love.graphics.setColor(r,g,b,a)
+end

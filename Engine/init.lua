@@ -12,6 +12,7 @@ local Engine = {}
 function Engine.load()
   love.graphics.setBackgroundColor(104, 136, 248)
   love.physics.setMeter(64)
+  love.graphics.setLineStyle("smooth")
 end
 
 function Engine.update(dt)
