@@ -1,45 +1,39 @@
-Class("Game")
+DebugMode = true
+Paused = false
+CurrentUnit = nil
 
-Game.X = 0
-Game.Y = 0
-Game.DebugMode = true
-
-function Game:Create()
-  Scene.Add(self)
+function IsSelected(self)
+  return self == CurrentUnit
 end
 
-function Game:KeyPressed(key)
-  if key == "f3" then self.DebugMode = not self.DebugMode end
-  if key == "space" then Physics.Active = not Physics.Active end
+function KeyPressed(self, key)
+  if key == "space" then Paused = not Paused end
+  if key == "f3" then DebugMode = not DebugMode end
 end
 
-function Game:Ui()
-  self:Debug()
+function DrawUi(self)
+  --Display if the game is paused
+  local w, h = love.graphics.getDimensions()
+  if Paused then Ui.Label("Paused", (w / 2) - 50, h - 100, 100, 30) end
+
+  --Debug drawing
+  if DebugMode then DrawDebug(self) end
 end
 
-function Game:Debug()
-  if not self.DebugMode then return end
-
+function DrawDebug(self)
   --Frame rate
-  love.graphics.print("Frame rate: " .. love.timer.getFPS(), self.X, self.Y)
+  Ui.Label("Frame rate: " .. love.timer.getFPS(), self.X, self.Y, 300, 20)
 
   --Render info
   local name, version, vendor, device = love.graphics.getRendererInfo()
-  love.graphics.print(name .. " " .. version, self.X, self.Y + 15)
-  love.graphics.print(vendor .. " " .. device, self.X, self.Y + 30)
+  Ui.Label(name .. " " .. version, self.X, self.Y + 15, 300, 20)
+  Ui.Label(vendor .. " " .. device, self.X, self.Y + 30, 300, 20)
 
   --Memory usage
-  love.graphics.print('Memory used(KB): ' .. collectgarbage('count'), self.X, self.Y + 45)
+  Ui.Label('Memory used(KB): ' .. collectgarbage('count'), self.X, self.Y + 45, 300, 20)
 
-  --Local position of mouse
-  local x, y = love.mouse.getPosition()
-  love.graphics.print("Screen pos: X:" .. x .. " Y:" .. y, self.X, self.Y + 60)
-
-  --World position mouse
-  local x, y = Scene.Camera:GetMousePosition()
-  love.graphics.print("World pos: X:" .. x .. " Y:" .. y, self.X, self.Y + 75)
-
-  if not Physics.Active then
-    Ui.Label("Paused", 800, 850, 100, 20)
+  --Show unit that is selected
+  if CurrentUnit then
+    Ui.Label(string.format("Unit X,Y: %i %i", CurrentUnit.X, CurrentUnit.Y), 0, 60, 100, 20)
   end
 end

@@ -1,13 +1,16 @@
 require "Engine"
 
---Ui
-Script.Load("Scripts/game")
+--Load scripts
+Scripts.Game = LoadScript("Scripts/game")
+Scripts.UnitSystem = LoadScript("Scripts/unitSystem")
+Scripts.PathFinding = LoadScript("Scripts/pathFinding")
+Scripts.Player = LoadScript("Scripts/player")
+Scripts.Movement = LoadScript("Scripts/movement")
 
---Game
-Script.Load("Scripts/entity")
-Script.Load("Scripts/event")
-Script.Load("Scripts/ship")
-Script.Load("Scripts/weapon")
-Script.Load("Scripts/room")
-Script.Load("Scripts/crewMember")
-Script.Load("Scripts/init")
+--Load objects
+Objects.Game = LoadObject("Objects/game")
+Objects.Player = LoadObject("Objects/player")
+
+--Create objects
+Instance("Game", 0, 0)
+--Instance("Player", 200, 200)

@@ -9,6 +9,25 @@ function Physics.Update(dt)
 	if Physics.Active then Physics.World:update(dt) end
 end
 
+local Objects = {}
+
+local function Callback(fixture)
+  local object = fixture:getUserData()
+  if object then table.insert(Objects, object) end
+  return 1
+end
+
+function Physics.RayCast(x1, y1, x2, y2)
+  Objects = {}
+  Physics.World:rayCast(x1, y1, x2, y2, Callback)
+  return Objects
+end
+
+function Physics.GetObjects(topLeftX, topLeftY, bottomRightX, bottomRightY)
+  Objects = {}
+  Physics.World:queryBoundingBox(topLeftX, topLeftY, bottomRightX, bottomRightY, Callback)
+end
+
 function Physics.beginContact(a, b, coll)
   local self = a:getUserData()
   local other = b:getUserData()
@@ -27,10 +46,6 @@ function Physics.endContact(a, b, coll)
   end
 end
 
-function Physics.preSolve(a, b, coll)
- 
-end
-
 function Physics.postSolve(a, b, coll, normalimpulse1, tangentimpulse1, normalimpulse2, tangentimpulse2)
   local self = a:getUserData()
   local other = b:getUserData()
@@ -43,4 +58,4 @@ function Physics.postSolve(a, b, coll, normalimpulse1, tangentimpulse1, normalim
 end
 
 --Register world callbacks
-Physics.World:setCallbacks(Physics.beginContact, Physics.endContact, Physics.preSolve, Physics.postSolve)
+Physics.World:setCallbacks(Physics.beginContact, Physics.endContact, nil, Physics.postSolve)

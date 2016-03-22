@@ -1,7 +1,7 @@
 local Theme = Class("Theme")
 
 Theme.CornerRadius = 5
-Theme.Default = { 224, 224, 224 }
+Theme.Default = { 255, 255, 255 }
 Theme.Hover = { 0, 0, 224}
 Theme.TextColour = { 0, 0, 0}
 

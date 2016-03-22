@@ -9,7 +9,7 @@ Ui = {
   Theme = Theme
 }
 
-function Ui.Update()
+function Ui.Update(dt)
   Ui.LMouse = false
 end
 
