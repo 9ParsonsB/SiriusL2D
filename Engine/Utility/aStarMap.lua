@@ -125,10 +125,8 @@ function Grid:GetLowestFCell(set)
   local lowest = nil
   for k,v in pairs(set) do
     if not lowest then lowest = k end
-    --print(k.F)
     if k.F < lowest.F then lowest = k end
   end
-  --print("FOUND LOWEST")
   return lowest
 end
 
@@ -146,7 +144,7 @@ function Grid:PathFind(x1, y1, x2, y2)
   open[start] = true
 
   --Start searching for the path
-  while not closed[finish] do   
+  while not closed[finish] do
     --Look for the lowest F cost square on the open list
     --and switch it to the closed list
     local current = self:GetLowestFCell(open)
@@ -176,6 +174,7 @@ function Grid:PathFind(x1, y1, x2, y2)
           if v.G < current.G then
             v.Parent = current
             v:CalculateCost(current, finish)
+            print("R: " .. v.Row .. " C: " .. v.Column .. " F: " .. v.F)
           end
         end
       end
