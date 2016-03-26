@@ -1,4 +1,4 @@
-Map = Grid(100, 100, 4, 2)
+Map = Grid(100, 100, 30, 10)
 Path = {}
 
 --Calculate path

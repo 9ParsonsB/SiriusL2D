@@ -8,16 +8,37 @@ function Cell:Create(row, column, walkable)
   self.Walkable = walkable or true
 end
 
-function Cell:CalculateCost(target, finish)
-  --If cell is diagonal to the target the the G cost is 14. Otherwise it is 10.
-  self.G = 10
-  if self.Row ~= target.Row and self.Column ~= target.Column then self.G = 14 end
+function Cell:ResetCost()
+  self.G, self.H, self.F = 0, 0, 0
+end
 
-  --H cost(Heuristic/guess, the distance to the finish cell)
-  self.H = (math.abs((finish.Row - self.Row)) + math.abs((finish.Column - self.Column))) * 10
+function Cell:CalculateCost(current, finish)
+  --G cost is the current G cost + the movement cost(10 for up/down and 14 for diagonal)
+  local G = 10
+  if self.Row ~= current.Row and self.Column ~= current.Column then G = 14 end
+  self.G = current.G + G 
 
-  --F cost which is used to determine if cell should be pathed to. Result of both G and H.
+  --H cost(Distance to the finish cell)
+  self.H = (math.abs(finish.Row - self.Row) + math.abs(finish.Column - self.Column))
+
+  --F cost(G + H)
   self.F = self.G + self.H
+end
+
+function Cell:Draw(grid)
+  if self.F == 0 and self.Walkable then return end
+    
+  --Colour defaults to black
+  local colour = {0, 0, 0}
+  local x,y = grid:GetCellPosition(self)
+
+  --If cell walkable then the colour is the f cost
+  if self.Walkable then 
+    colour = {255 - self.F, 255 - self.F, 255 - self.F} 
+  end
+  
+  --Draw cell
+  --Renderer.Box(x, y, grid.CellWidth, grid.CellHeight, colour)
 end
 
 --Grid that stores 2d table of cells
@@ -36,23 +57,13 @@ function Grid:Create(x, y, row, column)
 end
 
 function Grid:Draw()
-  --Draw columns
-  for i = 0, self.RowCount do
-    love.graphics.line(self.X + self.CellWidth * i, self.Y, self.X + self.CellWidth * i, self.Y + self.Height)
-  end
-
-  --Draw rows
-  for i = 0, self.ColumnCount do
-    love.graphics.line(self.X , self.Y + self.CellHeight * i, self.X + self.Width, self.Y + self.CellHeight * i)
-  end
+  --Draw grid outline
+  for i = 0, self.RowCount do Renderer.Line(self.X + self.CellWidth * i, self.Y, self.X + self.CellWidth * i, self.Y + self.Height) end
+  for i = 0, self.ColumnCount do Renderer.Line(self.X , self.Y + self.CellHeight * i, self.X + self.Width, self.Y + self.CellHeight * i) end
 
   --Draw cells
-  for k,v in pairs(self.Cells) do
-    for k2, v2 in pairs(v) do
-      if not v2.Walkable then
-        love.graphics.rectangle("fill", self.X + v2.Row * self.CellHeight, self.Y + v2.Column * self.CellHeight, self.CellWidth, self.CellHeight)
-      end
-    end
+  for i,Row in pairs(self.Cells) do
+    for j, Cell in pairs(Row) do Cell:Draw(self) end
   end
 end
 
@@ -61,6 +72,12 @@ function Grid:Clear()
   self.Cells = {}
   for i=0, self.RowCount - 1 do self.Cells[i] = {} 
     for j=0, self.ColumnCount - 1 do self.Cells[i][j] = Cell(i, j) end
+  end
+end
+
+function Grid:ResetCosts()
+  for i,Row in pairs(self.Cells) do
+    for j, Cell in pairs(Row) do Cell:ResetCost() end
   end
 end
 
@@ -132,11 +149,11 @@ end
 
 --Calculate a path between 2 points on the grid
 function Grid:PathFind(x1, y1, x2, y2)
+  self:ResetCosts()
+
   --Start and finish cells
   local start = self:GetCell(self:GetCellLocation(x1, y1))
   local finish = self:GetCell(self:GetCellLocation(x2, y2))
-
-  --Cannot path if start or finish does not exist
   if not start or not finish then return {} end
 
   --Add start cell to the open list
@@ -145,8 +162,7 @@ function Grid:PathFind(x1, y1, x2, y2)
 
   --Start searching for the path
   while not closed[finish] do
-    --Look for the lowest F cost square on the open list
-    --and switch it to the closed list
+    --Look for the lowest F cost square on the open list and switch it to the closed list
     local current = self:GetLowestFCell(open)
    
     --If no open cells exist then path cannot be found
@@ -169,36 +185,33 @@ function Grid:PathFind(x1, y1, x2, y2)
           v.Parent = current
           v:CalculateCost(current, finish)
         else
-          --If it is already on the open list the check if the path is better. Check if the G cost of this cell is lower than the current G cost.
-          --If it is then change the better cells parent to the current and recalculate the G and F scores of it.
-          if v.G < current.G then
+
+          --If it is already on the open list the check if the path is better using the G cost.
+          local Distance = current.G + 10
+          if current.Row ~= v.Row and current.Column ~= v.Column then Distance = current.G + 14 end
+
+          if Distance < v.G then
             v.Parent = current
             v:CalculateCost(current, finish)
-            print("R: " .. v.Row .. " C: " .. v.Column .. " F: " .. v.F)
           end
         end
       end
     end
   end
 
-  --Get the path from the start to finish
-  local path = self:GetPath(finish)
-  --path[1].X, path[1].Y = x1, y1
-
-  return path
+  return self:GetPath(finish)
 end
 
 --Generates a path using the parent of the cell
-function Grid:GetPath(finish)
-  local t, cell = {}, finish
-
+function Grid:GetPath(cell)
   --Get path from finish to start
+  local t = {}
   repeat
     table.insert(t, cell)
     cell = cell.Parent
   until not cell
 
-  --Convert path to start to finish
+  --Reverse path
   local t1 = {}
   for i = #t, 1, -1 do table.insert(t1, t[i]) end
 

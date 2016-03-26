@@ -1,6 +1,7 @@
 Renderer = {
   ContentDir = "Content/", 
-  Textures = {}
+  Textures = {},
+  R,G,B,A = 0, 0, 0, 0
 }
 
 function Renderer.GetTexture(filePath)
@@ -32,28 +33,35 @@ function Renderer.Sprite(filePath, x, y, angle, scaleX, scaleY, offsetX, offsetY
   offsetX or texture:getWidth() / 2, offsetY or texture:getHeight() / 2)
 end
 
-function Renderer.Line(x1, y1, x2, y2, colour)
-  --Set colour
-  local r, g, b, a = love.graphics.getColor()
+--Set colour for rendering
+function Renderer.SetColour(colour)
+  colour = colour or {255, 255, 255}
+  Renderer.R, Renderer.G, Renderer.B, Renderer.A = love.graphics.getColor()
   love.graphics.setColor(colour)
-
-  --Draw line
-  love.graphics.line(x1, y1, x2, y2)
-
-  --Restore colour
-  love.graphics.setColor(r,g,b,a)
 end
 
+--Reset colour to what it was
+function Renderer.ResetColour()
+  love.graphics.setColor(Renderer.R, Renderer.G, Renderer.B, Renderer.A)
+end
+
+--Draw box
+function Renderer.Box(x, y, width, height, colour)
+  Renderer.SetColour(colour)
+  love.graphics.rectangle("fill", x, y, width, height)
+  Renderer.ResetColour()
+end
+
+--Draw line
+function Renderer.Line(x1, y1, x2, y2, colour)
+  Renderer.SetColour(colour)
+  love.graphics.line(x1, y1, x2, y2)
+  Renderer.ResetColour()
+end
+
+--Draw table of lines
 function Renderer.Lines(lines, colour)
-  --Set colour
-  local r, g, b, a = love.graphics.getColor()
-  love.graphics.setColor(colour)
-
-  --Draw lines
-  for i=1, #lines-1 do
-    love.graphics.line(lines[i].X, lines[i].Y, lines[i+1].X, lines[i+1].Y)
-  end
-
-  --Restore colour
-  love.graphics.setColor(r,g,b,a)
+  Renderer.SetColour(colour)
+  for i=1, #lines-1 do love.graphics.line(lines[i].X, lines[i].Y, lines[i+1].X, lines[i+1].Y) end
+  Renderer.ResetColour()
 end
