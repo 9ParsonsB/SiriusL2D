@@ -19,26 +19,29 @@ function Cell:CalculateCost(current, finish)
   self.G = current.G + G 
 
   --H cost(Distance to the finish cell)
-  self.H = (math.abs(finish.Row - self.Row) + math.abs(finish.Column - self.Column))
+  self.H = (math.abs(finish.Row - self.Row) + math.abs(finish.Column - self.Column)) * 10
 
   --F cost(G + H)
   self.F = self.G + self.H
 end
 
 function Cell:Draw(grid)
-  if self.F == 0 and self.Walkable then return end
-    
-  --Colour defaults to black
-  local colour = {0, 0, 0}
-  local x,y = grid:GetCellPosition(self)
+  --[[if self.F ~= 0 then
+    local colour = {self.F, self.F, self.F} 
+    local x,y = grid:GetCellPosition(self)
+    Renderer.Box(x, y, grid.CellWidth, grid.CellHeight, colour)
+  end--]]
 
-  --If cell walkable then the colour is the f cost
-  if self.Walkable then 
-    colour = {255 - self.F, 255 - self.F, 255 - self.F} 
+  if not self.Walkable then
+    local colour = {0, 0, 0}
+    local x,y = grid:GetCellPosition(self)
+    Renderer.Box(x, y, grid.CellWidth, grid.CellHeight, colour)
   end
-  
-  --Draw cell
-  --Renderer.Box(x, y, grid.CellWidth, grid.CellHeight, colour)
+
+  if self.F ~= 0 then
+    local x,y = grid:GetCellPosition(self)
+    love.graphics.print(self.F, x, y)
+  end
 end
 
 --Grid that stores 2d table of cells
@@ -60,7 +63,9 @@ function Grid:Draw()
   --Draw grid outline
   for i = 0, self.RowCount do Renderer.Line(self.X + self.CellWidth * i, self.Y, self.X + self.CellWidth * i, self.Y + self.Height) end
   for i = 0, self.ColumnCount do Renderer.Line(self.X , self.Y + self.CellHeight * i, self.X + self.Width, self.Y + self.CellHeight * i) end
+end
 
+function Grid:DebugDraw()
   --Draw cells
   for i,Row in pairs(self.Cells) do
     for j, Cell in pairs(Row) do Cell:Draw(self) end
@@ -161,12 +166,11 @@ function Grid:PathFind(x1, y1, x2, y2)
   open[start] = true
 
   --Start searching for the path
-  while not closed[finish] do
+  repeat
     --Look for the lowest F cost square on the open list and switch it to the closed list
     local current = self:GetLowestFCell(open)
-   
-    --If no open cells exist then path cannot be found
-    if not current then return {} end
+
+    --print(current.Row .. " " .. current.Column)
 
     --Move to closed list
     open[current] = nil
@@ -197,7 +201,7 @@ function Grid:PathFind(x1, y1, x2, y2)
         end
       end
     end
-  end
+  until closed[finish]
 
   return self:GetPath(finish)
 end

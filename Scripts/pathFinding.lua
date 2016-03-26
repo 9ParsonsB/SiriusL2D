@@ -10,5 +10,6 @@ end
 --Draw map and path
 function Draw(self)
   Map:Draw()
+  if Scripts.Game.DebugMode then Map:DebugDraw() end
   Renderer.Lines(Path, {0, 0, 0})
 end
