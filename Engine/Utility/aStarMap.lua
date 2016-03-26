@@ -86,8 +86,14 @@ function Grid:ResetCosts()
   end
 end
 
+--Toggles the walkability of a cell
+function Grid:Toggle(x, y)
+  local cell = self:GetCell(self:GetCellLocation(x, y))
+  cell.Walkable = not cell.Walkable
+end
+
 --Marks a area of the grid unwalkable
-function Grid:Insert(x, y, width, height)
+--[[function Grid:Insert(x, y, width, height)
   local row, column = self:GetCellLocation(x, y)
   local rowCount, columnCount = width / self.CellWidth, height / self.CellHeight
 
@@ -97,7 +103,7 @@ function Grid:Insert(x, y, width, height)
       self:GetCell(i, j).Walkable = false
     end
   end
-end
+end--]]
 
 --Convert x, y to row, column
 function Grid:GetCellLocation(x, y)

@@ -7,6 +7,7 @@ function IsSelected(self)
 end
 
 function KeyPressed(self, key)
+  if key == "escape" then love.event.quit() end
   if key == "space" then Paused = not Paused end
   if key == "f3" then DebugMode = not DebugMode end
 end
