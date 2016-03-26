@@ -40,7 +40,7 @@ function Cell:Draw(grid)
 
   if self.F ~= 0 then
     local x,y = grid:GetCellPosition(self)
-    love.graphics.print(self.F, x, y)
+    love.graphics.print(self.G, x, y)
   end
 end
 
@@ -135,7 +135,7 @@ function Grid:GetAdacentCells(cell)
   cells.TopRight = self:GetCell(cell.Row + 1, cell.Column - 1)
   cells.Left = self:GetCell(cell.Row - 1, cell.Column)
   cells.Right = self:GetCell(cell.Row + 1, cell.Column)
-  cells.BottomLeft = self:GetCell(cell.Row - 1, cell.Column - 1)
+  cells.BottomLeft = self:GetCell(cell.Row - 1, cell.Column + 1)
   cells.Bottom = self:GetCell(cell.Row, cell.Column + 1)
   cells.BottomRight = self:GetCell(cell.Row + 1, cell.Column + 1)
 
@@ -179,7 +179,7 @@ function Grid:PathFind(x1, y1, x2, y2)
 
       --If it is walkable and it is not on the closed list
       if v.Walkable and not closed[v] then
- 
+      
         --If it is not on the open list then add it. Make the current cell the parent of this cell and calculate the costs
         if not open[v] then
           open[v] = true
@@ -191,6 +191,7 @@ function Grid:PathFind(x1, y1, x2, y2)
           local Distance = current.G + 10
           if current.Row ~= v.Row and current.Column ~= v.Column then Distance = current.G + 14 end
 
+          --print(Distance)
           if Distance < v.G then
             v.Parent = current
             v:CalculateCost(current, finish)
