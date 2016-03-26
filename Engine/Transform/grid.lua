@@ -8,8 +8,9 @@ function Cell:Create(row, column, walkable)
   self.Walkable = walkable or true
 end
 
-function Cell:ResetCost()
+function Cell:Reset()
   self.G, self.H, self.F = 0, 0, 0
+  self.Parent = nil
 end
 
 function Cell:CalculateCost(current, finish)
@@ -46,7 +47,7 @@ end
 
 --Grid that stores 2d table of cells
 --Uses A* to generate a path between two points
-Grid = Class("Grid")
+local Grid = Class("Grid")
 
 --Width and height of a single cell
 Grid.CellWidth = 30
@@ -82,7 +83,7 @@ end
 
 function Grid:ResetCosts()
   for i,Row in pairs(self.Cells) do
-    for j, Cell in pairs(Row) do Cell:ResetCost() end
+    for j, Cell in pairs(Row) do Cell:Reset() end
   end
 end
 
@@ -90,6 +91,16 @@ end
 function Grid:Toggle(x, y)
   local cell = self:GetCell(self:GetCellLocation(x, y))
   cell.Walkable = not cell.Walkable
+end
+
+function Grid:Place(x, y)
+  local cell = self:GetCell(self:GetCellLocation(x, y))
+  cell.Walkable = false
+end
+
+function Grid:Remove(x, y)
+  local cell = self:GetCell(self:GetCellLocation(x, y))
+  cell.Walkable = true
 end
 
 --Marks a area of the grid unwalkable
@@ -136,14 +147,14 @@ end
 function Grid:GetAdacentCells(cell)
   local cells = {}
 
-  cells.TopLeft = self:GetCell(cell.Row - 1, cell.Column - 1)
-  cells.Top = self:GetCell(cell.Row, cell.Column - 1)
-  cells.TopRight = self:GetCell(cell.Row + 1, cell.Column - 1)
-  cells.Left = self:GetCell(cell.Row - 1, cell.Column)
-  cells.Right = self:GetCell(cell.Row + 1, cell.Column)
-  cells.BottomLeft = self:GetCell(cell.Row - 1, cell.Column + 1)
-  cells.Bottom = self:GetCell(cell.Row, cell.Column + 1)
-  cells.BottomRight = self:GetCell(cell.Row + 1, cell.Column + 1)
+  table.insert(cells, self:GetCell(cell.Row - 1, cell.Column - 1))
+  table.insert(cells, self:GetCell(cell.Row, cell.Column - 1))
+  table.insert(cells, self:GetCell(cell.Row + 1, cell.Column - 1))
+  table.insert(cells, self:GetCell(cell.Row - 1, cell.Column))
+  table.insert(cells, self:GetCell(cell.Row + 1, cell.Column))
+  table.insert(cells, self:GetCell(cell.Row - 1, cell.Column + 1))
+  table.insert(cells, self:GetCell(cell.Row, cell.Column + 1))
+  table.insert(cells, self:GetCell(cell.Row + 1, cell.Column + 1))
 
   return cells
 end
@@ -206,7 +217,7 @@ function Grid:PathFind(x1, y1, x2, y2)
       end
     end
   until closed[finish]
-
+    
   return self:GetPath(finish)
 end
 
@@ -232,3 +243,4 @@ function Grid:GetPath(cell)
 
   return path
 end
+return Grid

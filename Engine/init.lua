@@ -5,7 +5,7 @@ require "Engine/Network"
 require "Engine/Physics"
 require "Engine/Renderer"
 require "Engine/Ui"
-require "Engine/Utility"
+require "Engine/Transform"
 
 local Engine = {}
 

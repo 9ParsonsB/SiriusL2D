@@ -2,8 +2,7 @@ require "Engine"
 
 --Load scripts
 Scripts.Game = LoadScript("Scripts/game")
-Scripts.UnitSystem = LoadScript("Scripts/unitSystem")
-Scripts.PathFinding = LoadScript("Scripts/pathFinding")
+Scripts.Path = LoadScript("Scripts/path")
 Scripts.Player = LoadScript("Scripts/player")
 Scripts.Movement = LoadScript("Scripts/movement")
 
@@ -13,4 +12,4 @@ Objects.Player = LoadObject("Objects/player")
 
 --Create objects
 Instance("Game", 0, 0)
---Instance("Player", 200, 200)
+Instance("Player", 200, 200)
