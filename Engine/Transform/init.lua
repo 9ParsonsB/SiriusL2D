@@ -1,16 +1,16 @@
-Vector = {}
+Transform = {}
 
-function Vector.Len(x, y)
+--[[function Transform.Len(x, y)
   return math.sqrt(x * x + y * y)
 end
 
-function Vector.LenSq()
+function Transform.LenSq()
   return x * x + y * y
 end
 
-function Vector.Normalize(x, y)
+function Transform.Normalize(x, y)
   local len = Vector.Len(x, y)
   x = x / len
   y = y / len
   return x, y
-end
+end--]]

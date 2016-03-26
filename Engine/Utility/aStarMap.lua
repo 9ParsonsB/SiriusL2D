@@ -159,20 +159,17 @@ function Grid:PathFind(x1, y1, x2, y2)
   --Start and finish cells
   local start = self:GetCell(self:GetCellLocation(x1, y1))
   local finish = self:GetCell(self:GetCellLocation(x2, y2))
-  if not start or not finish then return {} end
 
-  --Add start cell to the open list
+  --Return if cell cannot be pathed to
+  if not start.Walkable or not finish.Walkable then return {} end
+
+  --Open/closed lists
   local open, closed = {}, {}
   open[start] = true
 
-  --Start searching for the path
   repeat
-    --Look for the lowest F cost square on the open list and switch it to the closed list
+    --Move cell with lowest f cost to closed list
     local current = self:GetLowestFCell(open)
-
-    --print(current.Row .. " " .. current.Column)
-
-    --Move to closed list
     open[current] = nil
     closed[current] = true
 
