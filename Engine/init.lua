@@ -9,7 +9,8 @@ require "Engine/Utility"
 
 local Engine = {}
 
-function Engine.load()
+function Engine.load(arg)
+  if arg[#arg] == "-debug" then require("mobdebug").start() end
   love.graphics.setBackgroundColor(104, 136, 248)
   love.physics.setMeter(64)
   love.graphics.setLineStyle("smooth")
