@@ -2,6 +2,7 @@ Scripts = {}
 Objects = {}
 
 local Instances = {}
+local Indexes = {}
 local TypeInstances = {}
 
 Script = {
@@ -105,10 +106,10 @@ end
 function Instance(name, x, y)
   local self = {Name = name, X = x or 0, Y = y or 0}
   for k,v in pairs(Objects[name]) do self[k] = v end
-  --self.Scripts = Objects[name].Scripts
 
   --Store object
   table.insert(Instances, self)
+  Indexes[self] = #Instances
 
   --Store object by type
   TypeInstances[name] = TypeInstances[name] or setmetatable({}, {__mode="v"})
@@ -118,4 +119,13 @@ function Instance(name, x, y)
   Script.Execute(self, "Create")
 
   return self
+end
+
+function Destroy(self)
+  local index = Indexes[self]
+  if index then
+    Instances[index] = Instances[#Instances]
+    Indexes[self] = nil
+    table.remove(Instances)
+  end
 end

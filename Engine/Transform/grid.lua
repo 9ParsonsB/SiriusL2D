@@ -27,19 +27,15 @@ function Cell:CalculateCost(current, finish)
 end
 
 function Cell:Draw(grid)
-  --[[if self.F ~= 0 then
-    local colour = {self.F, self.F, self.F} 
-    local x,y = grid:GetCellPosition(self)
-    Renderer.Box(x, y, grid.CellWidth, grid.CellHeight, colour)
-  end--]]
-
+  --Draw unwalkable cells
   if not self.Walkable then
     local colour = {0, 0, 0}
     local x,y = grid:GetCellPosition(self)
     Renderer.Box(x, y, grid.CellWidth, grid.CellHeight, colour)
   end
 
-  if self.F ~= 0 then
+  --Debug path values
+  if grid.Debug and self.F ~= 0 then
     local x,y = grid:GetCellPosition(self)
     love.graphics.print(self.G, x, y)
   end
@@ -53,6 +49,9 @@ local Grid = Class("Grid")
 Grid.CellWidth = 30
 Grid.CellHeight = 30
 
+Grid.Debug = false
+Grid.ShowLines = false
+
 function Grid:Create(x, y, row, column)
   self.X, self.Y = x, y
   self.RowCount, self.ColumnCount = row, column
@@ -61,12 +60,12 @@ function Grid:Create(x, y, row, column)
 end
 
 function Grid:Draw()
-  --Draw grid outline
-  for i = 0, self.RowCount do Renderer.Line(self.X + self.CellWidth * i, self.Y, self.X + self.CellWidth * i, self.Y + self.Height) end
-  for i = 0, self.ColumnCount do Renderer.Line(self.X , self.Y + self.CellHeight * i, self.X + self.Width, self.Y + self.CellHeight * i) end
-end
+  --Draw grid lines
+  if self.ShowLines then
+    for i = 0, self.RowCount do Renderer.Line(self.X + self.CellWidth * i, self.Y, self.X + self.CellWidth * i, self.Y + self.Height) end
+    for i = 0, self.ColumnCount do Renderer.Line(self.X , self.Y + self.CellHeight * i, self.X + self.Width, self.Y + self.CellHeight * i) end
+  end
 
-function Grid:DebugDraw()
   --Draw cells
   for i,Row in pairs(self.Cells) do
     for j, Cell in pairs(Row) do Cell:Draw(self) end
@@ -218,7 +217,16 @@ function Grid:PathFind(x1, y1, x2, y2)
     end
   until closed[finish]
     
-  return self:GetPath(finish)
+  --Get path
+  local Path = self:GetPath(finish)
+
+  --local distX, distY = Path[1].X - x1, Path[1].Y - y1
+  --for k,v in pairs(Path) do v.X, v.Y = v.X - distX, v.Y - distY end
+
+  --Path[1].X, Path[1].Y = x1, y1
+  --Path[#Path].X, Path[#Path].Y = x2, y2
+
+  return Path
 end
 
 --Generates a path using the parent of the cell

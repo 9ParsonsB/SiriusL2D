@@ -13,11 +13,8 @@ function KeyPressed(self, key)
 end
 
 function DrawUi(self)
-  --Display if the game is paused
   local w, h = love.graphics.getDimensions()
   if Paused then Ui.Label("Paused", (w / 2) - 50, h - 100, 100, 30) end
-
-  --Debug drawing
   if DebugMode then DrawDebug(self) end
 end
 

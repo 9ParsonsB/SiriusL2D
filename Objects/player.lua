@@ -1,2 +1,2 @@
-Scripts[0] = "Movement"
-Scripts[1] = "Player"
+Scripts[0] = "Player"
+Scripts[1] = "Movement"
