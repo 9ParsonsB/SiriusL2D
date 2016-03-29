@@ -20,7 +20,7 @@ function Script.Reload()
 end
 
 function Script:Load(name, filePath)
-  local env = setmetatable({}, {__index=_G})
+  local env = Scripts[name] or setmetatable({}, {__index=_G})
   local chunk = love.filesystem.load(Script.Dir .. filePath .. ".lua")
   setfenv(chunk, env)
   chunk()
