@@ -1,9 +1,9 @@
-require "Engine/script"
 require "Engine/class"
 
 require "Engine/Network"
 require "Engine/Physics"
 require "Engine/Renderer"
+require "Engine/Scene"
 require "Engine/Ui"
 require "Engine/Transform"
 
@@ -12,36 +12,35 @@ local Engine = {}
 function Engine.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end
   love.graphics.setBackgroundColor(104, 136, 248)
-  love.physics.setMeter(64)
   love.graphics.setLineStyle("smooth")
 end
 
 function Engine.update(dt)
-  Script.Update(dt)
+  Scene.Update(dt)
   Ui.Update(dt)
   Physics.Update(dt)
 end
 
 function Engine.draw()
-  Script.Draw()
+  Scene.Draw()
   Ui.Draw()
 end
 
-function Engine.keypressed(key)
-  Script.KeyPressed(key)
+function Engine.keypressed(key) 
+  Scene.Callback("KeyPressed", key) 
 end
-function Engine.keyreleased(key)
-  Script.KeyReleased(key)
+function Engine.keyreleased(key) 
+  Scene.Callback("KeyReleased", key) 
 end
 function Engine.mousepressed(x, y, button, isTouch)
-  Script.MousePressed(x, y, button, isTouch)
+  Scene.Callback("MousePressed", x, y, button, isTouch)
   Ui.MousePressed(x, y, button, isTouch)
 end
-function Engine.mousereleased(x, y, button)
-  Script.MouseReleased(x, y, button, isTouch)
+function Engine.mousereleased(x, y, button) 
+  Scene.Callback("MouseReleased", x, y, button)
 end
 function Engine.mousemoved(x, y, dx, dy)
-  Script.MouseMoved(x, y, dx, dy)
+  Scene.Callback("MouseMoved", x, y, dx, dy)
 end
 
 --Connect engine callbacks to love2d

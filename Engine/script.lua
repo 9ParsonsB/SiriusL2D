@@ -24,8 +24,6 @@ end
 
 function Script.Update(dt)
   Script.ExecuteAll("Update", dt)
-
-  --Live script editing
   if Script.LiveEdit then Script.Reload() end
 end
 
@@ -34,25 +32,11 @@ function Script.Draw()
   Script.ExecuteAll("DrawUi")
 end
 
-function Script.KeyPressed(key)
-  Script.ExecuteAll("KeyPressed", key)
-end
-
-function Script.KeyReleased(key)
-  Script.ExecuteAll("KeyReleased", key)
-end
-
-function Script.MousePressed(x, y, button, isTouch)
-  Script.ExecuteAll("MousePressed", x, y, button, isTouch)
-end
-
-function Script.MouseReleased(x, y, button, isTouch)
-  Script.ExecuteAll("MouseReleased", x, y, button)
-end
-
-function Script.MouseMoved(x, y, dx, dy)
-  Script.ExecuteAll("MouseMoved", x, y, dx, dy)
-end
+function Script.KeyPressed(key) Script.ExecuteAll("KeyPressed", key) end
+function Script.KeyReleased(key) Script.ExecuteAll("KeyReleased", key) end
+function Script.MousePressed(x, y, button, isTouch) Script.ExecuteAll("MousePressed", x, y, button, isTouch) end
+function Script.MouseReleased(x, y, button, isTouch) Script.ExecuteAll("MouseReleased", x, y, button) end
+function Script.MouseMoved(x, y, dx, dy) Script.ExecuteAll("MouseMoved", x, y, dx, dy) end
 
 --Reloads modified scripts
 function Script.Reload()
@@ -106,7 +90,7 @@ end
 function Instance(name, x, y)
   local self = {Name = name, X = x or 0, Y = y or 0}
   for k,v in pairs(Objects[name]) do self[k] = v end
-
+  
   --Store object
   table.insert(Instances, self)
   Indexes[self] = #Instances

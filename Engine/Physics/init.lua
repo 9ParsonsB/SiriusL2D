@@ -2,7 +2,8 @@ Physics = {
   Active = true, 
   Debug = true, 
   World = love.physics.newWorld(0, 0, true),
-  Collider = require "Engine/Physics/collider"
+  Collider = require "Engine/Physics/collider",
+  Colliders = {}
 }
 
 function Physics.Update(dt)
@@ -31,9 +32,9 @@ end
 function Physics.beginContact(a, b, coll)
   local self = a:getUserData()
   local other = b:getUserData()
-   if self and other then
-      if type(self.CollisionEnter) == "function" then self:CollisionEnter(other, coll) end
-      if type(other.CollisionEnter) == "function" then other:CollisionEnter(self, coll) end
+  if self and other then
+    if type(self.CollisionEnter) == "function" then self:CollisionEnter(other, coll) end
+    if type(other.CollisionEnter) == "function" then other:CollisionEnter(self, coll) end
   end
 end
 
@@ -41,8 +42,8 @@ function Physics.endContact(a, b, coll)
   local self = a:getUserData()
   local other = b:getUserData()
   if self and other then
-      if type(self.CollisionExit) == "function" then self:CollisionExit(other, coll) end
-      if type(other.CollisionExit) == "function" then other:CollisionExit(self, coll) end
+    if type(self.CollisionExit) == "function" then self:CollisionExit(other, coll) end
+    if type(other.CollisionExit) == "function" then other:CollisionExit(self, coll) end
   end
 end
 

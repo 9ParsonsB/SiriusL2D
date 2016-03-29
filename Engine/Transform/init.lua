@@ -43,3 +43,23 @@ function Transform.FollowPath(self, path, speed)
     table.remove(path, 1)
   end
 end
+
+function Transform.MoveTo(self, targetX, targetY, speed)
+  local dt = love.timer.getDelta()
+  
+  --Get distance to target
+  local distX, distY = targetX - self.X, targetY - self.Y
+
+  --Get amount to move towards target
+  local dirX, dirY = Transform.GetDirection(self, {X = targetX, Y = targetY})
+  local speedX, speedY = dirX * speed * dt, dirY * speed * dt
+
+  --Move towards target
+  self.X = self.X + speedX
+  self.Y = self.Y + speedY
+
+  --Stop when target is reached
+  if math.abs(speedX) >= math.abs(distX) and math.abs(speedY) >= math.abs(distY) then
+    self.X, self.Y = targetX, targetY
+  end
+end

@@ -1,23 +1,17 @@
 local Collider = Class("Collider")
 
 function Collider:Create(object, type, shape, arg1, arg2)
-  self.Body = love.physics.newBody(Physics.World, object.X / 2, object.Y / 2, type)
-
-  --arg1-Width arg2-Height
-  if shape == "box" then
-    local width, height = arg1 or 1, arg2 or 1
-    self.Shape = love.physics.newRectangleShape(width / 2, height / 2) 
-  end
-
-  --arg1-Radius
-  if shape == "circle" then
-    local radius = arg1 or 1
-    self.Shape = love.physics.newCircleShape(radius)
-  end
+  self.Body = love.physics.newBody(Physics.World, object.X, object.Y, type)
+  
+  --Collider shape
+  if shape == "box" then self.Shape = love.physics.newRectangleShape(arg1 or 1, arg2 or 1) end
+  if shape == "circle" then self.Shape = love.physics.newCircleShape(arg1 or 1)  end
 
   --Attach body to shape and store object for collision callbacks
   self.Fixture = love.physics.newFixture(self.Body, self.Shape, 1)
   self.Fixture:setUserData(object)
+
+  Physics.Colliders[object] = self.Body
 end
 
 function Collider:Draw()

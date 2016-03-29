@@ -1,7 +1,8 @@
 Renderer = {
+  Camera = require "Engine/Renderer/camera",
   ContentDir = "Content/", 
   Textures = {},
-  R,G,B,A = 0, 0, 0, 0
+  R,G,B,A = 0, 0, 0, 0,
 }
 
 function Renderer.GetTexture(filePath)
@@ -64,4 +65,11 @@ function Renderer.Lines(lines, colour)
   Renderer.SetColour(colour)
   for i=1, #lines-1 do love.graphics.line(lines[i].X, lines[i].Y, lines[i+1].X, lines[i+1].Y) end
   Renderer.ResetColour()
+end
+
+function Renderer.Path(self, path, colour)
+  if #self.Path > 0 then
+    Renderer.Line(self.X, self.Y, self.Path[1].X, self.Path[1].Y, colour)
+    Renderer.Lines(self.Path, colour)
+  end
 end
