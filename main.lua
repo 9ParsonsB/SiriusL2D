@@ -1,11 +1,8 @@
 require "Engine"
 
-Script("Game", "game")
-Script("Player", "player")
-
-Object("Game")
-Object("Player")
-
---Setup game
-Instance("Game")
-Instance("Player", 200, 200)
+Script.Load("cameraControl")
+Script.Load("player")
+Script.Load("ability")
+Script.Load("fireball")
+Script.Load("debug")
+Script.Load("game")

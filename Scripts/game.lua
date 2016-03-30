@@ -1,23 +1,18 @@
-Map = Transform.Grid(200, 200, 30, 20)
-Map.ShowLines = true
+Class("Game")
 
-function Draw(self)
-  Map:Draw()
+Game.Map = Transform.Grid(0, 0, 30, 20)
+Game.Map.ShowLines = true
+
+function Game:Create()
+  Scene.Add(self)
+  
+  Debug()
+  Player(200, 200)
+  CameraControl()
 end
 
-function DrawUi(self)
-  Ui.Label("FPS: " .. love.timer.getFPS(), 0, 0, 100)
-
-  local x, y = Scene.Camera:GetMousePosition()
-  Ui.Label(string.format("Mouse position: X: %i, Y: %i", x, y), 0, 20, 100)
+function Game:Draw()
+  self.Map:Draw()
 end
 
-function MousePressed(self, x, y, button, isTouch)
-  if button == 2 then Map:Toggle(Scene.Camera:GetMousePosition()) end
-end
-
-function KeyPressed(self, key)
-  if key == "escape" then love.event.quit() end
-  if key == "1" then Map.ShowLines = not Map.ShowLines end
-  if key == "2" then Map.Debug = not Map.Debug end
-end
+Game()

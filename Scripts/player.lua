@@ -1,24 +1,26 @@
-function Create(self)
-  self.MoveSpeed = 300
-  self.Path = {}
-end
+Class("Player")
 
-function Update(self, dt)
-  Transform.FollowPath(self, self.Path, self.MoveSpeed)
+Player.Path = {}
+Player.MoveSpeed = 300
+
+function Player:Create(x, y)
+  self.X, self.Y = x or 0, y or 0
+  self.Ability1 = SpawnFireball(self, "q")
+
   Scene.Camera:SetPosition(self.X, self.Y)
+  Scene.Add(self)
 end
 
-function MousePressed(self, x, y, button, isTouch)
-  if button == 1 and #self.Path == 0 then 
-    self.Path = Scripts.Game.Map:PathFind(self.X, self.Y, Scene.Camera:GetMousePosition()) 
-  end
+function Player:Update(dt)
+  Transform.FollowPath(self, self.Path, self.MoveSpeed)
 end
 
-function Draw(self)
+function Player:Draw()
   Renderer.Sprite("greenRect.png", self.X, self.Y)
   Renderer.Path(self, self.Path, {0, 0, 0})
 end
 
-function DrawUi(self)
-  Ui.Label(string.format("Player position X:%i Y:%i", self.X, self.Y), 0, 40, 100)
+function Player:MousePressed(x, y, button, isTouch)
+  x, y = Scene.Camera:GetMousePosition()
+  if button == 1 then self.Path = Game.Map:PathFind(self.X, self.Y, x, y) end
 end

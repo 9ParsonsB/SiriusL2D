@@ -181,14 +181,12 @@ function Grid:PathFind(x1, y1, x2, y2)
 
   --Open/closed lists
   local open, closed = {}, {}
-  local count = 1
   open[start] = true
 
-  while count > 0 or not closed[finish] do
+  repeat
     --Move cell with lowest f cost to closed list
     local current = self:GetLowestFCell(open)
     open[current] = nil
-    count = count - 1
     closed[current] = true
 
     --For each of the 8 cells adjacent
@@ -201,7 +199,6 @@ function Grid:PathFind(x1, y1, x2, y2)
         --If it is not on the open list then add it. Make the current cell the parent of this cell and calculate the costs
         if not open[v] then
           open[v] = true
-          count = count + 1
           v.Parent = current
           v:CalculateCost(current, finish)
         else
@@ -209,6 +206,8 @@ function Grid:PathFind(x1, y1, x2, y2)
           --If it is already on the open list the check if the path is better using the G cost.
           local Distance = current.G + 10
           if current.Row ~= v.Row and current.Column ~= v.Column then Distance = current.G + 14 end
+
+          --print(Distance)
           if Distance < v.G then
             v.Parent = current
             v:CalculateCost(current, finish)
@@ -216,13 +215,18 @@ function Grid:PathFind(x1, y1, x2, y2)
         end
       end
     end
-  end
-  return self:GetPath(finish)
+  until closed[finish]
+    
+  --Get path
+  local Path = self:GetPath(finish)
+
   --local distX, distY = Path[1].X - x1, Path[1].Y - y1
   --for k,v in pairs(Path) do v.X, v.Y = v.X - distX, v.Y - distY end
 
   --Path[1].X, Path[1].Y = x1, y1
   --Path[#Path].X, Path[#Path].Y = x2, y2
+
+  return Path
 end
 
 --Generates a path using the parent of the cell

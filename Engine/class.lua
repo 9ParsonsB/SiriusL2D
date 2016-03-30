@@ -17,8 +17,5 @@ function Class(name, parent)
   local class = setmetatable({Name=name}, {__call=Instance, __index=parent})
   Classes[name] = class 
 
-  --Add class to script enviroment
-  if loading then env[name] = class end
-
   return class
 end
