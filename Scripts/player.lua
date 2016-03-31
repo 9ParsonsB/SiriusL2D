@@ -2,6 +2,7 @@ Class("Player")
 
 Player.Path = {}
 Player.MoveSpeed = 200
+Player.State = "running"
 
 function Player:Create(x, y)
   self.X, self.Y = x or 0, y or 0
@@ -18,7 +19,7 @@ end
 function Player:Draw()
   Renderer.Sprite("greenRect.png", self.X, self.Y)
   Renderer.Path(self, self.Path, {0, 0, 0})
-  Renderer.Animation(self, "genericAnimation", "idle", true)
+  Renderer.Animation(self, "genericAnimation", self.State, true)
 end
 
 function Player:MousePressed(x, y, button, isTouch)
