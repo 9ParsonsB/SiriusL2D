@@ -31,7 +31,7 @@ function CameraControl:MouseReleased(x, y, button)
 end
 
 function CameraControl:MouseMoved(x, y, dx, dy)
-  if self.Move then Scene.Camera:Move(-dx * self.MoveScale, -dy * self.MoveScale) end
+  if self.Move then Scene.Camera:Move(-dx, -dy) end
 end
 
 --Zooming

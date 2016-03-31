@@ -5,6 +5,7 @@ local Env = setmetatable({}, {__index = _G})
 function Env.Class(name, parent)
   local class = Class(name, parent)
   class.X, class.Y = 0, 0
+  class.OldX, class.OldY = 0, 0
   class.VelX, class.VelY = 0, 0
   Env[name] = class
 end

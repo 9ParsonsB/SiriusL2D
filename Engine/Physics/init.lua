@@ -6,6 +6,10 @@ Physics = {
   Colliders = {}
 }
 
+function Physics.SetGravity(x, y)
+  Physics.World:setGravity(x, y)
+end
+
 function Physics.Update(dt)
 	if Physics.Active then Physics.World:update(dt) end
 end

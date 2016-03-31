@@ -4,7 +4,8 @@ require "Engine/Scene/timer"
 Scene = {
   Camera = Renderer.Camera(0, 0),
   Objects = {},
-  Ids = {}
+  Ids = {},
+  Active = true
 }
 
 function Scene.Callback(name, ...)
@@ -25,11 +26,13 @@ end
 function Scene.Update(dt)
   Timer.Update(dt)
 
-  for k,v in pairs(Scene.Objects) do 
-    v.X = v.X + v.VelX * dt
-    v.Y = v.Y + v.VelY * dt
+  if Scene.Active then
+    for k,v in pairs(Scene.Objects) do 
+      v.OldX, v.OldY = v.X, v.Y
+      v.X, v.Y = v.X + v.VelX * dt, v.Y + v.VelY * dt
+    end
+    Scene.Callback("Update", dt)
   end
-  Scene.Callback("Update", dt)
 
   if Script.LiveEdit then Script.Reload() end
 end
