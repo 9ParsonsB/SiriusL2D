@@ -53,7 +53,7 @@ end
 
 function Renderer.GetTexture(filePath)
   if Renderer.Textures[filePath] then return Renderer.Textures[filePath] end
-  local texture = love.graphics.newImage(Renderer.ContentDir .. filePath)
+  local texture = love.graphics.newImage(Renderer.ContentDir .. "Images/" .. filePath)
   Renderer.Textures[filePath] = texture
   return texture
 end
@@ -91,7 +91,7 @@ function Renderer.SpriteArea(filePath, x, y, angle, frame)
   x, y, 
   (math.pi / 180) * angle, 
   1, 1, 
-  texture:getWidth() / 2, texture:getHeight() / 2)
+  frame.Width / 2, frame.Height / 2)
 end
 
 function Renderer.GetAnimation(filePath)
@@ -105,7 +105,7 @@ function Renderer.GetAnimation(filePath)
   end
 
   --Load animation
-  local chunk = love.filesystem.load(Renderer.ContentDir .. filePath .. ".lua")
+  local chunk = love.filesystem.load(Renderer.ContentDir .. "Animations/" .. filePath .. ".lua")
   setfenv(chunk, animation)
   chunk()
   Renderer.AnimationFiles[filePath] = animation

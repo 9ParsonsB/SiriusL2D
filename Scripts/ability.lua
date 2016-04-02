@@ -16,7 +16,7 @@ function Ability:Update(dt)
   self.Active = self.Timer == 0
 end
 
-function Ability:DrawUi()
+function Ability:Ui()
   Ui.Label(string.format("Cooldown %i", self.Timer), 0, 100, 100)
 end
 

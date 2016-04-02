@@ -7,9 +7,9 @@ local function Instance(class, ...)
 end
 
 function Class(name, parent)
-  --Return existing class
+  --Return existing class table
   if Classes[name] then
-  	if loading then env[name] = Classes[name] end
+    for k in pairs(Classes[name]) do Classes[name][k] = nil end
     return Classes[name]
   end
 

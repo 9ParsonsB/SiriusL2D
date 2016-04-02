@@ -16,8 +16,8 @@ function Engine.load(arg)
 end
 
 function Engine.update(dt)
-  Scene.Update(dt)
   Ui.Update(dt)
+  Scene.Update(dt)
   Physics.Update(dt)
 end
 

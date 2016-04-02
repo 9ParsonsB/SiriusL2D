@@ -1,15 +1,11 @@
 Class("Fireball")
 
-Fireball.VelY = -100
+Fireball.Texture = "greyRect.png"
+--Fireball.VelY = -100
 
 function Fireball:Create()
   Scene.Add(self)
 end
-
-function Fireball:Draw()
-  Renderer.Sprite("greyRect.png", self.X, self.Y)
-end
-
 
 Class("SpawnFireball", Ability)
 

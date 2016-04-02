@@ -2,6 +2,10 @@ Transform = {
   Grid = require "Engine/Transform/grid"
 }
 
+function Transform.Attach(self, object)
+  object.Parent = self.Parent
+end
+
 function Transform.Len(x, y)
   return math.sqrt(x * x + y * y)
 end

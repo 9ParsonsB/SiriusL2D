@@ -6,7 +6,7 @@ function Debug:Create()
   Scene.Add(self)
 end
 
-function Debug:DrawUi()
+function Debug:Ui()
   if self.Enabled then
     Ui.Label("FPS: " .. love.timer.getFPS(), self.X, self.Y, 100)
   end
