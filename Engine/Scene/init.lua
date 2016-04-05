@@ -1,65 +1,48 @@
 require "Engine/Scene/script"
-require "Engine/Scene/timer"
-require "Engine/Scene/object"
+require "Engine/Scene/camera"
+
+local GameObject = require "Engine/Scene/gameObject"
 
 Scene = {
-  Camera = Renderer.Camera(0, 0),
-  Objects = {},
-  Ids = {},
-  Active = true
+  Objects = {}
 }
 
+--Callback method on all objects
 function Scene.Callback(name, ...)
   for k,v in pairs(Scene.Objects) do 
   	if type(v[name]) == "function" then v[name](v, ...) end 
   end
 end
 
+--Add object to scene
 function Scene.Add(self)
   table.insert(Scene.Objects, self)
-  Scene.Ids[self] = #Scene.Objects
+  self.Id = #Scene.Objects
+  if self.Physics then Physics.Add(self) end 
 end
 
+--Remove object froms scene
 function Scene.Destroy(self)
-  Scene.Objects[Scene.Ids[self]] = nil
+  Scene.Objects[self.Id] = nil
 end
 
+--Update objects in scene
 function Scene.Update(dt)
-  Timer.Update(dt)
-
-  --Reload scripts
-  if Script.LiveEdit then Script.Reload() end
-
-  --Do not update if scene is not active
-  if not Scene.Active then return end
-
-  --Apply velocity to objects
   for k,v in pairs(Scene.Objects) do 
-    v.OldX, v.OldY = v.X, v.Y
-    v.X, v.Y = v.X + v.VelX * dt, v.Y + v.VelY * dt
-
-    if v.Parent then
-      v.X = v.X + (v.Parent.X - v.Parent.OldX)
-      v.Y = v.Y + (v.Parent.Y - v.Parent.OldY)
+    if v.Active then 
+      v.LastX, v.LastY, v.LastAngle = v.X, v.Y, v.Angle
+      if v.Animation then Renderer.UpdateAnimation(v, dt) end    
+      v:Update(dt)
+      v:Ui(dt)
     end
   end
-  
-  Scene.Callback("Update", dt)
-  Scene.Callback("Ui")
 end
 
+--Draw objects in scene
 function Scene.Draw()	
-  Scene.Camera:Set()
-
-  --Temp
-  Scene.Callback("Draw")
-
-  --Draw objects
   for k,v in pairs(Scene.Objects) do
-    if v.Texture then Renderer.Sprite(v.Texture, v.X, v.Y) end
-    if v.Animation and v.State then Renderer.Animation(v, v.Animation, v.State, true) end
-    if v.Path then Renderer.Path(v, v.Path, {0, 0, 0}) end
+    if v.Texture then Renderer.DrawSprite(v.Texture, v.X, v.Y, v.Angle) end
+    if v.Animation then Renderer.DrawAnimation(v) end 
   end
-
-  Scene.Camera:Unset()
 end
+return Scene

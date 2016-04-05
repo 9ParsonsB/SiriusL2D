@@ -1,37 +1,55 @@
 local Collider = Class("Collider")
 
-function Collider:Create(object, type, shape, arg1, arg2)
-  self.Body = love.physics.newBody(Physics.World, object.X, object.Y, type)
-  
-  --Collider shape
-  if shape == "box" then self.Shape = love.physics.newRectangleShape(arg1 or 1, arg2 or 1) end
-  if shape == "circle" then self.Shape = love.physics.newCircleShape(arg1 or 1)  end
+function Collider:Create(object, info)
+  self.Object = object
+
+  self.Body = love.physics.newBody(Physics.World, object.X, object.Y, info.Type or "dynamic")
+
+  --Shape
+  if info.Shape == "box" then self.Shape = love.physics.newRectangleShape(info.Width or 1, info.Height or 1) end
+  if info.Shape == "circle" then self.Shape = love.physics.newCircleShape(info.Radius or 1) end
 
   --Attach body to shape and store object for collision callbacks
   self.Fixture = love.physics.newFixture(self.Body, self.Shape, 1)
-  self.Fixture:setUserData(object)
+  self.Fixture:setUserData(self)
 
-  Physics.Colliders[object] = self.Body
+  --Set properties  
+  self.Fixture:setRestitution(info.Bounciness or 0)
+  self.Body:setFixedRotation(info.FixedRotation or false)
+
+  Physics.Colliders[object] = self
+end
+
+--Add distance to velocity
+function Collider:BeginSync(dt)
+  local x, y = self:GetLinearVelocity()
+  local angle = self:GetAngularVelocity()
+
+  local distX, distY = self.Object.X - self.Object.LastX, self.Object.Y - self.Object.LastY
+  local distAngle = self.Object.Angle - self.Object.LastAngle
+
+  self:SetLinearVelocity(x + (distX / dt), (distY / dt))
+  self:SetAngularVelocity(angle + (distAngle / dt))
+end
+
+--Remove distance from velocity
+function Collider:EndSync(dt)
+  local x, y = self:GetLinearVelocity()
+  local angle = self:GetAngularVelocity()
+
+  local distX, distY = self.Object.X - self.Object.LastX, self.Object.Y - self.Object.LastY
+  local distAngle = self.Object.Angle - self.Object.LastAngle
+
+  self:SetLinearVelocity(x - (distX / dt), (distY / dt))
+  self:SetAngularVelocity(angle - (distAngle / dt))
+
+  self.Object.X, self.Object.Y = self:GetPosition()
+  self.Object.Angle = self:GetAngle()
 end
 
 function Collider:Draw()
   if not Physics.Debug then return end
   love.graphics.polygon("line", self.Body:getWorldPoints(self.Shape:getPoints()))
-end
-
-function Collider:Move(amountX, amountY)
-  local x, y = self:GetPosition()
-  self:SetPosition(x + amountX, y + amountY)
-end
-
---Getters/setters
-
-function Collider:GetX()
-  return self.Body:getX()
-end
-
-function Collider:GetY()
-  return self.Body:getY()
 end
 
 function Collider:GetPosition()

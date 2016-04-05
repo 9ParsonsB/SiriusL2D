@@ -1,14 +1,11 @@
-Class("Enemy")
+Object("Enemy")
 
-Enemy.Texture = "blackRect.png"
+Enemy.Animation = "lavaman"
+Enemy.State = "idle"
 
-function Enemy:Create(x, y)
-  self.X, self.Y = x or 0, y or 0
-  self.Path = Game.Map:PathFind(x, y, x, y)
-
-  Scene.Add(self)
-end
-
-function Enemy:Update(dt)
-  Transform.FollowPath(self, self.Path, 300)
-end
+Enemy.Physics = {
+  Shape = "box",
+  Width = 60,
+  Height = 60,
+  FixedRotation = true
+}

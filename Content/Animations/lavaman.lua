@@ -38,3 +38,7 @@ AddFrame("get_hit", 421, 309, 69, 58)
 AddFrame("get_hit", 491, 309, 69, 58)
 AddFrame("get_hit", 561, 309, 69, 58)
 AddFrame("get_hit", 631, 309, 69, 58)
+
+--Transitions
+AddTransition("attack", "idle")
+AddTransition("attack_back", "idle")

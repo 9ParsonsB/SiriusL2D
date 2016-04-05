@@ -1,22 +1,14 @@
-Class("Debug")
-
-Debug.Enabled = true
-
-function Debug:Create()
-  Scene.Add(self)
-end
+Object("Debug")
 
 function Debug:Ui()
-  if self.Enabled then
-    Ui.Label("FPS: " .. love.timer.getFPS(), self.X, self.Y, 100)
-  end
+  Ui.Label("FPS: " .. love.timer.getFPS(), self.X, self.Y, 100)
 
-  if not Scene.Active then
-    local width, height = love.graphics.getDimensions()
-    Ui.Label("Paused", width / 2, height - 50, 100)
-  end
+  --Render info
+  local name, version, vendor, device = love.graphics.getRendererInfo()
+  Ui.Label(name .. " " .. version, 0, 20)
+  Ui.Label(vendor .. " " .. device, 0, 40)
 end
 
 function Debug:KeyPressed(key)
-  if key == "f3" then self.Enabled = not self.Enabled end
+  if key == "f3" then self.Active = not self.Active end
 end

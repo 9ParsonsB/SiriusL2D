@@ -1,12 +1,11 @@
-local Theme = require "Engine/Ui/theme"
-local Button = require "Engine/Ui/button"
-local Label = require "Engine/Ui/label"
-local Slider = require "Engine/Ui/slider"
-
 Ui = {
-  LMouse = false,
   Widgets = {},
-  Theme = Theme
+  LMouse = false,
+
+  Theme = require "Engine/Ui/theme",
+  Button = require "Engine/Ui/button",
+  Label = require "Engine/Ui/label",
+  Slider = require "Engine/Ui/slider"
 }
 
 function Ui.Update(dt)
@@ -28,24 +27,6 @@ function Ui.GetTextHeight(text, limit)
 
   --Return total height
   return #lines * lineheight
-end
-
-function Ui.Button(text, x, y, w, h)
-  local button = Button(text, x, y, w, h)
-  table.insert(Ui.Widgets, button)
-  return button
-end
-
-function Ui.Label(text, x, y, w, h)
-  local label = Label(text, x, y, w, h)
-  table.insert(Ui.Widgets, label)
-  return label
-end
-
-function Ui.Slider(info, x, y, w, h)
-  local slider = Slider(info, x, y, w, h)
-  table.insert(Ui.Widgets, slider)
-  return slider
 end
 
 function Ui.MousePressed(x, y, button, isTouch)

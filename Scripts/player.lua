@@ -1,24 +1,33 @@
-Class("Player")
+Object("Player")
 
-Player.Path = {}
 Player.Animation = "lavaman"
 Player.State = "idle"
---Player.Texture = "greenRect.png"
 
-Player.MoveSpeed = 200
+Player.Physics = {
+  Shape = "box",
+  Width = 60, 
+  Height = 60, 
+  FixedRotation = true, 
+  Bounciness = 0.9
+}
 
-function Player:Create(x, y)
-  self.X, self.Y = x or 0, y or 0
-
-  Scene.Camera:SetPosition(self.X, self.Y)
-  Scene.Add(self)
-end
+Player.MoveSpeed = 300
 
 function Player:Update(dt)
-  Transform.FollowPath(self, self.Path, self.MoveSpeed)
+  if love.keyboard.isDown("w") then self.Y = self.Y - self.MoveSpeed * dt end
+  if love.keyboard.isDown("a") then self.X = self.X - self.MoveSpeed * dt end
+  if love.keyboard.isDown("s") then self.Y = self.Y + self.MoveSpeed * dt end
+  if love.keyboard.isDown("d") then self.X = self.X + self.MoveSpeed * dt end
 end
 
-function Player:MousePressed(x, y, button, isTouch)
-  x, y = Scene.Camera:GetMousePosition()
-  if button == 1 then self.Path = Game.Map:PathFind(self.X, self.Y, x, y) end
+function Player:KeyPressed(key)
+  if key == "space" then self:SetVelocity(100, 0) end
+end
+
+function Player:MousePressed(x, y, button)
+  x, y = Camera:GetMousePosition()
+  if button == 1 then
+    if x > self.X then self:PlayAnimation("attack") end
+    if x < self.X then self:PlayAnimation("attack_back") end
+  end
 end
