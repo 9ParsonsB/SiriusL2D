@@ -7,7 +7,7 @@ Physics = {
 }
 
 function Physics.Add(self)
-  Physics.Collider(self, self.Physics)
+  Physics.Collider(self)
 end
 
 function Physics.SetGravity(x, y)

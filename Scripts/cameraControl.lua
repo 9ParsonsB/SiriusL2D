@@ -31,5 +31,5 @@ end
 
 --Zooming
 function CameraControl:WheelMoved(x, y)
-  Camera:Scale(-y, -y)
+  --Camera:Scale(-y, -y)
 end

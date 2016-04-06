@@ -15,24 +15,24 @@ function Renderer.ResetColour()
 end
 
 --Draw box
-function Renderer.DrawBox(x, y, width, height, colour)
-  SetColour(colour)
-  love.graphics.rectangle("fill", x, y, width, height)
-  ResetColour()
+function Renderer.Box(x, y, width, height, colour, mode)
+  Renderer.SetColour(colour)
+  love.graphics.rectangle(mode or "fill", x, y, width, height)
+  Renderer.ResetColour()
 end
 
 --Draw line
-function Renderer.DrawLine(x1, y1, x2, y2, colour)
-  SetColour(colour)
+function Renderer.Line(x1, y1, x2, y2, colour)
+  Renderer.SetColour(colour)
   love.graphics.line(x1, y1, x2, y2)
   ResetColour()
 end
 
 --Draw table of lines
-function Renderer.DrawLines(lines, colour)
-  SetColour(colour)
+function Renderer.Lines(lines, colour)
+  Renderer.SetColour(colour)
   for i=1, #lines-1 do love.graphics.line(lines[i].X, lines[i].Y, lines[i+1].X, lines[i+1].Y) end
-  ResetColour()
+  Renderer.ResetColour()
 end
 
 --Draw a path
@@ -44,7 +44,7 @@ end
 end--]]
 
 --Draw sprite
-function Renderer.DrawSprite(filePath, x, y, angle, scaleX, scaleY, offsetX, offsetY)
+function Renderer.Sprite(filePath, x, y, angle, scaleX, scaleY, offsetX, offsetY)
   local texture = Content.LoadTexture(filePath)
 
   --Default values

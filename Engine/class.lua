@@ -1,7 +1,8 @@
 local Classes = {}
 
 local function Instance(class, ...)
-  local self = setmetatable({}, {__index=class})
+  class.__index = class
+  local self = setmetatable({}, class)
   if type(self.Create) == "function" then self:Create(...) end
   return self
 end
@@ -14,7 +15,7 @@ function Class(name, parent)
   end
 
   --Create class
-  local class = setmetatable({Name=name}, {__call=Instance, __index=parent})
+  local class = setmetatable({Name=name, Parent=parent}, {__call=Instance, __index=parent})
   Classes[name] = class 
 
   return class

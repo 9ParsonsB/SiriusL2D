@@ -1,21 +1,21 @@
 local Collider = Class("Collider")
 
-function Collider:Create(object, info)
+function Collider:Create(object)
   self.Object = object
 
-  self.Body = love.physics.newBody(Physics.World, object.X, object.Y, info.Type or "dynamic")
+  self.Body = love.physics.newBody(Physics.World, object.X, object.Y, object.Type or "dynamic")
 
   --Shape
-  if info.Shape == "box" then self.Shape = love.physics.newRectangleShape(info.Width or 1, info.Height or 1) end
-  if info.Shape == "circle" then self.Shape = love.physics.newCircleShape(info.Radius or 1) end
+  if object.Shape == "box" then self.Shape = love.physics.newRectangleShape(object.Width or 1, object.Height or 1) end
+  if object.Shape == "circle" then self.Shape = love.physics.newCircleShape(object.Radius or 1) end
 
   --Attach body to shape and store object for collision callbacks
   self.Fixture = love.physics.newFixture(self.Body, self.Shape, 1)
   self.Fixture:setUserData(self)
 
   --Set properties  
-  self.Fixture:setRestitution(info.Bounciness or 0)
-  self.Body:setFixedRotation(info.FixedRotation or false)
+  self.Fixture:setRestitution(object.Bounciness or 0)
+  self.Body:setFixedRotation(object.FixedRotation or false)
 
   Physics.Colliders[object] = self
 end

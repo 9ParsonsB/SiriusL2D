@@ -32,7 +32,8 @@ function Engine.keypressed(key) Scene.Callback("KeyPressed", key) end
 function Engine.keyreleased(key) Scene.Callback("KeyPressed", key) end
 function Engine.mousepressed(x, y, button, isTouch) Scene.Callback("MousePressed", x, y, button, isTouch) end
 function Engine.mousereleased(x, y, button, isTouch) Scene.Callback("MouseReleased", x, y, button, isTouch) end
-function Engine.mousemoved(x, y, dx, dy) Scene.Callback("mousemoved", x, y, dx, dy) end
+function Engine.mousemoved(x, y, dx, dy) Scene.Callback("MouseMoved", x, y, dx, dy) end
+function Engine.wheelmoved(x, y) Scene.Callback("WheelMoved", x, y) end
 
 --Connect engine to love2d
 love.load = Engine.load
@@ -41,5 +42,8 @@ love.draw = Engine.draw
 love.keypressed = Engine.keypressed
 love.keyreleased = Engine.keyreleased
 love.mousepressed = Engine.mousepressed
+love.mousereleased = Engine.mousereleased
+love.mousemoved = Engine.mousemoved
+love.wheelmoved = Engine.wheelmoved
 
 return Engine
