@@ -1,11 +1,9 @@
 local Transform = require "Engine/Scene/transform"
-local GameObject = Class("GameObject", Transforms)
+local GameObject = Class("GameObject", Transform)
 
 GameObject.Active = true
 
 --Default animation info
-GameObject.Frame = 1
-GameObject.Timer = 0
 GameObject.State = "idle"
 GameObject.Loop = true
 
@@ -18,55 +16,15 @@ GameObject.Shape = "box"
 GameObject.Width = 16
 GameObject.Height = 16
 
---Type checking
-function GameObject:IsType(name)
-  if self.Name == name then return true end
-  if self.Parent then return self.Parent:IsType(name) end
-  return false
-end
-
-function GameObject:MouseOver()
-  return self:Contains(Camera:GetMousePosition())
-end
-
-function GameObject:Contains(a, b)
-  local x, y = self.X - (self.Width / 2), self.Y - (self.Height / 2)
-  return a >= x and a <= x + self.Width and b >= y and b <= y + self.Height
-end
-
---Teleport to location(Ignores physics)
-function GameObject:Teleport(x, y)
-  local collider = Physics.Colliders[self]
-  if collider then collider:SetPosition(x, y) end
-  self.X, self.Y = x, y
-end
-
---Get velocity(If there is a collider)
-function GameObject:GetVelocity(x, y)
-  local collider = Physics.Colliders[self]
-  if collider then return collider:GetLinearVelocity(x, y) end
-  return 0, 0
-end
-
---Set velocity(If there is a collider)
-function GameObject:SetVelocity(x, y)
-  local collider = Physics.Colliders[self]
-  if collider then collider:SetLinearVelocity(x, y) end
-end
-
---Set animation to play
-function GameObject:PlayAnimation(state)
-  self.State = state
-  self.Frame = 1
-  self.Timer = 0
-end
-
---Game loop functions
+--Overridable functions
 function GameObject:Create() end
 function GameObject:Update(dt) end
 function GameObject:Ui() end
-
+function GameObject:Sync(object) end
 function GameObject:Draw() end
+
+function GameObject:Selected() end
+function GameObject:Deselected() end
 
 function GameObject:CollisionEnter(object, coll) end
 function GameObject:CollisionExit(object, coll) end
@@ -79,6 +37,41 @@ function GameObject:MouseReleased(x, y, button, isTouch) end
 function GameObject:MouseMoved(x, y, dx, dy) end
 function GameObject:WheelMoved(x, y) end
 
+--Type check
+function GameObject:IsType(name)
+  local object = self
+  while object do
+    if object.Name == name then return true end
+    object = object.Parent
+  end
+  return false
+end
+
+function GameObject:PlayAnimation(state)
+  Renderer.Animation(self, self.Animation, state, self.Loop)
+end
+
+function GameObject:PlaySound()
+  
+end
+
+--If object contains point
+function GameObject:Contains(a, b)
+  local x, y = self.X - (self.Width / 2), self.Y - (self.Height / 2)
+  return a >= x and a <= x + self.Width and b >= y and b <= y + self.Height
+end
+
+--If mouse over object
+function GameObject:MouseOver()
+  return self:Contains(Camera:GetMousePosition())
+end
+
+--If object in area
+function GameObject:InArea(x, y, width, height)
+  return math.abs(self.X - x) * 2 <= (self.Width + width) and math.abs(self.Y - y) * 2 <= (self.Height + height)
+end
+
+--Allows you to define objects
 local Objects = {}
 
 function Object(name, parent)

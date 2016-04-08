@@ -2,7 +2,7 @@ Object("UnitSystem")
 
 UnitSystem.SelectBox = false
 UnitSystem.Box = {}
-UnitSystem.Units = {}
+UnitSystem.Units = List()
 
 function UnitSystem:MousePressed(x, y, button)
   x, y = Camera:GetMousePosition()
@@ -12,22 +12,20 @@ function UnitSystem:MousePressed(x, y, button)
     local unit = self:GetUnit(x, y)
 
     --Move unit to location
-    if not unit and self.Unit then 
+    if not unit and self.Units:Any() then 
       --self.Unit:MoveTo(x, y) 
       return
     end
 
     --Select unit
-    if unit and unit.Friendly then 
-      if self.Unit then self.Unit.Selected = false end
-      
-      if self.Unit == unit then
-        self.Unit.Selected = false
-        self.Unit = nil
+    if unit and unit.Friendly then    
+      if self.Units:Contains(unit) then
+        unit.Selected = false
+        self.Units:Remove(unit)
         return
       end
 
-      self.Unit = unit 
+      self.Units:Add(unit)
       unit.Selected = true
       return
     end
@@ -38,9 +36,8 @@ function UnitSystem:MousePressed(x, y, button)
     end
   end
 
-  --If right mouse pressed
+  --Start selection box
   if button == 2 then
-    --Start selection box
     if not unit and not self.SelectBox then
       self.SelectBox = true
       self.Box = {X=x, Y=y, Width=1, Height=1}
@@ -52,8 +49,15 @@ function UnitSystem:MouseReleased(x, y, button)
   if button == 2 and self.SelectBox then 
     
     --Deselect all units
+    for k,v in pairs(self.Units.Elements) do v.Selected = false end
+    self.Units:Clear()
 
     --Select all units in selection box
+    local units = Scene.GetObjectsInArea("Unit", self.Box.X + self.Box.Width / 2, self.Box.Y + self.Box.Height / 2, self.Box.Width, self.Box.Height)
+    for k,v in pairs(units) do
+      v.Selected = true 
+      self.Units:Add(v)
+    end
 
     self.SelectBox = false
   end
@@ -61,8 +65,14 @@ end
 
 --Sets the size of the selection box
 function UnitSystem:MouseMoved(x, y, dx, dy)
-  if self.SelectBox then
-    self.Box.Width, self.Box.Height = self.Box.Width + dx, self.Box.Height + dy
+  if self.SelectBox then self.Box.Width, self.Box.Height = self.Box.Width + dx, self.Box.Height + dy end
+end
+
+--Deselect all units
+function UnitSystem:KeyPressed(key)
+  if key == "a" then 
+    for k,v in pairs(self.Units.Elements) do v.Selected = false end
+    self.Units:Clear()
   end
 end
 
@@ -74,6 +84,6 @@ function UnitSystem:Draw()
 end
 
 function UnitSystem:GetUnit(x, y)
-  local units = Scene.GetObjectsInArea("Unit", x, y, 100, 100)
+  local units = Scene.GetObjectsInArea("Unit", x, y, 10, 10)
   return units[1]
 end

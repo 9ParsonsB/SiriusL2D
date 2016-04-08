@@ -32,3 +32,15 @@ function Camera:GetMousePosition()
   local x, y = love.mouse.getPosition()
   return (self.X + x) - width / 2, (self.Y + y) - height / 2
 end
+
+--Overridable camera functions
+function Camera:Create() end
+function Camera:Update(dt) end
+
+function Camera:KeyPressed(key) end
+function Camera:KeyReleased(key) end
+
+function Camera:MousePressed(x, y, button, isTouch) end
+function Camera:MouseReleased(x, y, button, isTouch) end
+function Camera:MouseMoved(x, y, dx, dy) end
+function Camera:WheelMoved(x, y) end

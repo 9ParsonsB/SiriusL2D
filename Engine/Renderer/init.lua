@@ -1,6 +1,11 @@
 local Content = require "Engine/Renderer/content"
+local Animation = require "Engine/Renderer/animation"
+
 local R,G,B,A = 0, 0, 0, 0
-Renderer = {}
+
+Renderer = {
+  Animations = {}
+}
 
 --Set colour for rendering
 function Renderer.SetColour(colour)
@@ -62,52 +67,6 @@ function Renderer.Sprite(filePath, x, y, angle, scaleX, scaleY, offsetX, offsetY
   offsetX or texture:getWidth() / 2, offsetY or texture:getHeight() / 2)
 end
 
---Update animation
-function Renderer.UpdateAnimation(self, dt)
-  local file = Content.LoadAnimation(self.Animation)
-
-  --Controls playback rate of animation
-  self.Timer = self.Timer + dt
-  if self.Timer <= file.FrameDuration then return end   
-
-  --If we reached the last frame of this animation
-  if self.Frame >= #file[self.State] then      
-
-    --Play any transitions
-    local state = file.Transitions[self.State]
-    if state then 
-      self:PlayAnimation(state) 
-    else
-
-      --If animation should loop
-      if self.Loop then
-        self.Frame = 1 
-      end
-    end
-
-  --Move through animation
-  else 
-    self.Frame = self.Frame + 1 
-  end  
-
-  --Reset timer
-  self.Timer = 0  
-end
-
---Draw animation
-function Renderer.DrawAnimation(self)
-  local file = Content.LoadAnimation(self.Animation)
-  local texture = Content.LoadTexture(file.SpriteSheet)
-  local frame = file[self.State][self.Frame]
-
-  quad = love.graphics.newQuad(frame.X, frame.Y, frame.Width, frame.Height, texture:getWidth(), texture:getHeight())
-
-  --Draw sprite
-  love.graphics.draw(
-  texture, 
-  quad,
-  self.X, self.Y, 
-  math.rad(self.Angle), 
-  1, 1, 
-  frame.Width / 2, frame.Height / 2)
+function Renderer.Animation(self, filePath, state, loop)
+  Renderer.Animations[self] = Animation(filePath, state, loop)
 end

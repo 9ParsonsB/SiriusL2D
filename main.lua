@@ -1,16 +1,17 @@
 require "Engine"
 
 --Load scripts
+Script.Load("camera")
 Script.Load("debug")
-Script.Load("cameraControl")
 Script.Load("unitSystem")
 Script.Load("unit")
 Script.Load("player")
 
 --Create objects
 Instance("Debug", 0, 0)
-Instance("CameraControl", 0, 0)
-Instance("UnitSystem", 0, 0)
-Instance("GenericUnit", 0, 0)
-Instance("GenericUnit", 200, 0)
---print(test:IsType("Unit"))
+Instance("Player", 0, 0)
+
+--[[Instance("UnitSystem", 0, 0)
+for i = 1, math.random(30) do
+  Instance("GenericUnit", math.random(-400, 400), math.random(-300, 300))
+end--]]

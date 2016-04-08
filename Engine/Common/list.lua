@@ -1,4 +1,4 @@
-local List = Class("List")
+List = Class("List")
 
 function List:Create()
   self.Elements = {}
@@ -9,7 +9,9 @@ function List:Add(value)
 end
 
 function List:Remove(value)
-  
+  for k,v in pairs(self.Elements) do
+    if v == value then self.Elements[k] = nil end
+  end
 end
 
 function List:Contains(value)
@@ -20,6 +22,13 @@ function List:Contains(value)
 end
 
 function List:Size()
-
+  return #self.Elements
 end
-return List
+
+function List:Any()
+  return #self.Elements > 0
+end
+
+function List:Clear()
+  self.Elements = {}
+end
