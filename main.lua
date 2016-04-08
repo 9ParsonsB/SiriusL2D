@@ -9,9 +9,9 @@ Script.Load("player")
 
 --Create objects
 Instance("Debug", 0, 0)
-Instance("Player", 0, 0)
+--Instance("Player", 0, 0)
 
---[[Instance("UnitSystem", 0, 0)
-for i = 1, math.random(30) do
+--Instance("UnitSystem", 0, 0)
+for i = 1, math.random(15, 30) do
   Instance("GenericUnit", math.random(-400, 400), math.random(-300, 300))
-end--]]
+end

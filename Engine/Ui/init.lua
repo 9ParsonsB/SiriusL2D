@@ -8,13 +8,9 @@ Ui = {
   Slider = require "Engine/Ui/slider"
 }
 
-function Ui.Update(dt)
-  Ui.LMouse = false
-  Ui.Widgets = {}
-end
-
 function Ui.Draw()
   for k,v in pairs(Ui.Widgets) do v:Draw(Ui.Theme) end
+  Ui.Widgets = {}
 end
 
 function Ui.GetTextHeight(text, limit)

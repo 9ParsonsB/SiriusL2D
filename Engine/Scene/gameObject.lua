@@ -51,8 +51,10 @@ function GameObject:PlayAnimation(state)
   Renderer.Animation(self, self.Animation, state, self.Loop)
 end
 
-function GameObject:PlaySound()
-  
+function GameObject:PlaySound(filePath, type)
+  local sound = love.audio.newSource(filePath, type)
+  sound:Play()
+  return sound  
 end
 
 --If object contains point

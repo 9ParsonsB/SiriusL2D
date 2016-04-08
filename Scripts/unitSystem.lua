@@ -2,7 +2,7 @@ Object("UnitSystem")
 
 UnitSystem.SelectBox = false
 UnitSystem.Box = {}
-UnitSystem.Units = List()
+UnitSystem.Units = {}
 
 function UnitSystem:MousePressed(x, y, button)
   x, y = Camera:GetMousePosition()
@@ -12,20 +12,20 @@ function UnitSystem:MousePressed(x, y, button)
     local unit = self:GetUnit(x, y)
 
     --Move unit to location
-    if not unit and self.Units:Any() then 
+    if not unit and #self.Units > 0 then 
       --self.Unit:MoveTo(x, y) 
       return
     end
 
     --Select unit
     if unit and unit.Friendly then    
-      if self.Units:Contains(unit) then
+      if table.contains(self.Units, unit) then
         unit.Selected = false
-        self.Units:Remove(unit)
+        table.removevalue(self.Units, unit)
         return
       end
 
-      self.Units:Add(unit)
+      table.insert(self.Units, unit)
       unit.Selected = true
       return
     end
@@ -49,14 +49,14 @@ function UnitSystem:MouseReleased(x, y, button)
   if button == 2 and self.SelectBox then 
     
     --Deselect all units
-    for k,v in pairs(self.Units.Elements) do v.Selected = false end
-    self.Units:Clear()
+    for k,v in pairs(self.Units) do v.Selected = false end
+    table.clear(self.Units)
 
     --Select all units in selection box
     local units = Scene.GetObjectsInArea("Unit", self.Box.X + self.Box.Width / 2, self.Box.Y + self.Box.Height / 2, self.Box.Width, self.Box.Height)
     for k,v in pairs(units) do
       v.Selected = true 
-      self.Units:Add(v)
+      table.insert(self.Units, v)
     end
 
     self.SelectBox = false
@@ -72,7 +72,7 @@ end
 function UnitSystem:KeyPressed(key)
   if key == "a" then 
     for k,v in pairs(self.Units.Elements) do v.Selected = false end
-    self.Units:Clear()
+    table.clear(self.Units)
   end
 end
 

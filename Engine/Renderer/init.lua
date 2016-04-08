@@ -1,3 +1,5 @@
+require "Engine/Renderer/camera"
+
 local Content = require "Engine/Renderer/content"
 local Animation = require "Engine/Renderer/animation"
 
