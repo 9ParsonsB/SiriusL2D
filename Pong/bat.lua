@@ -21,8 +21,8 @@ function Bat:Update(dt)
 end
 
 function Bat:MovementControl(dt)
-  if love.keyboard.isDown("w") then self.Position.Y = self.Position.Y - self.MoveSpeed * dt end
-  if love.keyboard.isDown("s") then self.Position.Y = self.Position.Y + self.MoveSpeed * dt end
+  if Input.Down("w") then self.Position.Y = self.Position.Y - self.MoveSpeed * dt end
+  if Input.Down("s") then self.Position.Y = self.Position.Y + self.MoveSpeed * dt end
 end
 
 function Bat:TrackBall(dt)
