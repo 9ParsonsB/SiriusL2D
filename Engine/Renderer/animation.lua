@@ -60,7 +60,7 @@ function Animation:Draw(object)
   love.graphics.draw(
   texture, 
   quad,
-  object.X, object.Y, 
+  object.Position.X, object.Position.Y, 
   math.rad(object.Angle), 
   1, 1, 
   frame.Width / 2, frame.Height / 2)

@@ -21,6 +21,10 @@ function Renderer.ResetColour()
   love.graphics.setColor(R, G, B, A)
 end
 
+function Renderer.SetBackgroundColour(r, g, b, a)
+  love.graphics.setBackgroundColor(r, g, b, a)
+end
+
 --Draw box
 function Renderer.Box(x, y, width, height, colour, mode)
   Renderer.SetColour(colour)
@@ -51,22 +55,20 @@ end
 end--]]
 
 --Draw sprite
-function Renderer.Sprite(filePath, x, y, angle, scaleX, scaleY, offsetX, offsetY)
+function Renderer.Sprite(filePath, x, y, angle, width, height)
   local texture = Content.LoadTexture(filePath)
 
-  --Default values
-  x, y = x or 0, y or 0
-  angle = angle or 0
-  scaleX = scaleX or 1
-  scaleY = scaleY or 1
+  --Size of sprite
+  local textureWidth, textureHeight = texture:getDimensions()
+  width, height = width or textureWidth, height or textureHeight
 
   --Draw sprite
   love.graphics.draw(
   texture, 
   x, y, 
-  (math.pi / 180) * angle, 
-  scaleX, scaleY, 
-  offsetX or texture:getWidth() / 2, offsetY or texture:getHeight() / 2)
+  math.rad(angle), 
+  width / textureWidth, height / textureHeight, 
+  texture:getWidth() / 2, texture:getHeight() / 2)
 end
 
 function Renderer.Animation(self, filePath, state, loop)

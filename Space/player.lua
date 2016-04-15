@@ -16,7 +16,12 @@ end
 function Player:MousePressed(x, y, button)
   x, y = Camera:GetMousePosition()
   if button == 1 then
-    if x > self.X then self:PlayAnimation("attack") end
-    if x < self.X then self:PlayAnimation("attack_back") end
+    if x > self.Position.X then self:PlayAnimation("attack") end
+    if x < self.Position.X then self:PlayAnimation("attack_back") end
   end
 end
+
+--[[
+Audio
+Menus
+--]]

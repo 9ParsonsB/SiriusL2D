@@ -1,15 +1,16 @@
 Object("UnitSystem")
 
 UnitSystem.SelectBox = false
-UnitSystem.Box = {}
 UnitSystem.Units = {}
+
+UnitSystem.X2, UnitSystem.Y2 = 0, 0
 
 function UnitSystem:MousePressed(x, y, button)
   x, y = Camera:GetMousePosition()
 
   --If left mouse pressed
   if button == 1 then 
-    local unit = self:GetUnit(x, y)
+    local unit --= self:GetUnit(x, y)
 
     --Move unit to location
     if not unit and #self.Units > 0 then 
@@ -40,7 +41,8 @@ function UnitSystem:MousePressed(x, y, button)
   if button == 2 then
     if not unit and not self.SelectBox then
       self.SelectBox = true
-      self.Box = {X=x, Y=y, Width=1, Height=1}
+      self.X, self.Y = x, y
+      self.X2, self.Y2 = x, y
     end
   end
 end
@@ -53,7 +55,7 @@ function UnitSystem:MouseReleased(x, y, button)
     table.clear(self.Units)
 
     --Select all units in selection box
-    local units = Scene.GetObjectsInArea("Unit", self.Box.X + self.Box.Width / 2, self.Box.Y + self.Box.Height / 2, self.Box.Width, self.Box.Height)
+    local units = Scene.GetObjectsInArea("Unit", self.X, self.Y, self.X2, self.Y2)
     for k,v in pairs(units) do
       v.Selected = true 
       table.insert(self.Units, v)
@@ -65,21 +67,23 @@ end
 
 --Sets the size of the selection box
 function UnitSystem:MouseMoved(x, y, dx, dy)
-  if self.SelectBox then self.Box.Width, self.Box.Height = self.Box.Width + dx, self.Box.Height + dy end
+  x, y = Camera:GetMousePosition()
+  if self.SelectBox then self.X2, self.Y2 = x, y end
 end
 
 --Deselect all units
 function UnitSystem:KeyPressed(key)
   if key == "a" then 
-    for k,v in pairs(self.Units.Elements) do v.Selected = false end
+    for k,v in pairs(self.Units) do v.Selected = false end
     table.clear(self.Units)
   end
 end
 
 function UnitSystem:Draw()
   if self.SelectBox then
-    local rect = self.Box
-    Renderer.Box(rect.X, rect.Y, rect.Width, rect.Height, {0, 0, 255, 255})
+    local x, y = math.min(self.X, self.X2), math.min(self.Y, self.Y2)
+    local x2, y2 = math.max(self.X, self.X2), math.max(self.Y, self.Y2)
+    Renderer.Box(x, y, x2 - x, y2 - y, {0, 0, 255, 255})
   end
 end
 

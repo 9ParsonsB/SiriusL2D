@@ -20,8 +20,9 @@ function Network.UUID()
   local uuid = math.random(5.6e300)
 
   while table.contains(UUIDs, uuid) do
-  	print("ID duplicated. This should never happen!")
-  	uuid = math.random(5.6e300)
+    --THIS SHOULD NOT HAPPEN EVER!
+  	love.system.openURL("http://hasthelargehadroncolliderdestroyedtheworldyet.com/")
+    uuid = math.random(5.6e300)
   end
 
   table.insert(UUIDs, uuid)

@@ -2,8 +2,35 @@ Vector = Class("Vector")
 
 Vector.X, Vector.Y = 0
 
-function Vector:Create(X, Y)
-  self.X, self.Y = X or 0, Y or 0 
+function Vector:Create(x, y)
+  self.X, self.Y = x or 0, y or 0 
+end
+
+function Vector:Copy()
+  return Vector(self.X, self.Y)
+end
+
+function Vector:Distance(v)
+  return (self - v)
+end
+
+function Vector:Length()
+  return math.sqrt(self.X ^ 2 + self.Y ^ 2)
+end
+
+function Vector:LengthSqr()
+  return self.X ^ 2 + self.Y ^ 2
+end
+
+function Vector:Normalize()
+  local len = self:Length()
+  self.X = self.X / len
+  self.Y = self.Y / len
+  return self
+end
+
+function Vector:ToAngle()
+  return math.atan2(self.Y, self.X)
 end
 
 function Vector.__add(a, b)
@@ -43,20 +70,5 @@ function Vector.__le(a, b)
 end
 
 function Vector.__tostring(a)
-  return "(" .. a.X .. ", " .. a.Y .. ")"
-end
-
-function Vector.Distance(a, b)
-  return (b - a):Len()
-end
-
-function Vector:Len()
-  return math.sqrt(self.X * self.X + self.Y * self.Y)
-end
-
-function Vector:Normalize()
-  local len = self:Len()
-  self.X = self.X / len
-  self.Y = self.Y / len
-  return self
+  return "vector: (" .. a.X .. ", " .. a.Y .. ")"
 end

@@ -11,7 +11,7 @@ end
 
 function Unit:Draw()
   if self.Selected then
-    Renderer.Box(self.X - 8, self.Y - 8, self.Width, self.Height, {0, 0, 155}, "line")
+    Renderer.Box(self.Position.X - 8, self.Position.Y - 8, self.Width, self.Height, {0, 0, 155}, "line")
   end
 end
 

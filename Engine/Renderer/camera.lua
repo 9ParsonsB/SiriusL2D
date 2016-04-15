@@ -7,7 +7,11 @@ function Camera:Set()
   local width, height = love.graphics.getDimensions()
   love.graphics.push()
   love.graphics.scale(1 / self.ScaleX, 1 / self.ScaleY)
-  love.graphics.translate(-self.X + width / 2, -self.Y + height / 2)	
+  love.graphics.translate(-self.X + width / 2, -self.Y + height / 2)
+
+  --[[love.graphics.push()
+  love.graphics.scale(1 / self.ScaleX, 1 / self.ScaleY)
+  love.graphics.translate(-self.X , -self.Y)--]]
 end
 
 function Camera:Unset()
@@ -31,6 +35,9 @@ function Camera:GetMousePosition()
   local width, height = love.graphics.getDimensions()
   local x, y = love.mouse.getPosition()
   return (self.X + x) - width / 2, (self.Y + y) - height / 2
+
+  --[[local x, y = love.mouse.getPosition()
+  return self.X + x, self.Y + y--]]
 end
 
 --Overridable camera functions

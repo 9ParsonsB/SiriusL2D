@@ -3,21 +3,24 @@ local GameObject = Class("GameObject", Transform)
 
 GameObject.Active = true
 
---Default animation info
+--Animation info
 GameObject.State = "idle"
 GameObject.Loop = true
 
---Default physics info
+--Physics info
 GameObject.UsePhysics = false
 GameObject.Type = "dynamic"
 GameObject.Shape = "box"
 
---Default object size
+--Object size
 GameObject.Width = 16
 GameObject.Height = 16
 
+GameObject.Replicated = false
+
 --Overridable functions
 function GameObject:Create() end
+function GameObject:Destroy() end
 function GameObject:Update(dt) end
 function GameObject:Ui() end
 function GameObject:Sync(object) end
@@ -53,8 +56,13 @@ end
 
 function GameObject:PlaySound(filePath, type)
   local sound = love.audio.newSource(filePath, type)
-  sound:Play()
+  sound:play()
   return sound  
+end
+
+function GameObject:SetSize(width, height)
+  self.Width = width
+  self.Height = height
 end
 
 --If object contains point
@@ -70,24 +78,6 @@ end
 
 --If object in area
 function GameObject:InArea(x, y, width, height)
-  return math.abs(self.X - x) * 2 <= (self.Width + width) and math.abs(self.Y - y) * 2 <= (self.Height + height)
-end
-
---Allows you to define objects
-local Objects = {}
-
-function Object(name, parent)
-  local self = Class(name, parent or GameObject)
-  Objects[name] = self
-  Script.Env[name] = self
-  return self
-end
-
-function Instance(name, x, y, angle)
-  if not Objects[name] then error(name .. " not defined") end
-  local self = setmetatable({X=x or 0, Y=y or 0, Angle=angle or 0}, {__index=Objects[name]}) 
-  Scene.Add(self)
-  self:Create() 
-  return self
+  return math.abs(self.Position.X - x) * 2 <= (self.Width + width) and math.abs(self.Position.Y - y) * 2 <= (self.Height + height)
 end
 return GameObject

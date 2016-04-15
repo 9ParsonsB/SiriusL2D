@@ -9,6 +9,9 @@ function Button:Create(text, x, y, w, h)
   self.Text = text
   self.Hover = Ui.MouseOver(self)
   self.Pressed = Ui.LMouse and self.Hover
+
+  local font = love.graphics.getFont()
+  self.Width = w or font:getWidth(text)
 end
 
 function Button:Draw(theme)
