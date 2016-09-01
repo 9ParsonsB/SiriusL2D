@@ -1,9 +1,6 @@
-require "Engine"
+require "engine"
 
---Script.Load("Pong/main")
-
-Input.Bind("LEFT", 1)
-
-function love.update(dt)
-  print(Input.Down("LEFT"))
+function love.load(arg)
+  if arg[#arg] == "-debug" then require("mobdebug").start() end
+  love.graphics.setBackgroundColor(104, 136, 248)
 end
