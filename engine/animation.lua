@@ -1,4 +1,3 @@
-local Content = require "Engine/Renderer/content"
 local Animation = Class("Animation")
 
 Animation.Frame = 1
