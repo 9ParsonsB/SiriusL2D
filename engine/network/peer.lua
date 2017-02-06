@@ -1,6 +1,6 @@
 require "enet"
 
-local Peer = Class("Peer")
+local Peer = class("Peer")
 
 Peer.Running = false
 

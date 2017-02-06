@@ -1,59 +1,59 @@
-local Animation = Class("Animation")
+local Animation = class("Animation")
 
 Animation.Frame = 1
 Animation.Timer = 0
 
 function Animation:Create(filePath, state, loop)
-  self.FilePath = filePath
-  self.State = state
-  self.Loop = loop
+  self.filepath = filePath
+  self.state = state
+  self.loop = loop
 end
 
 function Animation:ChangeState(state, loop)
-  self.Frame = 1
-  self.Timer = 0
-  self.State = state
-  self.Loop = loop
+  self.frame = 1
+  self.timer = 0
+  self.state = state
+  self.loop = loop
 end
 
 function Animation:Update(dt)
   local file = Content.LoadAnimation(self.FilePath)
 
   --Controls playback rate of animation
-  self.Timer = self.Timer + dt
-  if self.Timer <= file.FrameDuration then return end   
+  self.timer = self.timer + dt
+  if self.timer <= file.frameDuration then return end   
 
   --If we reached the last frame of this animation
-  if self.Frame >= #file[self.State] then      
+  if self.frame >= #file[self.state] then      
 
     --Play any transitions
-    local state = file.Transitions[self.State]
+    local state = file.Transitions[self.state]
     if state then 
-      self:ChangeState(state, self.Loop)
+      self:ChangeState(state, self.loop)
     else
 
       --If animation should loop
-      if self.Loop then
-        self.Frame = 1 
+      if self.loop then
+        self.frame = 1 
       end
     end
 
   --Move through animation
   else 
-    self.Frame = self.Frame + 1 
+    self.frame = self.frame + 1 
   end  
 
   --Reset timer
-  self.Timer = 0  
+  self.timer = 0  
 end
 
 function Animation:Draw(object)
-  local file = Content.LoadAnimation(self.FilePath)
-  local texture = Content.LoadTexture(file.SpriteSheet)
+  local file = Content.loadAnimation(self.filePath)
+  local texture = Content.loadTexture(file.SpriteSheet)
 
   --Area of sprite sheet to draw
-  local frame = file[self.State][self.Frame]
-  quad = love.graphics.newQuad(frame.X, frame.Y, frame.Width, frame.Height, texture:getWidth(), texture:getHeight())
+  local frame = file[self.state][self.frame]
+  quad = love.graphics.newQuad(frame.X, frame.Y, frame.width, frame.height, texture:getWidth(), texture:getHeight())
 
   --Draw sprite
   love.graphics.draw(

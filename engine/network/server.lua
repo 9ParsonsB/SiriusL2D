@@ -1,5 +1,5 @@
 local Peer = require "engine/network/peer"
-local Server = Class("Server", Peer)
+local Server = class("Server", Peer)
 
 local socket = require "socket"
 

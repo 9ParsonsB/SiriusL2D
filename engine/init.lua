@@ -1,6 +1,5 @@
 require "engine/class"
-require "engine/network"
-require "engine/physics"
-require "engine/ui"
-
-require "engine/camera"
+require "engine/view"
+require "engine/gui"
+require "engine/map"
+require "engine/rts"

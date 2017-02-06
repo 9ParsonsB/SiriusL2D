@@ -1,4 +1,4 @@
-local Widget = Class("Widget")
+local Widget = class("Widget")
 
 Widget.X = 0
 Widget.Y = 0

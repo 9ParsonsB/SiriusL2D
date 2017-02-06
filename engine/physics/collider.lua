@@ -1,4 +1,4 @@
-local Collider = Class("Collider")
+local Collider = class("Collider")
 
 function Collider:Create(object)
   self.Body = love.physics.newBody(Physics.World, object.Position.X, object.Position.Y, object.Type or "dynamic")
@@ -13,54 +13,54 @@ function Collider:Create(object)
   self.Fixture:setUserData(self)
 
   --Set properties  
-  self:SetRestitution(object.Restitution or 0)
+  self:setRestitution(object.Restitution or 0)
   self.Body:setFixedRotation(object.FixedRotation or false)
 
   --Store collider
   Physics.Colliders[object] = self
 end
 
-function Collider:Destroy()
+function Collider:destroy()
   self.Body:destroy()
   Physics.Colliders[self.Object] = nil
 end
 
-function Collider:GetDistance(dt)
-  local position = Vector(self:GetPosition())
+function Collider:getDistance(dt)
+  local position = Vector(self:getPosition())
   return (self.Object.Position - position) / dt
 end
 
-function Collider:GetAngleDistance(dt)
-  return (self.Object.Angle - self:GetAngle()) / dt
+function Collider:getAngleDistance(dt)
+  return (self.Object.Angle - self:getAngle()) / dt
 end
 
-function Collider:BeginSync(dt)
+function Collider:beginSync(dt)
   --Get distances
-  self.Distance = self:GetDistance(dt)
-  self.DistAngle = self:GetAngleDistance(dt)
+  self.Distance = self:getDistance(dt)
+  self.DistAngle = self:getAngleDistance(dt)
 
   --Add velocity offset
-  local x, y = self:GetLinearVelocity()
-  local angle = self:GetAngularVelocity()
+  local x, y = self:getLinearVelocity()
+  local angle = self:getAngularVelocity()
 
-  self:SetLinearVelocity(x + self.Distance.X, y + self.Distance.Y)
-  self:SetAngularVelocity(angle + self.DistAngle)
+  self:setLinearVelocity(x + self.Distance.X, y + self.Distance.Y)
+  self:setAngularVelocity(angle + self.DistAngle)
 end
 
-function Collider:EndSync(dt)
+function Collider:endSync(dt)
   --Remove velocity offset
-  local x, y = self:GetLinearVelocity()
-  local angle = self:GetAngularVelocity()
+  local x, y = self:getLinearVelocity()
+  local angle = self:getAngularVelocity()
 
-  self:SetLinearVelocity(x - self.Distance.X, y - self.Distance.Y)
-  self:SetAngularVelocity(angle - self.DistAngle)
+  self:setLinearVelocity(x - self.Distance.X, y - self.Distance.Y)
+  self:setAngularVelocity(angle - self.DistAngle)
 
   --Update position and angle of object
-  self.Object.Position = Vector(self:GetPosition())
-  self.Object.Angle = self:GetAngle()
+  self.Object.Position = Vector(self:getPosition())
+  self.Object.Angle = self:getAngle()
 end
 
-function Collider:Draw()
+function Collider:draw()
   if not Physics.Debug then return end
 
   --Draw outline of collider
@@ -72,60 +72,60 @@ function Collider:Draw()
   end
 end
 
-function Collider:GetPosition()
+function Collider:getPosition()
   local x, y = self.Body:getPosition()
   return x, y
 end
 
-function Collider:SetPosition(x, y)
+function Collider:setPosition(x, y)
   self.Body:setPosition(x, y)
 end
 
-function Collider:GetAngle()
+function Collider:getAngle()
   return math.deg(self.Body:getAngle())
 end
 
-function Collider:SetAngle(degrees)
+function Collider:setAngle(degrees)
   self.Body:setAngle((math.pi / 180) * degrees)
 end
 
-function Collider:GetLinearVelocity()
+function Collider:getLinearVelocity()
   return self.Body:getLinearVelocity()
 end
 
-function Collider:SetLinearVelocity(x, y)
+function Collider:setLinearVelocity(x, y)
   self.Body:setLinearVelocity(x, y)
 end
 
-function Collider:GetAngularVelocity()
+function Collider:getAngularVelocity()
  return self.Body:getAngularVelocity()
 end
 
-function Collider:SetAngularVelocity(angle)
+function Collider:setAngularVelocity(angle)
  self.Body:setAngularVelocity(angle)
 end
 
-function Collider:GetRestitution()
+function Collider:getRestitution()
   return self.Fixture:getRestitution()
 end
 
-function Collider:SetRestitution(restitution)
+function Collider:setRestitution(restitution)
   self.Fixture:setRestitution(restitution)
 end
 
-function Collider:GetFriction()
+function Collider:getFriction()
   return self.Body:getFriction()
 end
 
-function Collider:SetFriction(friction)
+function Collider:setFriction(friction)
   self.Body:setFriction(friction)
 end
 
-function Collider:GetLinearDamping()
+function Collider:getLinearDamping()
   return self.Body:getLinearDamping()
 end
 
-function Collider:SetLinearDamping(damping)
+function Collider:setLinearDamping(damping)
   self.Body:setLinearDamping(damping)
 end
 return Collider

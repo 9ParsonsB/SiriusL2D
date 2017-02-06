@@ -1,4 +1,4 @@
-local Theme = Class("Theme")
+local Theme = class("Theme")
 
 Theme.CornerRadius = 5
 Theme.Default = { 255, 255, 255 }

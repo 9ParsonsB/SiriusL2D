@@ -5,7 +5,7 @@ local function instance(class, ...)
   return self
 end
 
-function Class(name, parent)
+function class(name, parent)
   return setmetatable({Name = name}, {__call = instance, __index = parent})
 end
 

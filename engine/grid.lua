@@ -1,5 +1,5 @@
 --Single cell on a grid
-local Cell = Class("Cell")
+local Cell = class("Cell")
 
 Cell.G, Cell.H, Cell.F = 0, 0, 0
 
@@ -8,12 +8,12 @@ function Cell:Create(row, column, walkable)
   self.Walkable = walkable or true
 end
 
-function Cell:Reset()
+function Cell:reset()
   self.G, self.H, self.F = 0, 0, 0
   self.Parent = nil
 end
 
-function Cell:CalculateCost(current, finish)
+function Cell:calculateCost(current, finish)
   --G cost is the current G cost + the movement cost(10 for up/down and 14 for diagonal)
   local G = 10
   if self.Row ~= current.Row and self.Column ~= current.Column then G = 14 end
@@ -43,7 +43,7 @@ end
 
 --Grid that stores 2d table of cells
 --Uses A* to generate a path between two points
-local Grid = Class("Grid")
+local Grid = class("Grid")
 
 --Width and height of a single cell
 Grid.CellWidth = 30
@@ -80,54 +80,41 @@ function Grid:Clear()
   end
 end
 
-function Grid:ResetCosts()
+function Grid:resetCosts()
   for i,Row in pairs(self.Cells) do
-    for j, Cell in pairs(Row) do Cell:Reset() end
+    for j, Cell in pairs(Row) do Cell:reset() end
   end
 end
 
---Toggles the walkability of a cell
-function Grid:Toggle(x, y)
-  local cell = self:GetCell(self:GetCellLocation(x, y))
+--toggles the walkability of a cell
+function Grid:toggle(x, y)
+  local cell = self:getCell(self:getCellLocation(x, y))
   cell.Walkable = not cell.Walkable
 end
 
-function Grid:Place(x, y)
-  local cell = self:GetCell(self:GetCellLocation(x, y))
+function Grid:place(x, y)
+  local cell = self:getCell(self:getCellLocation(x, y))
   cell.Walkable = false
 end
 
-function Grid:Remove(x, y)
-  local cell = self:GetCell(self:GetCellLocation(x, y))
+function Grid:remove(x, y)
+  local cell = self:getCell(self:getCellLocation(x, y))
   cell.Walkable = true
 end
 
---Marks a area of the grid unwalkable
---[[function Grid:Insert(x, y, width, height)
-  local row, column = self:GetCellLocation(x, y)
-  local rowCount, columnCount = width / self.CellWidth, height / self.CellHeight
-
-  --Make cells in area unwalkable
-  for i = row, row + rowCount do
-    for j = column, column + columnCount do
-      self:GetCell(i, j).Walkable = false
-    end
-  end
-end--]]
-
 --Convert x, y to row, column
-function Grid:GetCellLocation(x, y)
+function Grid:getCellLocation(x, y)
   local distX, distY = x - self.X, y - self.Y
   return math.floor(distX / self.CellWidth), math.floor(distY / self.CellHeight)
 end
 
 --Convert row, column to x, y
-function Grid:GetCellPosition(cell)
+function Grid:getCellPosition(cell)
   return self.X + (self.CellWidth * cell.Row), self.Y + (self.CellHeight * cell.Column)
 end
 
 --Get center of the cell
-function Grid:GetCellCenter(cell)
+function Grid:getCellCenter(cell)
   local x, y = self:GetCellPosition(cell)
   x = x + self.CellWidth / 2
   y = y + self.CellHeight / 2
@@ -135,7 +122,7 @@ function Grid:GetCellCenter(cell)
 end
 
 --Get cell at row and column
-function Grid:GetCell(row, column)
+function Grid:getCell(row, column)
   --Clamp row and column to grid
   row = math.min(math.max(0, row), self.RowCount - 1)
   column = math.min(math.max(0, column), self.ColumnCount - 1)
@@ -143,7 +130,7 @@ function Grid:GetCell(row, column)
 end
 
 --Find cells around the cell passed in
-function Grid:GetAdacentCells(cell)
+function Grid:getAdacentCells(cell)
   local cells = {}
 
   table.insert(cells, self:GetCell(cell.Row - 1, cell.Column - 1))
@@ -159,7 +146,7 @@ function Grid:GetAdacentCells(cell)
 end
 
 --Return cell with the lowest F cost from the set
-function Grid:GetLowestFCell(set)
+function Grid:getLowestFCell(set)
   local lowest = nil
   for k,v in pairs(set) do
     if not lowest then lowest = k end
@@ -169,12 +156,12 @@ function Grid:GetLowestFCell(set)
 end
 
 --Calculate a path between 2 points on the grid
-function Grid:PathFind(x1, y1, x2, y2)
-  self:ResetCosts()
+function Grid:pathFind(x1, y1, x2, y2)
+  self:resetCosts()
 
   --Start and finish cells
-  local start = self:GetCell(self:GetCellLocation(x1, y1))
-  local finish = self:GetCell(self:GetCellLocation(x2, y2))
+  local start = self:getCell(self:getCellLocation(x1, y1))
+  local finish = self:getCell(self:getCellLocation(x2, y2))
 
   --Return if cell cannot be pathed to
   if not start.Walkable or not finish.Walkable then return {} end
@@ -185,12 +172,12 @@ function Grid:PathFind(x1, y1, x2, y2)
 
   repeat
     --Move cell with lowest f cost to closed list
-    local current = self:GetLowestFCell(open)
+    local current = self:getLowestFCell(open)
     open[current] = nil
     closed[current] = true
 
     --For each of the 8 cells adjacent
-    local adjacentCells = self:GetAdacentCells(current)
+    local adjacentCells = self:getAdacentCells(current)
     for k,v in pairs(adjacentCells) do
 
       --If it is walkable and it is not on the closed list
@@ -200,7 +187,7 @@ function Grid:PathFind(x1, y1, x2, y2)
         if not open[v] then
           open[v] = true
           v.Parent = current
-          v:CalculateCost(current, finish)
+          v:calculateCost(current, finish)
         else
 
           --If it is already on the open list the check if the path is better using the G cost.
@@ -210,7 +197,7 @@ function Grid:PathFind(x1, y1, x2, y2)
           --print(Distance)
           if Distance < v.G then
             v.Parent = current
-            v:CalculateCost(current, finish)
+            v:calculateCost(current, finish)
           end
         end
       end
@@ -218,7 +205,7 @@ function Grid:PathFind(x1, y1, x2, y2)
   until closed[finish]
     
   --Get path
-  local Path = self:GetPath(finish)
+  local Path = self:getPath(finish)
 
   --local distX, distY = Path[1].X - x1, Path[1].Y - y1
   --for k,v in pairs(Path) do v.X, v.Y = v.X - distX, v.Y - distY end
@@ -230,7 +217,7 @@ function Grid:PathFind(x1, y1, x2, y2)
 end
 
 --Generates a path using the parent of the cell
-function Grid:GetPath(cell)
+function Grid:getPath(cell)
   --Get path from finish to start
   local t = {}
   repeat
@@ -245,7 +232,7 @@ function Grid:GetPath(cell)
   --Generate x,y coords for the path
   local path = {}
   for k,v in pairs(t1) do
-    local x, y = self:GetCellCenter(v)
+    local x, y = self:getCellCenter(v)
     table.insert(path, {X = x, Y = y})
   end
 
