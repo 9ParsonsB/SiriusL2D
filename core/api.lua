@@ -2,8 +2,11 @@
 local t = require "core/math"
 Vec = t[1]
 
+<<<<<<< HEAD
 ge.physics = love.physics
 
+=======
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 ge.state = {}
 ge.prev = {} 
 ge.prev2 = {}
@@ -30,9 +33,12 @@ ge.print = love.graphics.print
 ge.rectangle = love.graphics.rectangle
 ge.circle = love.graphics.circle
 ge.line = love.graphics.line
+<<<<<<< HEAD
 ge.polygon = love.graphics.polygon
 ge.setColour = love.graphics.setColor
 ge.setBackgroundColour = love.graphics.setBackgroundColour
+=======
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 ge.mouseX = love.mouse.getX
 ge.mouseY = love.mouse.getY
 
@@ -73,6 +79,7 @@ end
 
 ge.transformed = false
 function ge.push(node)
+<<<<<<< HEAD
   if ge.transformed then 
     ge.transformed = false
     love.graphics.pop() 
@@ -85,6 +92,13 @@ function ge.push(node)
       love.graphics.translate(node.position.x, node.position.y)
     end
   end
+=======
+  if node and not node.position then return end
+  if ge.transformed then love.graphics.pop() end
+  ge.transformed = true
+  love.graphics.push()
+  love.graphics.translate(node.position.x, node.position.y)
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 end
 
 function love.keypressed(key, scancode, isrepeat) 

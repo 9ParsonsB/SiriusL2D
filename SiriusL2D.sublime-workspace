@@ -8,10 +8,13 @@
 				"forp\tfor k,v in pairs()"
 			],
 			[
+<<<<<<< HEAD
 				"mothersh",
 				"mothership1"
 			],
 			[
+=======
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 				"sound",
 				"love.graphics.setBackgroundColor"
 			],
@@ -514,21 +517,36 @@
 			[
 				"cu",
 				"cueBall"
+<<<<<<< HEAD
+=======
+			],
+			[
+				"He",
+				"HelloWorld"
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 			]
 		]
 	},
 	"buffers":
 	[
 		{
+<<<<<<< HEAD
 			"file": "tests/traffic.lua",
 			"settings":
 			{
 				"buffer_size": 575,
+=======
+			"file": "main.lua",
+			"settings":
+			{
+				"buffer_size": 2881,
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
+<<<<<<< HEAD
 			"file": "tests/noughtsCrosses.lua",
 			"settings":
 			{
@@ -542,6 +560,12 @@
 			"settings":
 			{
 				"buffer_size": 137,
+=======
+			"file": "data.lua",
+			"settings":
+			{
+				"buffer_size": 790,
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -656,6 +680,7 @@
 	],
 	"file_history":
 	[
+<<<<<<< HEAD
 		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/tests/test.lua",
 		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/tests/sirius.lua",
 		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/init.lua",
@@ -676,6 +701,8 @@
 		"/D/college/year1/sean/Assignment 3/VendingMachine/VendingMachine.cs",
 		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/test.lua",
 		"/D/projects/python/graphics/sirius/Sirius.py",
+=======
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 		"/D/projects/SiriusL2D(master)/core/math.lua",
 		"/D/projects/notes",
 		"/D/projects/SiriusL2D(master)/core/init.lua",
@@ -783,7 +810,31 @@
 		"/D/projects/lua/SiriusL2D(master)/core/network/socket/peer.lua",
 		"/D/projects/lua/SiriusL2D(master)/core/network/socket/client.lua",
 		"/D/projects/lua/SiriusL2D(master)/core/network/old/peer.lua",
+<<<<<<< HEAD
 		"/D/projects/lua/SiriusL2D(master)/core/network/old/client.lua"
+=======
+		"/D/projects/lua/SiriusL2D(master)/core/network/old/client.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/class.lua",
+		"/D/code/lua/SiriusL2D(master)/core/init.lua",
+		"/D/code/lua/SiriusL2D(master)/core/api.lua",
+		"/D/code/lua/SiriusL2D(master)/core/input.lua",
+		"/D/code/lua/SiriusL2D(master)/conf.lua",
+		"/D/code/lua/SiriusL2D(master)/core/scene.lua",
+		"/D/code/lua/SiriusL2D(master)/core/view.lua",
+		"/D/code/lua/SiriusL2D(master)/core/gui.lua",
+		"/D/code/lua/SiriusL2D(master)/core/path.lua",
+		"/D/code/lua/SiriusL2D(master)/core/physics.lua",
+		"/D/code/lua/SiriusL2D(master)/data.lua",
+		"/D/projects/GameEngine/src/main.cpp",
+		"/D/projects/GameEngine/GameEngine.sublime-project",
+		"/D/code/lua/SiriusL2D(master)/SiriusL2D.sublime-project",
+		"/D/projects/misc/path.cpp",
+		"/D/projects/misc/sample.cpp",
+		"/D/projects/misc/sample/C++ Sample/main.cpp",
+		"/D/projects/misc/vulkanTest.cpp",
+		"/D/code/c#/misc/sirius/Linux/GenericEngine/Src/Input/Keyboard.cs",
+		"/D/code/c#/misc/sirius/Windows/GenericEngine/Src/Input/Mouse.cs"
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 	],
 	"find":
 	{
@@ -801,10 +852,13 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+<<<<<<< HEAD
 			"self",
 			"love",
 			"setColor",
 			"love",
+=======
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 			"local",
 			"view",
 			"View",
@@ -928,7 +982,15 @@
 			"camera",
 			"local",
 			")\n",
+<<<<<<< HEAD
 			"{}\n"
+=======
+			"{}\n",
+			"end",
+			"50",
+			"\t\n",
+			")\n"
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -936,9 +998,12 @@
 		"regex": false,
 		"replace_history":
 		[
+<<<<<<< HEAD
 			"ge",
 			"setColour",
 			"ge",
+=======
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 			"camera",
 			"Camera",
 			"Vec",
@@ -979,61 +1044,103 @@
 	"groups":
 	[
 		{
+<<<<<<< HEAD
 			"selected": 2,
+=======
+			"selected": 0,
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 			"sheets":
 			[
 				{
 					"buffer": 0,
+<<<<<<< HEAD
 					"file": "tests/traffic.lua",
 					"semi_transient": false,
 					"settings":
 					{
 						"buffer_size": 575,
+=======
+					"file": "main.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2881,
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
+<<<<<<< HEAD
 								575,
 								575
+=======
+								194,
+								194
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Lua/Lua.sublime-syntax",
 							"tab_size": 2,
+<<<<<<< HEAD
 							"translate_tabs_to_spaces": false
+=======
+							"translate_tabs_to_spaces": true
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
+<<<<<<< HEAD
 					"stack_index": 2,
+=======
+					"stack_index": 0,
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+<<<<<<< HEAD
 					"file": "tests/noughtsCrosses.lua",
 					"semi_transient": false,
 					"settings":
 					{
 						"buffer_size": 1164,
+=======
+					"file": "data.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 790,
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
+<<<<<<< HEAD
 								166,
 								166
+=======
+								790,
+								790
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Lua/Lua.sublime-syntax",
 							"tab_size": 2,
+<<<<<<< HEAD
 							"translate_tabs_to_spaces": true
+=======
+							"translate_tabs_to_spaces": false
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1041,6 +1148,7 @@
 					},
 					"stack_index": 1,
 					"type": "text"
+<<<<<<< HEAD
 				},
 				{
 					"buffer": 2,
@@ -1069,6 +1177,8 @@
 					},
 					"stack_index": 0,
 					"type": "text"
+=======
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 				}
 			]
 		}

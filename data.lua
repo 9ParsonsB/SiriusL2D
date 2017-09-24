@@ -29,7 +29,7 @@ data.unit.Dreadnought = gClass("Dreadnought", {
 	sprite = "unit2",
 	health = 200})
 
-data.weapon.Laser = gClass("Laser", {
+data.weapon.Laser = class("Laser", {
 	damage = 20,
 	cooldown = 2})
 

@@ -1,10 +1,17 @@
 ge = {}
 
+<<<<<<< HEAD
 local class = require "core.class"
 require "core/api"
 require "core/gui"
 
 function gClass(name, table)
+=======
+require "core/api"
+require "core/gui"
+
+function class(name, table)
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
   table.name = name
   table.__index = table
   return table
@@ -20,11 +27,14 @@ function ge.Node(info, x, y, z, r)
   return obj
 end
 
+<<<<<<< HEAD
 function ge.drawGrid(x, y, w, h, rows, cols)
   for i=0, rows do ge.line(x + (i * w), y, x + (i * w), y + (cols * h)) end
   for i=0, cols do ge.line(x, y + (i * h), x + (rows * w), y + (i * h)) end
 end
 
+=======
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 local list = {}
 list.__index = list
 function list:add(info, x, y, z, r)
@@ -32,6 +42,7 @@ function list:add(info, x, y, z, r)
   return self[#self]
 end
 
+<<<<<<< HEAD
 function list:remove(node)
   for k,v in pairs(self) do
     if v == node then table.remove(self, k) end
@@ -42,6 +53,12 @@ function list:select(rect, texture, unique)
   local position = rect.position or rect
   local target = position + (rect.size or Vec(0, 0))
   return ge.select(self, texture, position.x, position.y, target.x, target.y, unique)
+=======
+function list:select(rect, texture)
+  local position = rect.position or rect
+  local size = rect.size or Vec(0, 0)
+  ge.select(self, texture, position.x, position.y, position.x + size.x, position.y + size.y)
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 end
 
 function ge.List(size, info, x, y, z)
@@ -50,6 +67,14 @@ function ge.List(size, info, x, y, z)
   return list
 end
 
+<<<<<<< HEAD
+=======
+function ge.drawGrid(x, y, w, h, rows, cols)
+  for i=0, rows do ge.line(x + (i * w), y, x + (i * w), y + (cols * h)) end
+  for i=0, cols do ge.line(x, y + (i * h), x + (rows * w), y + (i * h)) end
+end
+
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 function ge.collision(node, texture, x1, y1, x2, y2)
   local a, b = math.min(x1, x2), math.min(y1, y2)
   local c, d = math.max(x1, x2), math.max(y1, y2)
@@ -57,6 +82,7 @@ function ge.collision(node, texture, x1, y1, x2, y2)
   return ge.aabb(node.position.x - (w / 2), node.position.y - (h / 2), w, h, a, b, (c - a), (d-b)) 
 end
 
+<<<<<<< HEAD
 function ge.select(t, texture, x1, y1, x2, y2, unique)
   for k,v in pairs(t) do
     if ge.collision(v, texture, x1, y1, x2, y2) then
@@ -64,6 +90,12 @@ function ge.select(t, texture, x1, y1, x2, y2, unique)
       if unique then 
         return v
       end
+=======
+function ge.select(t, texture, x1, y1, x2, y2)
+  for k,v in pairs(t) do
+    if ge.collision(v, texture, x1, y1, x2, y2) then
+      v.selected = true
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
     else
       if not ge.down("lshift") then
         v.selected = false
@@ -72,6 +104,7 @@ function ge.select(t, texture, x1, y1, x2, y2, unique)
   end
 end
 
+<<<<<<< HEAD
 -- grid container
 local Grid = class("Grid")
 function Grid:init(w, h, rows, cols)
@@ -93,6 +126,8 @@ end
 ge.Grid = Grid
 
 -- misc
+=======
+>>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 function ge.flocking(list)
   for k,v in pairs(list) do
     local alignment = ge.alignment(v, list)
