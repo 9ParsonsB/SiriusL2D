@@ -1,0 +1,1130 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"for",
+				"forp\tfor k,v in pairs()"
+			],
+			[
+				"sound",
+				"love.graphics.setBackgroundColor"
+			],
+			[
+				"func",
+				"function\tfunction"
+			],
+			[
+				"audio",
+				"love.audio.newSource"
+			],
+			[
+				"dis",
+				"dist"
+			],
+			[
+				"ta",
+				"targets"
+			],
+			[
+				"tar",
+				"target_offset"
+			],
+			[
+				"get",
+				"getHeight"
+			],
+			[
+				"val",
+				"valid_node_func"
+			],
+			[
+				"va",
+				"valid_node_func"
+			],
+			[
+				"ca",
+				"cachedPaths"
+			],
+			[
+				"tile",
+				"tile_width"
+			],
+			[
+				"key",
+				"keypressed"
+			],
+			[
+				"isDown",
+				"love.mouse.isDown"
+			],
+			[
+				"setme",
+				"love.physics.setMeter"
+			],
+			[
+				"time",
+				"love.timer.getFPS"
+			],
+			[
+				"Move",
+				"MovementControl"
+			],
+			[
+				"UUId",
+				"UUIDs"
+			],
+			[
+				"Animation",
+				"animation"
+			],
+			[
+				"seed",
+				"love.math.setRandomSeed"
+			],
+			[
+				"set",
+				"setmetatable\t(table, metatable)"
+			],
+			[
+				"Select",
+				"SelectBox"
+			],
+			[
+				"Selec",
+				"SelectBox"
+			],
+			[
+				"updat",
+				"UpdateObject"
+			],
+			[
+				"filesy",
+				"love.filesystem.load"
+			],
+			[
+				"col",
+				"love.graphics.getColor"
+			],
+			[
+				"Calcula",
+				"CalculateCost"
+			],
+			[
+				"GetCell",
+				"GetCellLocation"
+			],
+			[
+				"setline",
+				"love.graphics.setLineStyle"
+			],
+			[
+				"parent",
+				"parentPath"
+			],
+			[
+				"Crew",
+				"crewmember"
+			],
+			[
+				"keya",
+				"love.keyboard.isDown"
+			],
+			[
+				"Target",
+				"TargetX"
+			],
+			[
+				"files",
+				"love.filesystem.getLastModified"
+			],
+			[
+				"grap",
+				"love.graphics.circle"
+			],
+			[
+				"amoun",
+				"amountX"
+			],
+			[
+				"objec",
+				"Objects"
+			],
+			[
+				"getpositi",
+				"love.mouse.getPosition"
+			],
+			[
+				"Objet",
+				"Objects"
+			],
+			[
+				"Object",
+				"Objects"
+			],
+			[
+				"GetMOuse",
+				"GetMouseX"
+			],
+			[
+				"Debu",
+				"DebugInfo"
+			],
+			[
+				"texture",
+				"textureWidth"
+			],
+			[
+				"ley",
+				"love.keyboard.isDown"
+			],
+			[
+				"PlayerUpd",
+				"PlayerUpdated"
+			],
+			[
+				"mouse",
+				"love.mouse.isDown"
+			],
+			[
+				"ent",
+				"entity"
+			],
+			[
+				"fun",
+				"function\tfunction"
+			],
+			[
+				"Pla",
+				"PlayerUpdated"
+			],
+			[
+				"enti",
+				"entity"
+			],
+			[
+				"entity",
+				"entity2"
+			],
+			[
+				"Fps",
+				"FpsUpdate"
+			],
+			[
+				"Crea",
+				"CreateText"
+			],
+			[
+				"Load",
+				"LoadPhysicsMaterial"
+			],
+			[
+				"e",
+				"Entity"
+			],
+			[
+				"Cre",
+				"CreateSprite"
+			],
+			[
+				"Ba",
+				"BasicCollision"
+			],
+			[
+				"cla",
+				"Classes"
+			],
+			[
+				"ENt",
+				"EntityRecieved"
+			],
+			[
+				"di",
+				"distX"
+			],
+			[
+				"Movem",
+				"MovementUpdated"
+			],
+			[
+				"ran",
+				"randint"
+			],
+			[
+				"ra",
+				"random"
+			],
+			[
+				"del",
+				"DeltaTime"
+			],
+			[
+				"Mov",
+				"move"
+			],
+			[
+				"Di",
+				"display"
+			],
+			[
+				"No",
+				"now"
+			],
+			[
+				"en",
+				"entityB"
+			],
+			[
+				"E",
+				"Events"
+			],
+			[
+				"Pl",
+				"PlayerMoveUp"
+			],
+			[
+				"Ent",
+				"EntityMoved"
+			],
+			[
+				"mo",
+				"moveSpeed"
+			],
+			[
+				"Bo",
+				"BotCreated"
+			],
+			[
+				"S",
+				"Subscribe"
+			],
+			[
+				"Player",
+				"PlayerCreated"
+			],
+			[
+				"Up",
+				"UpdatePlayer"
+			],
+			[
+				"of",
+				"offsetX"
+			],
+			[
+				"pl",
+				"player2"
+			],
+			[
+				"ba",
+				"ballY"
+			],
+			[
+				"T",
+				"time"
+			],
+			[
+				"Pr",
+				"Projectile"
+			],
+			[
+				"Spri",
+				"SpriteComponent"
+			],
+			[
+				"Get",
+				"GetTransform"
+			],
+			[
+				"Bas",
+				"BasicCamera"
+			],
+			[
+				"Mo",
+				"MovementScript"
+			],
+			[
+				"Se",
+				"SelectCell"
+			],
+			[
+				"Ad",
+				"AddScript"
+			],
+			[
+				"Tes",
+				"TestScript"
+			],
+			[
+				"d",
+				"deltaTime"
+			],
+			[
+				"New",
+				"NewId"
+			],
+			[
+				"Ve",
+				"vel"
+			],
+			[
+				"f",
+				"function\tfunction"
+			],
+			[
+				"Bu",
+				"Bullet"
+			],
+			[
+				"in",
+				"instance"
+			],
+			[
+				"En",
+				"Engine"
+			],
+			[
+				"Sp",
+				"Sprite"
+			],
+			[
+				"s",
+				"serverObj"
+			],
+			[
+				"cli",
+				"clientObj"
+			],
+			[
+				"B",
+				"BulletsCreated"
+			],
+			[
+				"Tim",
+				"TimeLimit"
+			],
+			[
+				"Inst",
+				"InstanceCount"
+			],
+			[
+				"Ti",
+				"TimeLimit"
+			],
+			[
+				"co",
+				"Count"
+			],
+			[
+				"Ins",
+				"Instances"
+			],
+			[
+				"In",
+				"InstanceCount"
+			],
+			[
+				"Upda",
+				"UpdateInstances"
+			],
+			[
+				"m",
+				"MoveUp"
+			],
+			[
+				"Han",
+				"HandleAction"
+			],
+			[
+				"Hand",
+				"HandleMsg"
+			],
+			[
+				"st",
+				"startGame"
+			],
+			[
+				"Entiy",
+				"EntityUpdated"
+			],
+			[
+				"Entity",
+				"EntityCreated"
+			],
+			[
+				"Co",
+				"ConnectToServer"
+			],
+			[
+				"bal",
+				"ballsPotted"
+			],
+			[
+				"Q",
+				"QuitGame"
+			],
+			[
+				"Ena",
+				"EnableMenu"
+			],
+			[
+				"bu",
+				"ButtonSelected"
+			],
+			[
+				"Cu",
+				"CueControl"
+			],
+			[
+				"spri",
+				"sprite"
+			],
+			[
+				"snap",
+				"snapPos"
+			],
+			[
+				"Bal",
+				"BallUpdateEv"
+			],
+			[
+				"On",
+				"OnBallUpdate"
+			],
+			[
+				"I",
+				"InstanceCount"
+			],
+			[
+				"Cla",
+				"Classes"
+			],
+			[
+				"Hell",
+				"HelloWorld"
+			],
+			[
+				"Cue",
+				"CueBall"
+			],
+			[
+				"cu",
+				"cueBall"
+			],
+			[
+				"He",
+				"HelloWorld"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "main.lua",
+			"settings":
+			{
+				"buffer_size": 2881,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "data.lua",
+			"settings":
+			{
+				"buffer_size": 790,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					""
+				],
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					"Love2D"
+				],
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					"ldoc: File"
+				],
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					"ldoc: Project"
+				]
+			],
+			[
+				"Packages/Lua Love/LuaLove.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "packa",
+		"selected_items":
+		[
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"package",
+				"Package Control: List Packages"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"corona",
+				"Set Syntax: Corona SDK Lua"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control:",
+				"Package Control: Install Package"
+			],
+			[
+				"mono",
+				"Mono: Compile Dot Net"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Set Syntax: C#"
+			],
+			[
+				"package control",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 412.0
+	},
+	"console":
+	{
+		"height": 209.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/projects/SiriusL2D(master)"
+	],
+	"file_history":
+	[
+		"/D/projects/SiriusL2D(master)/core/math.lua",
+		"/D/projects/notes",
+		"/D/projects/SiriusL2D(master)/core/init.lua",
+		"/D/projects/SiriusL2D(master)/core/api.lua",
+		"/G/projects/Game-Engine-master/src/CustomString.cpp",
+		"/C/Users/Chris/AppData/Local/Temp/Temp1_Game-Engine-master.zip/Game-Engine-master/include/Graphics/GLTexture.h",
+		"/C/Users/Chris/AppData/Local/Temp/Temp1_Game-Engine-master.zip/Game-Engine-master/include/Graphics/GLDrawable.h",
+		"/C/Users/Chris/AppData/Local/Temp/Temp1_Game-Engine-master.zip/Game-Engine-master/include/Lua/LuaState.h",
+		"/D/projects/SiriusL2D(master)/core/class.lua",
+		"/D/projects/SiriusL2D(master)/data.lua",
+		"/D/projects/GameEngine/src/app.h",
+		"/D/projects/SiriusL2D(master)/core/gui.lua",
+		"/D/projects/SiriusL2D(master)/core/network/vec.lua",
+		"/D/projects/SiriusL2D(master)/core/network/peer.lua",
+		"/D/projects/SiriusL2D(master)/core/network/init.lua",
+		"/D/projects/SiriusL2D(master)/core/vec.lua",
+		"/D/projects/SiriusL2D(master)/core/network/class.lua",
+		"/D/projects/SiriusL2D(master)/test.lua",
+		"/D/projects/SiriusL2D(master)/main.lua",
+		"/D/projects/GameEngine/src/network/peer.cpp",
+		"/D/projects/SiriusL2D(master)/core/tests/breakout.lua",
+		"/D/projects/SiriusL2D(master)/core/tests/noughtcross.lua",
+		"/D/projects/SiriusL2D(master)/core/tests/sirius.lua",
+		"/D/projects/SiriusL2D(master)/sirius.lua",
+		"/D/projects/misc/res/sample.cpp",
+		"/D/projects/misc/res/vulkanTest.cpp",
+		"/D/projects/misc/res/quotes",
+		"/D/projects/SiriusL2D(master)/conf.lua",
+		"/D/projects/GameEngine/res/main.lua",
+		"/D/projects/lua/SiriusL2D(master)/main.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/api.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/vec.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/gui.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/netpeer.lua",
+		"/D/projects/lua/SiriusL2D(master)/data.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/init.lua",
+		"/D/projects/lua/clones/breakout.lua",
+		"/D/projects/lua/clones/main.lua",
+		"/D/projects/lua/clones/conf.lua",
+		"/D/projects/lua/SiriusL2D(master)/test/sirius.lua",
+		"/D/projects/lua/SiriusL2D(master)/test/breakout.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/sirius.lua",
+		"/D/projects/lua/SiriusL2D(master)/test/spaceInvaders.lua",
+		"/D/projects/lua/SiriusL2D(master)/test/test.lua",
+		"/D/projects/lua/SiriusL2D(master)/tests/test.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/test.lua",
+		"/D/projects/lua/SiriusL2D(master)/sirius.lua",
+		"/D/projects/lua/SiriusL2D(master)/README.md",
+		"/D/projects/lua/SiriusL2D(master)/test.lua",
+		"/D/projects/lua/ideas.txt",
+		"/D/projects/lua/SiriusL2D(master)/misc.lua",
+		"/D/projects/lua/SiriusL2D(master)/nebula.lua",
+		"/D/projects/lua/SiriusL2D(master)/conf.lua",
+		"/D/projects/lua/SiriusL2D(master)/res/nebula.glsl",
+		"/D/projects/lua/clones/noughtcross.lua",
+		"/D/projects/lua/SiriusL2D(master)/res/TODO.txt",
+		"/D/projects/lua/SiriusL2D(master)/res/SiriusLinux.sh",
+		"/D/projects/lua/SiriusL2D(master)/res/noise2D.glsl",
+		"/D/projects/lua/SiriusL2D(master)/res/classicnoise2D.glsl",
+		"/D/projects/lua/SiriusL2D(master)/res/noise2D.glsl.txt",
+		"/D/projects/misc/res/path.cpp",
+		"/C/Users/Chris/Downloads/perlin2d.glsl",
+		"/D/projects/lua/SiriusL2D(master)/res/perlin2d.glsl",
+		"/D/projects/lua/SiriusL2D(master)/perlin2d.glsl",
+		"/D/projects/lua/SiriusL2D(master)/res/Perlin2D.glsl.txt",
+		"/D/projects/idea.txt",
+		"/D/projects/python/learning/help.py",
+		"/D/projects/python/learning/isItChristmas.py",
+		"/D/projects/lua/main.lua",
+		"/D/projects/lua/test/main.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/peer.lua",
+		"/D/projects/c#/HowToPool/HowToPool/Test.cs",
+		"/D/projects/lua/SiriusL2D(master)/core/misc.lua",
+		"/D/projects/lua/SiriusL2D(master)/SiriusL2D.sublime-project",
+		"/D/projects/lua/SiriusL2D(master)/core/network/init.lua",
+		"/D/games/Rodina/Scripts/DataGameplay/EGDataActionBindings.lua",
+		"/D/projects/python/learning/oop.py",
+		"/D/projects/lua/SiriusL2D(master)/core/input.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/view.lua",
+		"/D/projects/c#/sirius/Windows/GenericEngine/Src/Network/Server/NetEvents.cs",
+		"/D/projects/c#/sirius/Windows/GenericEngine/Src/Network/Server/Handler.cs",
+		"/D/projects/c#/sirius/Windows/GenericEngine/Src/Network/Server/GenericServerClient.cs",
+		"/D/projects/c#/sirius/Windows/SiriusClient/Game1.cs",
+		"/D/projects/c#/sirius/Windows/SiriusClient/Entities/Gameplay.cs",
+		"/D/projects/GameEngine/src/app.cpp",
+		"/D/projects/lua/SiriusL2D(master)/core/scene.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/path.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/physics.lua",
+		"/D/projects/mods/FireArmor_0.1.0/prototypes/item.lua",
+		"/D/projects/mods/TestMod/data.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/client.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/enet/peer.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/enet/init.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/enet/client.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/shared.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/server.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/misc/server.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/vec.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/enet/server.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/misc/client.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/dump.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/enet/dump.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/misc/peer.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/socket/netpeer.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/socket/peer.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/socket/client.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/old/peer.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/old/client.lua",
+		"/D/projects/lua/SiriusL2D(master)/core/network/class.lua",
+		"/D/code/lua/SiriusL2D(master)/core/init.lua",
+		"/D/code/lua/SiriusL2D(master)/core/api.lua",
+		"/D/code/lua/SiriusL2D(master)/core/input.lua",
+		"/D/code/lua/SiriusL2D(master)/conf.lua",
+		"/D/code/lua/SiriusL2D(master)/core/scene.lua",
+		"/D/code/lua/SiriusL2D(master)/core/view.lua",
+		"/D/code/lua/SiriusL2D(master)/core/gui.lua",
+		"/D/code/lua/SiriusL2D(master)/core/path.lua",
+		"/D/code/lua/SiriusL2D(master)/core/physics.lua",
+		"/D/code/lua/SiriusL2D(master)/data.lua",
+		"/D/projects/GameEngine/src/main.cpp",
+		"/D/projects/GameEngine/GameEngine.sublime-project",
+		"/D/code/lua/SiriusL2D(master)/SiriusL2D.sublime-project",
+		"/D/projects/misc/path.cpp",
+		"/D/projects/misc/sample.cpp",
+		"/D/projects/misc/sample/C++ Sample/main.cpp",
+		"/D/projects/misc/vulkanTest.cpp",
+		"/D/code/c#/misc/sirius/Linux/GenericEngine/Src/Input/Keyboard.cs",
+		"/D/code/c#/misc/sirius/Windows/GenericEngine/Src/Input/Mouse.cs"
+	],
+	"find":
+	{
+		"height": 40.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"local",
+			"view",
+			"View",
+			"ball",
+			"position",
+			"a",
+			"vec",
+			"Vector",
+			")\n",
+			"ship",
+			"obj",
+			"rectangle",
+			"ge.isPres",
+			"ge.down",
+			"down",
+			"end",
+			"pressed",
+			"name",
+			"gui",
+			"2",
+			"state",
+			"Camera",
+			"padding",
+			"v",
+			"layout",
+			"end",
+			"nk",
+			"projectile",
+			"ship",
+			"Weapon",
+			"Ship",
+			"100",
+			"KB",
+			"textur",
+			"260",
+			") ",
+			"y",
+			"game",
+			"target",
+			"))\n",
+			"menustate",
+			"camera",
+			"py",
+			"px",
+			"dy",
+			"rts",
+			"Toggle",
+			"Reset",
+			"CalculateCost",
+			"calculateCost",
+			"love",
+			"\")",
+			"65",
+			"())",
+			"y",
+			"368",
+			"end",
+			"Y",
+			"Vector",
+			"World",
+			"\"))",
+			"y",
+			"Parent",
+			"tYpe",
+			"y",
+			"x",
+			"end",
+			"State",
+			")\n",
+			"Render",
+			"Object",
+			"\")\n",
+			"G",
+			"Renderer",
+			"Line",
+			"distance",
+			"self",
+			"Parent",
+			"removing",
+			"self",
+			"print",
+			"x",
+			"end",
+			"_G",
+			"env",
+			"client:connect",
+			"client",
+			"Client",
+			"Client:connect",
+			"client",
+			"connect",
+			"_implemented",
+			"Client",
+			"()\n",
+			"end",
+			"  State = \"\"",
+			"end",
+			"CreateMixinDispatcher",
+			"CreateMixinDispa",
+			")\n",
+			"Events",
+			"Test",
+			"initia",
+			"Button",
+			"text",
+			"get",
+			"self.mouse",
+			"filePath",
+			"G",
+			"Fire",
+			"collectgarbage",
+			"200",
+			")\n",
+			"end",
+			"Transform",
+			"Entity",
+			"X",
+			"entity",
+			"end",
+			")\n",
+			"camera",
+			"local",
+			")\n",
+			"{}\n",
+			"end",
+			"50",
+			"\t\n",
+			")\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"camera",
+			"Camera",
+			"Vec",
+			"vec",
+			"unit",
+			"node",
+			"View",
+			"box",
+			"gui",
+			"Projectile",
+			"Ship",
+			"weapon",
+			"ship",
+			"self",
+			"game.menustate",
+			"state",
+			"pos.y",
+			"pos.x",
+			"game",
+			"toggle",
+			"reset",
+			"calculateCost",
+			"Vector2",
+			"Scene",
+			"type",
+			"Y",
+			"X",
+			"Label",
+			"Entity",
+			"CueLogic"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "main.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2881,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								194,
+								194
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "data.lua",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 790,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								790,
+								790
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Lua/Lua.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 39.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 262.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/User/love2d.sublime-build",
+	"project": "SiriusL2D.sublime-project",
+	"replace":
+	{
+		"height": 72.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"/E/Computing/Programs/Python/Entity system/engine.py"
+			],
+			[
+				"c",
+				"TestGame1/TestGame1Content/TestGame1Content.contentproj"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 173.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
