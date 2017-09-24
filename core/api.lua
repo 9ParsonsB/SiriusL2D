@@ -3,6 +3,7 @@ local t = require "core/math"
 Vec = t[1]
 
 ge.physics = love.physics
+
 ge.state = {}
 ge.prev = {} 
 ge.prev2 = {}
@@ -84,11 +85,6 @@ function ge.push(node)
       love.graphics.translate(node.position.x, node.position.y)
     end
   end
-  if node and not node.position then return end
-  if ge.transformed then love.graphics.pop() end
-  ge.transformed = true
-  love.graphics.push()
-  love.graphics.translate(node.position.x, node.position.y)
 end
 
 function love.keypressed(key, scancode, isrepeat) 

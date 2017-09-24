@@ -1,5 +1,5 @@
--- require "tests.sirius"
-require "tests.test"
+require "tests.sirius"
+-- require "tests.test"
 -- require "tests.breakout"
 --  require "tests.noughtsCrosses"
 -- require "tests.traffic"

@@ -7,8 +7,32 @@ function ge.load()
  	hero1 = ge.Texture("res/mothership1.png")
   hero2 = ge.Texture("res/mothership2.png")
   units = ge.List()
-  grid = ge.Grid(10, 7)
+  grid = ge.Grid(60, 40, 10, 7)
   turn = 0
+
+  -- nebula shader(clouds)
+  -- use perlin noise to mix with texture
+  local perlin = ge.read("res/classicnoise2D.glsl")
+  local source = ge.read("res/nebula.glsl")
+  cloud = ge.Shader(perlin .. source)
+  cloud:send("scale", (math.random() * 2 + 1) / scene.width)
+  cloud:send("uColor", {0.7, 0, 1})
+  cloud:send("density", math.random() * 0.05)
+  cloud:send("falloff", math.random() * 2.0 + 3.0)
+  cloud:send("offset", {math.random() * 100, math.random() * 100})
+
+  -- nebula texture(stars)
+  -- static so generated here
+  local map = ge.ImageData(1024, 768)
+  local density, brightness = 0.02, 0.125
+  local count = map:getWidth() * map:getHeight() * density
+  for i=0,count do
+    local x = math.floor(math.random() * map:getWidth())
+    local y = math.floor(math.random() * map:getHeight())
+    local c = 255 * math.log(1 - math.random()) * -brightness
+    map:setPixel(x, y, c, c, c, 255)
+  end
+  stars = ge.Texture(map)
 
   -- player 1
   for i=0,3 do 
@@ -34,7 +58,6 @@ function ge.move(unit, position)
 	else
 		grid:snap(unit)
 	end
-
 	turn = 1 - turn
   unit.selected = false
 end
@@ -47,6 +70,7 @@ function ge.update(dt)
 
   -- process move
   if ge.pressed(1) and unit then
+    unit.position = ge.mouse()
     if unit.grid then
       ge.move(unit, ge.mouse())
     end
@@ -67,6 +91,10 @@ function ge.update(dt)
 end
 
 function ge.draw()
+  ge.bind(cloud, camera)
+  ge.render(stars)
+  ge.bind(nil, nil)
+
   ge.drawGrid(210, 200, 60, 40, 10, 7)
   ge.render(hero1, 20, 300)
   ge.render(hero2, 850, 300)

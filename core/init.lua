@@ -20,6 +20,11 @@ function ge.Node(info, x, y, z, r)
   return obj
 end
 
+function ge.drawGrid(x, y, w, h, rows, cols)
+  for i=0, rows do ge.line(x + (i * w), y, x + (i * w), y + (cols * h)) end
+  for i=0, cols do ge.line(x, y + (i * h), x + (rows * w), y + (i * h)) end
+end
+
 local list = {}
 list.__index = list
 function list:add(info, x, y, z, r)
@@ -45,11 +50,6 @@ function ge.List(size, info, x, y, z)
   return list
 end
 
-function ge.drawGrid(x, y, w, h, rows, cols)
-  for i=0, rows do ge.line(x + (i * w), y, x + (i * w), y + (cols * h)) end
-  for i=0, cols do ge.line(x, y + (i * h), x + (rows * w), y + (i * h)) end
-end
-
 function ge.collision(node, texture, x1, y1, x2, y2)
   local a, b = math.min(x1, x2), math.min(y1, y2)
   local c, d = math.max(x1, x2), math.max(y1, y2)
@@ -57,11 +57,13 @@ function ge.collision(node, texture, x1, y1, x2, y2)
   return ge.aabb(node.position.x - (w / 2), node.position.y - (h / 2), w, h, a, b, (c - a), (d-b)) 
 end
 
-
-function ge.select(t, texture, x1, y1, x2, y2)
+function ge.select(t, texture, x1, y1, x2, y2, unique)
   for k,v in pairs(t) do
     if ge.collision(v, texture, x1, y1, x2, y2) then
       v.selected = true
+      if unique then 
+        return v
+      end
     else
       if not ge.down("lshift") then
         v.selected = false
