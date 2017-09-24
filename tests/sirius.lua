@@ -50,11 +50,6 @@ function ge.move(unit, position)
 	local enemy = grid[position]
 	if enemy then
 		enemy.health = enemy.health - unit.attack
-		-- if enemy hero killed then
-		--   game over
-    --   reset()
-		-- end
-  -- move on grid
 	else
 		grid:snap(unit)
 	end
