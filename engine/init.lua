@@ -1,5 +1,0 @@
-require "engine/class"
-require "engine/view"
-require "engine/gui"
-require "engine/map"
-require "engine/rts"
