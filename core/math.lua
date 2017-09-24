@@ -8,73 +8,41 @@ end
 
 function Vec.__add(a, b)
   if type(a) == "number" then
-<<<<<<< HEAD
 	return Vec(b.x + a, b.y + a)
   elseif type(b) == "number" then
 	return Vec(a.x + b, a.y + b)
   else
 	return Vec(a.x + b.x, a.y + b.y)
-=======
-    return Vec(b.x + a, b.y + a)
-  elseif type(b) == "number" then
-    return Vec(a.x + b, a.y + b)
-  else
-    return Vec(a.x + b.x, a.y + b.y)
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
   end
 end
 
 function Vec.__sub(a, b)
   if type(a) == "number" then
-<<<<<<< HEAD
 	return Vec(b.x - a, b.y - a)
   elseif type(b) == "number" then
 	return Vec(a.x - b, a.y - b)
   else
 	return Vec(a.x - b.x, a.y - b.y)
-=======
-    return Vec(b.x - a, b.y - a)
-  elseif type(b) == "number" then
-    return Vec(a.x - b, a.y - b)
-  else
-    return Vec(a.x - b.x, a.y - b.y)
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
   end
 end
 
 function Vec.__mul(a, b)
   if type(a) == "number" then
-<<<<<<< HEAD
 	return Vec(b.x * a, b.y * a)
   elseif type(b) == "number" then
 	return Vec(a.x * b, a.y * b)
   else
 	return Vec(a.x * b.x, a.y * b.y)
-=======
-    return Vec(b.x * a, b.y * a)
-  elseif type(b) == "number" then
-    return Vec(a.x * b, a.y * b)
-  else
-    return Vec(a.x * b.x, a.y * b.y)
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
   end
 end
 
 function Vec.__div(a, b)
   if type(a) == "number" then
-<<<<<<< HEAD
 	return Vec(b.x / a, b.y / a)
   elseif type(b) == "number" then
 	return Vec(a.x / b, a.y / b)
   else
 	return Vec(a.x / b.x, a.y / b.y)
-=======
-    return Vec(b.x / a, b.y / a)
-  elseif type(b) == "number" then
-    return Vec(a.x / b, a.y / b)
-  else
-    return Vec(a.x / b.x, a.y / b.y)
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
   end
 end
 
@@ -150,11 +118,7 @@ function Vec:cross(other)
   return self.x * other.y - self.y * other.x
 end
 
-<<<<<<< HEAD
 -- orthographic camera
-=======
--- orthographics camera
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 local Camera = class("Camera")
 function Camera:init(x, y, w, h)
   self.position = Vec(x, y)
@@ -190,11 +154,7 @@ function Camera:zoom()
   self.zoom = self.zoom * value
 end
 
-<<<<<<< HEAD
 -- util
-=======
--- maths
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 function ge.vectorDirection(r) 
   return Vec(math.cos(r), math.sin(r))
 end
@@ -248,8 +208,4 @@ function ge.moveTowardPoint(node, point, speed)
   local movement = distance:normalize() * math.min(length, speed)
   node.position = node.position + movement
 end
-<<<<<<< HEAD
 return {Vec, Camera, Grid}
-=======
-return {Vec, Camera}
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
