@@ -1,73 +1,103 @@
 -- api wrap(love2d)
-local t = require "core/math"
-Vec = t[1]
 
-ge.physics = love.physics
+require "core/reload"
 
-ge.state = {}
-ge.prev = {} 
-ge.prev2 = {}
+ge.pressedState = {}
+ge.releasedState = {}
 ge.wheel = {x=0, y=0}
 ge.lastwheel = {x=0,y=0}
 ge.delta = {x=0, y=0} 
 ge.lastdelta = {x=0,y=0}
 ge.textentered = ""
+ge.states = {}
+ge.choice = {}
+ge.active = nil
 
--- types
 ge.ImageData = love.image.newImageData
 ge.Texture = love.graphics.newImage
 ge.Shader = love.graphics.newShader
 ge.Font = love.graphics.newFont
 ge.Sound = love.audio.newSource
 ge.Thread = love.thread.newThread
-ge.Vec = t[1]
-ge.Camera = t[2]
 
--- util
+ge.quit = love.event.quit
 ge.read = love.filesystem.read
-ge.render = love.graphics.draw
+ge.draw = love.graphics.draw
 ge.print = love.graphics.print
 ge.rectangle = love.graphics.rectangle
 ge.circle = love.graphics.circle
 ge.line = love.graphics.line
 ge.polygon = love.graphics.polygon
 ge.setColour = love.graphics.setColor
-ge.setBackgroundColour = love.graphics.setBackgroundColour
-ge.mouseX = love.mouse.getX
-ge.mouseY = love.mouse.getY
+ge.setBackgroundColour = love.graphics.setBackgroundColor
+ge.setIcon = love.window.setIcon
 
-function ge.Scene(title, width, height)
-  return {title=title, width=width, height=height,update=updateScene}
+function ge.Window(title, width, height)
+  return {title=title, width=width, height=height}
 end
 
-function ge.mouse()
-  local x, y = love.mouse.getPosition()
-  return Vec(x, y)
+function ge.State(name, t)
+  ge.states[name] = {}
+  return ge.states[name]
+end
+
+function ge.play(name)
+  local state = ge.states[name]
+  if state == ge.active then return end
+  if not state then return end
+  ge.active = state
+  ge.call("Load")
+end
+
+function ge.restart()
+  ge.call("Load")
+  gui.play("")
+end
+
+function ge.call(name, ...)
+  if ge.active and type(ge.active[name]) == "function" then 
+    ge.active[name](ge.active, ...) 
+  end 
+end
+
+function ge.drawf(texture, align, x, y, r, sx, sy)
+  local ox, oy = 0, 0
+  if align == "center" then
+    ox = texture:getWidth() / 2
+    oy = texture:getHeight() / 2
+  end
+  ge.draw(texture, x, y, r, sx, sy, ox, oy)
 end
 
 function love.load(arg)
   if arg[#arg] == "-debug" then require("mobdebug").start() end
   math.randomseed(os.time())
-  if ge.load then ge.load(arg) end
+  ge.setBackgroundColour(74, 74, 74)
+  ge.play("menu")
+  gui.toggle("f3", true, nil, ge.debug)
+  gui.load()
+end
+
+function love.quit()
+  gui.quit()
 end
 
 function love.update(dt)
-  ge.updateInput(dt)
   gui.update(dt)
-  if ge.update then ge.update(dt) end
+  ge.call("Update", dt)
+  ge.call("Ui", dt)
+  if menu then menu(dt) end
+  ge.input(dt)
+  ge.reload(dt)
 end
 
--- testing aspect scaling(temp)
-local sw, sh = love.graphics.getDimensions()
 function love.draw()
-  local w, h = love.graphics.getDimensions()
-  -- love.graphics.origin()
-  -- love.graphics.scale(w / sw, h / sh)
-  if ge.draw then ge.draw() end
   if ge.transformed then 
     love.graphics.pop()
     ge.transformed = false
   end
+  ge.call("Draw")
+  ge.push()
   gui.draw()
 end
 
@@ -87,33 +117,39 @@ function ge.push(node)
   end
 end
 
-function love.keypressed(key, scancode, isrepeat) 
-  ge.state[key] = true 
-  -- if ge.pressed then ge.pressed(key) end
-end
-
-function love.keyreleased(key) 
-  ge.state[key] = false 
-end
-
 function love.textinput(t) 
   ge.textentered = ge.textentered .. t 
+  gui.textinput(t)
 end
 
-function love.mousepressed(x, y, button, istouch) 
-  ge.state[button] = true 
+function love.keypressed(key, scancode, isrepeat) 
+  ge.pressedState[key] = 1 
+  gui.keypressed(key, scancode, isrepeat)
 end
 
-function love.mousereleased(x, y, button, istouch) 
-  ge.state[button] = false  
+function love.keyreleased(key, scancode)
+  ge.releasedState[key] = 1
+  gui.keyreleased(key, scancode)
 end
 
 function love.mousemoved(x, y, dx, dy, istouch) 
   ge.lastdelta = {x=dx, y=dy} 
+  gui.mousemoved(x, y, dx, dy, istouch)
+end
+
+function love.mousepressed(x, y, button, istouch) 
+  ge.pressedState[button] = 1 
+  gui.mousepressed(x, y, button, istouch)
+end
+
+function love.mousereleased(x, y, button, istouch) 
+  ge.releasedState[button] = 1  
+  gui.mousereleased(x, y, button, istouch)
 end
 
 function love.wheelmoved(x, y) 
   ge.wheel = {x=x, y=y} 
+  gui.wheelmoved(x, y)
 end
 
 function love.gamepadpressed(joystick, button)
@@ -130,13 +166,18 @@ function table.copy(t1)
   return out
 end
 
-function ge.updateInput(dt) 
+function ge.input(dt) 
   ge.delta = table.copy(ge.lastdelta)
   ge.wheel = table.copy(ge.lastwheel)
   ge.lastdelta = {x=0,y=0}
   ge.lastwheel = {x=0,y=0}
-  ge.prev = table.copy(ge.prev2)
-  ge.prev2 = table.copy(ge.state)
+  ge.pressedState = {}
+  ge.releasedState = {}
+end
+
+function ge.mouse()
+  local x, y = love.mouse.getPosition()
+  return ge.Vector2(x, y)
 end
 
 -- range -1 to 1
@@ -148,37 +189,13 @@ function ge.axis(bind)
 end
 
 function ge.down(key) 
-  return ge.state[key] 
+  return ge.state[key] == 1
 end
 
 function ge.pressed(key) 
-  return not ge.prev[key] and ge.state[key] 
+  return ge.pressedState[key] == 1
 end
 
 function ge.released(key) 
-  return ge.prev[key] and not ge.state[key] 
-end
-
-local currentCamera
-function ge.bind(shader, camera)
-  love.graphics.setShader(shader)
-
-  if not camera then
-    if currentCamera then love.graphics.pop() end
-    currentCamera = nil
-    return
-  end
-
-  currentCamera = camera
-  -- dimensions, center
-  local w, h = love.graphics.getDimensions()
-  local size = camera.position + Vec(w / 2, h / 2)
-  
-  -- scale to screen size
-  love.graphics.push()
-  love.graphics.scale(w / camera.iSize.x, h / camera.iSize.y)
-  love.graphics.translate(w / 2, h / 2)
-  love.graphics.scale(1 / camera.zoom)
-  love.graphics.rotate(-math.rad(camera.r))
-  love.graphics.translate(-camera.position.x - w / 2, -camera.position.y - h / 2)
+  return ge.releasedState[key] == 1
 end

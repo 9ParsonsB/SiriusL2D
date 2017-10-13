@@ -4,17 +4,26 @@
 		"selected_items":
 		[
 			[
+				"files",
+				"love.filesystem.getLastModified"
+			],
+			[
+				"setme",
+				"setmetatable\t(table, metatable)"
+			],
+			[
+				"en",
+				"love.event.quit"
+			],
+			[
 				"for",
 				"forp\tfor k,v in pairs()"
 			],
 			[
-<<<<<<< HEAD
 				"mothersh",
 				"mothership1"
 			],
 			[
-=======
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 				"sound",
 				"love.graphics.setBackgroundColor"
 			],
@@ -65,10 +74,6 @@
 			[
 				"isDown",
 				"love.mouse.isDown"
-			],
-			[
-				"setme",
-				"love.physics.setMeter"
 			],
 			[
 				"time",
@@ -141,10 +146,6 @@
 			[
 				"Target",
 				"TargetX"
-			],
-			[
-				"files",
-				"love.filesystem.getLastModified"
 			],
 			[
 				"grap",
@@ -277,10 +278,6 @@
 			[
 				"No",
 				"now"
-			],
-			[
-				"en",
-				"entityB"
 			],
 			[
 				"E",
@@ -517,61 +514,31 @@
 			[
 				"cu",
 				"cueBall"
-<<<<<<< HEAD
-=======
-			],
-			[
-				"He",
-				"HelloWorld"
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-<<<<<<< HEAD
-			"file": "tests/traffic.lua",
+			"file": "menu.lua",
 			"settings":
 			{
-				"buffer_size": 575,
-=======
-			"file": "main.lua",
-			"settings":
-			{
-				"buffer_size": 2881,
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
+				"buffer_size": 877,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-<<<<<<< HEAD
-			"file": "tests/noughtsCrosses.lua",
-			"settings":
-			{
-				"buffer_size": 1164,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "main.lua",
-			"settings":
-			{
-				"buffer_size": 137,
-=======
 			"file": "data.lua",
 			"settings":
 			{
-				"buffer_size": 790,
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
+				"buffer_size": 149,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		}
 	],
-	"build_system": "",
+	"build_system": "Packages/Python/Python.sublime-build",
 	"build_system_choices":
 	[
 		[
@@ -597,13 +564,29 @@
 				"Packages/Lua Love/LuaLove.sublime-build",
 				""
 			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
 		]
 	],
 	"build_varint": "",
 	"command_palette":
 	{
 		"height": 392.0,
-		"last_filter": "packa",
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -676,165 +659,138 @@
 	},
 	"expanded_folders":
 	[
-		"/D/projects/SiriusL2D(master)"
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)"
 	],
 	"file_history":
 	[
-<<<<<<< HEAD
-		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/tests/test.lua",
-		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/tests/sirius.lua",
-		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/init.lua",
-		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/tests/noughtsCrosses.lua",
-		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/tests/breakout.lua",
-		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/math.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/main.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/nuklearTest.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/old.lua",
 		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/gui.lua",
-		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/vec.lua",
-		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/conf.lua",
-		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/data.lua",
 		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/api.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/reload.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/init.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/main",
+		"/C/Users/Chris/Documents/projects/raw.txt",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/menu.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/editor.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/design2",
+		"/C/Users/Chris/Documents/projects/Test/Test.cs",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/imguiTest.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/test.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/conf.lua",
+		"/C/Users/Chris/Documents/projects/C#/Test.cs",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/gui-test.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/gui2.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/math.lua",
+		"/C/Users/Chris/Documents/projects/C#/Old/NetworkOld/Client.cs",
+		"/C/Users/Chris/Documents/projects/C#/Test/README.md",
+		"/C/Users/Chris/Documents/projects/C#/Test/Sirius/Game1.cs",
+		"/C/Users/Chris/Documents/projects/GameEngine/src/audio.cpp",
+		"/C/Users/Chris/Documents/projects/GameEngine/src/graphics.cpp",
+		"/C/Users/Chris/Documents/projects/GameEngine/src/glc.h",
+		"/C/Users/Chris/Documents/projects/GameEngine/src/text.cpp",
+		"/C/Users/Chris/Documents/projects/GameEngine/src/lua.cpp",
+		"/C/Users/Chris/Documents/projects/GameEngine/src/gmath.h",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/test.lua",
+		"/C/Users/Chris/Documents/projects/C#/WinForms/Arrays/Form1.cs",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/class.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/src/sirius.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/src/menu.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/src/test.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/network/dump.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/path.lua",
+		"/C/Users/Chris/Documents/projects/quotes",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/data.lua",
+		"/C/Users/Chris/Documents/projects/ChrisDill.github.io/index.html",
+		"/C/Users/Chris/Documents/projects/ChrisDill.github.io/stylesheet.css",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/src/units.lua",
+		"/C/Users/Chris/Documents/college/btecY2/sean/Procedural/WinForms/SaveLoad/SaveLoad/SaveLoad/Form1.cs",
+		"/C/Users/Chris/Documents/college/btecY2/sean/Procedural/WinForms/VATCalculator/VATCalculator/Form1.cs",
+		"/C/Users/Chris/Documents/college/btecY2/sean/Procedural/WinForms/SaveLoad/SaveLoad/SaveLoad/Program.cs",
+		"/C/Users/Chris/Documents/college/btecY2/sean/Procedural/WinForms/VATCalculator/VATCalculator/VatCalculator.cs",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/src/menuTest.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/src/old.lua",
+		"/C/Users/Chris/Documents/projects/other/noughtcross/game.h",
+		"/C/Users/Chris/Documents/projects/other/noughtcross/initialize.h",
+		"/C/Users/Chris/Documents/projects/other/sample.cpp",
+		"/C/Users/Chris/Documents/projects/C#/Sirius/Sirius/Src/Game1.cs",
+		"/C/Users/Chris/Documents/projects/C#/HowToPool/HowToPool/PoolGame.cs",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/tests/sirius.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/tests/test.lua",
+		"/C/Users/Chris/Documents/projects/Python/test.py",
+		"/C/Users/Chris/Documents/projects/Python/oop.py",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/tests/misc.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/tests/units.lua",
+		"/C/Users/Chris/Documents/projects/Python/coin.py",
+		"/C/Users/Chris/Documents/projects/c#/Sirius/Sirius/Src/Game1.cs",
+		"/C/Users/Chris/Documents/projects/c#/Sirius/Sirius/Src/Data.cs",
+		"/C/Users/Chris/Documents/projects/c#/Game1/Game1/Properties/AssemblyInfo.cs",
+		"/C/Users/Chris/Documents/projects/c#/Sirius/SiriusClient/Src/Data.cs",
+		"/C/Users/Chris/Documents/projects/c#/Sirius/SiriusClient/Src/Game1.cs",
+		"/C/Users/Chris/Documents/projects/c#/Sirius/SiriusClient/Game1.cs",
+		"/C/Users/Chris/Documents/projects/other/noughtcross/main.cpp",
+		"/C/Users/Chris/Documents/projects/other/noughtcross/game.cpp",
+		"/C/Users/Chris/Documents/projects/other/noughtcross/gameHandlerClass.cpp",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/network/enet/init.lua",
+		"/C/Users/Chris/Documents/projects/other/noughtcross/gameHandlerClass.h",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/tests/breakout.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/tests/noughtsCrosses.lua",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/SiriusLinux.sh",
+		"/C/Users/Chris/Documents/projects/python/graphics/graphicsTest.py",
+		"/C/Users/Chris/Documents/projects/python/help.py",
+		"/C/Users/Chris/Documents/projects/python/graphics/modernglTest.py",
+		"/C/Users/Chris/Documents/projects/python/ifTest.py",
+		"/C/Users/Chris/Documents/projects/python/suvat.py",
+		"/C/Users/Chris/Documents/projects/python/guess.py",
+		"/C/Users/Chris/Documents/projects/python/myGuessNum.py",
+		"/C/Users/Chris/Documents/projects/python/numGen.py",
+		"/C/Users/Chris/Documents/projects/python/rockPaperScissors.py",
+		"/C/Users/Chris/Documents/projects/python/quadraticFormula.py",
+		"/C/Users/Chris/Documents/projects/python/oop.py",
+		"/C/Users/Chris/Documents/projects/python/isItChristmas.py",
+		"/C/Users/Chris/Documents/projects/python/clock.py",
+		"/C/Users/Chris/Documents/projects/python/convert.py",
+		"/C/Users/Chris/Documents/projects/python/hexBinary.py",
+		"/C/Users/Chris/Documents/projects/python/coin.py",
+		"/C/Users/Chris/Documents/projects/python/test.py",
+		"/C/Users/Chris/Documents/projects/python/coinflip.py",
+		"/C/Users/Chris/Documents/projects/python/codeGen.py",
+		"/C/Users/Chris/Documents/projects/python/code.py",
+		"/D/projects/SiriusL2D(master)/core/math.lua",
+		"/D/projects/SiriusL2D(master)/core/api.lua",
+		"/D/projects/SiriusL2D(master)/core/path.lua",
+		"/D/projects/SiriusL2D(master)/core/init.lua",
+		"/D/projects/SiriusL2D(master)/tests/noughtsCrosses.lua",
+		"/D/projects/SiriusL2D(master)/tests/design.lua",
+		"/D/projects/SiriusL2D(master)/tests/test.lua",
+		"/D/projects/misc/bro/stickfiguretest.py",
+		"/D/projects/python/codeGen.py",
+		"/D/projects/python/code.py",
+		"/D/projects/python/clock.py",
+		"/D/projects/SiriusL2D(master)/core/network/init.lua",
+		"/D/projects/SiriusL2D(master)/data.lua",
+		"/D/projects/SiriusL2D(master)/tests/breakout.lua",
+		"/D/projects/SiriusL2D(master)/main.lua",
+		"/D/projects/SiriusL2D(master)/core/design2.lua",
+		"/D/projects/SiriusL2D(master)/tests/sirius.lua",
+		"/D/projects/SiriusL2D(master)/tests/design2.lua",
+		"/D/projects/SiriusL2D(master)/core/core2.lua",
+		"/C/Users/Chris/Documents/xamp/apache/conf/httpd.conf",
+		"/D/projects/SiriusL2D(master)/tests/traffic.lua",
+		"/D/projects/python/graphics/test.py",
+		"/D/projects/python/graphics/grid.py",
+		"/D/projects/c#/NoughtCross/NoughtCross/Form1.cs",
+		"/D/projects/c#/NumberGuess/NumberGuess/Form1.cs",
+		"/D/projects/SiriusL2D(master)/core/class.lua",
+		"/D/projects/python/graphics/sirius/lib/SpaceGame.py",
+		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/core/vec.lua",
 		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/tests/traffic.lua",
 		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/sirius.lua",
-		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/main.lua",
 		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/tests/tictactoe.lua",
 		"/D/projects/c#/numberGuess/numberGuess/Form1.cs",
 		"/D/projects/c#/numberGuess/numberGuess/Program.cs",
-		"/D/college/year1/sean/Assignment 3/VendingMachine/VendingMachine.cs",
-		"/C/Users/Chris/Documents/projects/SiriusL2D(master)/test.lua",
-		"/D/projects/python/graphics/sirius/Sirius.py",
-=======
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
-		"/D/projects/SiriusL2D(master)/core/math.lua",
-		"/D/projects/notes",
-		"/D/projects/SiriusL2D(master)/core/init.lua",
-		"/D/projects/SiriusL2D(master)/core/api.lua",
-		"/G/projects/Game-Engine-master/src/CustomString.cpp",
-		"/C/Users/Chris/AppData/Local/Temp/Temp1_Game-Engine-master.zip/Game-Engine-master/include/Graphics/GLTexture.h",
-		"/C/Users/Chris/AppData/Local/Temp/Temp1_Game-Engine-master.zip/Game-Engine-master/include/Graphics/GLDrawable.h",
-		"/C/Users/Chris/AppData/Local/Temp/Temp1_Game-Engine-master.zip/Game-Engine-master/include/Lua/LuaState.h",
-		"/D/projects/SiriusL2D(master)/core/class.lua",
-		"/D/projects/SiriusL2D(master)/data.lua",
-		"/D/projects/GameEngine/src/app.h",
-		"/D/projects/SiriusL2D(master)/core/gui.lua",
-		"/D/projects/SiriusL2D(master)/core/network/vec.lua",
-		"/D/projects/SiriusL2D(master)/core/network/peer.lua",
-		"/D/projects/SiriusL2D(master)/core/network/init.lua",
-		"/D/projects/SiriusL2D(master)/core/vec.lua",
-		"/D/projects/SiriusL2D(master)/core/network/class.lua",
-		"/D/projects/SiriusL2D(master)/test.lua",
-		"/D/projects/SiriusL2D(master)/main.lua",
-		"/D/projects/GameEngine/src/network/peer.cpp",
-		"/D/projects/SiriusL2D(master)/core/tests/breakout.lua",
-		"/D/projects/SiriusL2D(master)/core/tests/noughtcross.lua",
-		"/D/projects/SiriusL2D(master)/core/tests/sirius.lua",
-		"/D/projects/SiriusL2D(master)/sirius.lua",
-		"/D/projects/misc/res/sample.cpp",
-		"/D/projects/misc/res/vulkanTest.cpp",
-		"/D/projects/misc/res/quotes",
-		"/D/projects/SiriusL2D(master)/conf.lua",
-		"/D/projects/GameEngine/res/main.lua",
-		"/D/projects/lua/SiriusL2D(master)/main.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/api.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/vec.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/gui.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/netpeer.lua",
-		"/D/projects/lua/SiriusL2D(master)/data.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/init.lua",
-		"/D/projects/lua/clones/breakout.lua",
-		"/D/projects/lua/clones/main.lua",
-		"/D/projects/lua/clones/conf.lua",
-		"/D/projects/lua/SiriusL2D(master)/test/sirius.lua",
-		"/D/projects/lua/SiriusL2D(master)/test/breakout.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/sirius.lua",
-		"/D/projects/lua/SiriusL2D(master)/test/spaceInvaders.lua",
-		"/D/projects/lua/SiriusL2D(master)/test/test.lua",
-		"/D/projects/lua/SiriusL2D(master)/tests/test.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/test.lua",
-		"/D/projects/lua/SiriusL2D(master)/sirius.lua",
-		"/D/projects/lua/SiriusL2D(master)/README.md",
-		"/D/projects/lua/SiriusL2D(master)/test.lua",
-		"/D/projects/lua/ideas.txt",
-		"/D/projects/lua/SiriusL2D(master)/misc.lua",
-		"/D/projects/lua/SiriusL2D(master)/nebula.lua",
-		"/D/projects/lua/SiriusL2D(master)/conf.lua",
-		"/D/projects/lua/SiriusL2D(master)/res/nebula.glsl",
-		"/D/projects/lua/clones/noughtcross.lua",
-		"/D/projects/lua/SiriusL2D(master)/res/TODO.txt",
-		"/D/projects/lua/SiriusL2D(master)/res/SiriusLinux.sh",
-		"/D/projects/lua/SiriusL2D(master)/res/noise2D.glsl",
-		"/D/projects/lua/SiriusL2D(master)/res/classicnoise2D.glsl",
-		"/D/projects/lua/SiriusL2D(master)/res/noise2D.glsl.txt",
-		"/D/projects/misc/res/path.cpp",
-		"/C/Users/Chris/Downloads/perlin2d.glsl",
-		"/D/projects/lua/SiriusL2D(master)/res/perlin2d.glsl",
-		"/D/projects/lua/SiriusL2D(master)/perlin2d.glsl",
-		"/D/projects/lua/SiriusL2D(master)/res/Perlin2D.glsl.txt",
-		"/D/projects/idea.txt",
-		"/D/projects/python/learning/help.py",
-		"/D/projects/python/learning/isItChristmas.py",
-		"/D/projects/lua/main.lua",
-		"/D/projects/lua/test/main.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/peer.lua",
-		"/D/projects/c#/HowToPool/HowToPool/Test.cs",
-		"/D/projects/lua/SiriusL2D(master)/core/misc.lua",
-		"/D/projects/lua/SiriusL2D(master)/SiriusL2D.sublime-project",
-		"/D/projects/lua/SiriusL2D(master)/core/network/init.lua",
-		"/D/games/Rodina/Scripts/DataGameplay/EGDataActionBindings.lua",
-		"/D/projects/python/learning/oop.py",
-		"/D/projects/lua/SiriusL2D(master)/core/input.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/view.lua",
-		"/D/projects/c#/sirius/Windows/GenericEngine/Src/Network/Server/NetEvents.cs",
-		"/D/projects/c#/sirius/Windows/GenericEngine/Src/Network/Server/Handler.cs",
-		"/D/projects/c#/sirius/Windows/GenericEngine/Src/Network/Server/GenericServerClient.cs",
-		"/D/projects/c#/sirius/Windows/SiriusClient/Game1.cs",
-		"/D/projects/c#/sirius/Windows/SiriusClient/Entities/Gameplay.cs",
-		"/D/projects/GameEngine/src/app.cpp",
-		"/D/projects/lua/SiriusL2D(master)/core/scene.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/path.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/physics.lua",
-		"/D/projects/mods/FireArmor_0.1.0/prototypes/item.lua",
-		"/D/projects/mods/TestMod/data.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/client.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/enet/peer.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/enet/init.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/enet/client.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/shared.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/server.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/misc/server.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/vec.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/enet/server.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/misc/client.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/dump.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/enet/dump.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/misc/peer.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/socket/netpeer.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/socket/peer.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/socket/client.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/old/peer.lua",
-<<<<<<< HEAD
-		"/D/projects/lua/SiriusL2D(master)/core/network/old/client.lua"
-=======
-		"/D/projects/lua/SiriusL2D(master)/core/network/old/client.lua",
-		"/D/projects/lua/SiriusL2D(master)/core/network/class.lua",
-		"/D/code/lua/SiriusL2D(master)/core/init.lua",
-		"/D/code/lua/SiriusL2D(master)/core/api.lua",
-		"/D/code/lua/SiriusL2D(master)/core/input.lua",
-		"/D/code/lua/SiriusL2D(master)/conf.lua",
-		"/D/code/lua/SiriusL2D(master)/core/scene.lua",
-		"/D/code/lua/SiriusL2D(master)/core/view.lua",
-		"/D/code/lua/SiriusL2D(master)/core/gui.lua",
-		"/D/code/lua/SiriusL2D(master)/core/path.lua",
-		"/D/code/lua/SiriusL2D(master)/core/physics.lua",
-		"/D/code/lua/SiriusL2D(master)/data.lua",
-		"/D/projects/GameEngine/src/main.cpp",
-		"/D/projects/GameEngine/GameEngine.sublime-project",
-		"/D/code/lua/SiriusL2D(master)/SiriusL2D.sublime-project",
-		"/D/projects/misc/path.cpp",
-		"/D/projects/misc/sample.cpp",
-		"/D/projects/misc/sample/C++ Sample/main.cpp",
-		"/D/projects/misc/vulkanTest.cpp",
-		"/D/code/c#/misc/sirius/Linux/GenericEngine/Src/Input/Keyboard.cs",
-		"/D/code/c#/misc/sirius/Windows/GenericEngine/Src/Input/Mouse.cs"
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
+		"/D/college/year1/sean/Assignment 3/VendingMachine/VendingMachine.cs"
 	],
 	"find":
 	{
@@ -852,13 +808,29 @@
 		"case_sensitive": true,
 		"find_history":
 		[
-<<<<<<< HEAD
+			")\n",
+			"toggle",
+			"imgui",
+			"then",
+			"end",
+			"ge.mouse",
+			"ge",
+			"gui",
+			"48",
+			"\")\n",
+			"h",
+			")\n",
+			"gr",
+			"grid",
+			"a",
+			"GameObject",
+			"game",
+			"Vec",
+			")\n",
 			"self",
 			"love",
 			"setColor",
 			"love",
-=======
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 			"local",
 			"view",
 			"View",
@@ -963,34 +935,7 @@
 			"Test",
 			"initia",
 			"Button",
-			"text",
-			"get",
-			"self.mouse",
-			"filePath",
-			"G",
-			"Fire",
-			"collectgarbage",
-			"200",
-			")\n",
-			"end",
-			"Transform",
-			"Entity",
-			"X",
-			"entity",
-			"end",
-			")\n",
-			"camera",
-			"local",
-			")\n",
-<<<<<<< HEAD
-			"{}\n"
-=======
-			"{}\n",
-			"end",
-			"50",
-			"\t\n",
-			")\n"
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
+			"text"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -998,12 +943,16 @@
 		"regex": false,
 		"replace_history":
 		[
-<<<<<<< HEAD
+			"nk",
+			"guink",
+			"gui",
+			"ge",
+			"game",
+			"Game",
+			"Vector2",
 			"ge",
 			"setColour",
 			"ge",
-=======
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 			"camera",
 			"Camera",
 			"Vec",
@@ -1044,127 +993,53 @@
 	"groups":
 	[
 		{
-<<<<<<< HEAD
-			"selected": 2,
-=======
 			"selected": 0,
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 			"sheets":
 			[
 				{
 					"buffer": 0,
-<<<<<<< HEAD
-					"file": "tests/traffic.lua",
+					"file": "menu.lua",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 575,
-=======
-					"file": "main.lua",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2881,
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
+						"buffer_size": 877,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-<<<<<<< HEAD
-								575,
-								575
-=======
-								194,
-								194
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
+								877,
+								877
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Lua/Lua.sublime-syntax",
-							"tab_size": 2,
-<<<<<<< HEAD
 							"translate_tabs_to_spaces": false
-=======
-							"translate_tabs_to_spaces": true
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-<<<<<<< HEAD
-					"stack_index": 2,
-=======
 					"stack_index": 0,
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-<<<<<<< HEAD
-					"file": "tests/noughtsCrosses.lua",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1164,
-=======
 					"file": "data.lua",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 790,
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
+						"buffer_size": 149,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-<<<<<<< HEAD
-								166,
-								166
-=======
-								790,
-								790
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Lua/Lua.sublime-syntax",
-							"tab_size": 2,
-<<<<<<< HEAD
-							"translate_tabs_to_spaces": true
-=======
-							"translate_tabs_to_spaces": false
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-<<<<<<< HEAD
-				},
-				{
-					"buffer": 2,
-					"file": "main.lua",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 137,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								26,
-								26
+								149,
+								149
 							]
 						],
 						"settings":
@@ -1175,10 +1050,8 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
-=======
->>>>>>> f54c48c6670be9d283fdd048b9c9a790edba36ca
 				}
 			]
 		}
@@ -1226,7 +1099,7 @@
 	"project": "SiriusL2D.sublime-project",
 	"replace":
 	{
-		"height": 72.0
+		"height": 90.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1272,7 +1145,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 173.0,
+	"side_bar_width": 176.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

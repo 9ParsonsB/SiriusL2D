@@ -1,88 +1,92 @@
-local class = require "core/class"
+local ffi = require "ffi"
 
-local Vec = class("Vec")
-function Vec:init(x, y)
-  self.x = x or 0
-  self.y = y or 0
+ffi.cdef[[
+  typedef struct Vector2 {
+    float x, y;
+  } Vector2;
+]]
+
+local Vector2 = {}
+ge.Vector2 = ffi.metatype("Vector2", Vector2)
+Vector2.__index = Vector2
+
+function Vector2.__add(a, b)
+	if type(a) == "number" then
+		return ge.Vector2(b.x + a, b.y + a)
+	elseif type(b) == "number" then
+		return ge.Vector2(a.x + b, a.y + b)
+	else
+		return ge.Vector2(a.x + b.x, a.y + b.y)
+	end
 end
 
-function Vec.__add(a, b)
-  if type(a) == "number" then
-	return Vec(b.x + a, b.y + a)
-  elseif type(b) == "number" then
-	return Vec(a.x + b, a.y + b)
-  else
-	return Vec(a.x + b.x, a.y + b.y)
-  end
+function Vector2.__sub(a, b)
+	if type(a) == "number" then
+		return ge.Vector2(b.x - a, b.y - a)
+	elseif type(b) == "number" then
+		return ge.Vector2(a.x - b, a.y - b)
+	else
+		return ge.Vector2(a.x - b.x, a.y - b.y)
+	end
 end
 
-function Vec.__sub(a, b)
-  if type(a) == "number" then
-	return Vec(b.x - a, b.y - a)
-  elseif type(b) == "number" then
-	return Vec(a.x - b, a.y - b)
-  else
-	return Vec(a.x - b.x, a.y - b.y)
-  end
+function Vector2.__mul(a, b)
+	if type(a) == "number" then
+		return ge.Vector2(b.x * a, b.y * a)
+	elseif type(b) == "number" then
+		return ge.Vector2(a.x * b, a.y * b)
+	else
+		return ge.Vector2(a.x * b.x, a.y * b.y)
+	end
 end
 
-function Vec.__mul(a, b)
-  if type(a) == "number" then
-	return Vec(b.x * a, b.y * a)
-  elseif type(b) == "number" then
-	return Vec(a.x * b, a.y * b)
-  else
-	return Vec(a.x * b.x, a.y * b.y)
-  end
+function Vector2.__div(a, b)
+	if type(a) == "number" then
+		return Vector2(b.x / a, b.y / a)
+	elseif type(b) == "number" then
+		return ge.Vector2(a.x / b, a.y / b)
+	else
+		return ge.Vector2(a.x / b.x, a.y / b.y)
+	end
 end
 
-function Vec.__div(a, b)
-  if type(a) == "number" then
-	return Vec(b.x / a, b.y / a)
-  elseif type(b) == "number" then
-	return Vec(a.x / b, a.y / b)
-  else
-	return Vec(a.x / b.x, a.y / b.y)
-  end
-end
-
-function Vec.__eq(a, b)
+function Vector2.__eq(a, b)
   return a.x == b.x and a.y == b.y
 end
 
-function Vec.__lt(a, b)
+function Vector2.__lt(a, b)
   return a.x < b.x or (a.x == b.x and a.y < b.y)
 end
 
-function Vec.__le(a, b)
+function Vector2.__le(a, b)
   return a.x <= b.x and a.y <= b.y
 end
 
-function Vec.__tostring(a)
+function Vector2.__tostring(a)
   return "(" .. a.x .. ", " .. a.y .. ")"
 end
 
-function Vec.distance(a, b)
+function Vector2.distance(a, b)
   return (b - a):len()
 end
 
-function Vec:clone()
-  return Vec(self.x, self.y)
+function Vector2:clone()
+  return ge.Vector2(self.x, self.y)
 end
 
-function Vec:unpack()
+function Vector2:unpack()
   return self.x, self.y
 end
 
-function Vec:len()
+function Vector2:len()
   return math.sqrt(self.x * self.x + self.y * self.y)
 end
 
-function Vec:lenSq()
+function Vector2:lenSq()
   return self.x * self.x + self.y * self.y
 end
 
-function Vec:normalize(scale)
+function Vector2:normalize(scale)
   if self.x == 0 and self.y == 0 then return end
   local len = self:len()
   self.x = (self.x / len) * (scale or 1)
@@ -90,11 +94,11 @@ function Vec:normalize(scale)
   return self
 end
 
-function Vec:normalized()
+function Vector2:normalized()
   return self / self:len()
 end
 
-function Vec:rotate(phi)
+function Vector2:rotate(phi)
   local c = math.cos(phi)
   local s = math.sin(phi)
   self.x = c * self.x - s * self.y
@@ -102,34 +106,50 @@ function Vec:rotate(phi)
   return self
 end
 
-function Vec:rotated(phi)
+function Vector2:rotated(phi)
   return self:clone():rotate(phi)
 end
 
-function Vec:perpendicular()
-  return Vec(-self.y, self.x)
+function Vector2:perpendicular()
+  return ge.Vector2(-self.y, self.x)
 end
 
-function Vec:projectOn(other)
+function Vector2:projectOn(other)
   return (self * other) * other / other:lenSq()
 end
 
-function Vec:cross(other)
+function Vector2:cross(other)
   return self.x * other.y - self.y * other.x
 end
 
 -- orthographic camera
-local Camera = class("Camera")
-function Camera:init(x, y, w, h)
-  self.position = Vec(x, y)
-  self.size = Vec(w, h)
-  self.r = 0
-  self.zoom = 1
-  self.iSize = Vec(love.graphics.getDimensions())
+local ffi = require "ffi"
+ffi.cdef[[
+  typedef struct Camera {
+    Vector2 position;
+    Vector2 size;
+    Vector2 iSize;
+    float r;
+    float zoom;
+  } Camera;
+]]
+
+local Camera = {}
+local CCamera = ffi.metatype("Camera", Camera)
+Camera.__index = Camera
+Camera.current = nil
+
+function ge.Camera(x, y, w, h)
+  local position = ge.Vector2(x or 0, y or 0)
+  local size = ge.Vector2(w or 1, h or 1)
+  local iSize = ge.Vector2(love.graphics.getDimensions())
+  local r = 0
+  local zoom = 1
+  return CCamera(position, size, iSize, r, zoom)
 end
 
 function Camera:update(dt)
-  if ge.down(3) then self.position = self.position + Vec(-ge.delta.x, -ge.delta.y) end
+  if ge.down(3) then self.position = self.position + ge.Vector2(-ge.delta.x, -ge.delta.y) end
   -- self:zoom(ge.wheel.y)
 end
 
@@ -142,7 +162,7 @@ function Camera:project(x, y)
   x, y = cos * x - sin * y, sin * x + cos * y -- rotation
   x,y = x + w2, y + h2  -- sub offset
   x,y = x + self.position.x, y + self.position.y -- translate
-  return Vec(x, y)
+  return Vector2(x, y)
 end
 
 function Camera:mouse()
@@ -154,14 +174,38 @@ function Camera:zoom()
   self.zoom = self.zoom * value
 end
 
+function Camera:bind()
+  if self.current then
+    love.graphics.pop()
+    self.current = nil
+    return
+  end
+
+  self.current = self
+  -- dimensions, center
+  local w, h = love.graphics.getDimensions()
+  local size = self.position + ge.Vector2(w / 2, h / 2)
+  
+  -- scale to screen size
+  love.graphics.push()
+  love.graphics.scale(w / self.iSize.x, h / self.iSize.y)
+  love.graphics.translate(w / 2, h / 2)
+  love.graphics.scale(1 / self.zoom)
+  love.graphics.rotate(-math.rad(self.r))
+  love.graphics.translate(-self.position.x - w / 2, -self.position.y - h / 2)
+end
+
 -- util
-function ge.vectorDirection(r) 
-  return Vec(math.cos(r), math.sin(r))
+function ge.vDirection(r) 
+  return Vector2(math.cos(r), math.sin(r))
 end
 
 function ge.direction(node, point)
-  local distance = point - node.position
   return math.atan2(point.y - node.position.y, point.x - node.position.x)
+end
+
+function math.round(num)
+  return math.floor(num+0.5)
 end
 
 function ge.face(a, b) 
@@ -184,28 +228,103 @@ function ge.sign(v)
   if v < 0 then return -1 else return 1 end 
 end
 
-function ge.intersectCircle(mx, my, x, y, radius)
+function ge.mod(a, b) 
+  return a - math.floor(a/b)*b 
+end
+
+function ge.containsCircle(mx, my, x, y, radius)
   local sqr = math.sqrt(math.pow(x - mx, 2) + math.pow(y - my, 2))
   return sqr <= radius
 end
 
-function ge.intersectBox(a, b, x, y, w, h)
+function ge.contains(a, b, x, y, w, h)
   return a > x and a < x + w and b > y and b < y + h
 end
 
 function ge.aabb(x1, y1, w1, h1, x2, y2, w2, h2)
-  return x1 < x2+w2 and x2 < x1+w1 and y1 < y2+h2 and y2 < y1+h1
+  return x1 < x2 + w2 and x2 < x1 + w1 and y1 < y2 + h2 and y2 < y1 + h1
 end
 
 function ge.to2D(index, rows)
   return math.fmod(index, rows), math.floor(index / rows)
 end
 
-function ge.moveTowardPoint(node, point, speed)
+function ge.moveTo(node, point, speed)
   local distance = point - node.position
   local length = distance:len()
   if length == 0 then return end
   local movement = distance:normalize() * math.min(length, speed)
   node.position = node.position + movement
 end
-return {Vec, Camera, Grid}
+
+-- line up velocity
+--[[function ge.alignment(node, list)
+  local point = Vec(0, 0)
+  local neighborCount = 0
+
+  for k,v in pairs(list) do
+    if v ~= node then
+      if node.position:distance(v.position) < 300 then
+        point = point + node.velocity
+        neighborCount = neighborCount + 1
+      end
+    end
+
+    if neighborCount == 0 then 
+      return point
+    end
+
+    point = point / neighborCount
+    point:normalize()
+    return point
+  end
+end
+
+-- steer towards center
+function ge.cohesion(node, list)
+  local point = Vec(0, 0)
+  local neighborCount = 0
+
+  for k,v in pairs(list) do
+    if v ~= node then
+      if node.position:distance(v.position) < 300 then
+        point = point + node.position
+        neighborCount = neighborCount + 1
+      end
+    end
+
+    if neighborCount == 0 then 
+      return point
+    end
+
+    point = point / neighborCount
+    point = point - node.position
+    point:normalize()
+    return point
+  end
+end
+
+-- steer away from neighbors
+function ge.separation(node, list)
+  local point = Vec(0, 0)
+  local neighborCount = 0
+
+  for k,v in pairs(list) do
+    if v ~= node then
+      if node.position:distance(v.position) < 300 then
+        point = point + (v.position - node.position)
+        neighborCount = neighborCount + 1
+      end
+    end
+
+    if neighborCount == 0 then 
+      return point
+    end
+
+    point = point / neighborCount
+    point = point * -1
+    point:normalize()
+    return point
+  end
+end--]]
+

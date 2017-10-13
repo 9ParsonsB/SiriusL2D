@@ -1,47 +1,14 @@
 
 data = {
-	unit = {},
-	weapon = {},
+	unit1 = {
+		file = "res/unit1.png",
+		health = 10,
+		attack = 10
+	},
 
-	binds = 
-	{
-		SELECT = 1,
-		COMMAND = 2,
-		SPAWN = "1",
-		TEST = "t"
+	unit2 = {
+		file = "res/unit2.png",
+		health = 5,
+		attack = 5
 	}
 }
-
-data.player = gClass("Player", {
-	minerals = 0,
-	vespene = 0,
-	supply = 0})
-
-data.unit.Scout = gClass("Scout", {
-	sprite = "unit1",
-	health = 50})
-
-data.unit.Fighter = gClass("Fighter", {
-	sprite = "unit2",
-	health = 100})
-
-data.unit.Dreadnought = gClass("Dreadnought", {
-	sprite = "unit2",
-	health = 200})
-
-data.weapon.Laser = class("Laser", {
-	damage = 20,
-	cooldown = 2})
-
--- modding example
-local mod = {}
-mod.name = "Generic Dirt"
-mod.author = "Generic Author"
-mod.version = "1.0"
-mod.info = "Generic Info"
-
-function mod.load(data)
-	data.resources = 100
-  data.Vulture = class("Vulture")
-  table.insert(data.units, data.Vulture)
-end
